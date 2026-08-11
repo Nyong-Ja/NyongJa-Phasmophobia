@@ -74,30 +74,100 @@ const GHOST_DATA = [
         sanity: "타겟 정신력 50%",
         speed: "1.7 m/s (가속 O)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+밴시+공략",
-        tip: "특정 플레이어 1명을 지정해 추적하며 마이크로폰 고유 비명 소리가 존재합니다.",
+        tip: "오직 타겟 1명만을 노리며 지향성 마이크를 통해 고유의 비명 소리를 들을 수 있습니다.",
         huntSanity: "타겟 정신력 50%",
-        specialTrait: "지향성 마이크 사용 시 특수 비명(Wail)을 들려줌.",
+        specialTrait: "사냥 시 오직 타겟만을 추적하고 타겟이 아닌 플레이어는 통과함. 지향성 마이크 특수 비명(Wail) 확률.",
         forcedEvidence: "없음",
         hasAccel: true,
         hasSpecialSpeed: false,
         hasForcedEv: false,
-        hasTargetRoam: true
+        hasTargetRoam: true,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 사냥 및 타겟팅 메커니즘 (Hunt & Target)</div>
+            <p class="dict-text">
+                • <strong>단일 타겟 지정:</strong> 게임 시작 시 무작위로 1명의 플레이어를 '타겟(Target)'으로 지정하며 타겟이 사망하거나 집 밖으로 나가지 않는 한 타겟이 바뀌지 않습니다.<br>
+                • <strong>사냥 기준 정신력:</strong> 전체 평균 정신력이 아니라 <strong>오직 지정된 타겟의 정신력이 50% 이하</strong>일 때만 사냥을 시작합니다.<br>
+                • <strong>비타겟 플레이어 무시:</strong> 사냥 중 밴시는 오직 타겟만을 쫓으며, 비타겟 플레이어와 직접 부딪히거나 통과해도 <strong>비타겟 플레이어는 절대 죽지 않습니다.</strong><br>
+                • <strong>타겟 부재 시 룰:</strong> 타겟이 집(조사 구역) 밖에 머물러 있다면 사냥 시 일반 유령처럼 근처에 있는 다른 플레이어를 추적합니다.<br>
+                • <strong>모델 룰:</strong> 밴시는 설정상 항상 여성 유령 모델만 사용합니다 (남성 모델 확인 시 밴시 제외 가능).
+            </p>
+
+            <div class="dict-section-title">2. 상호작용 및 고유 행동 (Interaction)</div>
+            <p class="dict-text">
+                • <strong>스토킹 로밍 (Stalking Roam):</strong> 평소에 타겟이 위치한 곳으로 끊임없이 방을 이동(배회)하는 성향이 강합니다.<br>
+                • <strong>노래 부르기 이벤트 (Singing Event):</strong> 노래를 부르는 고스트 이벤트를 자주 발생시키며, 타겟이 접촉 시 정신력 감소량이 15%로 증가합니다.<br>
+                • <strong>지향성 마이크 고유 비명:</strong> 지향성 마이크(Parabolic Mic)로 소리를 감지할 때, 약 33% 확률로 일반 속삭임 대신 <strong>특유의 날카로운 비명/탄식 소리(Banshee's Wail)</strong>를 들려줍니다.
+            </p>
+
+            <div class="dict-section-title">3. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • 자외선 / 손자국 (Ultraviolet)<br>
+                • 고스트 오브 (Ghost Orb)<br>
+                • D.O.T.S. 프로젝터 (D.O.T.S. Projector)
+            </p>
+
+            <div class="dict-section-title">4. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 타겟으로 지정된 사냥감을 집중적으로 약화시킨 후 기습합니다.<br>
+                • <strong>약점 (Weakness):</strong> 지향성 마이크를 사용하면 고유의 비명 소리로 정체를 즉시 특정당합니다.
+            </p>
+
+            <div class="dict-section-title">5. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>지향성 마이크 테스트 (가장 확실):</strong> 밴시 증거가 의심될 때 마이크를 켜두고 기다려 특수 비명 소리가 들리는지 체크하는 것이 최우선입니다.<br>
+                • <strong>사냥 중 몸통 박치기 테스트 (멀티플레이):</strong> 사냥이 시작되었을 때 유령이 자신을 보고도 무시하고 지나가거나 몸을 겹쳐도 죽지 않는다면 100% 밴시입니다.<br>
+                • <strong>스토킹 체크:</strong> 고스트 룸이 아닌 다른 방에 머물고 있는데 유령이 지속적으로 내 주변에서 EMF를 띄우거나 출현한다면 밴시의 스토킹일 확률이 높습니다.
+            </p>
+        `
     },
     {
         name: "다얀",
         engName: "Dayan",
         evidences: ["EMF 5", "스피릿 박스", "고스트 오브"],
         sanity: "50%",
-        speed: "움직임 반응 1.4 ~ 2.5 m/s",
+        speed: "반경 10m 내 이동 시 2.5 m/s / 정지 시 1.4 m/s (기본 1.7 m/s)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+다얀+공략",
-        tip: "근처에서 플레이어가 움직이면 가속하고 정지해 있으면 느려집니다.",
+        tip: "10m 반경 안에서 플레이어가 걷거나 뛰면 가속하고, 완전히 정지해 있으면 매우 느려집니다.",
         huntSanity: "50%",
-        specialTrait: "10m 이내 플레이어가 움직이면 속도 증가, 정지 시 감속.",
+        specialTrait: "10m 이내 플레이어의 이동 여부에 따라 속도가 실시간 변화 (층수 무관 반경 적용).",
         forcedEvidence: "없음",
         hasAccel: false,
         hasSpecialSpeed: true,
         hasForcedEv: false,
-        hasTargetRoam: false
+        hasTargetRoam: false,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 사냥 메커니즘 (Hunt)</div>
+            <p class="dict-text">
+                • <strong>기본 이동 속도:</strong> 플레이어가 10m 범위 밖에 있을 때는 일반 유령과 동일한 <strong>1.7 m/s</strong>로 순찰합니다.<br>
+                • <strong>플레이어 움직임 감지 (핵심 메커니즘):</strong> 사냥 중 <strong>반경 10m 이내</strong>(층수 무관 3D 구체 범위)에 플레이어가 있을 때 속도가 실시간으로 급변합니다.<br>
+                • <strong>가속 조건 (2.5 m/s):</strong> 10m 이내의 플레이어가 걷거나 달리는 등 이동 중일 경우, 시야(LOS) 확보 여부와 상관없이 <strong>2.5 m/s로 대폭 가속</strong>합니다.<br>
+                • <strong>감속 조건 (1.4 m/s):</strong> 10m 이내의 플레이어가 제자리에 가만히 멈춰 서 있거나 웅크리고 있으면 <strong>1.4 m/s로 크게 감속</strong>합니다.<br>
+                • <strong>시야 가속(LOS Accel) 없음:</strong> 플레이어를 오래 바라보아도 일반 유령처럼 점진적으로 빨라지지 않습니다.<br>
+                • <strong>모델 룰:</strong> 다얀은 설정상 항상 여성 유령 모델만 사용합니다 (남성 모델 확인 시 다얀 제외 가능).
+            </p>
+
+            <div class="dict-section-title">2. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • EMF 5단계 (EMF Level 5)<br>
+                • 스피릿 박스 (Spirit Box)<br>
+                • 고스트 오브 (Ghost Orb)
+            </p>
+
+            <div class="dict-section-title">3. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 근처에서 도망치는 플레이어를 매우 빠른 속도로 따라잡아 사살합니다.<br>
+                • <strong>약점 (Weakness):</strong> 근처에 있는 플레이어가 움직이지 않고 침착하게 정지해 있으면 발걸음이 극도로 둔해집니다.
+            </p>
+
+            <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>은신처 대기 테스트 (결정적 감별법):</strong> 캐비닛이나 락커 등 은신처에 숨은 채 완전히 멈춰 있을 때, 유령이 10m 안으로 접근하는 순간 <strong>발소리가 갑자기 느려지는 현상</strong>을 관찰하면 다얀으로 확정할 수 있습니다.<br>
+                • <strong>무빙 카운터 (스톱 & 고):</strong> 사냥 중 다얀에게 쫓길 때 거리가 좁혀지면 향초를 태우거나 순간적으로 엄폐물 뒤에서 정지하여 유령의 속도를 늦춘 뒤 안전 구역으로 이동해야 합니다.<br>
+                • <strong>타 유령과의 혼동 방지:</strong> 근처에서 느려지는 특성 때문에 데오겐(Deogen)이나 시야 밖 레버넌트(Revenant)와 혼동될 수 있으나, 다얀은 플레이어가 움직이면 즉시 2.5m/s로 급가속한다는 점으로 구별됩니다.
+            </p>
+        `
     },
     {
         name: "딜데가스트",
@@ -324,6 +394,38 @@ const GHOST_DATA = [
         hasTargetRoam: false
     },
     {
+        name: "팬텀",
+        engName: "Phantom",
+        evidences: ["스피릿 박스", "손자국", "DOTS"],
+        sanity: "50%",
+        speed: "1.7 m/s (가속 O)",
+        ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+팬텀+공략",
+        tip: "바라볼 때 정신력이 깎이며 사진 촬영 시 소멸합니다.",
+        huntSanity: "50%",
+        specialTrait: "사진 촬영 시 모습이 지워짐.",
+        forcedEvidence: "없음",
+        hasAccel: true,
+        hasSpecialSpeed: false,
+        hasForcedEv: false,
+        hasTargetRoam: true
+    },
+    {
+        name: "폴터가이스트",
+        engName: "Poltergeist",
+        evidences: ["스피릿 박스", "손자국", "고스트 라이팅"],
+        sanity: "50%",
+        speed: "1.7 m/s (가속 O)",
+        ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+폴터가이스트+공략",
+        tip: "물건 폭발 능력을 사용합니다.",
+        huntSanity: "50%",
+        specialTrait: "동시 물건 투척 폭발.",
+        forcedEvidence: "없음",
+        hasAccel: true,
+        hasSpecialSpeed: false,
+        hasForcedEv: false,
+        hasTargetRoam: false
+    },
+    {
         name: "라이주",
         engName: "Raiju",
         evidences: ["EMF 5", "고스트 오브", "DOTS"],
@@ -484,7 +586,7 @@ const GHOST_DATA = [
                 • 고스트 라이팅 (Ghost Writing)
             </p>
 
-            <div class="dict-section-title">3. 강점 및 약점 (Strengths and Weaknesses)</div>
+            <div class="dict-section-title">3. 강점 및 약점 (Strengths & Weaknesses)</div>
             <p class="dict-text">
                 • <strong>강점 (Strength):</strong> 목표물을 발견하면 추격 속도가 더 빨라집니다.<br>
                 • <strong>약점 (Weakness):</strong> 수색하기보다 직접 추격하는 것을 선호합니다.
@@ -609,7 +711,7 @@ function toggleFilter(filterKey) {
     renderGhostList();
 }
 
-// 2. 유령 메인 추론 목록 렌더링 (스피릿 대체 안전장치 포함)
+// 2. 유령 메인 추론 목록 렌더링
 function renderGhostList() {
     const container = document.getElementById('ghost-list-container');
     const countEl = document.getElementById('ghost-count');
@@ -673,7 +775,7 @@ function renderGhostList() {
     });
 }
 
-// 3. 유령 도감 렌더링 (아스왕 상세 데이터 완벽 렌더링 지원)
+// 3. 유령 도감 렌더링 (밴시 / 다얀 / 아스왕 커스텀 세부 템플릿 포함)
 function renderGhostDictionary() {
     const container = document.getElementById('ghost-dictionary-container');
     if (!container) return;
@@ -684,7 +786,6 @@ function renderGhostDictionary() {
         card.className = 'dict-card';
 
         if (ghost.isCustomDetailed && ghost.detailedHtml) {
-            // 아스왕 전용 풀 데이터 렌더링
             card.innerHTML = `
                 <div class="dict-header">
                     <div class="dict-title">${ghost.name} (${ghost.engName})</div>
@@ -697,7 +798,6 @@ function renderGhostDictionary() {
                 ${ghost.detailedHtml}
             `;
         } else {
-            // 일반 유령 표준 렌더링
             card.innerHTML = `
                 <div class="dict-header">
                     <div class="dict-title">${ghost.name} (${ghost.engName})</div>

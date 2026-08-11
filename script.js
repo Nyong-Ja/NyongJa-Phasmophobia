@@ -454,18 +454,50 @@ const GHOST_DATA = [
     {
         name: "아스왕",
         engName: "Aswang",
-        evidences: ["서늘함", "고스트 라이팅", "DOTS"],
+        evidences: ["DOTS", "서늘함", "고스트 라이팅"],
         sanity: "50%",
-        speed: "1.7 m/s (가속 O)",
+        speed: "기본 1.53 m/s ➔ 최고 2.53 m/s (폭발적 가속)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+아스왕+공략",
-        tip: "은신처로 들어가면 헌팅을 즉시 종료하는 특성이 있습니다.",
+        tip: "공식 은신처에 숨은 플레이어는 절대 죽일 수 없으며 도달 즉시 헌팅이 종료됩니다. 단, 다음 헌팅 시 해당 위치로 즉시 직진합니다.",
         huntSanity: "50%",
-        specialTrait: "플레이어가 보는 앞에서 은신처로 진입 시 헌팅 즉시 종료.",
+        specialTrait: "기본 속도 1.53 m/s, 8.67초 만에 최고 속도 2.53 m/s 도달. 공식 은신처 도달 시 헌팅 즉시 강제 종료.",
         forcedEvidence: "없음",
         hasAccel: true,
-        hasSpecialSpeed: false,
+        hasSpecialSpeed: true,
         hasForcedEv: false,
-        hasTargetRoam: false
+        hasTargetRoam: true,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 사냥 메커니즘 (Hunt)</div>
+            <p class="dict-text">
+                • <strong>기본 속도:</strong> 1.53 m/s (일반 유령 1.7 m/s 대비 느림)<br>
+                • <strong>시야 가속률:</strong> 플레이어를 시야(Line-of-Sight)에 포착했을 때, 초당 가속률이 일반 유령(기본 속도의 0.05배/초)보다 높은 기본 속도의 0.075배/초로 증가합니다.<br>
+                • <strong>최고 속도 도달 시간:</strong> 대다수의 일반 유령이 최고 속도에 도달하는 데 13초가 걸리는 반면, 아스왕은 <strong>8.67초 만에 최고 속도인 2.53 m/s에 도달</strong>합니다.<br>
+                • <strong>은신처(숨는 장소) 상호작용 및 특수 룰:</strong> 올바른 방식으로 사용 중인 유효한 공식 은신처(옷장, 사물함 등) 내부의 플레이어를 감지하고 도달할 경우, <strong>사냥이 즉시 강제 종료</strong>됩니다. 즉, 공식 은신처에 올바르게 숨어 있는 플레이어는 아스왕에게 살해당하지 않습니다.<br>
+                • <strong>위치 추적 페널티:</strong> 이러한 방식으로 사냥이 종료되면 아스왕은 다음 사냥 시작 시 해당 플레이어의 위치에 직접 웨이포인트(경유지)를 생성하며, <strong>사냥 시작 시의 유예 시간(Grace period) 동안에도 해당 위치를 향해 곧장 이동</strong>합니다.
+            </p>
+
+            <div class="dict-section-title">2. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • D.O.T.S. 프로젝터 (D.O.T.S. Projector)<br>
+                • 빙점 이하의 온도 (Freezing Temperatures)<br>
+                • 고스트 라이팅 (Ghost Writing)
+            </p>
+
+            <div class="dict-section-title">3. 강점 및 약점 (Strengths and Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 목표물을 발견하면 추격 속도가 더 빨라집니다.<br>
+                • <strong>약점 (Weakness):</strong> 수색하기보다 직접 추격하는 것을 선호합니다.
+            </p>
+
+            <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>상대 난이도:</strong> 주요 강점이 적고, 사냥 기본 속도(1.53 m/s)가 낮으며, 숨은 플레이어를 죽일 수 없다는 특성이 맞물려 게임 내에서 대처하기 가장 쉬운 유령 중 하나로 평가받습니다.<br>
+                • <strong>은신처 약점의 한계 조건:</strong> 플레이어를 죽이지 못하는 약점은 오직 사용자 지정 난이도의 '은신처 개수' 설정에 영향을 받는 <strong>공식 은신처(막힐 수 있는 옷장/락커 등)에만 적용</strong>됩니다. 난이도 설정에서 은신처 개수를 0개로 설정했거나, 비공식 은신처(가구 뒤, 문 뒤 등)에 숨은 경우에는 이 약점이 적용되지 않아 정상적으로 사망합니다.<br>
+                • <strong>사냥 종료 후 대처:</strong> 은신처를 이용해 사냥을 강제 종료시킨 플레이어는, 다음 사냥이 시작되자마자 유령이 자신의 위치로 일직선으로 돌진해 온다는 점을 반드시 인지하고 즉시 다른 위치로 이탈해야 합니다.<br>
+                • <strong>타 유령과의 구별법:</strong> 아스왕의 이동 속도는 오밤보(Obambo)나 쌍둥이(The Twins)의 속도와 혼동될 수 있습니다. 여러 번의 사냥을 관찰하면서 유령의 기본 속도가 더 빠른 속도로 변경되는지 확인해야 하며, 사냥마다 기본 속도가 바뀐다면 아스왕이 아닙니다.
+            </p>
+        `
     },
     {
         name: "코르모스",
@@ -577,7 +609,7 @@ function toggleFilter(filterKey) {
     renderGhostList();
 }
 
-// 2. 유령 메인 추론 목록 렌더링 (해당 이미지 없거나 로드 실패 시 스피릿 이미지로 자동 대체)
+// 2. 유령 메인 추론 목록 렌더링 (스피릿 대체 안전장치 포함)
 function renderGhostList() {
     const container = document.getElementById('ghost-list-container');
     const countEl = document.getElementById('ghost-count');
@@ -613,7 +645,6 @@ function renderGhostList() {
 
         card.innerHTML = `
             <div class="ghost-card-header">
-                <!-- 📌 전용 웹 이미지 로드 실패 시 자동으로 스피릿 이미지(images/ghosts/Spirit.webp)로 대체 -->
                 <img src="images/ghosts/${ghost.engName}.webp" 
                      onerror="this.onerror=null; this.src='images/ghosts/Spirit.webp'" 
                      class="ghost-icon" 
@@ -642,7 +673,7 @@ function renderGhostList() {
     });
 }
 
-// 3. 유령 도감 렌더링
+// 3. 유령 도감 렌더링 (아스왕 상세 데이터 완벽 렌더링 지원)
 function renderGhostDictionary() {
     const container = document.getElementById('ghost-dictionary-container');
     if (!container) return;
@@ -651,20 +682,37 @@ function renderGhostDictionary() {
     GHOST_DATA.forEach(ghost => {
         const card = document.createElement('div');
         card.className = 'dict-card';
-        card.innerHTML = `
-            <div class="dict-header">
-                <div class="dict-title">${ghost.name} (${ghost.engName})</div>
-            </div>
-            <div class="dict-spec-bar">
-                <div class="dict-spec-item"><strong>헌팅 정신력:</strong> ${ghost.huntSanity}</div>
-                <div class="dict-spec-item"><strong>이동 속도:</strong> ${ghost.speed}</div>
-                <div class="dict-spec-item"><strong>고정 증거:</strong> ${ghost.forcedEvidence}</div>
-            </div>
-            <div class="dict-section-title">증거 목록</div>
-            <p class="dict-text">${ghost.evidences.join(', ')}</p>
-            <div class="dict-section-title">고유 특성 & 대응법</div>
-            <p class="dict-text">${ghost.specialTrait}</p>
-        `;
+
+        if (ghost.isCustomDetailed && ghost.detailedHtml) {
+            // 아스왕 전용 풀 데이터 렌더링
+            card.innerHTML = `
+                <div class="dict-header">
+                    <div class="dict-title">${ghost.name} (${ghost.engName})</div>
+                </div>
+                <div class="dict-spec-bar">
+                    <div class="dict-spec-item"><strong>헌팅 정신력:</strong> ${ghost.huntSanity}</div>
+                    <div class="dict-spec-item"><strong>이동 속도:</strong> ${ghost.speed}</div>
+                    <div class="dict-spec-item"><strong>고정 증거:</strong> ${ghost.forcedEvidence}</div>
+                </div>
+                ${ghost.detailedHtml}
+            `;
+        } else {
+            // 일반 유령 표준 렌더링
+            card.innerHTML = `
+                <div class="dict-header">
+                    <div class="dict-title">${ghost.name} (${ghost.engName})</div>
+                </div>
+                <div class="dict-spec-bar">
+                    <div class="dict-spec-item"><strong>헌팅 정신력:</strong> ${ghost.huntSanity}</div>
+                    <div class="dict-spec-item"><strong>이동 속도:</strong> ${ghost.speed}</div>
+                    <div class="dict-spec-item"><strong>고정 증거:</strong> ${ghost.forcedEvidence}</div>
+                </div>
+                <div class="dict-section-title">증거 목록</div>
+                <p class="dict-text">${ghost.evidences.join(', ')}</p>
+                <div class="dict-section-title">고유 특성 & 대응법</div>
+                <p class="dict-text">${ghost.specialTrait}</p>
+            `;
+        }
         container.appendChild(card);
     });
 }

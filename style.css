@@ -553,12 +553,10 @@ body {
     text-align: left;
 }
 
-/* 2. 📖 유령 도감 전용 레이아웃 (개별 늘어남 적용) */
+/* 2. 📖 유령 도감 전용 레이아웃 (메이슨리 다단 레이아웃: 빈 공간 자동 메움) */
 .ghost-dict-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    align-items: start; /* 📌 핵심: 옆에 있는 유령 카드가 같이 안 늘어나고 원래 크기 유지 */
+    columns: 3; /* 📌 3열 다단 컬럼 설정 */
+    column-gap: 16px; /* 컬럼 사이 간격 */
 }
 
 .dict-details {
@@ -568,7 +566,10 @@ body {
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
     overflow: hidden;
-    height: fit-content; /* 내용물 크기에 딱 맞춤 */
+    break-inside: avoid; /* 📌 컬럼 사이에서 카드가 쪼개지지 않도록 방지 */
+    margin-bottom: 16px; /* 카드 아래 간격 */
+    display: inline-block; /* 컬럼 흐름에 맞춤 */
+    width: 100%;
 }
 
 .dict-details:hover {
@@ -1031,7 +1032,7 @@ footer {
 /* 반응형 대응 */
 @media (max-width: 1400px) {
     .ghost-dict-grid {
-        grid-template-columns: repeat(2, 1fr);
+        columns: 2; /* 화면이 좁아지면 2열 */
     }
 }
 
@@ -1061,7 +1062,7 @@ footer {
         width: 100%;
     }
     .ghost-dict-grid {
-        grid-template-columns: 1fr;
+        columns: 1; /* 모바일에서는 1열 */
     }
 }
 

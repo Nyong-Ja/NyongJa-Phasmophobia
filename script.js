@@ -24,7 +24,7 @@ const GHOST_DATA = [
             <p class="dict-text">
                 • <strong>기본 사냥 조건:</strong> 평균 정신력이 <strong>50% 이하</strong>일 때 사냥을 시작합니다.<br>
                 • <strong>이동 속도 및 시야 가속:</strong> 기본 이동 속도는 <strong>1.7 m/s</strong>이며, 플레이어를 시야(LOS)에 둘 경우 표준 시야 가속이 정상 적용되어 최대 2.25 m/s까지 증가합니다.<br>
-                • <strong>향초 봉인 특수 룰:</strong> 정화향초(Smudge Stick)를 피워 스피릿을 정화할 경우, 일반 유령(90초)과 달리 **180초(3분) 동안 사냥이 완전히 봉인**됩니다.
+                • <strong>향초 봉인 특수 룰:</strong> 정화향초(Smudge Stick)를 피워 스피릿을 정화할 경우, 일반 유령(90초)과 달리 <strong>180초(3분) 동안 사냥이 완전히 봉인</strong>됩니다.
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -67,7 +67,7 @@ const GHOST_DATA = [
             <div class="dict-section-title">1. 사냥 및 특수 이동 메커니즘 (Hunt & Movement)</div>
             <p class="dict-text">
                 • <strong>기본 사냥 조건:</strong> 평균 정신력이 <strong>50% 이하</strong>일 때 사냥을 시작합니다.<br>
-                • <strong>소금 면역 (절대 밟지 않음):</strong> 레이스는 설정상 땅에 발이 닿지 않고 떠다니므로 **소금을 절대로 밟지 않으며, 발자국 손자국 자외선 흔적도 남기지 않습니다.**<br>
+                • <strong>소금 면역 (절대 밟지 않음):</strong> 레이스는 설정상 땅에 발이 닿지 않고 떠다니므로 <strong>소금을 절대로 밟지 않으며, 발자국 손자국 자외선 흔적도 남기지 않습니다.</strong><br>
                 • <strong>플레이어 순간이동 능력:</strong> 사냥 중이 아닐 때, 맵 내 무작위 플레이어 한 명의 바로 옆 위치로 순간이동(Teleport)을 수행할 수 있습니다. 순간이동 직후 유령이 출발한 지점에 EMF 2 또는 EMF 5 신호가 발생합니다.
             </p>
 
@@ -111,9 +111,9 @@ const GHOST_DATA = [
             <div class="dict-section-title">1. 시각적 특성 및 사냥 메커니즘 (Visual & Hunt)</div>
             <p class="dict-text">
                 • <strong>기본 사냥 조건:</strong> 평균 정신력이 <strong>50% 이하</strong>일 때 사냥을 시작합니다.<br>
-                • <strong>직시 정신력 차감:</strong> 실체화된 팬텀을 조준선에 두고 바라볼 경우 **초당 약 0.4%의 정신력이 급격하게 차감**됩니다.<br>
-                • <strong>사진 촬영 시 소멸:</strong> 고스트 이벤트나 상호작용 중 팬텀의 사진을 찍으면 **셔터 소리와 함께 유령 모습이 즉시 사라지고 오디오음만 남습니다.** (저장된 사진 앨범에는 유령 형태가 비치지 않고 '유령 사진'으로 정상 판정)<br>
-                • <strong>사냥 중 긴 투명 상태 (Blink Rate):</strong> 사냥 시 깜빡이는 주기 중 **투명(Invisible)하게 숨는 시간이 1초~2초 정도로 매우 길어** 유령의 형상을 보기 힘듭니다.
+                • <strong>직시 정신력 차감:</strong> 실체화된 팬텀을 조준선에 두고 바라볼 경우 <strong>초당 약 0.4%의 정신력이 급격하게 차감</strong>됩니다.<br>
+                • <strong>사진 촬영 시 소멸:</strong> 고스트 이벤트나 상호작용 중 팬텀의 사진을 찍으면 <strong>셔터 소리와 함께 유령 모습이 즉시 사라지고 오디오음만 남습니다.</strong> (저장된 사진 앨범에는 유령 형태가 비치지 않고 '유령 사진'으로 정상 판정)<br>
+                • <strong>사냥 중 긴 투명 상태 (Blink Rate):</strong> 사냥 시 깜빡이는 주기 중 <strong>투명(Invisible)하게 숨는 시간이 1초~2초 정도로 매우 길어</strong> 유령의 형상을 보기 힘듭니다.
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -156,8 +156,8 @@ const GHOST_DATA = [
             <div class="dict-section-title">1. 물건 투척 및 사냥 메커니즘 (Polter Throw)</div>
             <p class="dict-text">
                 • <strong>기본 사냥 조건:</strong> 평균 정신력이 <strong>50% 이하</strong>일 때 사냥을 시작합니다.<br>
-                • <strong>다중 물건 폭발 투척 (Polter Bomb):</strong> 고스트 룸 주위에 물건이 뭉쳐 있을 때, **여러 개의 물건을 동시에 큰 소리를 내며 사방으로 강하게 던지는 특수 능력**을 씁니다.<br>
-                • <strong>정신력 폭발 차감:</strong> 특수 능력으로 물건을 던질 때, **던져진 물건 1개당 근처 플레이어의 정신력이 2%씩 무더기로 차감**됩니다.<br>
+                • <strong>다중 물건 폭발 투척 (Polter Bomb):</strong> 고스트 룸 주위에 물건이 뭉쳐 있을 때, <strong>여러 개의 물건을 동시에 큰 소리를 내며 사방으로 강하게 던지는 특수 능력</strong>을 씁니다.<br>
+                • <strong>정신력 폭발 차감:</strong> 특수 능력으로 물건을 던질 때, <strong>던져진 물건 1개당 근처 플레이어의 정신력이 2%씩 무더기로 차감</strong>됩니다.<br>
                 • <strong>사냥 시 빈번한 물건 투척:</strong> 사냥 중에도 0.5초마다 100% 확률로 주변 물건을 던지며 지나갑니다.
             </p>
 
@@ -273,7 +273,7 @@ const GHOST_DATA = [
 
             <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
             <p class="dict-text">
-                • <strong>은신처 정지 감별:</strong> 은신처에 숨어 완전히 멈춰 있을 때, 유령이 접근하면서 **발소리가 갑자기 둔해지는 현상**을 관찰하면 다얀입니다.
+                • <strong>은신처 정지 감별:</strong> 은신처에 숨어 완전히 멈춰 있을 때, 유령이 접근하면서 <strong>발소리가 갑자기 둔해지는 현상</strong>을 관찰하면 다얀입니다.
             </p>
         `
     },
@@ -340,14 +340,14 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 사냥 메커니즘 (Hunt)</div>
             <p class="dict-text">
-                • <strong>위치 자동 감지 (은신 파괴):</strong> 사냥 시 맵 전체의 모든 플레이어 위치를 영구적으로 감지하며, **옷장/라커/벽 뒤 등 은신처에 숨어도 무조건 은신을 무시하고 직진**해옵니다.<br>
+                • <strong>위치 자동 감지 (은신 파괴):</strong> 사냥 시 맵 전체의 모든 플레이어 위치를 영구적으로 감지하며, <strong>옷장/라커/벽 뒤 등 은신처에 숨어도 무조건 은신을 무시하고 직진</strong>해옵니다.<br>
                 • <strong>거리별 가속/감속 극단화:</strong> 타겟과 멀리 떨어져 있을 때는 <strong>3.0 m/s</strong>로 격렬하게 다가오지만, 타겟과의 거리가 2.5m 이내로 들어오는 순간 <strong>0.4 m/s</strong>라는 달팽이 속도로 느려집니다.<br>
                 • <strong>시야 가속 없음:</strong> 플레이어를 계속 주시해도 추가적인 시야 가속이 붙지 않습니다.
             </p>
 
             <div class="dict-section-title">2. 고유 스피릿 박스 반응 (Heavy Breathing)</div>
             <p class="dict-text">
-                • 데오겐에게 1m 이내에서 스피릿 박스를 사용할 경우, 33% 확률로 대답 대신 **'후욱- 후욱-' 하는 거칠고 기괴한 중저음 숨소리 반응**이 수신됩니다. (데오겐 고정 증거)
+                • 데오겐에게 1m 이내에서 스피릿 박스를 사용할 경우, 33% 확률로 대답 대신 <strong>'후욱- 후욱-' 하는 거칠고 기괴한 중저음 숨소리 반응</strong>이 수신됩니다. (데오겐 고정 증거)
             </p>
 
             <div class="dict-section-title">3. 증거 (Evidence)</div>
@@ -389,9 +389,9 @@ const GHOST_DATA = [
             <div class="dict-section-title">1. 사냥 메커니즘 (Hunt)</div>
             <p class="dict-text">
                 • <strong>기본 높은 사냥 정신력:</strong> 평균 정신력이 <strong>70% 이하</strong>가 되면 일반 사냥을 시작합니다.<br>
-                • <strong>정신력 100% 무차별 기습 능력:</strong> 데몬 고유 능력으로 정신력이 100%인 극초반 상태에서도 **정신력을 무시하고 즉시 사냥을 강제 시작**할 수 있습니다.<br>
-                • <strong>짧은 사냥 재사용 쿨타임:</strong> 다음 사냥을 시작하기까지의 쿨타임이 **20초**로 매우 짧습니다.<br>
-                • <strong>향초 디버프 저항:</strong> 정화향초에 노출되었을 때 사냥 봉인 시간이 **60초**에 불과합니다.
+                • <strong>정신력 100% 무차별 기습 능력:</strong> 데몬 고유 능력으로 정신력이 100%인 극초반 상태에서도 <strong>정신력을 무시하고 즉시 사냥을 강제 시작</strong>할 수 있습니다.<br>
+                • <strong>짧은 사냥 재사용 쿨타임:</strong> 다음 사냥을 시작하기까지의 쿨타임이 <strong>20초</strong>로 매우 짧습니다.<br>
+                • <strong>향초 디버프 저항:</strong> 정화향초에 노출되었을 때 사냥 봉인 시간이 <strong>60초</strong>에 불과합니다.
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -404,7 +404,7 @@ const GHOST_DATA = [
             <div class="dict-section-title">3. 강점 및 약점 (Strengths & Weaknesses)</div>
             <p class="dict-text">
                 • <strong>강점 (Strength):</strong> 예고 없이 끊임없이 사냥을 터뜨려 조사팀을 기습합니다.<br>
-                • <strong>약점 (Weakness):</strong> 십자가의 유효 방어 반경이 일반 3m에서 **5m로 대폭 증가**합니다.
+                • <strong>약점 (Weakness):</strong> 십자가의 유효 방어 반경이 일반 3m에서 <strong>5m로 대폭 증가</strong>합니다.
             </p>
 
             <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
@@ -434,7 +434,7 @@ const GHOST_DATA = [
             <p class="dict-text">
                 • <strong>3단계 상태 순환:</strong> [일반 상태(1.7m/s) ➔ 분노 상태(1.96m/s) ➔ 약화 상태(1.44m/s)] 순서로 성격이 변화합니다.<br>
                 • <strong>분노 트리거:</strong> 방어 장비(소금 밟기, 십자가 태우기, 정화향초 노출)에 자극을 받으면 즉시 분노 상태로 전환됩니다.<br>
-                • <strong>분노 상태 특성:</strong> 속도가 <strong>1.96 m/s로 상승</strong>하며, 사냥 중 소금을 밟아도 **소금 자국/손자국을 전혀 남기지 않습니다.**
+                • <strong>분노 상태 특성:</strong> 속도가 <strong>1.96 m/s로 상승</strong>하며, 사냥 중 소금을 밟아도 <strong>소금 자국/손자국을 전혀 남기지 않습니다.</strong>
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -475,7 +475,7 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. DOTS 상호작용 특수 룰 (Goryo DOTS)</div>
             <p class="dict-text">
-                • <strong>비디오 카메라 전용 관찰:</strong> 고료의 DOTS는 **육안으로 절대 볼 수 없으며, 오직 비디오 카메라 화면을 통해서만** 모습을 드러냅니다.<br>
+                • <strong>비디오 카메라 전용 관찰:</strong> 고료의 DOTS는 <strong>육안으로 절대 볼 수 없으며, 오직 비디오 카메라 화면을 통해서만</strong> 모습을 드러냅니다.<br>
                 • <strong>부재 조건 필수:</strong> 같은 방에 플레이어가 단 한 명이라도 서 있으면 DOTS를 절대로 발동하지 않습니다.<br>
                 • <strong>고스트 룸 변경 없음:</strong> 고료는 고스트 룸을 절대 변경하지 않는 강한 애착 성향을 보입니다.
             </p>
@@ -520,7 +520,7 @@ const GHOST_DATA = [
             <p class="dict-text">
                 • <strong>온도 비례 속도:</strong> 지나가는 위치의 온도가 낮을수록 극단적으로 빨라집니다.<br>
                 • <strong>15°C 이상:</strong> 1.4 m/s (극도로 느림)<br>
-                • <strong>0°C 이하 (서늘한 방):</strong> **2.7 m/s (매우 빠름)**<br>
+                • <strong>0°C 이하 (서늘한 방):</strong> <strong>2.7 m/s (매우 빠름)</strong><br>
                 • <strong>시야 가속 없음:</strong> 플레이어를 오래 바라보아도 추가 시야 가속이 적용되지 않습니다.<br>
                 • <strong>입김 가시화:</strong> 두꺼비집이 꺼진 사냥 중 입에서 차가운 흰 입김 가스가 뿜어져 나옵니다.
             </p>
@@ -564,8 +564,8 @@ const GHOST_DATA = [
             <div class="dict-section-title">1. 두꺼비집 돌진 메커니즘 (Jinn Charge)</div>
             <p class="dict-text">
                 • <strong>두꺼비집 활성화 필수:</strong> 두꺼비집이 켜져 있을 때만 특수 가속이 작동합니다.<br>
-                • <strong>장거리 시야 가속 (2.5 m/s):</strong> 거리 3m 이상 떨어져 있으면 **즉시 2.5 m/s로 돌진**합니다.<br>
-                • <strong>근접 감속 (1.7 m/s):</strong> 3m 이내로 들어오는 순간 **1.7 m/s로 발소리가 둔해집니다.**<br>
+                • <strong>장거리 시야 가속 (2.5 m/s):</strong> 거리 3m 이상 떨어져 있으면 <strong>즉시 2.5 m/s로 돌진</strong>합니다.<br>
+                • <strong>근접 감속 (1.7 m/s):</strong> 3m 이내로 들어오는 순간 <strong>1.7 m/s로 발소리가 둔해집니다.</strong><br>
                 • <strong>두꺼비집 차단 불가:</strong> 진은 두꺼비집 전원을 수동으로 내리지 못합니다.
             </p>
 
@@ -589,6 +589,51 @@ const GHOST_DATA = [
         `
     },
     {
+        name: "메어",
+        engName: "Mare",
+        evidences: ["스피릿 박스", "고스트 오브", "고스트 라이팅"],
+        sanity: "어둠 속 60% / 불 켜진 방 40%",
+        speed: "1.7 m/s (가속 O)",
+        ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+메어+공략",
+        tip: "불이 꺼진 어둠 속에서는 60%의 높은 정신력에서 사냥하지만, 전등을 켜두면 40%로 사냥을 억제할 수 있습니다. 스위치를 즉시 끄는 능력이 있습니다.",
+        huntSanity: "불 꺼짐 60% / 켜짐 40%",
+        specialTrait: "전등 스위치 즉시 끄기 능력, 불이 켜진 방에서 사냥 불가능(40% 이하 제외), 두꺼비집 내림 선호.",
+        forcedEvidence: "없음",
+        hasAccel: true,
+        hasSpecialSpeed: false,
+        hasForcedEv: false,
+        hasTargetRoam: false,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 어둠 및 사냥 정신력 메커니즘 (Darkness Hunt)</div>
+            <p class="dict-text">
+                • <strong>어둠 속 사냥 정신력 (60%):</strong> 고스트 룸의 불이 꺼져 있으면 <strong>정신력 60% 이하</strong>부터 사냥을 터뜨릴 수 있습니다.<br>
+                • <strong>불 켜진 방 사냥 억제 (40%):</strong> 고스트 룸의 전등이 켜져 있으면 <strong>정신력이 40% 이하로 떨어지기 전까지 사냥을 시작할 수 없습니다.</strong><br>
+                • <strong>전등 스위치 즉시 끄기 (Instant Switch Off):</strong> 플레이어가 전등 스위치를 켜는 순간, <strong>0초만에 즉시 '딸깍' 하고 스위치를 다시 꺼버리는 고유 능력</strong>을 자주 사용합니다.<br>
+                • <strong>전등 켜기 불가:</strong> 메어는 절대로 전등 스위치를 스스로 켜지 않습니다.
+            </p>
+
+            <div class="dict-section-title">2. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • 스피릿 박스 (Spirit Box)<br>
+                • 고스트 오브 (Ghost Orb)<br>
+                • 고스트 라이팅 (Ghost Writing)
+            </p>
+
+            <div class="dict-section-title">3. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 어둠 속에서 상주할 경우 높은 정신력에서도 연속 사냥을 시도합니다.<br>
+                • <strong>약점 (Weakness):</strong> 고스트 룸의 전등을 지속적으로 켜두면 사냥을 매우 효과적으로 차단할 수 있습니다.
+            </p>
+
+            <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>스위치 즉시 끄기 밀당 테스트:</strong> 방 불을 켰을 때 1초도 안 되어 유령이 켜자마자 바로 꺼버린다면 메어일 가능성이 99%입니다.<br>
+                • <strong>불 켜두기 공략:</strong> 메어 상대 시 고스트 룸과 이동 동선의 전등을 항상 켜두어 정신력 40% 전까지 사냥을 봉인해야 합니다.
+            </p>
+        `
+    },
+    {
         name: "마일링",
         engName: "Myling",
         evidences: ["EMF 5", "손자국", "고스트 라이팅"],
@@ -608,7 +653,7 @@ const GHOST_DATA = [
             <div class="dict-section-title">1. 정숙한 사냥 발소리 메커니즘 (Silent Footsteps)</div>
             <p class="dict-text">
                 • <strong>기본 사냥 조건:</strong> 평균 정신력 <strong>50% 이하</strong>에서 사냥을 시작합니다.<br>
-                • <strong>사냥 발소리 가청 범위 차단:</strong> 일반 유령의 발소리는 약 20m 거리까지 또렷하게 들리지만, 마일링은 **전자기기 교란 범위(약 10m 이내)로 바짝 다가와야만 비로소 발소리가 들리기 시작합니다.**<br>
+                • <strong>사냥 발소리 가청 범위 차단:</strong> 일반 유령의 발소리는 약 20m 거리까지 또렷하게 들리지만, 마일링은 <strong>전자기기 교란 범위(약 10m 이내)로 바짝 다가와야만 비로소 발소리가 들리기 시작합니다.</strong><br>
                 • <strong>괴성/웅얼거림 오디오:</strong> 유령의 입에서 나는 웅얼거리는 사냥 소리는 정상 거리에서 들리지만, '발소리'만 유독 닿는 거리에서 조용합니다.
             </p>
 
@@ -650,12 +695,12 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 저주 시스템 & 정신력 비례 가속 메커니즘</div>
             <p class="dict-text">
-                • <strong>저주 부여 (Curse):</strong> 스피릿 박스로 대답을 들은 플레이어는 저주에 걸려 **조명이 켜진 곳에 있어도 정신력이 2배 속도로 연속 감소**합니다.<br>
+                • <strong>저주 부여 (Curse):</strong> 스피릿 박스로 대답을 들은 플레이어는 저주에 걸려 <strong>조명이 켜진 곳에 있어도 정신력이 2배 속도로 연속 감소</strong>합니다.<br>
                 • <strong>정신력 연동 기본 속도:</strong> 조사팀의 정신력이 낮아질수록 사냥 기본 이동 속도가 지속적으로 상승합니다.<br>
                 &nbsp;&nbsp;- 정신력 50%일 때: 1.5 m/s<br>
-                &nbsp;&nbsp;- 정신력 0%일 때: **2.25 m/s (기본 발소리가 엄청나게 빠름)**<br>
-                • <strong>시야 가속 보너스:</strong> 정신력 저하에 따른 기본 가속에 더해, **시야 가속(LOS Accel)이 별도로 중첩**되어 시야에 포착되면 최대 3.71 m/s까지 도달합니다.<br>
-                • <strong>정화향초 패시브 약점:</strong> 사냥 중 향초를 맞으면 일반 유령(6초)보다 2배 긴 **12초 동안 시야가 차단되어 기절**합니다.
+                &nbsp;&nbsp;- 정신력 0%일 때: <strong>2.25 m/s (기본 발소리가 엄청나게 빠름)</strong><br>
+                • <strong>시야 가속 보너스:</strong> 정신력 저하에 따른 기본 가속에 더해, <strong>시야 가속(LOS Accel)이 별도로 중첩</strong>되어 시야에 포착되면 최대 3.71 m/s까지 도달합니다.<br>
+                • <strong>정화향초 패시브 약점:</strong> 사냥 중 향초를 맞으면 일반 유령(6초)보다 2배 긴 <strong>12초 동안 시야가 차단되어 기절</strong>합니다.
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -697,8 +742,8 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 형체 변신 및 손자국 특수 룰 (Shapeshifter)</div>
             <p class="dict-text">
-                • <strong>사냥 중 형체 변신 (Shape-Shift):</strong> 사냥 시 유령이 깜빡이는 순간 중 6.6% 확률로 **다른 외형 모델(남성/여성/아이 등)로 순간적으로 변신했다가 원래 모습으로 돌아옵니다.** (헌팅당 최소 1회 이상 무조건 발동)<br>
-                • <strong>6손가락 지문 (Special Fingerprint):</strong> 문, 창문, 스위치 등에 자외선 손자국을 남길 때 **16.7% 확률로 독특한 6손가락 지문**을 생성합니다.<br>
+                • <strong>사냥 중 형체 변신 (Shape-Shift):</strong> 사냥 시 유령이 깜빡이는 순간 중 6.6% 확률로 <strong>다른 외형 모델(남성/여성/아이 등)로 순간적으로 변신했다가 원래 모습으로 돌아옵니다.</strong> (헌팅당 최소 1회 이상 무조건 발동)<br>
+                • <strong>6손가락 지문 (Special Fingerprint):</strong> 문, 창문, 스위치 등에 자외선 손자국을 남길 때 <strong>16.7% 확률로 독특한 6손가락 지문</strong>을 생성합니다.<br>
                 • <strong>손자국 안 남기기 & 지우기:</strong> 상호작용 시 25% 확률로 손자국을 남기지 않거나, 남은 손자국 수명을 절반(1분)으로 줄여 일찍 지워버립니다.
             </p>
 
@@ -741,9 +786,9 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 주기적 성격 및 속도 변환 메커니즘</div>
             <p class="dict-text">
-                • <strong>2분 성격 교체 (State Cycle):</strong> 정확히 **2분 간격**으로 '공격적 상태'와 '차분한 상태'를 번갈아가며 주기를 바꿉니다.<br>
-                • <strong>공격적 상태 (1.9 m/s):</strong> 발소리가 일반(1.7m/s)보다 또렷하게 빠른 **1.9 m/s**로 이동하며, 상호작용 빈도가 늘어납니다.<br>
-                • <strong>차분함 상태 (1.4 m/s):</strong> 발소리가 **1.4 m/s**로 확연하게 느려져 유유히 걸어 다닙니다.<br>
+                • <strong>2분 성격 교체 (State Cycle):</strong> 정확히 <strong>2분 간격</strong>으로 '공격적 상태'와 '차분한 상태'를 번갈아가며 주기를 바꿉니다.<br>
+                • <strong>공격적 상태 (1.9 m/s):</strong> 발소리가 일반(1.7m/s)보다 또렷하게 빠른 <strong>1.9 m/s</strong>로 이동하며, 상호작용 빈도가 늘어납니다.<br>
+                • <strong>차분함 상태 (1.4 m/s):</strong> 발소리가 <strong>1.4 m/s</strong>로 확연하게 느려져 유유히 걸어 다닙니다.<br>
                 • <strong>시야 가속 정상 적용:</strong> 어떤 상태이든 플레이어를 바라보면 추가 시야 가속이 오릅니다.
             </p>
 
@@ -785,8 +830,8 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 왕성한 활동 & 사냥 실체화 메커니즘</div>
             <p class="dict-text">
-                • <strong>사냥 중 긴 실체화 (Short Blink):</strong> 팬텀과 반대로, 오니는 사냥 중 **투명하게 숨는 시간이 극도로 짧고 실체화된 모습을 훨씬 오랫동안 노출**합니다.<br>
-                • <strong>강력한 고스트 이벤트:</strong> 플레이어 근처에 나타나는 상호작용 및 고스트 이벤트를 엄청나게 자주 터뜨리며, 이벤트 접촉 시 **정신력을 20%나 깎아냅니다.**<br>
+                • <strong>사냥 중 긴 실체화 (Short Blink):</strong> 팬텀과 반대로, 오니는 사냥 중 <strong>투명하게 숨는 시간이 극도로 짧고 실체화된 모습을 훨씬 오랫동안 노출</strong>합니다.<br>
+                • <strong>강력한 고스트 이벤트:</strong> 플레이어 근처에 나타나는 상호작용 및 고스트 이벤트를 엄청나게 자주 터뜨리며, 이벤트 접촉 시 <strong>정신력을 20%나 깎아냅니다.</strong><br>
                 • <strong>입김/안개 이벤트 불가능:</strong> 오니는 '귓가에 '귓속말 입김(Air Ball)'을 불어넣어 정신력을 깎는 안개 실체화 이벤트를 절대 하지 못하며, 무조건 실체 형태로 나타납니다.
             </p>
 
@@ -828,9 +873,9 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 불빛 방어 & 3번째 불 끄기 강제 사냥</div>
             <p class="dict-text">
-                • <strong>불빛 = 십자가 판정:</strong> 불이 켜진 양초/라이터/캠프파이어 범위(4m) 내에서는 **불빛이 십자가 역할을 수행하여 사냥을 차단**합니다.<br>
-                • <strong>3번째 불 꺼짐 강제 사냥 (100%):</strong> 원령이 불을 불어서 끌 때마다 십자가가 태워진 것으로 간주되며, **정확히 3번째 불이 꺼지는 순간 정신력과 무관하게 100% 확률로 즉시 사냥을 강제 시작**합니다.<br>
-                • <strong>기본 높은 사냥 정신력 (60%):</strong> 불빛이 없는 어둠 속에서는 정신력 **60% 이하**부터 사냥이 가능합니다.
+                • <strong>불빛 = 십자가 판정:</strong> 불이 켜진 양초/라이터/캠프파이어 범위(4m) 내에서는 <strong>불빛이 십자가 역할을 수행하여 사냥을 차단</strong>합니다.<br>
+                • <strong>3번째 불 꺼짐 강제 사냥 (100%):</strong> 원령이 불을 불어서 끌 때마다 십자가가 태워진 것으로 간주되며, <strong>정확히 3번째 불이 꺼지는 순간 정신력과 무관하게 100% 확률로 즉시 사냥을 강제 시작</strong>합니다.<br>
+                • <strong>기본 높은 사냥 정신력 (60%):</strong> 불빛이 없는 어둠 속에서는 정신력 <strong>60% 이하</strong>부터 사냥이 가능합니다.
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -871,9 +916,9 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 전자기기 연동 사냥 & 초고속 돌진</div>
             <p class="dict-text">
-                • <strong>사냥 정신력 조기 상승 (65%):</strong> 작동 중인 전자기기(손전등, 카메라, EMF 등) 근처에 있을 때 **정신력 65% 이하**부터 조기 사냥을 터뜨립니다.<br>
-                • <strong>전자기기 가속 (2.5 m/s):</strong> 사냥 시 켜진 전자기기 범위(소형 6m, 대형 10m) 안으로 들어오면 **즉시 2.5 m/s로 쏜살같이 가속**합니다.<br>
-                • <strong>광범위 전자기기 교란 (15m):</strong> 일반 유령의 교란 범위(10m)보다 넓은 **15m 범위**에서 전등과 전자기기를 깜빡거리게 만듭니다.
+                • <strong>사냥 정신력 조기 상승 (65%):</strong> 작동 중인 전자기기(손전등, 카메라, EMF 등) 근처에 있을 때 <strong>정신력 65% 이하</strong>부터 조기 사냥을 터뜨립니다.<br>
+                • <strong>전자기기 가속 (2.5 m/s):</strong> 사냥 시 켜진 전자기기 범위(소형 6m, 대형 10m) 안으로 들어오면 <strong>즉시 2.5 m/s로 쏜살같이 가속</strong>합니다.<br>
+                • <strong>광범위 전자기기 교란 (15m):</strong> 일반 유령의 교란 범위(10m)보다 넓은 <strong>15m 범위</strong>에서 전등과 전자기기를 깜빡거리게 만듭니다.
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -914,8 +959,8 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 시야 감지 극단적 속도 변화 (Speed Switch)</div>
             <p class="dict-text">
-                • <strong>시야 밖/배회 시 (1.0 m/s):</strong> 플레이어를 찾지 못했거나 시야(LOS)에 잡히지 않을 때는 **1.0 m/s라는 극도로 둔한 발소리**로 엉금엉금 걸어다닙니다.<br>
-                • <strong>시야 포착 즉시 (3.0 m/s):</strong> 플레이어의 형상을 보거나 전자기기/음성으로 위치를 인지한 순간, 점진적 가속이 아니라 **즉시 3.0 m/s라는 최악의 초고속으로 직진 돌진**합니다.<br>
+                • <strong>시야 밖/배회 시 (1.0 m/s):</strong> 플레이어를 찾지 못했거나 시야(LOS)에 잡히지 않을 때는 <strong>1.0 m/s라는 극도로 둔한 발소리</strong>로 엉금엉금 걸어다닙니다.<br>
+                • <strong>시야 포착 즉시 (3.0 m/s):</strong> 플레이어의 형상을 보거나 전자기기/음성으로 위치를 인지한 순간, 점진적 가속이 아니라 <strong>즉시 3.0 m/s라는 최악의 초고속으로 직진 돌진</strong>합니다.<br>
                 • <strong>엄폐 후 감속:</strong> 플레이어가 코너 뒤나 은신처로 숨어 시야에서 사라지면, 해당 지점까지 도착한 뒤 다시 1.0m/s로 둔화됩니다.
             </p>
 
@@ -957,8 +1002,8 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 수줍음 & 낮은 사냥 정신력 메커니즘</div>
             <p class="dict-text">
-                • <strong>낮은 사냥 시작 정신력 (35%):</strong> 평균 정신력이 **35% 이하**로 떨어지지 않으면 절대로 사냥을 시작하지 않습니다.<br>
-                • <strong>동일 공간 활동 차단 (Shy Ghost):</strong> 셰이드와 **같은 방에 플레이어가 한 명이라도 서 있으면, 사냥을 절대로 시작하지 못하고 상호작용 빈도도 극단적으로 감소**합니다.<br>
+                • <strong>낮은 사냥 시작 정신력 (35%):</strong> 평균 정신력이 <strong>35% 이하</strong>로 떨어지지 않으면 절대로 사냥을 시작하지 않습니다.<br>
+                • <strong>동일 공간 활동 차단 (Shy Ghost):</strong> 셰이드와 <strong>같은 방에 플레이어가 한 명이라도 서 있으면, 사냥을 절대로 시작하지 못하고 상호작용 빈도도 극단적으로 감소</strong>합니다.<br>
                 • <strong>그림자 형체 선호:</strong> 고스트 이벤트 발생 시 완전한 실체보다는 검은 그림자나 투명한 형태로 나타날 확률이 높습니다.
             </p>
 
@@ -1000,9 +1045,9 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 나이듦(Aging) 및 스펙 노화 메커니즘</div>
             <p class="dict-text">
-                • <strong>나이듦 조건:</strong> 타예가 있는 방에 플레이어가 머무르면 1~2분마다 나이를 한 살씩 먹어 **총 10단계까지 노화**합니다.<br>
-                • <strong>초기 젊은 상태 (0세):</strong> 사냥 시작 정신력 **75%**, 이동 속도 **2.75 m/s (극도로 빨라 위험함)**<br>
-                • <strong>최종 늙은 상태 (10세):</strong> 사냥 시작 정신력 **15%**, 이동 속도 **1.0 m/s (극도로 느려짐)**<br>
+                • <strong>나이듦 조건:</strong> 타예가 있는 방에 플레이어가 머무르면 1~2분마다 나이를 한 살씩 먹어 <strong>총 10단계까지 노화</strong>합니다.<br>
+                • <strong>초기 젊은 상태 (0세):</strong> 사냥 시작 정신력 <strong>75%</strong>, 이동 속도 <strong>2.75 m/s (극도로 빨라 위험함)</strong><br>
+                • <strong>최종 늙은 상태 (10세):</strong> 사냥 시작 정신력 <strong>15%</strong>, 이동 속도 <strong>1.0 m/s (극도로 느려짐)</strong><br>
                 • <strong>시야 가속 없음:</strong> 플레이어를 아무리 오래 바라보아도 추가 시야 가속이 오르지 않습니다.<br>
                 • <strong>위자드 보드 나이 변화:</strong> 위자드 보드로 나이를 물어보면 시간이 지나면서 답변하는 나이가 실제로 많아집니다.
             </p>
@@ -1045,8 +1090,8 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 유령 복제 & 가짜 고스트 오브 메커니즘</div>
             <p class="dict-text">
-                • <strong>다른 유령 완벽 복제:</strong> 30초~2분마다 무작위 다른 유령(데오겐, 레버넌트, 데몬 등)을 지정하여 **해당 유령의 속도, 사냥 정신력, 특수 능력을 그대로 복사**합니다.<br>
-                • <strong>항시 가짜 고스트 오브 생성 (4증거 유령):</strong> 미믹은 정식 증거 3개(스피릿박스/손자국/서늘함) 외에도 **난이도와 상관없이 항상 고스트 오브를 가짜로 관찰되게 만듭니다.**
+                • <strong>다른 유령 완벽 복제:</strong> 30초~2분마다 무작위 다른 유령(데오겐, 레버넌트, 데몬 등)을 지정하여 <strong>해당 유령의 속도, 사냥 정신력, 특수 능력을 그대로 복사</strong>합니다.<br>
+                • <strong>항시 가짜 고스트 오브 생성 (4증거 유령):</strong> 미믹은 정식 증거 3개(스피릿박스/손자국/서늘함) 외에도 <strong>난이도와 상관없이 항상 고스트 오브를 가짜로 관찰되게 만듭니다.</strong>
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -1089,8 +1134,8 @@ const GHOST_DATA = [
             <div class="dict-section-title">1. 본체/분신 이원화 & 사냥 속도 메커니즘</div>
             <p class="dict-text">
                 • <strong>본체와 분신 시스템:</strong> 고스트 룸에 있는 '본체'와 맵을 배회하는 '분신'이 동시에 또는 교대로 상호작용을 터뜨립니다.<br>
-                • <strong>본체 사냥 속도 (1.5 m/s):</strong> 본체가 사냥을 시작하면 일반 속도(1.7m/s)보다 약간 느린 **1.5 m/s**로 걸어다닙니다.<br>
-                • <strong>분신 사냥 속도 (1.87 m/s):</strong> 분신이 있던 자리에서 사냥이 터지면 일반 속도보다 약간 빠른 **1.87 m/s**로 돌진합니다.<br>
+                • <strong>본체 사냥 속도 (1.5 m/s):</strong> 본체가 사냥을 시작하면 일반 속도(1.7m/s)보다 약간 느린 <strong>1.5 m/s</strong>로 걸어다닙니다.<br>
+                • <strong>분신 사냥 속도 (1.87 m/s):</strong> 분신이 있던 자리에서 사냥이 터지면 일반 속도보다 약간 빠른 <strong>1.87 m/s</strong>로 돌진합니다.<br>
                 • <strong>트윈스 커브 그래프:</strong> 트럭 EMF 활동 그래프에서 본체와 분신 상호작용이 동시에 터질 때 꺾이는 곡선 표식이 나타납니다.
             </p>
 
@@ -1132,8 +1177,8 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 음성 자극 사냥 & 사냥 중 좁은 청각 범위</div>
             <p class="dict-text">
-                • <strong>음성 대화 조기 사냥 (80%):</strong> 요괴 근처(3m 이내)에서 마이크로 말을 많이 하면 **정신력 80% 이하**부터 조기 사냥을 시작합니다.<br>
-                • <strong>사냥 중 좁은 감지 범주 (2.5m):</strong> 사냥 시 일반 유령(9m)과 달리 **2.5m 이내의 바짝 다가온 거리에서 나오는 음성/전자기기 신호만 감지**할 수 있습니다.<br>
+                • <strong>음성 대화 조기 사냥 (80%):</strong> 요괴 근처(3m 이내)에서 마이크로 말을 많이 하면 <strong>정신력 80% 이하</strong>부터 조기 사냥을 시작합니다.<br>
+                • <strong>사냥 중 좁은 감지 범주 (2.5m):</strong> 사냥 시 일반 유령(9m)과 달리 <strong>2.5m 이내의 바짝 다가온 거리에서 나오는 음성/전자기기 신호만 감지</strong>할 수 있습니다.<br>
                 • <strong>멀리서 안전함:</strong> 3m만 떨어져 있어도 플레이어가 손전등을 켜고 마이크로 고함을 질러도 요괴는 감지하지 못하고 그냥 지나쳐 갑니다.
             </p>
 
@@ -1175,8 +1220,8 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 문 상호작용 정신력 차감 & 향초 봉인 메커니즘</div>
             <p class="dict-text">
-                • <strong>특수 문 닫기 능력 (Door Slam):</strong> 고스트 이벤트를 일으키지 않고도 **문을 끝까지 강하게 닫는 상호작용**을 쓰며, 이때 **근처 플레이어의 정신력을 15% 기습 차감**합니다.<br>
-                • <strong>정화향초 방 봉인:</strong> 유레이에게 정화향초를 태우면 90초 동안 사냥이 차단될 뿐만 아니라 **90초 동안 고스트 룸 밖으로 절대로 나가지 못하도록 방에 갇히게 됩니다.**
+                • <strong>특수 문 닫기 능력 (Door Slam):</strong> 고스트 이벤트를 일으키지 않고도 <strong>문을 끝까지 강하게 닫는 상호작용</strong>을 쓰며, 이때 <strong>근처 플레이어의 정신력을 15% 기습 차감</strong>합니다.<br>
+                • <strong>정화향초 방 봉인:</strong> 유레이에게 정화향초를 태우면 90초 동안 사냥이 차단될 뿐만 아니라 <strong>90초 동안 고스트 룸 밖으로 절대로 나가지 못하도록 방에 갇히게 됩니다.</strong>
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -1218,9 +1263,9 @@ const GHOST_DATA = [
             <div class="dict-section-title">1. 사냥 메커니즘 (Hunt)</div>
             <p class="dict-text">
                 • <strong>기본 속도:</strong> 1.53 m/s (일반 유령 1.7 m/s 대비 느림)<br>
-                • <strong>시야 가속률:</strong> 초당 가속률이 높아서 **8.67초 만에 최고 속도인 2.53 m/s에 도달**합니다.<br>
-                • <strong>은신처 강제 종료:</strong> 유효한 공식 은신처(옷장/사물함) 안의 플레이어에게 도달 시 **사냥이 즉시 강제 종료**됩니다.<br>
-                • <strong>위치 추적 페널티:</strong> 이 방식으로 사냥이 종료되면 다음 사냥 유예 시간에도 **해당 플레이어 위치로 곧장 이동**합니다.
+                • <strong>시야 가속률:</strong> 초당 가속률이 높아서 <strong>8.67초 만에 최고 속도인 2.53 m/s에 도달</strong>합니다.<br>
+                • <strong>은신처 강제 종료:</strong> 유효한 공식 은신처(옷장/사물함) 안의 플레이어에게 도달 시 <strong>사냥이 즉시 강제 종료</strong>됩니다.<br>
+                • <strong>위치 추적 페널티:</strong> 이 방식으로 사냥이 종료되면 다음 사냥 유예 시간에도 <strong>해당 플레이어 위치로 곧장 이동</strong>합니다.
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -1261,9 +1306,9 @@ const GHOST_DATA = [
         detailedHtml: `
             <div class="dict-section-title">1. 사냥 및 시각 차단 메커니즘 (Blind Hunt)</div>
             <p class="dict-text">
-                • <strong>완전 시각 차단 (Blind Ghost):</strong> 완전히 눈이 멀어 있어 **플레이어가 유령 바로 앞을 지나가거나 노출되어도 눈으로 인지하지 못합니다.**<br>
+                • <strong>완전 시각 차단 (Blind Ghost):</strong> 완전히 눈이 멀어 있어 <strong>플레이어가 유령 바로 앞을 지나가거나 노출되어도 눈으로 인지하지 못합니다.</strong><br>
                 • <strong>시야 가속 없음:</strong> 플레이어를 볼 수 없으므로 시야 가속(LOS Accel)이 전혀 붙지 않습니다.<br>
-                • <strong>청각 & 전자기기 감지 극대화:</strong> **손전등/장비 전자기기 신호 및 마이크 음성 감지 범위가 훨씬 넓게 확장**되어 소리와 신호로 추적합니다.
+                • <strong>청각 & 전자기기 감지 극대화:</strong> <strong>손전등/장비 전자기기 신호 및 마이크 음성 감지 범위가 훨씬 넓게 확장</strong>되어 소리와 신호로 추적합니다.
             </p>
 
             <div class="dict-section-title">2. 증거 (Evidence)</div>
@@ -1443,45 +1488,49 @@ function renderGhostList() {
     });
 }
 
-// 3. 유령 도감 렌더링
+// 3. 유령 도감 렌더링 (아코디언 버튼 형식 적용)
 function renderGhostDictionary() {
     const container = document.getElementById('ghost-dictionary-container');
     if (!container) return;
     container.innerHTML = '';
 
     GHOST_DATA.forEach(ghost => {
-        const card = document.createElement('div');
-        card.className = 'dict-card';
+        const details = document.createElement('details');
+        details.className = 'dict-details';
 
-        if (ghost.isCustomDetailed && ghost.detailedHtml) {
-            card.innerHTML = `
-                <div class="dict-header">
-                    <div class="dict-title">${ghost.name} (${ghost.engName})</div>
+        const detailBodyHtml = ghost.isCustomDetailed && ghost.detailedHtml ? ghost.detailedHtml : `
+            <div class="dict-section-title">증거 목록</div>
+            <p class="dict-text">${ghost.evidences.join(', ')}</p>
+            <div class="dict-section-title">고유 특성 & 대응법</div>
+            <p class="dict-text">${ghost.specialTrait}</p>
+        `;
+
+        details.innerHTML = `
+            <summary class="dict-summary-btn">
+                <div class="dict-btn-left">
+                    <img src="images/ghosts/${ghost.engName}.webp" 
+                         onerror="this.onerror=null; this.src='images/ghosts/Spirit.webp'" 
+                         class="dict-btn-icon" 
+                         alt="${ghost.name}">
+                    <div>
+                        <span class="dict-btn-title">${ghost.name}</span>
+                        <span class="dict-btn-eng">(${ghost.engName})</span>
+                    </div>
                 </div>
+                <div class="dict-btn-right">
+                    <span class="dict-toggle-badge">상세 공략 ▾</span>
+                </div>
+            </summary>
+            <div class="dict-content-body">
                 <div class="dict-spec-bar">
                     <div class="dict-spec-item"><strong>헌팅 정신력:</strong> ${ghost.huntSanity}</div>
                     <div class="dict-spec-item"><strong>이동 속도:</strong> ${ghost.speed}</div>
                     <div class="dict-spec-item"><strong>고정 증거:</strong> ${ghost.forcedEvidence}</div>
                 </div>
-                ${ghost.detailedHtml}
-            `;
-        } else {
-            card.innerHTML = `
-                <div class="dict-header">
-                    <div class="dict-title">${ghost.name} (${ghost.engName})</div>
-                </div>
-                <div class="dict-spec-bar">
-                    <div class="dict-spec-item"><strong>헌팅 정신력:</strong> ${ghost.huntSanity}</div>
-                    <div class="dict-spec-item"><strong>이동 속도:</strong> ${ghost.speed}</div>
-                    <div class="dict-spec-item"><strong>고정 증거:</strong> ${ghost.forcedEvidence}</div>
-                </div>
-                <div class="dict-section-title">증거 목록</div>
-                <p class="dict-text">${ghost.evidences.join(', ')}</p>
-                <div class="dict-section-title">고유 특성 & 대응법</div>
-                <p class="dict-text">${ghost.specialTrait}</p>
-            `;
-        }
-        container.appendChild(card);
+                ${detailBodyHtml}
+            </div>
+        `;
+        container.appendChild(details);
     });
 }
 

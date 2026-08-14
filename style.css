@@ -553,10 +553,10 @@ body {
     text-align: left;
 }
 
-/* 2. 유령 도감 전용 레이아웃 (접이식 아코디언 버튼) */
+/* 2. 📖 유령 도감 전용 레이아웃 (3열 그리드 & 큼직한 버튼) */
 .ghost-dict-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* 🔍 3줄(3열) 배치 적용 */
     gap: 16px;
 }
 
@@ -571,6 +571,7 @@ body {
 
 .dict-details:hover {
     border-color: var(--accent-vibrant);
+    transform: translateY(-2px);
 }
 
 .dict-details[open] {
@@ -578,12 +579,13 @@ body {
     box-shadow: 0 0 18px var(--accent-glow);
 }
 
+/* 유령 이름 클릭 버튼 영역 (크기 확대 & 도톰한 패딩) */
 .dict-summary-btn {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 18px;
-    background: linear-gradient(90deg, #0e1124 0%, #151833 100%);
+    padding: 16px 18px; /* 🔍 위아래 높이 넉넉하게 확장 */
+    background: linear-gradient(90deg, #0e1124 0%, #161a38 100%);
     cursor: pointer;
     user-select: none;
     transition: all 0.2s ease;
@@ -594,51 +596,53 @@ body {
 }
 
 .dict-summary-btn:hover {
-    background: linear-gradient(90deg, #161936 0%, #202449 100%);
+    background: linear-gradient(90deg, #181c3d 0%, #232854 100%);
 }
 
 .dict-btn-left {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .dict-btn-icon {
-    width: 38px;
-    height: 38px;
+    width: 46px; /* 🔍 아이콘 크기 확대 (38px -> 46px) */
+    height: 46px;
     object-fit: contain;
-    filter: drop-shadow(0 0 6px rgba(166, 143, 255, 0.4));
+    filter: drop-shadow(0 0 8px rgba(166, 143, 255, 0.45));
 }
 
 .dict-btn-title {
-    font-size: 1.3rem;
-    font-weight: 700;
+    font-size: 1.45rem; /* 🔍 한글 이름 글자 크기 확대 (1.3rem -> 1.45rem) */
+    font-weight: 800;
     color: #ffffff;
     letter-spacing: 0.5px;
 }
 
 .dict-btn-eng {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     color: var(--accent-light);
     font-weight: 600;
-    margin-left: 6px;
+    margin-left: 4px;
+    display: block; /* 줄바꿈으로 깔끔하게 정돈 */
 }
 
 .dict-btn-right {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .dict-toggle-badge {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     font-weight: 700;
     color: #ffffff;
-    background-color: rgba(109, 76, 251, 0.3);
-    border: 1px solid var(--accent-vibrant);
-    padding: 4px 12px;
+    background-color: rgba(109, 76, 251, 0.35);
+    border: 1.2px solid var(--accent-vibrant);
+    padding: 6px 12px;
     border-radius: 20px;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .dict-summary-btn:hover .dict-toggle-badge {
@@ -652,8 +656,9 @@ body {
     border-color: #ffffff;
 }
 
+/* 펼쳐졌을 때 나타나는 세부 본문 */
 .dict-content-body {
-    padding: 1.25rem;
+    padding: 1.3rem;
     border-top: 1.5px solid var(--card-border);
     background-color: #080a18;
     animation: fadeIn 0.3s ease;
@@ -685,11 +690,11 @@ body {
 }
 
 .dict-section-title {
-    font-size: 1.03rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--accent-vibrant);
-    margin-top: 0.9rem;
-    margin-bottom: 0.3rem;
+    margin-top: 0.95rem;
+    margin-bottom: 0.35rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -1023,6 +1028,12 @@ footer {
 }
 
 /* 반응형 대응 */
+@media (max-width: 1400px) {
+    .ghost-dict-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 1200px) {
     .ghost-list, #ghost-list-container {
         grid-template-columns: repeat(2, 1fr);
@@ -1030,7 +1041,7 @@ footer {
     .evidence-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    .ghost-dict-grid, .equipment-grid, .maps-grid, .guide-grid {
+    .equipment-grid, .maps-grid, .guide-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -1048,10 +1059,13 @@ footer {
     .top-search-bar input {
         width: 100%;
     }
+    .ghost-dict-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 650px) {
-    .ghost-list, #ghost-list-container, .ghost-dict-grid, .equipment-grid, .maps-grid, .guide-grid {
+    .ghost-list, #ghost-list-container, .equipment-grid, .maps-grid, .guide-grid {
         grid-template-columns: 1fr;
     }
     .evidence-grid {

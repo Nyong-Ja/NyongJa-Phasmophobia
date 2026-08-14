@@ -174,64 +174,187 @@ const GHOST_DATA = [
         engName: "Deildegast",
         evidences: ["EMF 5", "고스트 라이팅", "DOTS"],
         sanity: "50%",
-        speed: "초기 3.0 m/s ➔ 투척 시 0.4 m/s",
+        speed: "초기 3.0 m/s ➔ 물건 투척 시 감소 (최저 0.4 m/s)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+딜데가스트+공략",
-        tip: "헌팅 초기엔 매우 빠르지만 물건을 투척할수록 극도로 느려집니다.",
+        tip: "사냥 시작 시 3.0m/s로 엄청나게 빠르지만 주변 상호작용 물건을 투척할 때마다 속도가 점점 줄어듭니다.",
         huntSanity: "50%",
-        specialTrait: "물건을 26개 투척하면 이동 속도가 최저 0.4m/s까지 감소함.",
+        specialTrait: "초기 속도 3.0m/s, 물건 던질 때마다 속도 감소 (26개 던지면 최저 0.4m/s).",
         forcedEvidence: "없음",
         hasAccel: false,
         hasSpecialSpeed: true,
         hasForcedEv: false,
-        hasTargetRoam: false
+        hasTargetRoam: false,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 사냥 메커니즘 (Hunt)</div>
+            <p class="dict-text">
+                • <strong>초기 사냥 속도:</strong> 사냥이 터지는 첫 순간에는 <strong>3.0 m/s라는 폭발적인 초고속</strong>으로 스폰하여 플레이어를 압박합니다.<br>
+                • <strong>상호작용 연동 감속:</strong> 사냥 중 주변 오브젝트(물건)를 하나씩 던질 때마다 이동 속도가 단계적으로 깎여 나갑니다.<br>
+                • <strong>최저 속도 한계:</strong> 사냥 동안 물건을 총 26개 이상 던지게 되면 이동 속도가 <strong>최저 0.4 m/s까지 둔화</strong>되어 걸어서도 쉽게 따돌릴 수 있게 됩니다.<br>
+                • <strong>시야 가속 없음:</strong> 플레이어를 시야에 포착하더라도 시간 경과에 따른 시야 가속(LOS Accel)은 적용되지 않습니다.
+            </p>
+
+            <div class="dict-section-title">2. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • EMF 5단계 (EMF Level 5)<br>
+                • 고스트 라이팅 (Ghost Writing)<br>
+                • D.O.T.S. 프로젝터 (D.O.T.S. Projector)
+            </p>
+
+            <div class="dict-section-title">3. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 사냥 초반 물건을 던지기 전에는 레버넌트에 비견되는 위험한 속도로 돌진합니다.<br>
+                • <strong>약점 (Weakness):</strong> 물건이 수두룩하게 쌓여 있는 방(주방, 거실 등)에서는 스스로 물건을 연달아 던지며 속도를 크게 낮춰버립니다.
+            </p>
+
+            <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>초반 정화향초 생존:</strong> 사냥 극초반에는 3.0m/s로 즉사 수준이므로, 첫 사냥 발소리가 미친 듯이 빠르다면 즉시 향초를 피우고 물건이 많은 곳으로 유도해야 합니다.<br>
+                • <strong>발소리 변화 관찰:</strong> '타다닥!' 하고 엄청나게 빠르던 발소리가 상호작용 소리와 함께 점점 둔해진다면 딜데가스트를 확정할 수 있습니다.
+            </p>
+        `
     },
     {
         name: "데오겐",
         engName: "Deogen",
         evidences: ["스피릿 박스", "고스트 라이팅", "DOTS"],
         sanity: "40%",
-        speed: "원거리 3.0 m/s / 근접 0.4 m/s",
+        speed: "원거리 3.0 m/s / 2.5m 이내 근접 시 0.4 m/s (시야가속 X)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+데오겐+공략",
-        tip: "숨어도 위치를 알아내고 찾아오지만 가까이 오면 매우 느려집니다.",
+        tip: "어디에 숨든 플레이어의 위치를 항상 파악하여 직선으로 찾아오지만, 2.5m 내로 다가오면 걸어서 피할 수 있을 정도로 극도로 느려집니다.",
         huntSanity: "40%",
-        specialTrait: "스피릿 박스 특수 거친 숨소리 반응(후욱후욱), 은신 불가.",
+        specialTrait: "은신 파괴(숨기 불가), 2.5m 내 0.4m/s 감속, 스피릿 박스 거친 중저음 숨소리 반응.",
         forcedEvidence: "스피릿 박스",
         hasAccel: false,
         hasSpecialSpeed: true,
         hasForcedEv: true,
-        hasTargetRoam: true
+        hasTargetRoam: true,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 사냥 메커니즘 (Hunt)</div>
+            <p class="dict-text">
+                • <strong>위치 자동 감지 (은신 파괴):</strong> 사냥 시 맵 전체의 모든 플레이어 위치를 영구적으로 감지하며, <strong>옷장/라커/벽 뒤 등 은신처에 숨어도 무조건 은신을 무시하고 직진</strong>해옵니다.<br>
+                • <strong>거리별 가속/감속 극단화:</strong> 타겟과 멀리 떨어져 있을 때는 <strong>3.0 m/s</strong>로 격렬하게 다가오지만, 타겟과의 거리가 2.5m 이내로 들어오는 순간 <strong>0.4 m/s</strong>라는 달팽이 속도로 느려집니다.<br>
+                • <strong>시야 가속 없음:</strong> 플레이어를 계속 주시해도 추가적인 시야 가속이 붙지 않습니다.<br>
+                • <strong>낮은 사냥 정신력:</strong> 평균 정신력이 <strong>40% 이하</strong>일 때만 사냥을 시작합니다.
+            </p>
+
+            <div class="dict-section-title">2. 고유 스피릿 박스 반응 (Heavy Breathing)</div>
+            <p class="dict-text">
+                • 데오겐에게 1m 이내에서 스피릿 박스를 사용할 경우, 33% 확률로 대답 대신 <strong>'후욱- 후욱-' 하는 거칠고 기괴한 중저음 숨소리 반응</strong>이 수신됩니다. (데오겐 고정 증거)
+            </p>
+
+            <div class="dict-section-title">3. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • 스피릿 박스 (Spirit Box) - <strong>[고정 증거]</strong><br>
+                • 고스트 라이팅 (Ghost Writing)<br>
+                • D.O.T.S. 프로젝터 (D.O.T.S. Projector)
+            </p>
+
+            <div class="dict-section-title">4. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 위치를 완벽히 알아내므로 어설프게 숨으면 무조건 사망합니다.<br>
+                • <strong>약점 (Weakness):</strong> 근처에 다가오면 걸음걸이가 0.4m/s가 되므로 식탁이나 테이블을 끼고 원을 그리며 돌면 절대로 플레이어를 잡지 못합니다.
+            </p>
+
+            <div class="dict-section-title">5. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>절대 숨지 않기:</strong> 데오겐으로 확인되거나 발소리가 멀리서 3.0m/s로 나를 향해 일직선으로 달려온다면 절대 옷장에 들어가지 말고 넓은 공간으로 나와 빙글빙글 카이트(Looping)해야 합니다.<br>
+                • <strong>스피릿 박스 거친 숨소리:</strong> 스피릿 박스에서 거친 숨소리가 들리는 즉시 데오겐으로 100% 확정 지을 수 있습니다.
+            </p>
+        `
     },
     {
         name: "데몬",
         engName: "Demon",
         evidences: ["손자국", "고스트 라이팅", "서늘함"],
-        sanity: "기본 70% (특수능력 100%)",
+        sanity: "기본 70% (특수 능력 사용 시 정신력 100% 사냥 가능)",
         speed: "1.7 m/s (가속 O)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+데몬+공략",
-        tip: "가장 공격적인 유령으로 높은 정신력에서도 무차별 헌팅을 시작합니다.",
-        huntSanity: "70% (특수 능력 시 100%)",
-        specialTrait: "향초 재사용 쿨타임이 60초로 짧으며 십자가 범위를 넓게 받음.",
+        tip: "게임 내 가장 공격적인 유령으로, 정신력이 100%여도 특수 능력으로 사냥을 시작할 수 있습니다. 향초 방어시간이 60초로 매우 짧습니다.",
+        huntSanity: "70% (능력 시 100%)",
+        specialTrait: "정신력 100% 능 사냥, 사냥 쿨타임 20초, 향초 효과 60초 제한, 십자가 효과 범위 5m로 확대.",
         forcedEvidence: "없음",
         hasAccel: true,
         hasSpecialSpeed: false,
         hasForcedEv: false,
-        hasTargetRoam: false
+        hasTargetRoam: false,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 사냥 메커니즘 (Hunt)</div>
+            <p class="dict-text">
+                • <strong>기본 높은 사냥 정신력:</strong> 플레이어 평균 정신력이 <strong>70% 이하</strong>가 되면 일반 사냥을 시작할 수 있습니다.<br>
+                • <strong>정신력 100% 무차별 기습 능력:</strong> 데몬 고유 능력으로 정신력이 100%인 극초반 상태에서도 <strong>정신력을 무시하고 즉시 사냥을 강제 시작</strong>할 수 있습니다.<br>
+                • <strong>짧은 사냥 재사용 쿨타임:</strong> 사냥이 끝난 후 다음 사냥을 시작하기까지의 쿨타임이 일반 유령(25초)보다 짧은 <strong>20초</strong>입니다.<br>
+                • <strong>향초 디버프 저항:</strong> 정화향초에 노출되었을 때 사냥이 봉인되는 시간이 일반 유령(90초)보다 훨씬 짧은 <strong>60초</strong>에 불과합니다.
+            </p>
+
+            <div class="dict-section-title">2. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • 자외선 / 손자국 (Ultraviolet)<br>
+                • 고스트 라이팅 (Ghost Writing)<br>
+                • 빙점 이하의 온도 (Freezing Temperatures)
+            </p>
+
+            <div class="dict-section-title">3. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 그 어떤 유령보다 자주, 그리고 예고 없이 사냥을 터뜨려 조사팀을 기습합니다.<br>
+                • <strong>약점 (Weakness):</strong> 십자가(Crucifix)를 극도로 두려워하여, 십자가의 유효 방어 반경이 일반 3m에서 <strong>5m로 대폭 증가</strong>합니다.
+            </p>
+
+            <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>초반 기습 사냥 타임 체크:</strong> 집에 들어간 지 1분도 안 되어 양초/정신력이 가득한데 사냥이 터졌다면 데몬의 특수 능력일 가능성이 매우 높습니다.<br>
+                • <strong>향초 타이머 감별:</strong> 향초를 태운 뒤 60초~90초 사이에 다시 사냥이 시작된다면 데몬으로 확정할 수 있습니다.<br>
+                • <strong>십자가 즉시 배치:</strong> 데몬이 의심될 때는 고스트 룸에 십자가를 최우선으로 깔아 5m의 넓은 방어 범위를 활용해야 합니다.
+            </p>
+        `
     },
     {
         name: "갈루",
         engName: "Gallu",
         evidences: ["EMF 5", "스피릿 박스", "손자국"],
         sanity: "50%",
-        speed: "분노 시 1.96 m/s / 기본 1.7 m/s",
+        speed: "기본 1.7 m/s / 분노 상태 1.96 m/s / 약화 상태 1.44 m/s",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+갈루+공략",
-        tip: "소금/십자가/향초 자극 시 분노하며 분노 시 소금을 밟아도 자국을 남기지 않습니다.",
+        tip: "소금, 십자가, 향초 등 방어장비에 자극받으면 분노 상태로 변해 속도가 상승하고 소금 표식을 남기지 않는 특성이 있습니다.",
         huntSanity: "50%",
-        specialTrait: "일반/분노/약화 3단계를 순환하며 분노 시 소금 표식 미생성.",
+        specialTrait: "일반 ➔ 분노(1.96m/s) ➔ 약화(1.44m/s) 3단계 상태 변화. 분노 시 소금 밟아도 자국 안 남김.",
         forcedEvidence: "없음",
         hasAccel: true,
         hasSpecialSpeed: true,
         hasForcedEv: false,
-        hasTargetRoam: false
+        hasTargetRoam: false,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 사냥 및 상태 변환 메커니즘 (State Cycle)</div>
+            <p class="dict-text">
+                • <strong>3단계 상태 순환:</strong> 갈루는 [일반 상태 ➔ 분노 상태 ➔ 약화 상태] 순서로 성격이 변화합니다.<br>
+                • <strong>일반 상태:</strong> 이동 속도 <strong>1.7 m/s</strong>, 소금을 밟으면 정상적으로 자외선 소금 발자국을 남깁니다.<br>
+                • <strong>분노 트리거 (Enrage):</strong> 방어 장비(소금 밟기, 십자가 태우기, 정화향초 노출)에 자극을 받으면 즉시 분노 상태로 전환됩니다.<br>
+                • <strong>분노 상태 (1.96 m/s):</strong> 속도가 <strong>1.96 m/s로 상승</strong>하며, 사냥 중 소금을 밟아도 <strong>소금 자국/손자국을 전혀 남기지 않는 특성</strong>을 가집니다.<br>
+                • <strong>약화 상태 (1.44 m/s):</strong> 분노 사냥이 끝난 후 다음 사냥에서는 약화 상태가 되어 속도가 <strong>1.44 m/s로 크게 감소</strong>합니다. 약화 사냥이 끝나면 다시 일반 상태로 돌아옵니다.
+            </p>
+
+            <div class="dict-section-title">2. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • EMF 5단계 (EMF Level 5)<br>
+                • 스피릿 박스 (Spirit Box)<br>
+                • 자외선 / 손자국 (Ultraviolet)
+            </p>
+
+            <div class="dict-section-title">3. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 방어 장비를 사용하면 할수록 더 빠르고 위협적으로 변합니다.<br>
+                • <strong>약점 (Weakness):</strong> 분노 사냥을 버텨내고 나면 다음 사냥에서 현저히 느려집니다.
+            </p>
+
+            <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>소금 자국 체크:</strong> 소금을 깔아두었는데 유령이 밟는 소리는 나지만 UV 라이트로 보았을 때 소금 자국이 안 남는다면 분노 상태의 갈루입니다.<br>
+                • <strong>사냥마다 발소리 속도 비교:</strong> 첫 사냥(1.7m/s) ➔ 향초 후 두 번째 사냥(1.96m/s) ➔ 세 번째 사냥(1.44m/s) 형태로 속도가 계단식으로 달라지는지 확인하여 구분합니다.
+            </p>
+        `
     },
     {
         name: "고료",
@@ -240,62 +363,237 @@ const GHOST_DATA = [
         sanity: "50%",
         speed: "1.7 m/s (가속 O)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+고료+공략",
-        tip: "DOTS 프로젝터 영상은 비디오 카메라를 통해서만 육안 확인이 가능합니다.",
+        tip: "DOTS 프로젝터 영상은 방에 사람이 없고 오직 비디오 카메라를 통해서만 관찰할 수 있는 고유 특성이 있습니다.",
         huntSanity: "50%",
-        specialTrait: "사람이 방에 없어야 카메라로 DOTS 확인 가능.",
+        specialTrait: "DOTS 고정 증거, 사람이 방에 없어야 카메라로만 DOTS 관찰 가능, 고스트 룸을 거의 변경하지 않음.",
         forcedEvidence: "DOTS",
         hasAccel: true,
         hasSpecialSpeed: false,
         hasForcedEv: true,
-        hasTargetRoam: false
+        hasTargetRoam: false,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. DOTS 상호작용 특수 룰 (Goryo DOTS)</div>
+            <p class="dict-text">
+                • <strong>비디오 카메라 전용 관찰:</strong> 고료의 DOTS 상호작용은 <strong>육안으로 절대 볼 수 없으며, 오직 비디오 카메라의 화면(트럭 모니터 또는 손에 든 카메라)을 통해서만</strong> 모습을 드러냅니다.<br>
+                • <strong>부재 조건 필수:</strong> 고료가 DOTS를 통과할 때 <strong>같은 방에 플레이어가 단 한 명이라도 서 있으면 DOTS를 절대로 발동하지 않습니다.</strong><br>
+                • <strong>나이트비전 무관:</strong> 비디오 카메라의 나이트비전(야간 모드)이 켜져 있든 꺼져 있든 카메라 렌즈를 통하면 확인 가능합니다.
+            </p>
+
+            <div class="dict-section-title">2. 고스트 룸 변경 제한 (No Room Change)</div>
+            <p class="dict-text">
+                • 고료는 자신의 고스트 룸(Ghost Room)에 대한 애착이 매우 강해 <strong>방을 바꾸는 로밍(Room Change)을 절대 하지 않습니다.</strong> (원숭이 손 등 강제 기믹 제외)
+            </p>
+
+            <div class="dict-section-title">3. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • EMF 5단계 (EMF Level 5)<br>
+                • 자외선 / 손자국 (Ultraviolet)<br>
+                • D.O.T.S. 프로젝터 (D.O.T.S. Projector) - <strong>[고정 증거 (악몽/광기 난이도 포함)]</strong>
+            </p>
+
+            <div class="dict-section-title">4. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 방 안에서 직접 관찰할 때는 DOTS 증거를 완전히 숨깁니다.<br>
+                • <strong>약점 (Weakness):</strong> 고스트 룸 이탈률이 낮아 한 방에서 오랫동안 장비를 설치하고 조사하기 용이합니다.
+            </p>
+
+            <div class="dict-section-title">5. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>트럭 모니터 체크:</strong> 방 안에 카메라와 DOTS를 설치하고 모두 방에서 나와 트럭 모니터로 관찰하는 것이 고료 감별의 정석입니다.<br>
+                • <strong>멀티플레이 시 방 비우기:</strong> 팀원이 방에 남아있으면 카메라를 보고 있어도 DOTS가 안 나오므로 다 같이 방 밖으로 나와야 합니다.
+            </p>
+        `
     },
     {
         name: "한투",
         engName: "Hantu",
         evidences: ["손자국", "고스트 오브", "서늘함"],
         sanity: "50%",
-        speed: "온도에 따라 1.4 ~ 2.7 m/s (시야가속 X)",
+        speed: "온도에 따라 1.4 m/s ~ 2.7 m/s (시야 가속 없음)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+한투+공략",
-        tip: "추운 곳에서 매우 빠르고 따뜻한 곳에서 느려지며 입김을 내뿜습니다.",
+        tip: "방의 온도가 낮을수록 무섭게 빨라지고 따뜻할수록 느려지며, 시야 가속이 없고 헌팅 시 입김 입자가 관찰됩니다.",
         huntSanity: "50%",
-        specialTrait: "시야 가속이 없으며 헌팅 중 입김 가시화, 서늘함 고정.",
+        specialTrait: "서늘함 고정 증거, 온도가 낮은 방에서 최대 2.7m/s, 두꺼비집 내림 선호, 헌팅 시 입김 가시화, 시야 가속 없음.",
         forcedEvidence: "서늘함",
         hasAccel: false,
         hasSpecialSpeed: true,
         hasForcedEv: true,
-        hasTargetRoam: false
+        hasTargetRoam: false,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 온도 기반 이동 속도 (Temperature Speed)</div>
+            <p class="dict-text">
+                • <strong>온도 비례 속도:</strong> 한투의 사냥 속도는 유령이 지나가는 위치의 <strong>온도에 온전히 지배</strong>받습니다.<br>
+                • <strong>15°C 이상:</strong> 1.4 m/s (극도로 느림)<br>
+                • <strong>0°C 이하 (서늘한 방):</strong> <strong>2.7 m/s (매우 빠름)</strong><br>
+                • <strong>시야 가속(LOS Accel) 없음:</strong> 플레이어를 아무리 오래 보아도 속도가 추가로 오르지 않습니다.
+            </p>
+
+            <div class="dict-section-title">2. 고유 시각 효과 & 두꺼비집 메커니즘</div>
+            <p class="dict-text">
+                • <strong>입김 입자 (Freezing Breath):</strong> 두꺼비집이 꺼진 상태의 사냥 중, 한투의 입에서 <strong>차가운 흰 입김 가스</strong>가 뿜어져 나오는 것을 육안으로 볼 수 있습니다.<br>
+                • <strong>두꺼비집 차단 선호:</strong> 맵 온도를 낮추기 위해 두꺼비집(Breaker)을 내릴 확률이 매우 높으며, 두꺼비집을 스스로 켜는 것은 불가능합니다.
+            </p>
+
+            <div class="dict-section-title">3. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • 자외선 / 손자국 (Ultraviolet)<br>
+                • 고스트 오브 (Ghost Orb)<br>
+                • 빙점 이하의 온도 (Freezing Temperatures) - <strong>[고정 증거]</strong>
+            </p>
+
+            <div class="dict-section-title">4. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 두꺼비집이 꺼진 어두운 복도나 고스트 룸에서는 가속 없이도 2.7m/s로 즉사시킵니다.<br>
+                • <strong>약점 (Weakness):</strong> 두꺼비집을 켜두어 온도가 올라간 따뜻한 방으로 도망치면 속도가 1.4m/s로 떨어져 쉽게 도망칠 수 있습니다.
+            </p>
+
+            <div class="dict-section-title">5. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>두꺼비집 유지 필수:</strong> 한투 상대 시 두꺼비집을 무조건 켜두어 집 전체 온도를 올려두어야 사냥 시 살 수 있습니다.<br>
+                • <strong>시야 가속 없음 감별:</strong> 직선 복도에서 쫓길 때 유령이 나를 계속 보고 있는데도 발소리가 빨라지지 않는다면 한투일 가능성이 높습니다.
+            </p>
+        `
     },
     {
         name: "진",
         engName: "Jinn",
         evidences: ["EMF 5", "손자국", "서늘함"],
         sanity: "50%",
-        speed: "1.7 ~ 2.5 m/s",
+        speed: "3m 이내 접근 전 2.5 m/s ➔ 3m 이내 감속 1.7 m/s (두꺼비집 켜짐 시)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+진+공략",
-        tip: "두꺼비집이 켜져 있고 멀리 있으면 빠르게 가속합니다.",
+        tip: "두꺼비집이 켜져 있을 때 멀리 있는 플레이어를 보면 2.5m/s로 급가속하여 다가온 뒤, 3m 이내로 들어오면 정상 속도로 감속합니다.",
         huntSanity: "50%",
-        specialTrait: "두꺼비집을 내리지 못하며 멀리서 시야 확인 시 2.5m/s로 급가속.",
+        specialTrait: "두꺼비집을 절대 내리지 못함, 두꺼비집 켜짐 시 먼 거리에서 2.5m/s 도달 가속, 근처 플레이어 정신력 25% 차감 능력.",
         forcedEvidence: "없음",
         hasAccel: false,
         hasSpecialSpeed: true,
         hasForcedEv: false,
-        hasTargetRoam: false
+        hasTargetRoam: false,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 사냥 및 두꺼비집 급가속 메커니즘 (Jinn Charge)</div>
+            <p class="dict-text">
+                • <strong>두꺼비집 활성화 조건:</strong> 진의 특수 가속 능력은 <strong>두꺼비집(Breaker)이 켜져 있을 때만 발동</strong>합니다.<br>
+                • <strong>장거리 시야 가속 (2.5 m/s):</strong> 사냥 중 두꺼비집이 켜져 있고, 플레이어가 진의 시야에 들어왔을 때 **거리 3m 이상 떨어져 있으면 즉시 2.5 m/s로 폭발적인 돌진**을 합니다.<br>
+                • <strong>근접 감속 (1.7 m/s):</strong> 플레이어와의 거리가 **3m 이내로 좁혀지는 순간 속도가 다시 일반 속도(1.7 m/s)로 뚝 떨어집니다.**<br>
+                • <strong>두꺼비집 차단 불가:</strong> 진은 두꺼비집 전원을 직접 내리는 상호작용을 절대 할 수 없습니다. (전력 과부하로 꺼지는 것은 가능)
+            </p>
+
+            <div class="dict-section-title">2. 특수 정신력 차감 능력</div>
+            <p class="dict-text">
+                • 진이 두꺼비집 근처에 있는 플레이어를 대상으로 특수 능력을 사용하면, 플레이어 위치의 두꺼비집에서 EMF 2/5 단계가 발생하며 **해당 플레이어의 정신력을 즉시 25% 차감**시킵니다.
+            </p>
+
+            <div class="dict-section-title">3. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • EMF 5단계 (EMF Level 5)<br>
+                • 자외선 / 손자국 (Ultraviolet)<br>
+                • 빙점 이하의 온도 (Freezing Temperatures)
+            </p>
+
+            <div class="dict-section-title">4. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 먼 거리에서 플레이어를 발견하면 순식간에 코앞까지 좁혀옵니다.<br>
+                • <strong>약점 (Weakness):</strong> 두꺼비집을 내리면 진의 가속 능력과 정신력 차감 능력이 완전히 차단되어 평범한 유령이 됩니다.
+            </p>
+
+            <div class="dict-section-title">5. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>두꺼비집 끄기 공략:</strong> 진이 의심될 때는 두꺼비집을 수동으로 꺼두면 가속 없이 무난하게 상대할 수 있습니다.<br>
+                • <strong>발소리 패턴 감별:</strong> 멀리서 '타다닥!' 하고 쏜살같이 달려오다가 코앞(3m)에서 발소리가 갑자기 둔해진다면 진으로 확정할 수 있습니다.
+            </p>
+        `
+    },
+    {
+        name: "코르모스",
+        engName: "Kormos",
+        evidences: ["고스트 오브", "스피릿 박스", "손자국"],
+        sanity: "50%",
+        speed: "1.7 m/s (가속 O)",
+        ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+코르모스+공략",
+        tip: "완전히 눈이 멀어 플레이어를 시각적으로 보지 못하지만, 전자기기와 음성 감지 범위가 일반 유령보다 훨씬 넓습니다.",
+        huntSanity: "50%",
+        specialTrait: "시각적 시야(LOS) 없음, 시야 가속 없음, 전자기기/음성 감지 범위 넓음.",
+        forcedEvidence: "없음",
+        hasAccel: false,
+        hasSpecialSpeed: false,
+        hasForcedEv: false,
+        hasTargetRoam: false,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 사냥 및 시각 차단 메커니즘 (Blind Hunt)</div>
+            <p class="dict-text">
+                • <strong>완전 시각 차단 (Blind Ghost):</strong> 코르모스는 완전히 눈이 멀어 있어 **플레이어가 유령 바로 앞을 지나가거나 시야에 노출되어도 눈으로 인지하지 못합니다.**<br>
+                • <strong>시야 가속 없음:</strong> 플레이어를 시각적으로 볼 수 없으므로 시야 지속에 따른 시야 가속(LOS Accel)이 전혀 붙지 않습니다.<br>
+                • <strong>청각 & 전자기기 감지 극대화:</strong> 시각이 없는 대신 **플레이어가 켜둔 손전등/장비의 전자기기 신호 및 마이크 음성 감지 범위가 일반 유령(9m)보다 훨씬 넓게 확장**되어 소리와 전자기기로 추적합니다.
+            </p>
+
+            <div class="dict-section-title">2. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • 고스트 오브 (Ghost Orb)<br>
+                • 스피릿 박스 (Spirit Box)<br>
+                • 자외선 / 손자국 (Ultraviolet)
+            </p>
+
+            <div class="dict-section-title">3. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 멀리서 손전등을 켜거나 마이크로 말을 하면 은신처에 숨어 있어도 바로 위치를 들킵니다.<br>
+                • <strong>약점 (Weakness):</strong> 모든 전자기기를 끄고 침묵을 유지하면, 바로 옆을 지나가도 플레이어를 전혀 잡지 못합니다.
+            </p>
+
+            <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>장비 차단 및 침묵:</strong> 사냥 시 손전등과 손에 든 장비를 모두 끄고 마이크를 조용히 하면 안전하게 생존할 수 있습니다.<br>
+                • <strong>눈앞 통과 테스트:</strong> 사냥 중 장비를 모두 끈 채 유령 바로 앞을 스쳐 지나가도 공격당하지 않는다면 코르모스입니다.
+            </p>
+        `
     },
     {
         name: "메어",
         engName: "Mare",
         evidences: ["스피릿 박스", "고스트 오브", "고스트 라이팅"],
-        sanity: "불 꺼짐 60% / 불 켜짐 40%",
+        sanity: "어둠 속 60% / 불 켜진 방 40%",
         speed: "1.7 m/s (가속 O)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+메어+공략",
-        tip: "어둠 속에서 더 강해지며 불을 즉시 끄는 능력이 있습니다.",
+        tip: "불이 꺼진 어둠 속에서는 60%의 높은 정신력에서 사냥하지만, 전등을 켜두면 40%로 사냥을 억제할 수 있습니다. 스위치를 즉시 끄는 능력이 있습니다.",
         huntSanity: "불 꺼짐 60% / 켜짐 40%",
-        specialTrait: "전등이 켜지면 헌팅 확률 감소, 켜진 불을 즉시 끄는 능력 보유.",
+        specialTrait: "전등 스위치 즉시 끄기 능력, 불이 켜진 방에서 사냥 불가능(40% 이하 제외), 두꺼비집 내림 선호.",
         forcedEvidence: "없음",
         hasAccel: true,
         hasSpecialSpeed: false,
         hasForcedEv: false,
-        hasTargetRoam: false
+        hasTargetRoam: false,
+        isCustomDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 어둠 및 사냥 정신력 메커니즘 (Darkness Hunt)</div>
+            <p class="dict-text">
+                • <strong>어둠 속 사냥 정신력 (60%):</strong> 고스트 룸의 불이 꺼져 있으면 **정신력 60% 이하**부터 사냥을 터뜨릴 수 있습니다.<br>
+                • <strong>불 켜진 방 사냥 억제 (40%):</strong> 고스트 룸의 전등이 켜져 있으면 **정신력이 40% 이하로 떨어지기 전까지 사냥을 시작할 수 없습니다.**<br>
+                • <strong>전등 스위치 즉시 끄기 (Instant Switch Off):</strong> 플레이어가 전등 스위치를 켜는 순간, **0초만에 즉시 '딸깍' 하고 스위치를 다시 꺼버리는 고유 능력**을 자주 사용합니다.<br>
+                • <strong>전등 켜기 불가:</strong> 메어는 절대로 전등 스위치를 스스로 켜지 않습니다.
+            </p>
+
+            <div class="dict-section-title">2. 증거 (Evidence)</div>
+            <p class="dict-text">
+                • 스피릿 박스 (Spirit Box)<br>
+                • 고스트 오브 (Ghost Orb)<br>
+                • 고스트 라이팅 (Ghost Writing)
+            </p>
+
+            <div class="dict-section-title">3. 강점 및 약점 (Strengths & Weaknesses)</div>
+            <p class="dict-text">
+                • <strong>강점 (Strength):</strong> 어둠 속에서 상주할 경우 높은 정신력에서도 연속 사냥을 시도합니다.<br>
+                • <strong>약점 (Weakness):</strong> 고스트 룸의 전등을 지속적으로 켜두면 사냥을 매우 효과적으로 차단할 수 있습니다.
+            </p>
+
+            <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
+            <p class="dict-text">
+                • <strong>스위치 즉시 끄기 밀당 테스트:</strong> 방 불을 켰을 때 1초도 안 되어 유령이 켜자마자 바로 꺼버린다면 메어일 가능성이 99%입니다.<br>
+                • <strong>불 켜두기 공략:</strong> 메어 상대 시 고스트 룸과 이동 동선의 전등을 항상 켜두어 정신력 40% 전까지 사냥을 봉인해야 합니다.
+            </p>
+        `
     },
     {
         name: "모로이",
@@ -387,38 +685,6 @@ const GHOST_DATA = [
         tip: "양초 불빛을 두려워하며 불이 꺼질 때 헌팅이 유발될 수 있습니다.",
         huntSanity: "60%",
         specialTrait: "3번째 불이 꺼지면 즉시 헌팅 유발.",
-        forcedEvidence: "없음",
-        hasAccel: true,
-        hasSpecialSpeed: false,
-        hasForcedEv: false,
-        hasTargetRoam: false
-    },
-    {
-        name: "팬텀",
-        engName: "Phantom",
-        evidences: ["스피릿 박스", "손자국", "DOTS"],
-        sanity: "50%",
-        speed: "1.7 m/s (가속 O)",
-        ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+팬텀+공략",
-        tip: "바라볼 때 정신력이 깎이며 사진 촬영 시 소멸합니다.",
-        huntSanity: "50%",
-        specialTrait: "사진 촬영 시 모습이 지워짐.",
-        forcedEvidence: "없음",
-        hasAccel: true,
-        hasSpecialSpeed: false,
-        hasForcedEv: false,
-        hasTargetRoam: true
-    },
-    {
-        name: "폴터가이스트",
-        engName: "Poltergeist",
-        evidences: ["스피릿 박스", "손자국", "고스트 라이팅"],
-        sanity: "50%",
-        speed: "1.7 m/s (가속 O)",
-        ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+폴터가이스트+공략",
-        tip: "물건 폭발 능력을 사용합니다.",
-        huntSanity: "50%",
-        specialTrait: "동시 물건 투척 폭발.",
         forcedEvidence: "없음",
         hasAccel: true,
         hasSpecialSpeed: false,
@@ -600,22 +866,6 @@ const GHOST_DATA = [
                 • <strong>타 유령과의 구별법:</strong> 아스왕의 이동 속도는 오밤보(Obambo)나 쌍둥이(The Twins)의 속도와 혼동될 수 있습니다. 여러 번의 사냥을 관찰하면서 유령의 기본 속도가 더 빠른 속도로 변경되는지 확인해야 하며, 사냥마다 기본 속도가 바뀐다면 아스왕이 아닙니다.
             </p>
         `
-    },
-    {
-        name: "코르모스",
-        engName: "Kormos",
-        evidences: ["고스트 오브", "스피릿 박스", "손자국"],
-        sanity: "50%",
-        speed: "1.7 m/s (가속 O)",
-        ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+코르모스+공략",
-        tip: "완전히 눈이 멀었지만 플레이어 감지 탐지 범위가 훨씬 넓습니다.",
-        huntSanity: "50%",
-        specialTrait: "시각적 은신 가능, 넓은 전자기기 및 음성 탐지 범위 보유.",
-        forcedEvidence: "없음",
-        hasAccel: true,
-        hasSpecialSpeed: false,
-        hasForcedEv: false,
-        hasTargetRoam: false
     }
 ];
 
@@ -775,7 +1025,7 @@ function renderGhostList() {
     });
 }
 
-// 3. 유령 도감 렌더링 (밴시 / 다얀 / 아스왕 커스텀 세부 템플릿 포함)
+// 3. 유령 도감 렌더링 (상세 HTML 커스텀 카드 지원)
 function renderGhostDictionary() {
     const container = document.getElementById('ghost-dictionary-container');
     if (!container) return;

@@ -553,11 +553,12 @@ body {
     text-align: left;
 }
 
-/* 2. 📖 유령 도감 전용 레이아웃 (3열 그리드 & 큼직한 버튼) */
+/* 2. 📖 유령 도감 전용 레이아웃 (개별 늘어남 적용) */
 .ghost-dict-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 🔍 3줄(3열) 배치 적용 */
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+    align-items: start; /* 📌 핵심: 옆에 있는 유령 카드가 같이 안 늘어나고 원래 크기 유지 */
 }
 
 .dict-details {
@@ -565,13 +566,13 @@ body {
     border: 1.5px solid var(--card-border);
     border-radius: 12px;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-    transition: all 0.25s ease;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
     overflow: hidden;
+    height: fit-content; /* 내용물 크기에 딱 맞춤 */
 }
 
 .dict-details:hover {
     border-color: var(--accent-vibrant);
-    transform: translateY(-2px);
 }
 
 .dict-details[open] {
@@ -579,12 +580,12 @@ body {
     box-shadow: 0 0 18px var(--accent-glow);
 }
 
-/* 유령 이름 클릭 버튼 영역 (크기 확대 & 도톰한 패딩) */
+/* 유령 이름 클릭 버튼 영역 */
 .dict-summary-btn {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 18px; /* 🔍 위아래 높이 넉넉하게 확장 */
+    padding: 16px 18px;
     background: linear-gradient(90deg, #0e1124 0%, #161a38 100%);
     cursor: pointer;
     user-select: none;
@@ -606,14 +607,14 @@ body {
 }
 
 .dict-btn-icon {
-    width: 46px; /* 🔍 아이콘 크기 확대 (38px -> 46px) */
+    width: 46px;
     height: 46px;
     object-fit: contain;
     filter: drop-shadow(0 0 8px rgba(166, 143, 255, 0.45));
 }
 
 .dict-btn-title {
-    font-size: 1.45rem; /* 🔍 한글 이름 글자 크기 확대 (1.3rem -> 1.45rem) */
+    font-size: 1.45rem;
     font-weight: 800;
     color: #ffffff;
     letter-spacing: 0.5px;
@@ -624,7 +625,7 @@ body {
     color: var(--accent-light);
     font-weight: 600;
     margin-left: 4px;
-    display: block; /* 줄바꿈으로 깔끔하게 정돈 */
+    display: block;
 }
 
 .dict-btn-right {

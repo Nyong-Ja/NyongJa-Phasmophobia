@@ -1792,25 +1792,16 @@ function toggleQuickPanel(panelType) {
                     유령 정보, 신규 패치 데이터, 버그 제보 및 비즈니스 문의는 아래 채널을 이용해 주세요!
                 </p>
 
-                <!-- 네이버 팬카페 배너 -->
-                <a href="https://cafe.naver.com/phasmophobia1" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(52, 211, 153, 0.1);">
-                    <span style="font-size: 1.2rem; margin-right: 6px;">☕</span>
+                <!-- 1. 유튜브 채널 배너 -->
+                <a href="https://www.youtube.com/@nyongja1" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(248, 113, 113, 0.4); background-color: rgba(248, 113, 113, 0.12);">
+                    <span style="font-size: 1.2rem; margin-right: 6px;">▶️</span>
                     <div>
-                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">네이버 팬카페</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 공식 팬카페</div>
+                        <div style="color: #f87171; font-size: 0.95rem; font-weight: 700;">뇽자 유튜브</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">파스모포비아 공식 파트너 유튜브</div>
                     </div>
                 </a>
 
-                <!-- 디스코드 배너 -->
-                <a href="https://discord.gg/YkgM5t6N33" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(109, 76, 251, 0.5); background-color: rgba(109, 76, 251, 0.15);">
-                    <span style="font-size: 1.2rem; margin-right: 6px;">💬</span>
-                    <div>
-                        <div style="color: var(--accent-light); font-size: 0.95rem; font-weight: 700;">너굴단 디스코드</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 & 너굴단 디스코드</div>
-                    </div>
-                </a>
-
-                <!-- 치지직 채널 배너 -->
+                <!-- 2. 치지직 채널 배너 -->
                 <a href="https://chzzk.me/nyongja" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(6, 8, 20, 0.6);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">🟢</span>
                     <div>
@@ -1819,7 +1810,16 @@ function toggleQuickPanel(panelType) {
                     </div>
                 </a>
 
-                <!-- 인스타그램 배너 -->
+                <!-- 3. 디스코드 배너 -->
+                <a href="https://discord.gg/YkgM5t6N33" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(109, 76, 251, 0.5); background-color: rgba(109, 76, 251, 0.15);">
+                    <span style="font-size: 1.2rem; margin-right: 6px;">💬</span>
+                    <div>
+                        <div style="color: var(--accent-light); font-size: 0.95rem; font-weight: 700;">너굴단 디스코드</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 & 너굴단 디스코드</div>
+                    </div>
+                </a>
+
+                <!-- 4. 인스타그램 배너 -->
                 <a href="https://www.instagram.com/n_yong_ja" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(248, 113, 113, 0.4); background-color: rgba(248, 113, 113, 0.1);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">📸</span>
                     <div>
@@ -1828,7 +1828,16 @@ function toggleQuickPanel(panelType) {
                     </div>
                 </a>
 
-                <!-- 공식 이메일 배너 -->
+                <!-- 5. 네이버 팬카페 배너 -->
+                <a href="https://cafe.naver.com/phasmophobia1" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(52, 211, 153, 0.1);">
+                    <span style="font-size: 1.2rem; margin-right: 6px;">☕</span>
+                    <div>
+                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">네이버 팬카페</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 공식 팬카페</div>
+                    </div>
+                </a>
+
+                <!-- 6. 공식 이메일 배너 -->
                 <a href="mailto:future2549@naver.com" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(166, 143, 255, 0.35); background-color: rgba(6, 8, 20, 0.6);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">📧</span>
                     <div>

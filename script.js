@@ -1759,15 +1759,16 @@ function toggleQuickPanel(panelType) {
     } else if (panelType === 'news') {
         titleEl.innerText = "📢 최근 패치 안내";
         contentEl.innerHTML = "<p>패치 소식 탭에서 최신 패치 및 밸런스 내역을 확인하실 수 있습니다.</p>";
-    } else if (panelType === 'stream') {
+} else if (panelType === 'stream') {
         titleEl.innerText = "📺 실시간 LIVE 방송";
         contentEl.innerHTML = `
             <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
-                <!-- 치지직 실시간 라이브 플레이어 임베드 -->
-                <div style="width: 100%; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--card-border); background-color: #000;">
+                <!-- 16:9 비율 고정 플레이어 (스크롤바 완전 제거 및 화면 맞춤) -->
+                <div style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--card-border); background-color: #000;">
                     <iframe 
-                        src="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8/embed" 
-                        style="width: 100%; height: 100%; border: none;" 
+                        src="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8/player" 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; overflow: hidden;" 
+                        scrolling="no"
                         allow="autoplay; fullscreen"
                         allowfullscreen>
                     </iframe>

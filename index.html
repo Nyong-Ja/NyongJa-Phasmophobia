@@ -11,12 +11,11 @@
         <!-- 상단 헤더 영역 -->
         <header class="title-section">
             <div class="title-left">
-                <div class="sub-title">INTERACTIVE CHEAT SHEET & WIKI DATABASE</div>
-                <div class="logo-title-wrapper">
-                    <!-- 업로드한 상단 가로형 로고 이미지 -->
-                    <img src="images/logo/뇽스모.png" alt="뇽스모 로고" class="site-logo">
+                <!-- 로고 클릭 시 메인 탭 이동 및 초기화 -->
+                <div class="logo-title-wrapper" onclick="switchTab('evidence'); document.getElementById('reset-btn').click();" style="cursor: pointer;">
+                    <img src="images/logo/logo.png" alt="뇽스모 로고" class="site-logo">
                 </div>
-                <p id="page-main-desc">발견한 증거를 클릭(포함/제외)하여 남은 유령을 빠르게 추려내세요.</p>
+                <div class="sub-title" style="margin-top: 6px;">파스모포비아 한국 전용 공략 정보 사이트. 완벽한 유령 조사를 위한 필수 데이터와 팁을 빠르게 찾아보세요.</div>
             </div>
             <div class="top-search-bar">
                 <input type="text" placeholder="🔍 유령/증거/특징 빠른 검색..." onfocus="openSearchPanel()" onkeyup="handleHeaderSearch(this.value)">
@@ -41,10 +40,12 @@
                 <div class="content-wrapper">
                     <div class="left-panel">
                         <div class="panel-header">
-                            <h2>증거 선택 (Evidence)</h2>
+                            <div class="panel-title-group">
+                                <h2>증거 선택 (Evidence)</h2>
+                                <p class="guide-text">* <span class="badge state-include">1번 클릭: 포함</span> | <span class="badge state-exclude">2번 클릭: 제외</span> | 3번 클릭: 미선택</p>
+                            </div>
                             <button id="reset-btn">🔄 선택 초기화</button>
                         </div>
-                        <p class="guide-text">* <span class="badge state-include">1번 클릭: 포함</span> | <span class="badge state-exclude">2번 클릭: 제외</span> | 3번 클릭: 미선택</p>
                         
                         <div class="evidence-grid">
                             <button class="evidence-btn" data-evidence="EMF 5">EMF 5</button>
@@ -67,24 +68,24 @@
                                 <span>추론된 유령 목록</span>
                                 <div class="special-filters">
                                     <label class="filter-chip">
-                                        <input type="checkbox" onchange="toggleFilter('hasAccel')">
+                                        <input type="checkbox" id="filter-accel" onchange="toggleFilter('hasAccel')">
                                         <span>시야 가속 보유</span>
                                     </label>
                                     <label class="filter-chip">
-                                        <input type="checkbox" onchange="toggleFilter('hasSpecialSpeed')">
+                                        <input type="checkbox" id="filter-special-speed" onchange="toggleFilter('hasSpecialSpeed')">
                                         <span>특수 이동 속도</span>
                                     </label>
                                     <label class="filter-chip">
-                                        <input type="checkbox" onchange="toggleFilter('hasForcedEv')">
+                                        <input type="checkbox" id="filter-forced-ev" onchange="toggleFilter('hasForcedEv')">
                                         <span>고정 증거 유령</span>
                                     </label>
                                     <label class="filter-chip">
-                                        <input type="checkbox" onchange="toggleFilter('hasTargetRoam')">
+                                        <input type="checkbox" id="filter-target-roam" onchange="toggleFilter('hasTargetRoam')">
                                         <span>타겟/스토킹 보유</span>
                                     </label>
                                 </div>
                             </div>
-                            <span class="count-badge">남은 유령: <strong id="ghost-count">30</strong>종</span>
+                            <span class="count-badge">남은 유령: <strong id="ghost-count">24</strong>종</span>
                         </div>
 
                         <div id="ghost-list-container" class="ghost-list"></div>
@@ -110,10 +111,10 @@
             <!-- 탭 5: 맵 정보 -->
             <section id="tab-maps" class="tab-content">
                 <div class="map-filter-bar">
-                    <button class="map-filter-btn active" onclick="filterMapCategory('ALL')">전체 맵</button>
-                    <button class="map-filter-btn" onclick="filterMapCategory('Small')">소형 (Small)</button>
-                    <button class="map-filter-btn" onclick="filterMapCategory('Medium')">중형 (Medium)</button>
-                    <button class="map-filter-btn" onclick="filterMapCategory('Large')">대형 (Large)</button>
+                    <button class="map-filter-btn active" id="map-btn-ALL" onclick="filterMapCategory('ALL')">전체 맵</button>
+                    <button class="map-filter-btn" id="map-btn-Small" onclick="filterMapCategory('Small')">소형 (Small)</button>
+                    <button class="map-filter-btn" id="map-btn-Medium" onclick="filterMapCategory('Medium')">중형 (Medium)</button>
+                    <button class="map-filter-btn" id="map-btn-Large" onclick="filterMapCategory('Large')">대형 (Large)</button>
                 </div>
                 <div id="maps-container" class="maps-grid"></div>
             </section>
@@ -156,6 +157,17 @@
         <div id="quick-panel-content" class="panel-content"></div>
     </div>
 
+    <!-- 하단 푸터 (방문자 수 카운터 위젯) -->
+        <footer>
+            <div class="visitor-counter-box" style="margin-bottom: 12px; font-size: 1.0rem; color: #a3a6c9; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                <span>👀 오늘 방문자: <strong id="today-visitors" style="color: #34d399;">집계 중...</strong></span>
+                <span style="opacity: 0.4;">|</span>
+                <span>🔥 총 방문자: <strong id="total-visitors" style="color: #b49eff;">집계 중...</strong></span>
+            </div>
+            <p>© 2026 뇽스모 (Nyong-ja Phasmophobia Guide). All Rights Reserved.</p>
+        </footer>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>

@@ -1784,9 +1784,60 @@ function toggleQuickPanel(panelType) {
                 </p>
             </div>
         `;
-    } else if (panelType === 'contact') {
-        titleEl.innerText = "✉️ 제보 및 문의";
-        contentEl.innerHTML = "<p>유령 정보 및 신규 버그 제보는 언제나 환영합니다!</p>";
+} else if (panelType === 'contact') {
+        titleEl.innerText = "✉️ 제보 및 공식 채널";
+        contentEl.innerHTML = `
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 4px;">
+                    유령 정보, 신규 패치 데이터, 버그 제보 및 비즈니스 문의는 아래 채널을 이용해 주세요!
+                </p>
+
+                <!-- 네이버 팬카페 배너 -->
+                <a href="https://cafe.naver.com/phasmophobia1" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(52, 211, 153, 0.1);">
+                    <span style="font-size: 1.2rem; margin-right: 6px;">☕</span>
+                    <div>
+                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">네이버 팬카페</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">공식 공략 및 커뮤니티</div>
+                    </div>
+                </a>
+
+                <!-- 디스코드 배너 -->
+                <a href="https://discord.gg/YkgM5t6N33" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(109, 76, 251, 0.5); background-color: rgba(109, 76, 251, 0.15);">
+                    <span style="font-size: 1.2rem; margin-right: 6px;">💬</span>
+                    <div>
+                        <div style="color: var(--accent-light); font-size: 0.95rem; font-weight: 700;">공식 디스코드</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">실시간 멀티 구인 & 제보</div>
+                    </div>
+                </a>
+
+                <!-- 치지직 채널 배너 -->
+                <a href="https://chzzk.me/nyongja" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(6, 8, 20, 0.6);">
+                    <span style="font-size: 1.2rem; margin-right: 6px;">🟢</span>
+                    <div>
+                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">치지직 채널</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">chzzk.me/nyongja</div>
+                    </div>
+                </a>
+
+                <!-- 인스타그램 배너 -->
+                <a href="https://www.instagram.com/n_yong_ja" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(248, 113, 113, 0.4); background-color: rgba(248, 113, 113, 0.1);">
+                    <span style="font-size: 1.2rem; margin-right: 6px;">📸</span>
+                    <div>
+                        <div style="color: #f87171; font-size: 0.95rem; font-weight: 700;">인스타그램</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">@n_yong_ja</div>
+                    </div>
+                </a>
+
+                <!-- 공식 이메일 배너 (클릭 시 메일 발송 연결) -->
+                <a href="mailto:future2549@naver.com" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(166, 143, 255, 0.35); background-color: rgba(6, 8, 20, 0.6);">
+                    <span style="font-size: 1.2rem; margin-right: 6px;">📧</span>
+                    <div>
+                        <div style="color: #ffffff; font-size: 0.95rem; font-weight: 700;">비즈니스 / 제보 이메일</div>
+                        <div style="font-size: 0.8rem; color: var(--accent-light); font-weight: normal;">future2549@naver.com</div>
+                    </div>
+                </a>
+            </div>
+        `;
     }
 }
 

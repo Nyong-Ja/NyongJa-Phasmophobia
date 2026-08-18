@@ -1796,7 +1796,7 @@ function toggleQuickPanel(panelType) {
                 <a href="https://cafe.naver.com/phasmophobia1" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(52, 211, 153, 0.1);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">☕</span>
                     <div>
-                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">네이버 팬카페</div>
+                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">뇽자 공식 팬카페</div>
                         <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">공식 공략 및 커뮤니티</div>
                     </div>
                 </a>
@@ -1805,8 +1805,8 @@ function toggleQuickPanel(panelType) {
                 <a href="https://discord.gg/YkgM5t6N33" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(109, 76, 251, 0.5); background-color: rgba(109, 76, 251, 0.15);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">💬</span>
                     <div>
-                        <div style="color: var(--accent-light); font-size: 0.95rem; font-weight: 700;">공식 디스코드</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">실시간 멀티 구인 & 제보</div>
+                        <div style="color: var(--accent-light); font-size: 0.95rem; font-weight: 700;">너굴단 디스코드</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 & 너굴단 디스코드</div>
                     </div>
                 </a>
 
@@ -1814,8 +1814,8 @@ function toggleQuickPanel(panelType) {
                 <a href="https://chzzk.me/nyongja" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(6, 8, 20, 0.6);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">🟢</span>
                     <div>
-                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">치지직 채널</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">chzzk.me/nyongja</div>
+                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">뇽자 치지직 채널</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 실시간 방송 보러가기</div>
                     </div>
                 </a>
 
@@ -1823,12 +1823,12 @@ function toggleQuickPanel(panelType) {
                 <a href="https://www.instagram.com/n_yong_ja" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(248, 113, 113, 0.4); background-color: rgba(248, 113, 113, 0.1);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">📸</span>
                     <div>
-                        <div style="color: #f87171; font-size: 0.95rem; font-weight: 700;">인스타그램</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">@n_yong_ja</div>
+                        <div style="color: #f87171; font-size: 0.95rem; font-weight: 700;">뇽스타그램</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 인스타그램</div>
                     </div>
                 </a>
 
-                <!-- 공식 이메일 배너 (클릭 시 메일 발송 연결) -->
+                <!-- 공식 이메일 배너 -->
                 <a href="mailto:future2549@naver.com" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(166, 143, 255, 0.35); background-color: rgba(6, 8, 20, 0.6);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">📧</span>
                     <div>

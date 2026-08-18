@@ -534,7 +534,7 @@ const GHOST_DATA = [
             <div class="dict-section-title">3. 강점 및 약점 (Strengths & Weaknesses)</div>
             <p class="dict-text">
                 • <strong>강점 (Strength):</strong> 차가운 어두운 복도나 방에서는 가속 없이도 2.7m/s로 기습 사살합니다.<br>
-                • <strong>약점 (Weakness):</strong> 두꺼비집을 켜두어 온도가 높으면 1.4m/s로 쉽게 도망칠 수 있습니다.
+                • <strong>약점 (Weakness):</strong> 두꺼비집을 꺼두면 온도가 높으면 1.4m/s로 쉽게 도망칠 수 있습니다.
             </p>
             <div class="dict-section-title">4. 공략 및 식별법 (Strategies)</div>
             <p class="dict-text">
@@ -1760,8 +1760,29 @@ function toggleQuickPanel(panelType) {
         titleEl.innerText = "📢 최근 패치 안내";
         contentEl.innerHTML = "<p>패치 소식 탭에서 최신 패치 및 밸런스 내역을 확인하실 수 있습니다.</p>";
     } else if (panelType === 'stream') {
-        titleEl.innerText = "📺 방송 정보";
-        contentEl.innerHTML = "<p>뇽스모 파스모포비아 치트시트 개발 및 피드백 제보는 뇽자 방송과 커뮤니티를 통해 진행됩니다.</p>";
+        titleEl.innerText = "📺 실시간 LIVE 방송";
+        contentEl.innerHTML = `
+            <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
+                <!-- 치지직 실시간 라이브 플레이어 임베드 -->
+                <div style="width: 100%; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--card-border); background-color: #000;">
+                    <iframe 
+                        src="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8/embed" 
+                        style="width: 100%; height: 100%; border: none;" 
+                        allow="autoplay; fullscreen"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <!-- 치지직 생방송 바로가기 버튼 -->
+                <a href="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8" target="_blank" class="yt-btn" style="text-align: center; text-decoration: none; width: 100%; font-size: 0.95rem;">
+                    🟢 치지직 생방송 보러가기
+                </a>
+                
+                <p style="font-size: 0.88rem; color: var(--text-secondary); text-align: center; line-height: 1.4; margin-top: 4px;">
+                    뇽자의 실시간 파스모포비아 방송을 시청하고 함께 소통해 보세요!
+                </p>
+            </div>
+        `;
     } else if (panelType === 'contact') {
         titleEl.innerText = "✉️ 제보 및 문의";
         contentEl.innerHTML = "<p>유령 정보 및 신규 버그 제보는 언제나 환영합니다!</p>";

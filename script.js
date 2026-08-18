@@ -1375,6 +1375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderEquipment();
     renderMaps('ALL');
     renderGuides();
+    fetchVisitorCounts();
 });
 
 // 1. 증거 버튼 클릭 상태 토글
@@ -1689,4 +1690,30 @@ function handleQuickSearch(query) {
             <div style="font-size:0.9rem; color:#a3a6c9;">${g.tip}</div>
         </div>
     `).join('');
+}
+
+// ==========================================
+// 7. 실시간 방문자 카운터 집계 로직
+// ==========================================
+async function fetchVisitorCounts() {
+    const todayEl = document.getElementById('today-visitors');
+    const totalEl = document.getElementById('total-visitors');
+    if (!todayEl || !totalEl) return;
+
+    const todayStr = new Date().toISOString().slice(0, 10);
+    const todayKey = `nyong_phasmo_${todayStr}`;
+    const totalKey = `nyong_phasmo_total`;
+
+    try {
+        const totalRes = await fetch(`https://api.counterapi.dev/v1/nyongja_guide/${totalKey}/up`);
+        const totalData = await totalRes.json();
+        totalEl.innerText = (totalData.count || 1).toLocaleString() + '명';
+
+        const todayRes = await fetch(`https://api.counterapi.dev/v1/nyongja_guide/${todayKey}/up`);
+        const todayData = await todayRes.json();
+        todayEl.innerText = (todayData.count || 1).toLocaleString() + '명';
+    } catch (err) {
+        todayEl.innerText = '-';
+        totalEl.innerText = '-';
+    }
 }

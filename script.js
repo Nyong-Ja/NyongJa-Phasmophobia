@@ -277,12 +277,12 @@ const GHOST_DATA = [
         `
     },
     {
-        name: "딜데가스트",
+        name: "데일드가스트",
         engName: "Deildegast",
         evidences: ["EMF 5", "고스트 라이팅", "DOTS"],
         sanity: "50%",
         speed: "초기 3.0 m/s ➔ 물건 투척 시 감소 (최저 0.4 m/s)",
-        ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+딜데가스트+공략",
+        ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+데일드가스트+공략",
         tip: `<strong>1. 사냥 및 물건 투척 감속 메커니즘</strong><br>
               • <strong>초기 사냥 속도 (3.0 m/s):</strong> 사냥 시작 첫 순간에는 <strong>3.0 m/s라는 폭발적인 초고속</strong>으로 스폰합니다.<br>
               • <strong>투척 연동 감속:</strong> 사냥 중 주변 물건을 하나씩 던질 때마다 속도가 점차 깎여 나갑니다.<br>
@@ -1338,6 +1338,12 @@ const EQUIPMENT_DATA = [
     { name: "향초 (정화)", category: "방어/안전", t1: "T1: 일반 향초 (범위 좁음)", t2: "T2: 정화 향 스틱 (이동 시용)", t3: "T3: 훈증용 연막 향초 (유령 정지 효과)" }
 ];
 
+// 주간 도전 과제 데이터
+const WEEKLY_DATA = [
+    { title: "🎯 이번 주 주간 도전 과제 공략", body: "도전 과제 모드에서는 정해진 장비와 고정 배율로 게임이 진행됩니다. 증거가 0~1개로 제한되는 경우가 많으므로 발소리 BPM 스피드와 고유 헌팅 특징을 통해 유령을 특정하세요." },
+    { title: "💡 도전 과제 팁", body: "사망해도 장비가 소실되지 않으므로 부담 없이 헌팅을 유도하여 유령의 가속 및 특수 능력을 테스트하는 것이 빠른 클리어의 핵심입니다." }
+];
+
 // 맵 정보 데이터
 const MAP_DATA = [
     { name: "6 Tanglewood Drive", category: "Small", rooms: "11개 방", size: "소형 주택", tip: "가장 기본이 되는 표준 조사 맵입니다." },
@@ -1357,6 +1363,17 @@ const GUIDE_DATA = [
     { title: "정신력 관리와 커스텀 아이템 활용", body: "양초 불빛 아래 있으면 정신력이 감소하지 않습니다. 타로 카드, 위자드 보드 등 커스텀 아이템 사용 시 즉시 헌팅 위험에 노출되므로 주의하세요." }
 ];
 
+// ID 카드 & 배지 데이터
+const IDCARD_DATA = [
+    { name: "프레스티지 배지 (Prestige Badges)", category: "프로필", t1: "Tier 1: 기본 조사관 배지", t2: "Tier 2: 숙련된 고스트 헌터 배지", t3: "Tier 3: 마스터 고스트 바스터 배지" },
+    { name: "이벤트 한정 배지 (Event Badges)", category: "업적", t1: "할로윈 이벤트 한정 클리어 배지", t2: "크리스마스 홀리데이 이벤트 배지", t3: "이스터 에그 헌트 기념 배지" }
+];
+
+// 패치 소식 데이터
+const NEWS_DATA = [
+    { title: "📢 최신 업데이트 & 패치 노트 안내", body: "파스모포비아 최신 업데이트 패치 내역 및 밸런스 조정 사항이 정기적으로 반영됩니다. 유령들의 헌팅 AI 변경점 및 버그 수정 사항을 확인하세요." }
+];
+
 // 탭 상태 관리
 let includedEvidences = [];
 let excludedEvidences = [];
@@ -1373,8 +1390,11 @@ document.addEventListener('DOMContentLoaded', () => {
     renderGhostList();
     renderGhostDictionary();
     renderEquipment();
+    renderWeekly();
     renderMaps('ALL');
     renderGuides();
+    renderIdCards();
+    renderNews();
     fetchVisitorCounts();
 });
 
@@ -1485,7 +1505,7 @@ function renderGhostList() {
     });
 }
 
-// 3. 유령 도감 렌더링
+// 3. 유령 도감 렌더링 (아코디언 버튼 형식)
 function renderGhostDictionary() {
     const container = document.getElementById('ghost-dictionary-container');
     if (!container) return;
@@ -1562,7 +1582,24 @@ function renderEquipment() {
     });
 }
 
-// 5. 맵 정보 렌더링 및 카테고리 필터링
+// 5. 주간 도전 과제 렌더링
+function renderWeekly() {
+    const container = document.getElementById('weekly-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    WEEKLY_DATA.forEach(w => {
+        const card = document.createElement('div');
+        card.className = 'guide-card';
+        card.innerHTML = `
+            <div class="guide-card-title">${w.title}</div>
+            <div class="guide-card-body">${w.body}</div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// 6. 맵 정보 렌더링 및 카테고리 필터링
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
     if (!container) return;
@@ -1594,7 +1631,7 @@ function filterMapCategory(cat) {
     renderMaps(cat);
 }
 
-// 6. 핵심 공략 렌더링
+// 7. 핵심 공략 렌더링
 function renderGuides() {
     const container = document.getElementById('guide-container');
     if (!container) return;
@@ -1606,6 +1643,54 @@ function renderGuides() {
         card.innerHTML = `
             <div class="guide-card-title">🔥 ${g.title}</div>
             <div class="guide-card-body">${g.body}</div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// 8. ID 카드 & 배지 렌더링
+function renderIdCards() {
+    const container = document.getElementById('idcard-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    IDCARD_DATA.forEach(id => {
+        const card = document.createElement('div');
+        card.className = 'eq-card';
+        card.innerHTML = `
+            <div class="eq-header">
+                <div class="eq-name">${id.name}</div>
+                <span class="eq-category">${id.category}</span>
+            </div>
+            <div class="eq-tier-box">
+                <div class="eq-tier-title">단계 1</div>
+                <div class="eq-tier-desc">${id.t1}</div>
+            </div>
+            <div class="eq-tier-box">
+                <div class="eq-tier-title">단계 2</div>
+                <div class="eq-tier-desc">${id.t2}</div>
+            </div>
+            <div class="eq-tier-box">
+                <div class="eq-tier-title">단계 3</div>
+                <div class="eq-tier-desc">${id.t3}</div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// 9. 패치 소식 렌더링
+function renderNews() {
+    const container = document.getElementById('news-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    NEWS_DATA.forEach(n => {
+        const card = document.createElement('div');
+        card.className = 'guide-card';
+        card.innerHTML = `
+            <div class="guide-card-title">${n.title}</div>
+            <div class="guide-card-body">${n.body}</div>
         `;
         container.appendChild(card);
     });
@@ -1635,6 +1720,20 @@ function switchTab(tabId) {
     }
 }
 
+// 상단 헤더 검색 연동
+function openSearchPanel() {
+    toggleQuickPanel('search');
+}
+
+function handleHeaderSearch(val) {
+    toggleQuickPanel('search');
+    const panelInput = document.querySelector('.search-input-box');
+    if (panelInput) {
+        panelInput.value = val;
+    }
+    handleQuickSearch(val);
+}
+
 // 우측 슬라이드 패널 토글
 function toggleQuickPanel(panelType) {
     const panel = document.getElementById('quick-slide-panel');
@@ -1659,13 +1758,13 @@ function toggleQuickPanel(panelType) {
         `;
     } else if (panelType === 'news') {
         titleEl.innerText = "📢 최근 패치 안내";
-        contentEl.innerHTML = "<p>패치 소식 탭에서 상세 내역을 확인하실 수 있습니다.</p>";
+        contentEl.innerHTML = "<p>패치 소식 탭에서 최신 패치 및 밸런스 내역을 확인하실 수 있습니다.</p>";
     } else if (panelType === 'stream') {
         titleEl.innerText = "📺 방송 정보";
-        contentEl.innerHTML = "<p>치트시트 개발 및 피드백 제보는 뇽자 방송/커뮤니티를 통해 진행됩니다.</p>";
+        contentEl.innerHTML = "<p>뇽스모 파스모포비아 치트시트 개발 및 피드백 제보는 뇽자 방송과 커뮤니티를 통해 진행됩니다.</p>";
     } else if (panelType === 'contact') {
         titleEl.innerText = "✉️ 제보 및 문의";
-        contentEl.innerHTML = "<p>버그 및 정보 제보는 언제나 환영합니다!</p>";
+        contentEl.innerHTML = "<p>유령 정보 및 신규 버그 제보는 언제나 환영합니다!</p>";
     }
 }
 
@@ -1686,14 +1785,14 @@ function handleQuickSearch(query) {
 
     resultsContainer.innerHTML = matched.map(g => `
         <div class="search-result-card">
-            <div class="search-result-title">${g.name}</div>
+            <div class="search-result-title">${g.name} (${g.engName})</div>
             <div style="font-size:0.9rem; color:#a3a6c9;">${g.tip}</div>
         </div>
     `).join('');
 }
 
 // ==========================================
-// 7. 실시간 방문자 카운터 집계 로직
+// 실시간 방문자 카운터 집계 로직
 // ==========================================
 async function fetchVisitorCounts() {
     const todayEl = document.getElementById('today-visitors');

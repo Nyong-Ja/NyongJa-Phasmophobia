@@ -1796,8 +1796,8 @@ function toggleQuickPanel(panelType) {
                 <a href="https://cafe.naver.com/phasmophobia1" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(52, 211, 153, 0.1);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">☕</span>
                     <div>
-                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">뇽자 공식 팬카페</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">공식 공략 및 커뮤니티</div>
+                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">네이버 팬카페</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 공식 팬카페</div>
                     </div>
                 </a>
 

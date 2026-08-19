@@ -2442,31 +2442,7 @@ function renderWeekly() {
     });
 }
 
-// 6. 맵 정보 렌더링 및 카테고리 필터링
-function renderMaps(category = 'ALL') {
-    const container = document.getElementById('maps-container');
-    if (!container) return;
-    container.innerHTML = '';
-
-    const filtered = category === 'ALL' ? MAP_DATA : MAP_DATA.filter(m => m.category === category);
-
-    filtered.forEach(map => {
-        const card = document.createElement('div');
-        card.className = 'map-card';
-        card.innerHTML = `
-            <div class="map-header">
-                <div class="map-name">${map.name}</div>
-                <span class="map-badge ${map.category}">${map.category}</span>
-            </div>
-            <div class="map-info-list">
-                <div class="map-info-item"><strong>구조:</strong> ${map.size} (${map.rooms})</div>
-            </div>
-            <p class="dict-text">💡 ${map.tip}</p>
-        `;
-        container.appendChild(card);
-    });
-}
-
+// 6. 맵 필터 카테고리 버튼 처리 (중복 renderMaps 삭제 완료)
 function filterMapCategory(cat) {
     document.querySelectorAll('.map-filter-btn').forEach(btn => btn.classList.remove('active'));
     const targetBtn = document.getElementById(`map-btn-${cat}`);

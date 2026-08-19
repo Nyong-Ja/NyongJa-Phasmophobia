@@ -181,7 +181,7 @@ body {
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
 }
 
-/* 증거 선택 패널 헤더 (가로 한 줄 정렬) */
+/* 증거 선택 패널 헤더 */
 .panel-header {
     display: flex;
     justify-content: space-between;
@@ -773,7 +773,7 @@ body {
     line-height: 1.4;
 }
 
-/* 4. 🗺️ 맵 정보 전용 레이아웃 */
+/* 4. 🗺️ 맵 정보 전용 레이아웃 (가로 3열 Grid 고정) */
 .map-filter-bar {
     display: flex;
     gap: 8px;
@@ -799,11 +799,13 @@ body {
     box-shadow: 0 0 9px var(--accent-glow);
 }
 
-/* 맵 3열 다단 컨테이너 (클래스명 추가 지원) */
+/* 맵 3열 고정 그리드 */
 .maps-grid, .maps-masonry-wrapper {
-    columns: 3;
-    column-gap: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
     width: 100%;
+    align-items: start;
 }
 
 .map-card {
@@ -813,11 +815,7 @@ body {
     padding: 1.25rem;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
     transition: all 0.25s ease;
-    break-inside: avoid;
-    display: inline-block;
     width: 100%;
-    margin-bottom: 18px;
-    vertical-align: top;
 }
 
 .map-card:hover {
@@ -1037,7 +1035,7 @@ footer {
 
 /* 반응형 대응 */
 @media (max-width: 1400px) {
-    .ghost-dict-grid, .maps-grid, .maps-masonry-wrapper {
+    .ghost-dict-grid {
         columns: 2;
     }
 }
@@ -1049,7 +1047,7 @@ footer {
     .evidence-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    .equipment-grid, .guide-grid {
+    .equipment-grid, .guide-grid, .maps-grid, .maps-masonry-wrapper {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -1067,13 +1065,13 @@ footer {
     .top-search-bar input {
         width: 100%;
     }
-    .ghost-dict-grid, .maps-grid, .maps-masonry-wrapper {
+    .ghost-dict-grid {
         columns: 1;
     }
 }
 
-@media (max-width: 650px) {
-    .ghost-list, #ghost-list-container, .equipment-grid, .guide-grid {
+@media (max-width: 768px) {
+    .ghost-list, #ghost-list-container, .equipment-grid, .guide-grid, .maps-grid, .maps-masonry-wrapper {
         grid-template-columns: 1fr;
     }
     .evidence-grid {

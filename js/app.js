@@ -71,16 +71,16 @@ function renderWeekly() {
     });
 }
 
-// 5. 맵 정보 렌더링 (안정적인 3열 순차 Grid 방식)
+// 5. 맵 정보 렌더링 (독립 3열 Flex 컬럼 방식: 셔플 방지 & 빈 공간 즉시 메움)
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
     if (!container || typeof MAP_DATA === 'undefined') return;
     container.innerHTML = '';
 
-    // 상단 공통 규칙 배너 (Grid 전체 열 차지)
+    // 상단 공통 규칙 배너
     const ruleCard = document.createElement('div');
     ruleCard.className = 'guide-card';
-    ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; width: 100% !important; grid-column: 1 / -1; box-sizing: border-box !important;';
+    ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; width: 100% !important; box-sizing: border-box !important;';
     ruleCard.innerHTML = `
         <div style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px;">📦 난이도 및 인원별 은신처(Hiding Spot) 공통 규칙</div>
         <div style="font-size: 0.95rem; line-height: 1.6; color: #a1a1aa;">
@@ -96,8 +96,25 @@ function renderMaps(category = 'ALL') {
     `;
     container.appendChild(ruleCard);
 
+    // 맵 목록을 감쌀 3열 독립 컨테이너 생성
+    const columnsWrapper = document.createElement('div');
+    columnsWrapper.className = 'maps-columns-container';
+
+    // 1열, 2열, 3열 생성
+    const colElements = [
+        document.createElement('div'),
+        document.createElement('div'),
+        document.createElement('div')
+    ];
+
+    colElements.forEach(col => {
+        col.className = 'map-column';
+        columnsWrapper.appendChild(col);
+    });
+
     const filtered = category === 'ALL' ? MAP_DATA : MAP_DATA.filter(m => m.category === category);
 
+    // 각 맵을 1, 2, 3열 순서대로 고정 배분
     filtered.forEach((map, index) => {
         const card = document.createElement('div');
         card.className = 'map-card';
@@ -128,8 +145,13 @@ function renderMaps(category = 'ALL') {
             <p class="dict-text" style="color: var(--text-secondary, #a1a1aa); margin-bottom: 8px;">💡 ${map.tip}</p>
             ${detailSection}
         `;
-        container.appendChild(card);
+
+        // 0 -> 1열, 1 -> 2열, 2 -> 3열에 순환 배치
+        const targetCol = colElements[index % 3];
+        targetCol.appendChild(card);
     });
+
+    container.appendChild(columnsWrapper);
 }
 
 function toggleMapDetail(id, btn) {

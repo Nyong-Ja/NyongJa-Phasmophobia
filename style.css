@@ -553,10 +553,10 @@ body {
     text-align: left;
 }
 
-/* 2. 📖 유령 도감 전용 레이아웃 (메이슨리 다단 레이아웃: 빈 공간 자동 메움) */
+/* 2. 📖 유령 도감 전용 레이아웃 */
 .ghost-dict-grid {
-    columns: 3; /* 📌 3열 다단 컬럼 설정 */
-    column-gap: 16px; /* 컬럼 사이 간격 */
+    columns: 3;
+    column-gap: 16px;
 }
 
 .dict-details {
@@ -566,9 +566,9 @@ body {
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
     overflow: hidden;
-    break-inside: avoid; /* 📌 컬럼 사이에서 카드가 쪼개지지 않도록 방지 */
-    margin-bottom: 16px; /* 카드 아래 간격 */
-    display: inline-block; /* 컬럼 흐름에 맞춤 */
+    break-inside: avoid;
+    margin-bottom: 16px;
+    display: inline-block;
     width: 100%;
 }
 
@@ -773,7 +773,7 @@ body {
     line-height: 1.4;
 }
 
-/* 4. 📖 맵 정보 전용 레이아웃 (유령 도감과 동일한 다단 메이슨리 적용) */
+/* 4. 🗺️ 맵 정보 전용 레이아웃 (열 고정 독립 컬럼 방식: 셔플 방지) */
 .map-filter-bar {
     display: flex;
     gap: 8px;
@@ -799,9 +799,21 @@ body {
     box-shadow: 0 0 9px var(--accent-glow);
 }
 
-.maps-grid {
-    columns: 3; /* 📌 3열 다단 설정 (빈칸 자동 메움) */
-    column-gap: 18px;
+/* 맵 3열 고정 컨테이너 */
+.maps-columns-container {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* 세로 1, 2, 3열 독립 컬럼 */
+.map-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
 }
 
 .map-card {
@@ -811,9 +823,6 @@ body {
     padding: 1.25rem;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
     transition: all 0.25s ease;
-    break-inside: avoid; /* 📌 카드가 열 사이에서 쪼개지지 않도록 방지 */
-    margin-bottom: 18px; /* 카드 아래 간격 */
-    display: inline-block; /* 컬럼 흐름에 맞춤 */
     width: 100%;
 }
 
@@ -1034,8 +1043,8 @@ footer {
 
 /* 반응형 대응 */
 @media (max-width: 1400px) {
-    .ghost-dict-grid, .maps-grid {
-        columns: 2; /* 화면이 좁아지면 2열 */
+    .ghost-dict-grid {
+        columns: 2;
     }
 }
 
@@ -1064,8 +1073,11 @@ footer {
     .top-search-bar input {
         width: 100%;
     }
-    .ghost-dict-grid, .maps-grid {
-        columns: 1; /* 모바일에서는 1열 */
+    .ghost-dict-grid {
+        columns: 1;
+    }
+    .maps-columns-container {
+        flex-direction: column;
     }
 }
 

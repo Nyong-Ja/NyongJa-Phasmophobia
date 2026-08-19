@@ -1,8 +1,17 @@
+// ==========================================
+// 메인 애플리케이션 진입점 & 공통 UI 제어
+// ==========================================
+
+// 전체 탭 초기화 실행
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. 증거 분석 초기화 (tab-evidence.js)
     if (typeof initEvidenceButtons === 'function') initEvidenceButtons();
     if (typeof renderGhostList === 'function') renderGhostList();
+
+    // 2. 유령 도감 렌더링 (tab-dictionary.js)
     if (typeof renderGhostDictionary === 'function') renderGhostDictionary();
 
+    // 3~8. 기타 탭 렌더링
     renderEquipment();
     renderWeekly();
     renderMaps('ALL');
@@ -10,9 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     renderIdCards();
     renderNews();
 
+    // 부가 기능
     fetchVisitorCounts();
 });
 
+// 3. 장비 가이드 렌더링
 function renderEquipment() {
     const container = document.getElementById('equipment-container');
     if (!container || typeof EQUIPMENT_DATA === 'undefined') return;
@@ -43,6 +54,7 @@ function renderEquipment() {
     });
 }
 
+// 4. 주간 도전 과제 렌더링
 function renderWeekly() {
     const container = document.getElementById('weekly-container');
     if (!container || typeof WEEKLY_DATA === 'undefined') return;
@@ -59,14 +71,16 @@ function renderWeekly() {
     });
 }
 
+// 5. 맵 정보 렌더링 (안정적인 3열 순차 Grid 방식)
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
     if (!container || typeof MAP_DATA === 'undefined') return;
     container.innerHTML = '';
 
+    // 상단 공통 규칙 배너 (Grid 전체 열 차지)
     const ruleCard = document.createElement('div');
     ruleCard.className = 'guide-card';
-    ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; width: 100% !important; box-sizing: border-box !important;';
+    ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; width: 100% !important; grid-column: 1 / -1; box-sizing: border-box !important;';
     ruleCard.innerHTML = `
         <div style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px;">📦 난이도 및 인원별 은신처(Hiding Spot) 공통 규칙</div>
         <div style="font-size: 0.95rem; line-height: 1.6; color: #a1a1aa;">
@@ -81,9 +95,6 @@ function renderMaps(category = 'ALL') {
         </div>
     `;
     container.appendChild(ruleCard);
-
-    const masonryWrapper = document.createElement('div');
-    masonryWrapper.className = 'maps-masonry-wrapper';
 
     const filtered = category === 'ALL' ? MAP_DATA : MAP_DATA.filter(m => m.category === category);
 
@@ -117,10 +128,8 @@ function renderMaps(category = 'ALL') {
             <p class="dict-text" style="color: var(--text-secondary, #a1a1aa); margin-bottom: 8px;">💡 ${map.tip}</p>
             ${detailSection}
         `;
-        masonryWrapper.appendChild(card);
+        container.appendChild(card);
     });
-
-    container.appendChild(masonryWrapper);
 }
 
 function toggleMapDetail(id, btn) {
@@ -152,6 +161,7 @@ function filterMapCategory(cat) {
     renderMaps(cat);
 }
 
+// 6. 핵심 공략 렌더링
 function renderGuides() {
     const container = document.getElementById('guide-container');
     if (!container || typeof GUIDE_DATA === 'undefined') return;
@@ -168,6 +178,7 @@ function renderGuides() {
     });
 }
 
+// 7. ID 카드 & 배지 렌더링
 function renderIdCards() {
     const container = document.getElementById('idcard-container');
     if (!container || typeof IDCARD_DATA === 'undefined') return;
@@ -198,6 +209,7 @@ function renderIdCards() {
     });
 }
 
+// 8. 패치 소식 렌더링
 function renderNews() {
     const container = document.getElementById('news-container');
     if (!container || typeof NEWS_DATA === 'undefined') return;
@@ -214,6 +226,7 @@ function renderNews() {
     });
 }
 
+// 네비게이션 탭 전환 로직
 function switchTab(tabId) {
     document.querySelectorAll('.nav-tab').forEach(tab => {
         if (tab.getAttribute('data-tab') === tabId) {
@@ -237,6 +250,7 @@ function switchTab(tabId) {
     }
 }
 
+// 상단 헤더 검색
 function openSearchPanel() {
     toggleQuickPanel('search');
 }
@@ -250,6 +264,7 @@ function handleHeaderSearch(val) {
     handleQuickSearch(val);
 }
 
+// 우측 슬라이드 패널 토글
 function toggleQuickPanel(panelType) {
     const panel = document.getElementById('quick-slide-panel');
     const titleEl = document.getElementById('quick-panel-title');

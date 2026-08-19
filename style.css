@@ -799,69 +799,8 @@ body {
     box-shadow: 0 0 9px var(--accent-glow);
 }
 
-/* 은신처 공통 규칙 상단 배너 (가로 와이드 정렬) */
-.hiding-spot-banner {
-    background-color: var(--card-bg);
-    border: 1.5px solid var(--card-border);
-    border-radius: 12px;
-    padding: 1.1rem 1.4rem;
-    margin-bottom: 1.4rem;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.hiding-spot-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.hiding-spot-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--accent-light);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.hiding-spot-desc {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-}
-
-/* 은신처 규칙 리스트를 가로로 한 줄 나열 */
-.hiding-spot-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.hiding-spot-item {
-    font-size: 0.95rem;
-    color: var(--text-primary);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.hiding-spot-item strong {
-    color: var(--accent-light);
-}
-
-.hiding-spot-bonus {
-    color: var(--accent-green);
-    font-weight: 600;
-}
-
-/* 맵 3열 다단 컨테이너 */
-.maps-grid {
+/* 맵 3열 다단 컨테이너 (클래스명 추가 지원) */
+.maps-grid, .maps-masonry-wrapper {
     columns: 3;
     column-gap: 18px;
     width: 100%;
@@ -1098,7 +1037,7 @@ footer {
 
 /* 반응형 대응 */
 @media (max-width: 1400px) {
-    .ghost-dict-grid, .maps-grid {
+    .ghost-dict-grid, .maps-grid, .maps-masonry-wrapper {
         columns: 2;
     }
 }
@@ -1128,7 +1067,7 @@ footer {
     .top-search-bar input {
         width: 100%;
     }
-    .ghost-dict-grid, .maps-grid {
+    .ghost-dict-grid, .maps-grid, .maps-masonry-wrapper {
         columns: 1;
     }
 }

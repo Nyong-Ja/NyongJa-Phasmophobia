@@ -2140,18 +2140,17 @@ function renderMaps(category = 'ALL') {
     // 상단 공통 은신처 시스템 규칙 배너
     const ruleCard = document.createElement('div');
     ruleCard.className = 'guide-card';
-    ruleCard.style.borderLeft = '4px solid var(--accent-vibrant)';
-    ruleCard.style.marginBottom = '20px';
+    ruleCard.style.cssText = 'border-left: 4px solid var(--accent-vibrant, #6d4cfb); margin-bottom: 20px; background: rgba(13, 16, 35, 0.7); padding: 16px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.08);';
     ruleCard.innerHTML = `
-        <div class="guide-card-title">📦 난이도 및 인원별 은신처(Hiding Spot) 공통 규칙</div>
-        <div class="guide-card-body" style="font-size: 0.95rem; line-height: 1.6;">
+        <div class="guide-card-title" style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px;">📦 난이도 및 인원별 은신처(Hiding Spot) 공통 규칙</div>
+        <div class="guide-card-body" style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary, #a1a1aa);">
             파스모포비아의 모든 맵은 난이도와 인원수에 따라 <strong>공식 은신처(옷장, 락커, 구석 상자 등)</strong>의 차단 여부가 달라집니다:
-            <ul style="margin-top: 8px; padding-left: 20px; color: var(--text-secondary);">
+            <ul style="margin-top: 8px; padding-left: 20px; color: var(--text-secondary, #d4d4d8);">
                 <li><strong style="color: #fff;">초보자 (Amateur):</strong> 차단 없음 (모든 은신처 100% 개방)</li>
                 <li><strong style="color: #fff;">중급자 (Intermediate):</strong> 은신처 2곳 무작위 차단</li>
                 <li><strong style="color: #fff;">전문가 (Professional):</strong> 은신처 3곳 무작위 차단</li>
                 <li><strong style="color: #fff;">악몽 / 광기 (Nightmare / Insanity):</strong> 은신처 4곳 무작위 차단</li>
-                <li><strong style="color: var(--accent-light);">👥 멀티플레이 인원 보너스:</strong> 3인 플레이 시 <strong>+1곳</strong> / 4인 플레이 시 <strong>+2곳</strong> 추가 개방</li>
+                <li><strong style="color: var(--accent-light, #a78bfa);">👥 멀티플레이 인원 보너스:</strong> 3인 플레이 시 <strong>+1곳</strong> / 4인 플레이 시 <strong>+2곳</strong> 추가 개방</li>
             </ul>
         </div>
     `;
@@ -2165,12 +2164,12 @@ function renderMaps(category = 'ALL') {
 
         // 상세 공략 펼치기/접기 아코디언 블록
         const detailSection = map.isDetailed && map.detailedHtml ? `
-            <details class="ghost-details" style="margin-top: 14px; background: rgba(0,0,0,0.25); border-radius: 8px; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.06);">
-                <summary class="ghost-summary" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: var(--accent-light); padding: 6px 0;">
+            <details class="ghost-details" style="margin-top: 14px; background: rgba(0, 0, 0, 0.35); border-radius: 8px; padding: 8px 12px; border: 1px solid rgba(255, 255, 255, 0.08);">
+                <summary class="ghost-summary" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--accent-light, #a78bfa); padding: 4px 0; outline: none; list-style: none;">
                     <span>🗺️ 룸 목록, 은신처 & 저주 물건 상세 공략</span>
-                    <span class="more-btn" style="font-size: 0.85rem; color: var(--text-secondary);">펼치기 ▾</span>
+                    <span class="more-btn" style="font-size: 0.85rem; color: var(--text-secondary, #71717a); border: 1px solid rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 4px;">펼치기 ▾</span>
                 </summary>
-                <div class="dict-content-body" style="margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 14px; text-align: left;">
+                <div class="dict-content-body" style="margin-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 14px; text-align: left;">
                     ${map.detailedHtml}
                 </div>
             </details>
@@ -2182,7 +2181,7 @@ function renderMaps(category = 'ALL') {
                 <span class="map-badge ${map.category}">${map.category}</span>
             </div>
             <div class="map-info-list" style="margin: 10px 0;">
-                <div class="map-info-item" style="background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                <div class="map-info-item" style="background: rgba(255, 255, 255, 0.03); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.05);">
                     <strong>구조:</strong> ${map.size} (${map.rooms})
                 </div>
             </div>

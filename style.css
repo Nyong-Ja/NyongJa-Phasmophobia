@@ -1,5 +1,5 @@
 /* ==========================================
-   1. 글로벌 변수 및 기본 리셋
+   1. 글로벌 변수 및 리셋
    ========================================== */
 :root {
     --bg-dark: #090a16;
@@ -42,23 +42,20 @@ body {
     background-attachment: fixed;
 }
 
-/* ==========================================
-   2. 레이아웃 & 컨테이너
-   ========================================== */
 .container {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
 /* ==========================================
-   3. 상단 헤더 & 로고 & 방문자 수 (사이즈 고정)
+   2. 상단 헤더 & 로고
    ========================================== */
 .header-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0 20px;
+    padding: 16px 0 24px;
     border-bottom: 1px solid var(--card-border);
     margin-bottom: 24px;
     flex-wrap: wrap;
@@ -71,16 +68,22 @@ body {
     gap: 12px;
 }
 
-/* 🌟 거대해진 로고 크기 정상 복원 (최대 2rem 고정) */
-.site-title, h1.site-title, .logo-group h1 {
-    font-size: 1.85rem !important;
-    line-height: 1.2 !important;
+.logo-group img, 
+.logo-group svg, 
+header img, 
+header svg {
+    max-height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.site-title {
+    font-size: 1.5rem;
     font-weight: 800;
-    background: linear-gradient(135deg, #ffffff 30%, var(--accent-light) 100%);
+    background: linear-gradient(135deg, #fff, var(--accent-light));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.5px;
-    margin: 0;
 }
 
 .header-right-group {
@@ -126,7 +129,7 @@ body {
 }
 
 /* ==========================================
-   4. 네비게이션 탭 (Nav Tabs)
+   3. 네비게이션 탭
    ========================================== */
 .nav-tabs-wrapper {
     display: flex;
@@ -181,7 +184,7 @@ body {
 }
 
 /* ==========================================
-   5. 증거 분석기 (Tracker Section)
+   4. 증거 분석기
    ========================================== */
 .tracker-section {
     background: var(--bg-card);
@@ -293,13 +296,12 @@ body {
 }
 
 /* ==========================================
-   6. 🌟 유령 카드 그리드 및 글자 찌그러짐 방지
+   5. 유령 카드 그리드
    ========================================== */
 #ghost-list-container {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)) !important; /* 카드 너비 확보 */
-    gap: 18px !important;
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
 }
 
 .ghost-card {
@@ -311,7 +313,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 0; /* 내부 텍스트 오버플로우 방지 */
 }
 
 .ghost-card:hover {
@@ -323,8 +324,9 @@ body {
 
 .ghost-card-header {
     display: flex;
-    align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
     margin-bottom: 12px;
 }
 
@@ -338,13 +340,11 @@ body {
     object-fit: cover;
 }
 
-/* 🌟 유령 이름 줄바꿈 방지 및 너비 보장 */
 .ghost-name {
     font-size: 1.15rem;
     font-weight: 700;
     color: #fff;
-    white-space: nowrap !important;
-    word-break: keep-all !important;
+    white-space: nowrap;
 }
 
 .ghost-badge-group {
@@ -379,7 +379,6 @@ body {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
     color: var(--text-secondary);
-    white-space: nowrap;
 }
 
 .ev-tag.matched {
@@ -436,7 +435,7 @@ body {
 }
 
 /* ==========================================
-   7. 유령 도감 탭
+   6. 유령 도감 탭
    ========================================== */
 #ghost-dictionary-container {
     display: flex;
@@ -542,7 +541,7 @@ body {
 }
 
 /* ==========================================
-   8. 맵 정보 탭 (Masonry 2열 레이아웃)
+   7. 맵 정보 탭
    ========================================== */
 .map-filter-group {
     display: flex;
@@ -660,7 +659,7 @@ body {
 }
 
 /* ==========================================
-   9. 장비, 가이드, 패치노트 카드 공통
+   8. 장비, 가이드, 패치노트 카드 공통
    ========================================== */
 #equipment-container, #idcard-container {
     display: grid;
@@ -732,7 +731,7 @@ body {
 }
 
 /* ==========================================
-   10. 우측 슬라이드 퀵패널
+   9. 우측 슬라이드 퀵패널
    ========================================== */
 #quick-slide-panel {
     position: fixed;
@@ -819,21 +818,21 @@ body {
 }
 
 /* ==========================================
-   11. 모바일 반응형 미디어 쿼리
+   10. 모바일 반응형 미디어 쿼리
    ========================================== */
 @media (max-width: 768px) {
     .container {
         padding: 14px;
     }
     
-    .site-title, h1.site-title, .logo-group h1 {
-        font-size: 1.4rem !important;
+    .site-title {
+        font-size: 1.25rem;
     }
 
     #ghost-list-container, 
     #equipment-container, 
     #idcard-container {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: 1fr;
     }
 
     .maps-masonry-wrapper {

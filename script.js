@@ -2130,7 +2130,7 @@ const MAP_DATA = [
 ];
 
 // ==========================================
-// 맵 정보 렌더링 및 카테고리 필터링 함수
+// 맵 정보 렌더링 및 카테고리 필터링 함수 (클릭 100% 작동 보장형)
 // ==========================================
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
@@ -2140,17 +2140,17 @@ function renderMaps(category = 'ALL') {
     // 상단 은신처 시스템 공통 규칙 배너
     const ruleCard = document.createElement('div');
     ruleCard.className = 'guide-card';
-    ruleCard.style.cssText = 'border-left: 4px solid var(--accent-vibrant, #6d4cfb); margin-bottom: 20px; background: rgba(13, 16, 35, 0.7); padding: 16px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.08);';
+    ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important;';
     ruleCard.innerHTML = `
-        <div class="guide-card-title" style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px;">📦 난이도 및 인원별 은신처(Hiding Spot) 공통 규칙</div>
-        <div class="guide-card-body" style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary, #a1a1aa);">
+        <div style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px;">📦 난이도 및 인원별 은신처(Hiding Spot) 공통 규칙</div>
+        <div style="font-size: 0.95rem; line-height: 1.6; color: #a1a1aa;">
             파스모포비아의 모든 맵은 난이도와 인원수에 따라 <strong>공식 은신처(옷장, 락커, 구석 상자 등)</strong>의 차단 여부가 달라집니다:
-            <ul style="margin-top: 8px; padding-left: 20px; color: var(--text-secondary, #d4d4d8);">
+            <ul style="margin-top: 8px; padding-left: 20px; color: #d4d4d8;">
                 <li><strong style="color: #fff;">초보자 (Amateur):</strong> 차단 없음 (모든 은신처 100% 개방)</li>
                 <li><strong style="color: #fff;">중급자 (Intermediate):</strong> 은신처 2곳 무작위 차단</li>
                 <li><strong style="color: #fff;">전문가 (Professional):</strong> 은신처 3곳 무작위 차단</li>
                 <li><strong style="color: #fff;">악몽 / 광기 (Nightmare / Insanity):</strong> 은신처 4곳 무작위 차단</li>
-                <li><strong style="color: var(--accent-light, #a78bfa);">👥 멀티플레이 인원 보너스:</strong> 3인 플레이 시 <strong>+1곳</strong> / 4인 플레이 시 <strong>+2곳</strong> 추가 개방</li>
+                <li><strong style="color: #a78bfa;">👥 멀티플레이 인원 보너스:</strong> 3인 플레이 시 <strong>+1곳</strong> / 4인 플레이 시 <strong>+2곳</strong> 추가 개방</li>
             </ul>
         </div>
     `;
@@ -2158,21 +2158,24 @@ function renderMaps(category = 'ALL') {
 
     const filtered = category === 'ALL' ? MAP_DATA : MAP_DATA.filter(m => m.category === category);
 
-    filtered.forEach(map => {
+    filtered.forEach((map, index) => {
         const card = document.createElement('div');
         card.className = 'map-card';
 
-        // 상세 공략 펼치기/접기 아코디언 블록
+        // 각 맵별 고유 ID 부여
+        const detailId = `map-detail-${index}`;
+
+        // 상세 공략 커스텀 토글 블록
         const detailSection = map.isDetailed && map.detailedHtml ? `
-            <details class="ghost-details" style="margin-top: 14px; background: rgba(0, 0, 0, 0.35); border-radius: 8px; padding: 8px 12px; border: 1px solid rgba(255, 255, 255, 0.08);">
-                <summary class="ghost-summary" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--accent-light, #a78bfa); padding: 4px 0; outline: none; list-style: none;">
-                    <span>🗺️ 룸 목록, 은신처 & 저주 물건 상세 공략</span>
-                    <span class="more-btn" style="font-size: 0.85rem; color: var(--text-secondary, #71717a); border: 1px solid rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 4px;">펼치기 ▾</span>
-                </summary>
-                <div class="dict-content-body" style="margin-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 14px; text-align: left;">
+            <div style="margin-top: 14px; background: rgba(0, 0, 0, 0.4); border-radius: 8px; padding: 10px 14px; border: 1px solid rgba(255, 255, 255, 0.08);">
+                <button type="button" onclick="toggleMapDetail('${detailId}', this)" style="width: 100%; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #a78bfa; padding: 0; outline: none;">
+                    <span style="font-size: 0.95rem;">🗺️ 룸 목록, 은신처 & 저주 물건 상세 공략</span>
+                    <span class="toggle-btn-txt" style="font-size: 0.82rem; color: #a1a1aa; border: 1px solid rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px; background: rgba(255,255,255,0.05);">펼치기 ▾</span>
+                </button>
+                <div id="${detailId}" style="display: none; margin-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px; text-align: left;">
                     ${map.detailedHtml}
                 </div>
-            </details>
+            </div>
         ` : '';
 
         card.innerHTML = `
@@ -2185,13 +2188,37 @@ function renderMaps(category = 'ALL') {
                     <strong>구조:</strong> ${map.size} (${map.rooms})
                 </div>
             </div>
-            <p class="dict-text" style="color: var(--text-secondary); margin-bottom: 8px;">💡 ${map.tip}</p>
+            <p class="dict-text" style="color: var(--text-secondary, #a1a1aa); margin-bottom: 8px;">💡 ${map.tip}</p>
             ${detailSection}
         `;
         container.appendChild(card);
     });
 }
 
+// 상세 토글 클릭 핸들러 (전역 함수)
+function toggleMapDetail(id, btn) {
+    const el = document.getElementById(id);
+    const txt = btn.querySelector('.toggle-btn-txt');
+    if (!el) return;
+
+    if (el.style.display === 'none' || el.style.display === '') {
+        el.style.display = 'block';
+        if (txt) {
+            txt.innerText = '접기 ▴';
+            txt.style.color = '#f87171';
+            txt.style.borderColor = 'rgba(248, 113, 113, 0.4)';
+        }
+    } else {
+        el.style.display = 'none';
+        if (txt) {
+            txt.innerText = '펼치기 ▾';
+            txt.style.color = '#a1a1aa';
+            txt.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        }
+    }
+}
+
+// 6. 맵 필터 카테고리 버튼 처리 (중복 제거 완료)
 function filterMapCategory(cat) {
     document.querySelectorAll('.map-filter-btn').forEach(btn => btn.classList.remove('active'));
     const targetBtn = document.getElementById(`map-btn-${cat}`);
@@ -2442,14 +2469,6 @@ function renderWeekly() {
     });
 }
 
-// 6. 맵 필터 카테고리 버튼 처리 (중복 renderMaps 삭제 완료)
-function filterMapCategory(cat) {
-    document.querySelectorAll('.map-filter-btn').forEach(btn => btn.classList.remove('active'));
-    const targetBtn = document.getElementById(`map-btn-${cat}`);
-    if (targetBtn) targetBtn.classList.add('active');
-    renderMaps(cat);
-}
-
 // 7. 핵심 공략 렌더링
 function renderGuides() {
     const container = document.getElementById('guide-container');
@@ -2578,11 +2597,10 @@ function toggleQuickPanel(panelType) {
     } else if (panelType === 'news') {
         titleEl.innerText = "📢 최근 패치 안내";
         contentEl.innerHTML = "<p>패치 소식 탭에서 최신 패치 및 밸런스 내역을 확인하실 수 있습니다.</p>";
-} else if (panelType === 'stream') {
+    } else if (panelType === 'stream') {
         titleEl.innerText = "📺 실시간 LIVE 방송";
         contentEl.innerHTML = `
             <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
-                <!-- 16:9 비율 고정 플레이어 (스크롤바 완전 제거 및 화면 맞춤) -->
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--card-border); background-color: #000;">
                     <iframe 
                         src="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8/player" 
@@ -2593,7 +2611,6 @@ function toggleQuickPanel(panelType) {
                     </iframe>
                 </div>
 
-                <!-- 치지직 생방송 바로가기 버튼 -->
                 <a href="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8" target="_blank" class="yt-btn" style="text-align: center; text-decoration: none; width: 100%; font-size: 0.95rem;">
                     🟢 치지직 생방송 보러가기
                 </a>
@@ -2603,7 +2620,7 @@ function toggleQuickPanel(panelType) {
                 </p>
             </div>
         `;
-} else if (panelType === 'contact') {
+    } else if (panelType === 'contact') {
         titleEl.innerText = "✉️ 제보 및 공식 채널";
         contentEl.innerHTML = `
             <div style="display: flex; flex-direction: column; gap: 10px;">

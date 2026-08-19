@@ -773,7 +773,7 @@ body {
     line-height: 1.4;
 }
 
-/* 4. 맵 정보 전용 레이아웃 */
+/* 4. 📖 맵 정보 전용 레이아웃 (유령 도감과 동일한 다단 메이슨리 적용) */
 .map-filter-bar {
     display: flex;
     gap: 8px;
@@ -800,9 +800,8 @@ body {
 }
 
 .maps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    columns: 3; /* 📌 3열 다단 설정 (빈칸 자동 메움) */
+    column-gap: 18px;
 }
 
 .map-card {
@@ -812,6 +811,10 @@ body {
     padding: 1.25rem;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
     transition: all 0.25s ease;
+    break-inside: avoid; /* 📌 카드가 열 사이에서 쪼개지지 않도록 방지 */
+    margin-bottom: 18px; /* 카드 아래 간격 */
+    display: inline-block; /* 컬럼 흐름에 맞춤 */
+    width: 100%;
 }
 
 .map-card:hover {
@@ -1031,7 +1034,7 @@ footer {
 
 /* 반응형 대응 */
 @media (max-width: 1400px) {
-    .ghost-dict-grid {
+    .ghost-dict-grid, .maps-grid {
         columns: 2; /* 화면이 좁아지면 2열 */
     }
 }
@@ -1043,7 +1046,7 @@ footer {
     .evidence-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    .equipment-grid, .maps-grid, .guide-grid {
+    .equipment-grid, .guide-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -1061,13 +1064,13 @@ footer {
     .top-search-bar input {
         width: 100%;
     }
-    .ghost-dict-grid {
+    .ghost-dict-grid, .maps-grid {
         columns: 1; /* 모바일에서는 1열 */
     }
 }
 
 @media (max-width: 650px) {
-    .ghost-list, #ghost-list-container, .equipment-grid, .maps-grid, .guide-grid {
+    .ghost-list, #ghost-list-container, .equipment-grid, .guide-grid {
         grid-template-columns: 1fr;
     }
     .evidence-grid {

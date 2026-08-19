@@ -2130,17 +2130,17 @@ const MAP_DATA = [
 ];
 
 // ==========================================
-// 맵 정보 렌더링 및 카테고리 필터링 함수 (클릭 100% 작동 보장형)
+// 맵 정보 렌더링 (빈 공간 자동 채움 Masonry 완벽 적용)
 // ==========================================
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
     if (!container) return;
     container.innerHTML = '';
 
-    // 상단 은신처 시스템 공통 규칙 배너
+    // 1. 규칙 배너 (상단 단독 100% 영역)
     const ruleCard = document.createElement('div');
     ruleCard.className = 'guide-card';
-    ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important;';
+    ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; width: 100% !important; box-sizing: border-box !important;';
     ruleCard.innerHTML = `
         <div style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px;">📦 난이도 및 인원별 은신처(Hiding Spot) 공통 규칙</div>
         <div style="font-size: 0.95rem; line-height: 1.6; color: #a1a1aa;">
@@ -2156,16 +2156,19 @@ function renderMaps(category = 'ALL') {
     `;
     container.appendChild(ruleCard);
 
+    // 2. 맵 카드 전용 Masonry 래퍼 생성
+    const masonryWrapper = document.createElement('div');
+    masonryWrapper.style.cssText = 'column-count: 2; column-gap: 20px; width: 100%;';
+
     const filtered = category === 'ALL' ? MAP_DATA : MAP_DATA.filter(m => m.category === category);
 
     filtered.forEach((map, index) => {
         const card = document.createElement('div');
         card.className = 'map-card';
+        card.style.cssText = 'break-inside: avoid; margin-bottom: 20px; display: inline-block; width: 100%; vertical-align: top; box-sizing: border-box;';
 
-        // 각 맵별 고유 ID 부여
         const detailId = `map-detail-${index}`;
 
-        // 상세 공략 커스텀 토글 블록
         const detailSection = map.isDetailed && map.detailedHtml ? `
             <div style="margin-top: 14px; background: rgba(0, 0, 0, 0.4); border-radius: 8px; padding: 10px 14px; border: 1px solid rgba(255, 255, 255, 0.08);">
                 <button type="button" onclick="toggleMapDetail('${detailId}', this)" style="width: 100%; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #a78bfa; padding: 0; outline: none;">
@@ -2191,8 +2194,10 @@ function renderMaps(category = 'ALL') {
             <p class="dict-text" style="color: var(--text-secondary, #a1a1aa); margin-bottom: 8px;">💡 ${map.tip}</p>
             ${detailSection}
         `;
-        container.appendChild(card);
+        masonryWrapper.appendChild(card);
     });
+
+    container.appendChild(masonryWrapper);
 }
 
 // 상세 토글 클릭 핸들러 (전역 함수)

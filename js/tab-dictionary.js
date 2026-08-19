@@ -1,9 +1,30 @@
+// ==========================================
+// 📖 2. 유령 도감 전용 스크립트 (독립 3열 고정 분배 방식: 셔플 방지)
+// ==========================================
+
 function renderGhostDictionary() {
     const container = document.getElementById('ghost-dictionary-container');
-    if (!container) return;
+    if (!container || typeof GHOST_DATA === 'undefined') return;
     container.innerHTML = '';
 
-    GHOST_DATA.forEach(ghost => {
+    // 1열, 2열, 3열을 감쌀 메인 래퍼 생성
+    const columnsWrapper = document.createElement('div');
+    columnsWrapper.className = 'dict-columns-container';
+
+    // 3개의 독립 컬럼 생성
+    const colElements = [
+        document.createElement('div'),
+        document.createElement('div'),
+        document.createElement('div')
+    ];
+
+    colElements.forEach(col => {
+        col.className = 'dict-column';
+        columnsWrapper.appendChild(col);
+    });
+
+    // 30종 유령을 1, 2, 3열에 순차 고정 배분 (0 -> 1열, 1 -> 2열, 2 -> 3열)
+    GHOST_DATA.forEach((ghost, index) => {
         const details = document.createElement('details');
         details.className = 'dict-details';
 
@@ -39,6 +60,11 @@ function renderGhostDictionary() {
                 ${detailBodyHtml}
             </div>
         `;
-        container.appendChild(details);
+
+        // 타겟 컬럼에 카드 삽입
+        const targetCol = colElements[index % 3];
+        targetCol.appendChild(details);
     });
+
+    container.appendChild(columnsWrapper);
 }

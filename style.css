@@ -566,8 +566,7 @@ body {
 
 /* 🌟 맵 목록 다단(Masonry) 컨테이너: 카드가 길어져도 아래 카드가 빈 공간을 즉시 채움 */
 #maps-container {
-    column-count: 2;                  /* PC 2열 배치 */
-    column-gap: 20px;                 /* 좌우 열 간격 */
+    display: block;
     width: 100%;
 }
 

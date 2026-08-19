@@ -773,7 +773,7 @@ body {
     line-height: 1.4;
 }
 
-/* 4. 🗺️ 맵 정보 전용 레이아웃 (독립 3열 Flex 방식: 셔플 방지 및 아래 맵 자동 상승) */
+/* 4. 🗺️ 맵 정보 전용 레이아웃 (독립 3열 Flex 컬럼 정렬) */
 .map-filter-bar {
     display: flex;
     gap: 8px;
@@ -799,21 +799,30 @@ body {
     box-shadow: 0 0 9px var(--accent-glow);
 }
 
-/* 맵 전체를 감싸는 3열 Flex 컨테이너 */
+/* 맵 메인 컨테이너 (위아래 정렬) */
+#maps-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* 3열 가로 정렬 래퍼 */
 .maps-columns-container {
     display: flex;
+    flex-direction: row;
     gap: 18px;
     align-items: flex-start;
     width: 100%;
 }
 
-/* 세로 1, 2, 3열 독립 컬럼 (각 열 안에서만 카드가 차곡차곡 쌓임) */
+/* 세로 1열, 2열, 3열 독립 컬럼 (각 열 안에서 카드가 착 달라붙음) */
 .map-column {
-    flex: 1;
+    flex: 1 1 0px;
     display: flex;
     flex-direction: column;
     gap: 18px;
     min-width: 0;
+    width: 100%;
 }
 
 .map-card {

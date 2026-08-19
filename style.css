@@ -363,12 +363,28 @@ body {
     font-size: 1.35rem;
 }
 
-/* 4열 유령 계산기 카드 */
-.ghost-list, #ghost-list-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+/* 1. 🔍 증거 분석 계산기 전용 레이아웃 (독립 4열 Flex 분배: 셔플 방지 & 빈 공간 즉시 메움) */
+#ghost-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ghost-columns-container {
+    display: flex;
+    flex-direction: row;
     gap: 16px;
-    padding-right: 4px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.ghost-col {
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+    width: 100%;
 }
 
 .ghost-card {
@@ -377,6 +393,7 @@ body {
     border-radius: 12px;
     padding: 1.25rem 1.0rem 1.0rem 1.0rem;
     transition: all 0.25s ease;
+    width: 100%;
 }
 
 .ghost-card:hover {
@@ -814,14 +831,12 @@ body {
     box-shadow: 0 0 9px var(--accent-glow);
 }
 
-/* 맵 메인 컨테이너 */
 #maps-container {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-/* 3열 가로 정렬 래퍼 */
 .maps-columns-container {
     display: flex;
     flex-direction: row;
@@ -830,7 +845,6 @@ body {
     width: 100%;
 }
 
-/* 세로 1열, 2열, 3열 독립 컬럼 */
 .map-column {
     flex: 1 1 0px;
     display: flex;
@@ -1066,9 +1080,19 @@ footer {
 }
 
 /* 반응형 대응 */
+@media (max-width: 1400px) {
+    .dict-columns-container {
+        columns: 2;
+    }
+}
+
 @media (max-width: 1200px) {
-    .ghost-list, #ghost-list-container {
-        grid-template-columns: repeat(2, 1fr);
+    .ghost-columns-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .ghost-col {
+        flex: 1 1 calc(50% - 16px);
     }
     .evidence-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -1091,13 +1115,16 @@ footer {
     .top-search-bar input {
         width: 100%;
     }
-    .dict-columns-container, .maps-columns-container {
+    .dict-columns-container, .maps-columns-container, .ghost-columns-container {
         flex-direction: column;
+    }
+    .ghost-col {
+        flex: 1 1 100%;
     }
 }
 
 @media (max-width: 768px) {
-    .ghost-list, #ghost-list-container, .equipment-grid, .guide-grid {
+    .equipment-grid, .guide-grid {
         grid-template-columns: 1fr;
     }
     .evidence-grid {

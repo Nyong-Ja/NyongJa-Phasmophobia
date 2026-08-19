@@ -2130,7 +2130,7 @@ const MAP_DATA = [
 ];
 
 // ==========================================
-// 맵 정보 렌더링 및 카테고리 필터링 함수 (클릭 100% 작동 보장형)
+// 맵 정보 렌더링 및 카테고리 필터링 함수 (3열 독립 고정 컬럼 방식: 셔플 방지 완벽 대응)
 // ==========================================
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
@@ -2140,7 +2140,7 @@ function renderMaps(category = 'ALL') {
     // 상단 은신처 시스템 공통 규칙 배너
     const ruleCard = document.createElement('div');
     ruleCard.className = 'guide-card';
-    ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important;';
+    ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; width: 100%; box-sizing: border-box;';
     ruleCard.innerHTML = `
         <div style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px;">📦 난이도 및 인원별 은신처(Hiding Spot) 공통 규칙</div>
         <div style="font-size: 0.95rem; line-height: 1.6; color: #a1a1aa;">
@@ -2156,8 +2156,27 @@ function renderMaps(category = 'ALL') {
     `;
     container.appendChild(ruleCard);
 
+    // 맵 목록을 감쌀 3열 독립 컨테이너 생성
+    const columnsWrapper = document.createElement('div');
+    columnsWrapper.className = 'maps-columns-container';
+    columnsWrapper.style.cssText = 'display: flex; gap: 18px; align-items: flex-start; width: 100%;';
+
+    // 1열, 2열, 3열 생성
+    const colElements = [
+        document.createElement('div'),
+        document.createElement('div'),
+        document.createElement('div')
+    ];
+
+    colElements.forEach(col => {
+        col.className = 'map-column';
+        col.style.cssText = 'flex: 1; display: flex; flex-direction: column; gap: 18px; min-width: 0;';
+        columnsWrapper.appendChild(col);
+    });
+
     const filtered = category === 'ALL' ? MAP_DATA : MAP_DATA.filter(m => m.category === category);
 
+    // 각 맵을 1, 2, 3열 순서대로 고정 배치 (상세보기를 열어도 해당 열 내부에서만 아래로 밀림)
     filtered.forEach((map, index) => {
         const card = document.createElement('div');
         card.className = 'map-card';
@@ -2191,8 +2210,13 @@ function renderMaps(category = 'ALL') {
             <p class="dict-text" style="color: var(--text-secondary, #a1a1aa); margin-bottom: 8px;">💡 ${map.tip}</p>
             ${detailSection}
         `;
-        container.appendChild(card);
+
+        // 3개 열에 순환 배분 (0 -> 1열, 1 -> 2열, 2 -> 3열)
+        const targetCol = colElements[index % 3];
+        targetCol.appendChild(card);
     });
+
+    container.appendChild(columnsWrapper);
 }
 
 // 상세 토글 클릭 핸들러 (전역 함수)
@@ -2605,8 +2629,8 @@ function toggleQuickPanel(panelType) {
                     <iframe 
                         src="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8/player" 
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; overflow: hidden;" 
-                        scrolling="no"
-                        allow="autoplay; fullscreen"
+                        scrolling="no" 
+                        allow="autoplay; fullscreen" 
                         allowfullscreen>
                     </iframe>
                 </div>

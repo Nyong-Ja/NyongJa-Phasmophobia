@@ -773,7 +773,7 @@ body {
     line-height: 1.4;
 }
 
-/* 4. 🗺️ 맵 정보 전용 레이아웃 (가로 3열 Grid 고정) */
+/* 4. 🗺️ 맵 정보 전용 레이아웃 (독립 3열 Flex 방식: 셔플 방지 및 아래 맵 자동 상승) */
 .map-filter-bar {
     display: flex;
     gap: 8px;
@@ -799,13 +799,21 @@ body {
     box-shadow: 0 0 9px var(--accent-glow);
 }
 
-/* 맵 3열 고정 그리드 */
-.maps-grid, .maps-masonry-wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/* 맵 전체를 감싸는 3열 Flex 컨테이너 */
+.maps-columns-container {
+    display: flex;
     gap: 18px;
+    align-items: flex-start;
     width: 100%;
-    align-items: start;
+}
+
+/* 세로 1, 2, 3열 독립 컬럼 (각 열 안에서만 카드가 차곡차곡 쌓임) */
+.map-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
 }
 
 .map-card {
@@ -1047,7 +1055,7 @@ footer {
     .evidence-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    .equipment-grid, .guide-grid, .maps-grid, .maps-masonry-wrapper {
+    .equipment-grid, .guide-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -1068,10 +1076,13 @@ footer {
     .ghost-dict-grid {
         columns: 1;
     }
+    .maps-columns-container {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 768px) {
-    .ghost-list, #ghost-list-container, .equipment-grid, .guide-grid, .maps-grid, .maps-masonry-wrapper {
+    .ghost-list, #ghost-list-container, .equipment-grid, .guide-grid {
         grid-template-columns: 1fr;
     }
     .evidence-grid {

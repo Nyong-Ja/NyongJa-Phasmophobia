@@ -85,7 +85,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <span class="count-badge">남은 유령: <strong id="ghost-count">24</strong>종</span>
+                            <span class="count-badge">남은 유령: <strong id="ghost-count">30</strong>종</span>
                         </div>
 
                         <div id="ghost-list-container" class="ghost-list"></div>
@@ -154,16 +154,31 @@
     </div>
 
     <!-- 하단 푸터 (방문자 수 카운터 위젯) -->
-        <footer>
-            <div class="visitor-counter-box" style="margin-bottom: 12px; font-size: 1.0rem; color: #a3a6c9; display: flex; justify-content: center; align-items: center; gap: 8px;">
-                <span>👀 오늘 방문자: <strong id="today-visitors" style="color: #34d399;">집계 중...</strong></span>
-                <span style="opacity: 0.4;">|</span>
-                <span>🔥 총 방문자: <strong id="total-visitors" style="color: #b49eff;">집계 중...</strong></span>
-            </div>
-            <p>© 2026 뇽스모 (Nyong-ja Phasmophobia Guide). All Rights Reserved.</p>
-        </footer>
-    </div>
-    
-    <script src="script.js"></script>
+    <footer>
+        <div class="visitor-counter-box" style="margin-bottom: 12px; font-size: 1.0rem; color: #a3a6c9; display: flex; justify-content: center; align-items: center; gap: 8px;">
+            <span>👀 오늘 방문자: <strong id="today-visitors" style="color: #34d399;">집계 중...</strong></span>
+            <span style="opacity: 0.4;">|</span>
+            <span>🔥 총 방문자: <strong id="total-visitors" style="color: #b49eff;">집계 중...</strong></span>
+        </div>
+        <p>© 2026 뇽스모 (Nyong-ja Phasmophobia Guide). All Rights Reserved.</p>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- 8대 탭 카테고리 데이터베이스 파일 (순차 로드) -->
+    <!-- ========================================== -->
+    <script src="js/data-ghosts.js"></script>
+    <script src="js/data-equipment.js"></script>
+    <script src="js/data-weekly.js"></script>
+    <script src="js/data-maps.js"></script>
+    <script src="js/data-guides.js"></script>
+    <script src="js/data-idcards.js"></script>
+    <script src="js/data-news.js"></script>
+
+    <!-- 개별 탭 제어 로직 -->
+    <script src="js/tab-evidence.js"></script>
+    <script src="js/tab-dictionary.js"></script>
+
+    <!-- 메인 애플리케이션 진입점 -->
+    <script src="js/app.js"></script>
 </body>
 </html>

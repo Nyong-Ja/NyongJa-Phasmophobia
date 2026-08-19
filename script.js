@@ -2130,14 +2130,14 @@ const MAP_DATA = [
 ];
 
 // ==========================================
-// 맵 정보 렌더링 (빈 공간 자동 채움 Masonry 완벽 적용)
+// 맵 정보 렌더링 및 카테고리 필터링 함수 (완전 분리형 Masonry 구조)
 // ==========================================
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
     if (!container) return;
     container.innerHTML = '';
 
-    // 1. 규칙 배너 (상단 단독 100% 영역)
+    // 1. 규칙 배너 (상단 100% 독립 영역)
     const ruleCard = document.createElement('div');
     ruleCard.className = 'guide-card';
     ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; width: 100% !important; box-sizing: border-box !important;';
@@ -2156,16 +2156,15 @@ function renderMaps(category = 'ALL') {
     `;
     container.appendChild(ruleCard);
 
-    // 2. 맵 카드 전용 Masonry 래퍼 생성
+    // 2. 맵 카드 전용 다단(Masonry) 컨테이너 생성
     const masonryWrapper = document.createElement('div');
-    masonryWrapper.style.cssText = 'column-count: 2; column-gap: 20px; width: 100%;';
+    masonryWrapper.className = 'maps-masonry-wrapper';
 
     const filtered = category === 'ALL' ? MAP_DATA : MAP_DATA.filter(m => m.category === category);
 
     filtered.forEach((map, index) => {
         const card = document.createElement('div');
         card.className = 'map-card';
-        card.style.cssText = 'break-inside: avoid; margin-bottom: 20px; display: inline-block; width: 100%; vertical-align: top; box-sizing: border-box;';
 
         const detailId = `map-detail-${index}`;
 
@@ -2223,7 +2222,7 @@ function toggleMapDetail(id, btn) {
     }
 }
 
-// 6. 맵 필터 카테고리 버튼 처리 (중복 제거 완료)
+// 6. 맵 필터 카테고리 버튼 처리
 function filterMapCategory(cat) {
     document.querySelectorAll('.map-filter-btn').forEach(btn => btn.classList.remove('active'));
     const targetBtn = document.getElementById(`map-btn-${cat}`);
@@ -2633,7 +2632,6 @@ function toggleQuickPanel(panelType) {
                     유령 정보, 신규 패치 데이터, 버그 제보 및 비즈니스 문의는 아래 채널을 이용해 주세요!
                 </p>
 
-                <!-- 1. 유튜브 채널 배너 -->
                 <a href="https://www.youtube.com/@nyongja1" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(248, 113, 113, 0.4); background-color: rgba(248, 113, 113, 0.12);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">▶️</span>
                     <div>
@@ -2642,7 +2640,6 @@ function toggleQuickPanel(panelType) {
                     </div>
                 </a>
 
-                <!-- 2. 치지직 채널 배너 -->
                 <a href="https://chzzk.me/nyongja" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(6, 8, 20, 0.6);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">🟢</span>
                     <div>
@@ -2651,7 +2648,6 @@ function toggleQuickPanel(panelType) {
                     </div>
                 </a>
 
-                <!-- 3. 디스코드 배너 -->
                 <a href="https://discord.gg/YkgM5t6N33" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(109, 76, 251, 0.5); background-color: rgba(109, 76, 251, 0.15);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">💬</span>
                     <div>
@@ -2660,7 +2656,6 @@ function toggleQuickPanel(panelType) {
                     </div>
                 </a>
 
-                <!-- 4. 인스타그램 배너 -->
                 <a href="https://www.instagram.com/n_yong_ja" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(248, 113, 113, 0.4); background-color: rgba(248, 113, 113, 0.1);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">📸</span>
                     <div>
@@ -2669,7 +2664,6 @@ function toggleQuickPanel(panelType) {
                     </div>
                 </a>
 
-                <!-- 5. 네이버 팬카페 배너 -->
                 <a href="https://cafe.naver.com/phasmophobia1" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(52, 211, 153, 0.1);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">☕</span>
                     <div>
@@ -2678,7 +2672,6 @@ function toggleQuickPanel(panelType) {
                     </div>
                 </a>
 
-                <!-- 6. 공식 이메일 배너 -->
                 <a href="mailto:future2549@naver.com" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(166, 143, 255, 0.35); background-color: rgba(6, 8, 20, 0.6);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">📧</span>
                     <div>

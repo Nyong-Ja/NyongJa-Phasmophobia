@@ -1344,16 +1344,456 @@ const WEEKLY_DATA = [
     { title: "💡 도전 과제 팁", body: "사망해도 장비가 소실되지 않으므로 부담 없이 헌팅을 유도하여 유령의 가속 및 특수 능력을 테스트하는 것이 빠른 클리어의 핵심입니다." }
 ];
 
-// 맵 정보 데이터
+// 맵 정보 데이터 (전체 맵 위키 기반 상세 공략 반영)
 const MAP_DATA = [
-    { name: "6 Tanglewood Drive", category: "Small", rooms: "11개 방", size: "소형 주택", tip: "가장 기본이 되는 표준 조사 맵입니다." },
-    { name: "42 Edgefield Road", category: "Small", rooms: "16개 방", size: "2층 주택", tip: "복도가 길고 문이 많아 유령 상호작용 체크에 용이합니다." },
-    { name: "10 Ridgeview Court", category: "Small", rooms: "12개 방", size: "2층 주택", tip: "지하실과 지하 차고 간의 연결 동선을 파악해야 합니다." },
-    { name: "Grafton Farmhouse", category: "Small", rooms: "13개 방", size: "목조 농가", tip: "나무 바닥이라 발소리가 또렷하게 울립니다." },
-    { name: "Camp Woodwind", category: "Small", rooms: "야외 캠핑장", size: "소형 야외", tip: "동선이 매우 짧아 빠른 파밍과 테스트에 적합합니다." },
-    { name: "Prison", category: "Medium", rooms: "29개 방", size: "중형 교도소", tip: "A동/B동 수감구역의 중앙 전원 확보가 중요합니다." },
-    { name: "Maple Lodge Campsite", category: "Medium", rooms: "야외 캠핑장", size: "중형 야외", tip: "날씨(비/안개)에 따른 시야 확보에 주의하세요." },
-    { name: "Sunny Meadows", category: "Large", rooms: "60개 이상의 방", size: "대형 정신병원", tip: "중앙 홀을 중심으로 각 구역별 사전 탐색이 필수적입니다." }
+    { 
+        name: "6 Tanglewood Drive", 
+        category: "Small", 
+        rooms: "11개 룸", 
+        size: "소형 주택 (지상 1층 + 지하 1층)", 
+        tip: "가장 기본이 되는 표준 조사 맵입니다. 리워크로 룸 명칭 및 가구 배치가 개편되었습니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
+                • <strong>총 룸(구역) 수:</strong> 11개 룸<br>
+                • <strong>층수 구조:</strong> 지상 1층(Ground Floor) + 지하실(Basement)<br>
+                • <strong>핵심 변경점:</strong> 주방 아일랜드 식탁 루핑 제거, 지하실 기차 테이블 루핑 추가, 옷장 슬릿 시야 적용.
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (Rooms)</div>
+            <p class="dict-text">
+                <strong>[지상 1층]</strong> Foyer(현관), Living Room(거실), Kitchen(주방), Dining Room(식당), Garage(차고), Utility Room(세탁실), Master Bedroom(안방), Ensuite(안방 욕실), Hobby Room(취미방), Nancy's Room(낸시의 방), Bathroom(공용 욕실)<br>
+                <strong>[지하 1층]</strong> Basement(지하실)
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • Foyer(거실 입구 옆 벽장), Hobby Room(방 옷장), Nancy's Room(방 옷장), Ensuite(안방 전용 옷장), Garage(파란 철제 락커 & 구석 상자 뒤), Basement(계단 옆 구석 & 기차 트랙 뒤)
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 & 주요 위치</div>
+            <p class="dict-text">
+                • 타로: 거실 작은 테이블 / 위자보드: 지하실 뒤쪽 선반 / 소환진: 지하실 중앙 바닥 / 부두인형: 차고 락커 옆 쓰레기통 / 원숭이손: 식당 장식장 안 / 오르골: 낸시방 좌측 선반 / 거울: 안방 문 바깥 복도 벽면 / 두꺼비집: 차고 또는 지하실
+            </p>
+        `
+    },
+    { 
+        name: "42 Edgefield Road", 
+        category: "Small", 
+        rooms: "16개 룸", 
+        size: "2층 주택 (지상 2층 + 지하 1층)", 
+        tip: "방과 화장실이 많고 복도가 좁아 밀실 공포를 유발하는 맵입니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
+                • <strong>총 룸(구역) 수:</strong> 16개 룸 (침실 6개, 욕실 6개 포함)<br>
+                • <strong>층수 구조:</strong> 1층 + 2층 + 지하실
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (Rooms)</div>
+            <p class="dict-text">
+                <strong>[지상 1층]</strong> Foyer, Living Room, Kitchen & Dining, Utility Room, Garage, Master Bedroom + Master Bathroom<br>
+                <strong>[지상 2층]</strong> Upstairs Hallway, Large Blue Bedroom + 욕실, Small Blue Bedroom, Green Bedroom, Orange/Nursery Bedroom, Hallway Bathroom<br>
+                <strong>[지하 1층]</strong> Basement
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 1층 세탁실 구석, 1층 차고 락커, 1층 안방 옷장 2개, 지하실 락커, 2층 복도 벽장 2개, 2층 작은 파란 방 옷장, 2층 큰 파란 방 옷장
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 & 주요 위치</div>
+            <p class="dict-text">
+                • 타로: 현관 콘솔 테이블 / 거울: 2층 계단 입구 벽면 / 오르골: 1층 거실 협탁 / 부두인형: 2층 큰 파란방 침대 / 원숭이손: 2층 아기방 서랍장 / 위자보드: 1층 세탁실 바닥 / 소환진: 지하실 안쪽 창고 바닥 / 두꺼비집: 차고 또는 지하실
+            </p>
+        `
+    },
+    { 
+        name: "10 Ridgeview Court", 
+        category: "Small", 
+        rooms: "12개 룸", 
+        size: "2층 주택 (지상 2층 + 지하 1층)", 
+        tip: "지하실과 차고가 넓게 트여 있고, 2층으로 올라가는 긴 복도가 특징입니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
+                • <strong>총 룸(구역) 수:</strong> 12개 룸<br>
+                • <strong>층수 구조:</strong> 1층 + 2층 + 지하실
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (Rooms)</div>
+            <p class="dict-text">
+                <strong>[지상 1층]</strong> Foyer & Hallway, Living Room, Kitchen & Dining, Utility Room, Garage, Master Bedroom + Master Bathroom<br>
+                <strong>[지상 2층]</strong> Upstairs Hallway, Girl's Bedroom, Boy's Bedroom, Teen/Guest Bedroom, Bathroom<br>
+                <strong>[지하 1층]</strong> Basement
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 1층 복도 벽장, 1층 차고 락커, 지하실 계단 아래 및 선반 뒤, 2층 복도 우측 벽장, 2층 소년 방 옷장, 2층 소녀 방 옷장
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 & 주요 위치</div>
+            <p class="dict-text">
+                • 타로: 현관 작은 테이블 / 거울: 지하실 계단 맞은편 벽면 / 부두인형: 1층 피아노 벤치 의자 / 위자보드: 1층 세탁실 선반 / 오르골: 2층 소녀 방 협탁 / 원숭이손: 2층 소년 방 책상 / 소환진: 지하실 계단 정면 바닥 / 두꺼비집: 차고 또는 지하실
+            </p>
+        `
+    },
+    { 
+        name: "Nell's Diner", 
+        category: "Small", 
+        rooms: "8개 룸", 
+        size: "소형 다이너 (단층 매장 + 야외)", 
+        tip: "버려진 고속도로 식당 맵으로, 오픈형 홀과 조리실/창고가 연결되어 있습니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
+                • <strong>총 룸(구역) 수:</strong> 8개 룸<br>
+                • <strong>층수 구조:</strong> 지상 1층 단층 건물
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (Rooms)</div>
+            <p class="dict-text">
+                • Dining Area(다이닝 홀), Kitchen(주방), Cooler Room(냉동창고), Storage Room(창고), Manager's Office(매니저실), Break Room(휴게실), Utility Room(유틸리티실), Restrooms(남/여 화장실)
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 직원 휴게실 철제 락커, 냉동창고 카트 뒤편, 창고 선반 및 푸드 카트 뒤편, 복도 자판기 뒤편 틈새
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 & 주요 위치</div>
+            <p class="dict-text">
+                • 타로: 주방 계산대 뒤 선반 / 부두인형: 식당 홀 구석 부스 좌석 / 원숭이손: 주방 도마 위 / 오르골: 매니저실 책상 / 거울: 휴게실 벽면 / 위자보드: 유틸리티실 상자 위 / 소환진: 남자 화장실 바닥 / 두꺼비집: 유틸리티실 또는 창고
+            </p>
+        `
+    },
+    { 
+        name: "13 Willow Street", 
+        category: "Small", 
+        rooms: "10개 룸", 
+        size: "소형 주택 (지상 1층 + 지하 1층)", 
+        tip: "옷장이 없는 대신 가구와 파티션 뒤에 숨어야 하는 구조였으나, 리워크를 통해 지하 오픈 구조 및 신규 방이 개편되었습니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
+                • <strong>총 룸(구역) 수:</strong> 10개 룸<br>
+                • <strong>층수 구조:</strong> 지상 1층 + 지하실
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (Rooms)</div>
+            <p class="dict-text">
+                <strong>[지상 1층]</strong> Living Room, Kitchen & Dining, Gym(체육실), Art Studio(화실), Master Bedroom, Bathroom<br>
+                <strong>[지하 1층]</strong> Bar & Game Room, Laundry Room, Basement Bathroom
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 거실 유리문 좌측 나무 파티션 뒤, 식당 식탁 뒤 팬트리(Pantry), 화실 구석 캔버스 뒤, 침실 내부 파티션 뒤, 지하실 계단 밑, 지하 세탁실 보관함 뒤
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 & 주요 위치</div>
+            <p class="dict-text">
+                • 오르골: 1층 거실 책장 / 소환진: 1층 주방 바닥 / 거울: 1층 체육실 벽면 / 부두인형: 1층 침실 고양이 방석 / 원숭이손: 1층 화실 선반 / 타로: 지하실 바 테이블 / 위자보드: 지하실 욕실 옆 수납장 / 두꺼비집: 1층 체육실 또는 지하 세탁실
+            </p>
+        `
+    },
+    { 
+        name: "Camp Woodwind", 
+        category: "Small", 
+        rooms: "야외 텐트 구역", 
+        size: "소형 야외 캠핑장", 
+        tip: "동선이 매우 짧고 중앙 모닥불을 끼고 있어 빠른 파밍 및 고스트 스피드/헌팅 테스트의 성지입니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 야외 맵 (Small Map)<br>
+                • <strong>구조:</strong> 중앙 Campfire(모닥불)를 중심으로 4개 텐트 구역, 피크닉 구역, 화장실, 연인의 벤치로 구성
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (Zones)</div>
+            <p class="dict-text">
+                • Entrance Gate, Campfire, Picnic Area, Yellow Tent, White/Food Tent, Blue Tent, Red Tent, Kids' Area, Bathroom, Lovers Bench
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 모닥불 옆 드럼통 뒤, 파란 텐트 옆 쿨러 뒤, 흰색 텐트 옆 쿨러 뒤, 노란 텐트 침낭 뒤, 어린이 구역 소형 텐트(주황/청록), 음식 텐트 테이블 뒤
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 & 주요 위치</div>
+            <p class="dict-text">
+                • 타로: 피크닉 구역 테이블 위 / 소환진: 음식 텐트 바닥 / 오르골: 노란 텐트 안 작은 테이블 / 부두인형: 빨간 텐트 옆 소형 텐트 앞 / 원숭이손: 연인의 벤치 좌측 / 거울: 야외 화장실 외벽 / 위자보드: 피크닉 체스판 옆
+            </p>
+        `
+    },
+    { 
+        name: "Grafton Farmhouse", 
+        category: "Small", 
+        rooms: "13개 룸", 
+        size: "소형 목조 농가 (지상 2층 + 다락방)", 
+        tip: "나무 바닥이라 발소리가 또렷하게 울리며, 넓은 1층과 다락방(Attic)이 포함된 목조 가옥입니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
+                • <strong>총 룸(구역) 수:</strong> 13개 룸 (1층 8개, 2층 5개, 다락방 1개)<br>
+                • <strong>층수 구조:</strong> 1층 + 2층 + 다락방(Attic)
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (Rooms)</div>
+            <p class="dict-text">
+                <strong>[지상 1층]</strong> Foyer, Living Room, Dining Room, Kitchen, Utility Room, Work Room, Master Bedroom + Master Bathroom, Storage<br>
+                <strong>[지상 2층]</strong> Upstairs Hallway, Child Bedroom, Twin Bedroom, Upstairs Bathroom, Library<br>
+                <strong>[다락방]</strong> Attic
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 1층 주방 냉장고 뒤, 1층 세탁실 매트리스 뒤, 1층 식당 선반 뒤, 1층 작업실 커튼 뒤, 1층 안방 파티션 뒤, 2층 복도 상자 뒤, 2층 어린이방 벽장, 2층 트윈방 벽장, 다락방 벽장
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 & 주요 위치</div>
+            <p class="dict-text">
+                • 타로: 2층 서재 책상 / 거울: 1층 안방 침대 옆 벽면 / 부두인형: 2층 복도 계단 난간 옆 / 오르골: 2층 트윈 침실 선반 / 원숭이손: 1층 식당 선반 위 / 위자보드: 다락방 수납장 / 소환진: 2층 어린이방 바닥 / 두꺼비집: 1층 세탁실 또는 작업실
+            </p>
+        `
+    },
+    { 
+        name: "Bleasdale Farmhouse", 
+        category: "Small", 
+        rooms: "16개 룸", 
+        size: "소형 목조 대농가 (지상 2층 + 다락방)", 
+        tip: "목조 3층 구조의 대형 팜하우스로, 다락방(Attic)과 야외 정원 테라스가 연결되어 있습니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map / 실체감 중형급)<br>
+                • <strong>총 룸(구역) 수:</strong> 16개 룸<br>
+                • <strong>층수 구조:</strong> 1층 + 2층 + 다락방(Attic)
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (Rooms)</div>
+            <p class="dict-text">
+                <strong>[지상 1층]</strong> Foyer, Tea Room, Living Room, Dining Room, Kitchen, Utility Room, Workshop, Office, Toilet<br>
+                <strong>[지상 2층]</strong> Upstairs Hallway, Master Bedroom, Girl's Bedroom, Boy's Bedroom, Trophy Room, Study, Bathroom<br>
+                <strong>[다락방]</strong> Attic
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 1층 티룸 파티션 뒤, 1층 작업장 안쪽 선반 뒤, 1층 세탁실 상자 뒤, 2층 복도 끝 벽장, 2층 소녀방 옷장, 2층 소년방 옷장, 2층 트로피룸 구석, 다락방 계단 옆 및 다락방 안쪽 상자 뒤
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 & 주요 위치</div>
+            <p class="dict-text">
+                • 타로: 다락방 제단 테이블 위 / 거울: 2층 트로피룸 수납장 벽 / 부두인형: 2층 안방 침대 발치 / 오르골: 1층 티룸 접시 선반 아래 / 원숭이손: 2층 서재 책장 선반 / 위자보드: 1층 거실 소파 옆 / 소환진: 1층 세탁실 바닥 / 두꺼비집: 1층 워크샵 또는 다락방
+            </p>
+        `
+    },
+    { 
+        name: "Point Hope", 
+        category: "Medium", 
+        rooms: "16개 룸", 
+        size: "10층 등대 타워 (Medium Map)", 
+        tip: "파스모포비아 최초의 10층 수직 원형 타워형 등대 맵입니다. 나선형 계단으로 도주로가 제한되므로 정화향초가 필수입니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 중형 맵 (Medium Map / Level 15 해금)<br>
+                • <strong>구조:</strong> 총 10개 층 수직 타워 구조 (1층 로비부터 10층 발코니까지 16개 룸 분할)
+            </p>
+            <div class="dict-section-title">2. 층별 룸 구성 (Floor-by-Floor)</div>
+            <p class="dict-text">
+                • 1F: Entrance & Toilet / 2F: Kitchen & Dining / 3F: Living Room / 4F: Games Room / 5F: Main Bathroom / 6F: Master Bedroom / 7F: Child Bedroom / 8F: Maintenance Room / 9F: Lantern Room Bottom / 10F: Lantern Room Top & Balcony
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 1층 화장실 옆 틈새, 4층 당구장 벽면 파티션 뒤, 5층 메인 욕실 샤워 커튼 뒤, 6층 안방 드레스룸/옷장, 7층 어린이방 옷장, 8층 정비실 철제 락커
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 & 주요 위치</div>
+            <p class="dict-text">
+                • 타로: 3층 거실 테이블 / 거울: 2층 식당 찬장 벽 / 부두인형: 7층 어린이방 서랍장 / 오르골: 6층 안방 화장대 / 원숭이손: 8층 유지보수실 책상 / 위자보드: 4층 게임룸 선반 / 소환진: 5층 대형 욕실 중앙 바닥 / 두꺼비집: 1층 또는 8층 정비실
+            </p>
+        `
+    },
+    { 
+        name: "Prison", 
+        category: "Medium", 
+        rooms: "31개 룸 (조사 구역 29개)", 
+        size: "중형 폐교도소 (지상 2층 + 야외 안뜰)", 
+        tip: "A동/B동 수감구역과 행정구역, 식당, 의무실로 나뉩니다. 모든 저주받은 물건이 입구 현관 복도(Entrance Hallway)에 모여 스폰됩니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 중형 맵 (Medium Map / Level 10 해금)<br>
+                • <strong>총 룸 수:</strong> 31개 룸 (1층 19개, 2층 12개 / 유령방 가능 29개)<br>
+                • <strong>특징:</strong> A블록, B블록 수감동은 2층 개방형 구조이며, 수감동 끝 비상문을 통해 야외 안뜰(Courtyard)로 탈출할 수 있습니다.
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 핵심 구역 목록 (Rooms)</div>
+            <p class="dict-text">
+                <strong>[지상 1층]</strong> Entrance(입구), Main Hallway(중앙 복도), Office Hallway, Warden's Office(소장실), Chief Security, Main Office, Inspection, Visitation, Cafeteria(식당), Cell Block A (1F 좌/우/중앙), Cell Block B (1F 좌/우/중앙)<br>
+                <strong>[지상 2층]</strong> Infirmary(의무실), Infirmary Hallway, Cafeteria Security, Cell Block A (2F 좌/우), Cell Block B (2F 좌/우)
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • Entrance (현관 맨 뒤쪽 철제 락커)<br>
+                • Cafeteria (식당 좌측 쓰레기통 4개 뒤편)<br>
+                • Infirmary (2층 의무실 첫 번째 방 맨 우측 락커)<br>
+                • Cafeteria Security (식당 보안 발코니 우측 쓰레기통 2개 뒤편)<br>
+                • <em>비공식 팁: 감옥 감방(Cell) 안쪽은 유령이 시야를 잃기 쉬워 사냥 회피에 유용합니다.</em>
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 스폰 위치 (전부 입구 복도 집결)</div>
+            <p class="dict-text">
+                • <strong>모든 저주받은 물건은 Entrance Hallway(현관 복도)에 스폰됩니다:</strong><br>
+                - 타로 카드: 파란색 플라스틱 상자 안<br>
+                - 유령 거울: 의자 열(Row of chairs) 아래 바닥<br>
+                - 부두 인형: 상자들 사이 테이블 위<br>
+                - 원숭이 손: 테이블 위 파란 상자 옆<br>
+                - 음악 상자: 검은색 플라스틱 상자 안<br>
+                - 위자보드: 상자가 놓인 테이블 뒤편 바닥<br>
+                - 소환진: 복도 끝 바닥 중앙<br>
+                - 두꺼비집: 1층 소장실 통로, 2층 의무실 복도 소형룸, 또는 A/B 블록 제어실
+            </p>
+        `
+    },
+    { 
+        name: "Maple Lodge Campsite", 
+        category: "Medium", 
+        rooms: "대형 야외 캠핑장 (통나무집 포함)", 
+        size: "중형 야외 리조트 캠핑장", 
+        tip: "호숫가와 2층 통나무 캐빈(Cabin)이 포함된 야외 맵입니다. 날씨와 안개에 주의하며 캠프파이어 주변을 활용하세요.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 중형 야외 맵 (Medium Map / Level 19 해금)<br>
+                • <strong>구조:</strong> 중앙 캠핑장, 리셉션 빌딩, 화장실 건물, 호숫가 부두, 그리고 2층 통나무 캐빈(Cabin J. & D.)으로 구성
+            </p>
+            <div class="dict-section-title">2. 주요 구역 목록 (Zones)</div>
+            <p class="dict-text">
+                • Reception Building(안내소), Storage Tent(창고 텐트), Restrooms(공용 화장실), Campfire Area(중앙 모닥불), Tents A/B/C/D, Camp Office, Lake & Dock(호수 및 부두), 2-Story Cabin(2층 통나무집: 1층 거실/주방, 2층 침실)
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 리셉션 빌딩 뒤편 발전기 옆 틈새, 창고 텐트 내부 선반 뒤, 2층 통나무집 안방 옷장, 호숫가 부두 보트 및 통나무 뒤, 텐트 구역 소형 텐트(Blue/Green Tent) 내부
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 & 주요 위치</div>
+            <p class="dict-text">
+                • 타로: 2층 통나무집(Cabin) 1층 거실 탁자 / 소환진: 2층 통나무집 1층 바닥 / 거울: 리셉션 빌딩 외벽 / 부두인형: 중앙 캠프파이어 옆 통나무 벤치 위 / 원숭이손: 호숫가 부두 끝 / 오르골: 안내소(Reception) 카운터 위 / 위자보드: 공용 화장실 세면대 선반 / 두꺼비집: 리셉션 뒤 외벽 또는 통나무집 1층 외벽
+            </p>
+        `
+    },
+    { 
+        name: "Brownstone High School", 
+        category: "Large", 
+        rooms: "64개 룸 (교실 58개)", 
+        size: "대형 폐학교 (지상 2층 + 체육관)", 
+        tip: "수많은 교실과 긴 복도(Corridor), 대형 체육관(Basketball Court)으로 구성된 클래식 대형 맵입니다. 모든 저주받은 물건이 중앙 로비(Lobby)에 모여 있습니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 대형 맵 (Large Map / Level 5 해금)<br>
+                • <strong>총 룸 수:</strong> 64개 룸 (1층 34개, 2층 30개 / 교실 58개)<br>
+                • <strong>특징:</strong> 1층과 2층 복도가 각각 3개의 Corridor 구역으로 나뉘어 있으며, 모든 교실마다 유령이 상호작용할 수 있는 전화기가 배치되어 있습니다.
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 핵심 구역 목록 (Rooms)</div>
+            <p class="dict-text">
+                • Lobby(중앙 현관 로비), Main Corridors 1F/2F(중앙 복도), Side Corridors 1F/2F(좌/우측 복도), Library 1F/2F(도서관), Basketball Court(실내 체육관 및 관람석), Classrooms 1~32(총 32개 교실), Restrooms 1F/2F, Storage Rooms
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 1층 도서관(Library) 책장 사이 상자 뒤<br>
+                • 6, 8, 12, 20번 교실 서랍장(Drawer units) 뒤<br>
+                • 11, 15, 27, 31번 교실 넘어진 책장(Bookshelves) 뒤<br>
+                • <em>비공식 팁: 복도 화장실 칸막이 안쪽이나 체육관 스탠드 구석도 시야 차단에 활용 가능합니다.</em>
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 스폰 위치 (전부 중앙 로비 집결)</div>
+            <p class="dict-text">
+                • <strong>모든 저주받은 물건은 1층 Lobby(중앙 로비)에 스폰됩니다:</strong><br>
+                - 타로 카드: 로비 좌측 벽면 벤치 위<br>
+                - 음악 상자: 로비 우측 벽면 벤치 위<br>
+                - 부두 인형: 로비 안쪽 끝 벤치 위<br>
+                - 원숭이 손: 로비 우측 기둥 앞 상자 위<br>
+                - 위자보드: 로비 좌측 기둥 뒤 바닥<br>
+                - 유령 거울: 로비 우측 기둥 뒤 바닥<br>
+                - 소환진: 로비 안쪽 중앙 바닥<br>
+                - 두꺼비집: 1층 좌측 복도 끝, 1층 우측 복도 끝, 또는 2층 복도 벽면 중 1곳
+            </p>
+        `
+    },
+    { 
+        name: "Sunny Meadows Mental Institution", 
+        category: "Large", 
+        rooms: "69개 룸 전체 개방", 
+        size: "초대형 정신병원 (지상 1층 + 지하 1층)", 
+        tip: "파스모포비아 최대 규모의 초대형 맵입니다. 4개 대형 병동과 안뜰, 지하 영안실/격리구역 전체가 열립니다. 모든 저주받은 물건은 중앙 예배당(Chapel)에 집결합니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 초대형 맵 (Large Map / Level 20 해금)<br>
+                • <strong>총 룸 수:</strong> 69개 룸 전체 개방<br>
+                • <strong>층수 구조:</strong> 1층 지상 병동 구역 + 안뜰(Courtyard) + 지하 격리/영안 구역<br>
+                • <strong>특징:</strong> 크기가 방대하여 지향성 마이크(Parabolic Mic)와 온도계 탐색이 필수이며, 불이 꺼진 상태의 복도는 정신력을 급격히 소모시킵니다.
+            </p>
+            <div class="dict-section-title">2. 공식 룸 및 5대 핵심 구역 목록 (Rooms)</div>
+            <p class="dict-text">
+                • <strong>중앙 구역:</strong> Foyer(로비), Chapel(중앙 예배당), Courtyard(중앙 야외 안뜰)<br>
+                • <strong>1층 남성 병동 (Male Wing):</strong> 1층 서쪽 병동 및 휴게실<br>
+                • <strong>1층 여성 병동 (Female Wing):</strong> 1층 동쪽 병동 및 욕실<br>
+                • <strong>1층 병원/수술실 병동 (Hospital Wing):</strong> 1층 북쪽 집중 치료실<br>
+                • <strong>지하 격리 구역 (Basement Restricted Wing):</strong> 지하 서쪽 독방 및 고문실<br>
+                • <strong>지하 영안실 구역 (Basement Morgue Wing):</strong> 지하 동쪽 부검실 및 시신 안치실
+            </p>
+            <div class="dict-section-title">3. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 중앙 복도 및 예배당 앞 이동침대(Gurney) 뒤<br>
+                • 각 병실 내부 철제 사물함(Lockers) 및 휠체어/스크린 파티션 뒤<br>
+                • 지하 영안실(Morgue) 시신 보관 냉동고(Morgue cooler) 내부<br>
+                • 안뜰 외벽 선반 틈새 및 계단 아래 창고
+            </p>
+            <div class="dict-section-title">4. 저주받은 물건 스폰 위치 (전부 중앙 예배당 집결)</div>
+            <p class="dict-text">
+                • <strong>모든 저주받은 물건 7종은 중앙 Chapel(예배당) 내부 제단과 바닥에 스폰됩니다:</strong><br>
+                - 소환진: 예배당 바닥 중앙 붉은 마법진<br>
+                - 원숭이 손: 십자가 제단 아래<br>
+                - 타로 카드, 오르골, 부두 인형, 위자보드, 유령 거울: 예배당 제단 및 촛대 주변 선반<br>
+                - 두꺼비집: 1층 로비 복도, 예배당 유틸리티실, 안뜰 외벽, 지하 보일러실 중 1곳
+            </p>
+        `
+    },
+    { 
+        name: "Sunny Meadows Mental Institution - Restricted", 
+        category: "Small", 
+        rooms: "15~20개 룸 (구역별 가변)", 
+        size: "제한된 소형 정신병원 (5개 변형 구역 중 1곳)", 
+        tip: "대형 써니 메도우 전체가 아닌, 중앙 예배당(Chapel)과 무작위 1개 병동(총 5개 변형)만 열리는 소형(Small) 전용 맵입니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Restricted 전용 시스템)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map / Level 17 해금)<br>
+                • <strong>맵 작동 방식:</strong> 69개 룸 전체가 열리는 일반 대형 써니 메도우와 달리, <strong>중앙 진입 복도 + 중앙 예배당(Chapel) + 5개 구역 중 무작위 1개 윙(Wing)</strong>만 문이 열리고 나머지 통로는 쇠사슬과 바리케이드로 영구 차단됩니다.<br>
+                • <strong>5가지 무작위 오픈 변형:</strong><br>
+                &nbsp;&nbsp;1) 1층 남성 병동 (Male Wing)<br>
+                &nbsp;&nbsp;2) 1층 여성 병동 (Female Wing)<br>
+                &nbsp;&nbsp;3) 1층 입원/수술 병동 (Hospital Wing)<br>
+                &nbsp;&nbsp;4) 지하 격리구역 (Basement Restricted Area)<br>
+                &nbsp;&nbsp;5) 지하 영안실 구역 (Basement Morgue)
+            </p>
+            <div class="dict-section-title">2. 저주받은 물건 고정 집결지 (Chapel)</div>
+            <p class="dict-text">
+                • <strong>모든 저주받은 물건 7종</strong>은 오픈된 병동 위치와 무관하게 무조건 <strong>중앙 예배당(Chapel) 내부</strong>에 모여서 스폰됩니다.<br>
+                • 소환진: 예배당 바닥 붉은 원진 / 십자가 밑: 원숭이 손 / 제단 및 촛대 주변: 타로 카드, 오르골, 부두인형, 위자보드, 거울
+            </p>
+            <div class="dict-section-title">3. 두꺼비집 (Fuse Box) 스폰 위치</div>
+            <p class="dict-text">
+                • 1층 중앙 진입 복도(Foyer) 좌측 벽면<br>
+                • 예배당 바로 옆 유틸리티실(Utility)<br>
+                • 안뜰(Courtyard) 외벽 분리대<br>
+                • 지하 보일러실 또는 열린 지하 병동 계단 출구 벽면
+            </p>
+            <div class="dict-section-title">4. 공식 은신처 상세 목록</div>
+            <p class="dict-text">
+                • 중앙 복도/예배당 앞 이동식 이동침대(Gurney) 뒤<br>
+                • 오픈된 각 병실(Room) 내부 철제 락커 및 휠체어/스크린 파티션 뒤<br>
+                • 영안실(Morgue) 시신 보관 냉동고 내부
+            </p>
+        `
+    }
 ];
 
 // 핵심 공략 데이터

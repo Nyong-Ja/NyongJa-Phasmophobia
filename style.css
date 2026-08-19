@@ -532,7 +532,7 @@ body {
 }
 
 /* ==========================================
-   8. 맵 정보 탭 (Masonry 핀터레스트형 다단 레이아웃)
+   8. 맵 정보 탭 (독립형 Masonry 2열 레이아웃)
    ========================================== */
 .map-filter-group {
     display: flex;
@@ -564,18 +564,25 @@ body {
     color: #fff;
 }
 
-/* 🌟 맵 목록 다단(Masonry) 컨테이너: 카드가 길어져도 아래 카드가 빈 공간을 즉시 채움 */
+/* 맵 메인 컨테이너 (상단 배너와 맵 카드들을 포괄) */
 #maps-container {
     display: block;
     width: 100%;
 }
 
-/* 🌟 맵 카드: 중간 끊김 방지 및 블록 유지 */
+/* 🌟 맵 카드 전용 Masonry 래퍼: 아래 카드가 빈 공간으로 착 밀고 올라옴 */
+.maps-masonry-wrapper {
+    column-count: 2;
+    column-gap: 20px;
+    width: 100%;
+}
+
+/* 🌟 맵 카드: 쪼개짐 방지 및 독립 블록 유지 */
 .map-card {
-    break-inside: avoid;              /* 열 넘어갈 때 카드 쪼개짐 방지 */
-    margin-bottom: 20px;              /* 카드 상하 간격 */
-    display: inline-block;            /* Masonry 핵심 */
-    width: 100%;                      /* 열 너비에 맞춤 */
+    break-inside: avoid;
+    margin-bottom: 20px;
+    display: inline-block;
+    width: 100%;
     background: var(--bg-card);
     border: 1px solid var(--card-border);
     border-radius: 12px;
@@ -822,8 +829,7 @@ body {
         grid-template-columns: 1fr;
     }
 
-    /* 모바일에서는 맵 목록을 1열로 깔끔하게 정렬 */
-    #maps-container {
+    .maps-masonry-wrapper {
         column-count: 1;
     }
 

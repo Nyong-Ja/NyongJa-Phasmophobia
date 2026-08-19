@@ -2137,7 +2137,7 @@ function renderMaps(category = 'ALL') {
     if (!container) return;
     container.innerHTML = '';
 
-    // 상단 공통 은신처 시스템 규칙 배너
+    // 상단 은신처 시스템 공통 규칙 배너
     const ruleCard = document.createElement('div');
     ruleCard.className = 'guide-card';
     ruleCard.style.cssText = 'border-left: 4px solid var(--accent-vibrant, #6d4cfb); margin-bottom: 20px; background: rgba(13, 16, 35, 0.7); padding: 16px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.08);';
@@ -2190,6 +2190,13 @@ function renderMaps(category = 'ALL') {
         `;
         container.appendChild(card);
     });
+}
+
+function filterMapCategory(cat) {
+    document.querySelectorAll('.map-filter-btn').forEach(btn => btn.classList.remove('active'));
+    const targetBtn = document.getElementById(`map-btn-${cat}`);
+    if (targetBtn) targetBtn.classList.add('active');
+    renderMaps(cat);
 }
 
 // 핵심 공략 데이터

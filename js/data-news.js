@@ -1,53 +1,88 @@
 // ==========================================
-// 📢 Kinetic Games 공식 최신 패치 및 업데이트 소식 데이터
-// (공식 웹사이트: https://kineticgames.co.uk/news 기준)
+// 📢 Kinetic Games 공식 최신 뉴스 및 패치 데이터
+// (공식 원문 링크: https://kineticgames.co.uk/news)
 // ==========================================
 
 const NEWS_DATA = [
     {
-        title: "📌 [v0.18.0.0] 13 윌로우 스트리트 리워크 & 1차 QoL 편의성 대형 패치",
-        body: `
-            <strong>• 출시일:</strong> 2026년 7월 21일<br>
-            <strong>• 주요 업데이트 및 변경 사항:</strong><br>
-            1. <strong>13 Willow Street 맵 전면 리워크:</strong> 신규 테마 및 룸 레이아웃 재설계, 은신처 재배치, 신규 상호작용 및 디테일 에셋 적용<br>
-            2. <strong>인벤토리 퀵 단축키(1, 2, 3, 4) 지원:</strong> 키보드/마우스 환경에서 인벤토리 슬롯 번호로 즉시 장비 교체 가능<br>
-            3. <strong>장비 전환 딜레이 제거:</strong> 손에 든 장비 전환 및 저널 열기/닫기 모션 속도 대폭 상향 (즉시 반응)<br>
-            4. <strong>시야각(FOV) 및 손목시계 UI 개선:</strong> 손에 장비를 든 상태에서도 시계를 들어 올려 남은 사냥/준비 시간 확인 가능<br>
-            5. <strong>소금 설치 개선:</strong> 설치 애니메이션 시작과 동시에 바닥에 즉시 배치되도록 개선<br>
-            6. <strong>제한 맵(Restricted) 추가:</strong> 포인트 호프, 브라운스톤 고등학교, 교도소 구역 제한 모드 지원
-        `
+        category: "Kinetic Publishing",
+        icon: "🎮",
+        date: "2026. 8. 13.",
+        title: "Kinetic Publishing Showcase - In Case You Missed It",
+        desc: "키네틱 퍼블리싱 첫 공식 쇼케이스 하이라이트 요약 및 신작 라인업 공개",
+        img: "https://kineticgames.co.uk/assets/images/publishing-showcase-recap.webp",
+        url: "https://kineticgames.co.uk/news"
     },
     {
-        title: "📢 [공식 발표] 2026 파스모포비아 개편 로드맵 & 1.0 정식 출시 안내",
-        body: `
-            <strong>• 공지일:</strong> 2026년 6월 24일<br>
-            <strong>• 주요 개발 일정 및 핵심 방향:</strong><br>
-            1. <strong>2차 편의성(QoL) 업데이트 (8월 예정):</strong> 커뮤니티 피드백 기반 버그 픽스 및 추가 편의 기능 적용<br>
-            2. <strong>Unity 6 엔진 업그레이드 (10월 예정):</strong> 신규 조명 시스템, 최적화 렉 개선, 프레임 안정성 대폭 향상<br>
-            3. <strong>2차 플레이어 캐릭터 커스터마이징 업데이트 (11월 예정):</strong> 신규 의상/치장 아이템, 샵 UI 개편, 캐릭터 모션 추가<br>
-            4. <strong>42 엣지필드 로드(Edgefield) 리워크 및 시즌 이벤트 (연말 예정):</strong> 엣지필드 맵 리워크 및 크림슨 아이/겨울 축제 이벤트 복귀<br>
-            5. <strong>파스모포비아 1.0 정식 출시 (2027년 하반기):</strong> 뼈 수집품을 대체하는 고유 유령 오브젝트 <strong>'도관(Conduits)'</strong> 시스템 도입 및 닌텐도 스위치 2 동시 런칭 확정
-        `
+        category: "Kinetic Publishing",
+        icon: "🎮",
+        date: "2026. 8. 12.",
+        title: "Kinetic Publishing Showcase - 1 Day To Go!",
+        desc: "키네틱 게임즈 산하 퍼블리싱 쇼케이스 일정 및 라이브 스트림 안내",
+        img: "https://kineticgames.co.uk/assets/images/publishing-showcase-countdown.webp",
+        url: "https://kineticgames.co.uk/news"
     },
     {
-        title: "📌 [v0.17.0.0 ~ v0.17.1.5] 플레이어 캐릭터 개편 & 핫픽스 패치",
-        body: `
-            <strong>• 출시일:</strong> 2026년 5월 ~ 6월<br>
-            <strong>• 주요 내용:</strong><br>
-            1. <strong>플레이어 캐릭터 모델링 리뉴얼:</strong> 체형, 헤어, 텍스처 전면 개편 및 커스터마이징 상점 신설<br>
-            2. <strong>사망 후 저널 5초 선택 대기 시간 부여:</strong> 사망 직후 5초간 저널을 통해 유령을 특정할 수 있는 편의 기능 추가<br>
-            3. <strong>사망 및 소생 모션 물리 엔진 안정화:</strong> 캐릭터 관절 꼬임 현상, 투명화 및 발소리 동기화 버그 대거 수정<br>
-            4. <strong>프레스티지(명성) 해금 보상 무료화:</strong> 명성 레벨 달성 시 치장 아이템이 별도 비용 없이 즉시 해금되도록 변경
-        `
+        category: "Phasmophobia",
+        icon: "👻",
+        date: "2026. 8. 11.",
+        title: "Phasmophobia Quality of Life Part 2 Preview",
+        desc: "2차 편의성(QoL) 업데이트 미리보기: 커뮤니티 피드백 기반 버그 픽스 및 편의 기능 개선",
+        img: "https://kineticgames.co.uk/assets/images/news-banner-qol-part2.webp",
+        url: "https://kineticgames.co.uk/news"
     },
     {
-        title: "📌 [v0.16.0.0] 6 탱글우드 드라이브(6 Tanglewood Drive) 리워크",
-        body: `
-            <strong>• 출시일:</strong> 2026년 3월 3일<br>
-            <strong>• 주요 내용:</strong><br>
-            1. 파스모포비아 대표 맵 탱글우드의 그래픽 및 텍스처 최신 엔진 규격으로 전면 개편<br>
-            2. 주방 카운터/아일랜드 식탁 뺑뺑이 루핑 루트 밸런스 조정 및 은신처 배치 갱신<br>
-            3. 차단기 및 저주받은 물건 스폰 위치 일부 조정 및 신규 환경 사운드 추가
-        `
+        category: "Phasmophobia",
+        icon: "👻",
+        date: "2026. 7. 28.",
+        title: "Phasmophobia v0.18.0.1 - Patch Notes",
+        desc: "v0.18.0.0 윌로우 리워크 업데이트 이후 안정화 및 주요 버그 핫픽스 패치 노트",
+        img: "https://kineticgames.co.uk/assets/images/update-banner-v01801.webp",
+        url: "https://kineticgames.co.uk/news"
+    },
+    {
+        category: "Phasmophobia",
+        icon: "👻",
+        date: "2026. 7. 21.",
+        title: "Phasmophobia v0.18.0.0 - Patch Notes",
+        desc: "13 윌로우 스트리트 전면 리워크 & 1차 QoL 편의성(인벤토리 단축키 등) 대형 패치",
+        img: "https://kineticgames.co.uk/assets/images/willow-rework-banner.webp",
+        url: "https://kineticgames.co.uk/news"
+    },
+    {
+        category: "Phasmophobia",
+        icon: "👻",
+        date: "2026. 7. 14.",
+        title: "Phasmophobia Quality of Life Preview #2",
+        desc: "장비 모션 속도 개선 및 인벤토리 슬롯 단축키 시스템 도입 세부 가이드",
+        img: "https://kineticgames.co.uk/assets/images/news-banner-qol-preview2.webp",
+        url: "https://kineticgames.co.uk/news"
+    },
+    {
+        category: "Phasmophobia",
+        icon: "👻",
+        date: "2026. 7. 2.",
+        title: "Phasmophobia Quality of Life Update Preview",
+        desc: "여름 시즌 편의성 대개편 업데이트 세부 방향성 및 개선점 사전 공개",
+        img: "https://kineticgames.co.uk/assets/images/news-banner-qol-overview.webp",
+        url: "https://kineticgames.co.uk/news"
+    },
+    {
+        category: "Phasmophobia",
+        icon: "👻",
+        date: "2026. 6. 24.",
+        title: "Phasmophobia 2026 and Beyond",
+        desc: "Unity 6 엔진 전환, 캐릭터 커스터마이징, 엣지필드 리워크 및 1.0 정식 출시 로드맵",
+        img: "https://kineticgames.co.uk/assets/images/roadmap-2026-update.webp",
+        url: "https://kineticgames.co.uk/news"
+    },
+    {
+        category: "Phasmophobia",
+        icon: "👻",
+        date: "2026. 3. 3.",
+        title: "6 Tanglewood Drive Rework - Phasmophobia v0.16.0.0",
+        desc: "6 탱글우드 드라이브 맵 그래픽/루핑 루트 전면 리뉴얼 및 밸런스 조정",
+        img: "https://kineticgames.co.uk/assets/images/tanglewood-rework-banner.webp",
+        url: "https://kineticgames.co.uk/news"
     }
 ];

@@ -535,21 +535,65 @@ function renderIdCards() {
     });
 }
 
-// 8. 패치 소식 렌더링
+// 8. 📢 패치 소식 (공식 Kinetic Games 뉴스 그리드 뷰 렌더링)
 function renderNews() {
     const container = document.getElementById('news-container');
     if (!container || typeof NEWS_DATA === 'undefined') return;
     container.innerHTML = '';
 
+    const headerBox = document.createElement('div');
+    headerBox.style.width = "100%";
+    headerBox.style.marginBottom = "14px";
+    headerBox.innerHTML = `
+        <div class="guide-card" style="border-left: 4px solid var(--accent-vibrant); padding: 14px 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <div class="guide-card-title" style="font-size: 1.18rem; margin-bottom: 4px;">📢 Kinetic Games 공식 최신 뉴스 & 패치 피드</div>
+                    <div class="guide-card-body" style="font-size: 0.92rem; color: var(--text-secondary);">
+                        공식 개발진이 작성한 최신 패치 노트, 로드맵 및 개발자 프리뷰 원문 링크입니다. 카드를 클릭하면 공식 페이지로 바로 이동합니다.
+                    </div>
+                </div>
+                <a href="https://kineticgames.co.uk/news" target="_blank" class="map-filter-btn active" style="text-decoration: none; padding: 8px 16px; font-size: 0.95rem;">
+                    🌐 공식 뉴스 전체보기 ➔
+                </a>
+            </div>
+        </div>
+    `;
+    container.appendChild(headerBox);
+
+    const grid = document.createElement('div');
+    grid.className = 'news-blog-grid';
+
     NEWS_DATA.forEach(n => {
-        const card = document.createElement('div');
-        card.className = 'guide-card';
+        const card = document.createElement('a');
+        card.href = n.url;
+        card.target = "_blank";
+        card.className = 'news-blog-card';
+
         card.innerHTML = `
-            <div class="guide-card-title">${n.title}</div>
-            <div class="guide-card-body">${n.body}</div>
+            <div class="news-card-thumb-wrap">
+                <img src="${n.img}" 
+                     alt="${n.title}" 
+                     class="news-card-img"
+                     onerror="this.onerror=null; this.src='images/maps/Sunny_Meadows.webp'">
+            </div>
+            <div class="news-card-body">
+                <div class="news-card-meta">
+                    <span class="news-card-cat">${n.icon} ${n.category}</span>
+                    <span class="news-card-date">${n.date}</span>
+                </div>
+                <div class="news-card-title">${n.title}</div>
+                <div class="news-card-desc">${n.desc}</div>
+                <div class="news-card-footer">
+                    <span>READ MORE</span>
+                    <span class="news-card-arrow">➔</span>
+                </div>
+            </div>
         `;
-        container.appendChild(card);
+        grid.appendChild(card);
     });
+
+    container.appendChild(grid);
 }
 
 // 네비게이션 탭 전환 로직

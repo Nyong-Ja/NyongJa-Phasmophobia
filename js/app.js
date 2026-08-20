@@ -123,13 +123,13 @@ function updateEqDetail(index) {
 
             <!-- 유튜브 공략 배너 -->
             <div style="margin: 14px 0 16px 0;">
-                <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="weekly-yt-banner-btn" style="border-color: #a78bfa; background: linear-gradient(90deg, rgba(109, 76, 251, 0.22) 0%, rgba(248, 113, 113, 0.18) 100%);">
+                <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="weekly-yt-banner-btn">
                     <span class="yt-banner-icon">🛠️</span>
                     <div class="yt-banner-textbox">
                         <div class="yt-banner-title">📺 유튜브에서 '${eq.name.split('(')[0].trim()}' 3티어 실전 가이드 보기</div>
-                        <div class="yt-banner-sub" style="color: #c4b5fd;">클릭 시 해당 장비의 뇽자 티어별 스펙 및 활용 팁 영상으로 이동합니다.</div>
+                        <div class="yt-banner-sub">클릭 시 해당 장비의 뇽자 티어별 스펙 및 활용 팁 영상으로 이동합니다.</div>
                     </div>
-                    <span class="yt-banner-arrow" style="background: rgba(109, 76, 251, 0.35); border-color: rgba(167, 139, 250, 0.4);">영상 보기 ➔</span>
+                    <span class="yt-banner-arrow">영상 보기 ➔</span>
                 </a>
             </div>
 
@@ -237,6 +237,7 @@ function updateChallengeDetail(id) {
                 <span class="map-badge Medium" style="font-size: 1.0rem; padding: 7px 16px;">🗺️ ${data.map}</span>
             </div>
 
+            <!-- 네온 보라-라벤더 통일 유튜브 공략 배너 버튼 -->
             <div style="margin: 14px 0 16px 0;">
                 <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="weekly-yt-banner-btn">
                     <span class="yt-banner-icon">▶️</span>
@@ -461,14 +462,15 @@ function updateMapDetail(index) {
                 ${mapImageHtml}
             </div>
 
+            <!-- 🌀 맵 뺑뺑이 공략 전용 유튜브 배너 -->
             <div style="margin-bottom: 16px;">
-                <a href="https://www.youtube.com/results?search_query=${mapYtQuery}" target="_blank" class="weekly-yt-banner-btn" style="border-color: #a78bfa; background: linear-gradient(90deg, rgba(109, 76, 251, 0.25) 0%, rgba(248, 113, 113, 0.18) 100%);">
+                <a href="https://www.youtube.com/results?search_query=${mapYtQuery}" target="_blank" class="weekly-yt-banner-btn">
                     <span class="yt-banner-icon">🌀</span>
                     <div class="yt-banner-textbox">
                         <div class="yt-banner-title">📺 유튜브에서 '${mapKey}' 뺑뺑이 & 루핑 공략 영상 보기</div>
-                        <div class="yt-banner-sub" style="color: #c4b5fd;">클릭 시 해당 맵의 뇽자 은신처 드리블 및 뺑뺑이 가이드 검색 결과로 이동합니다.</div>
+                        <div class="yt-banner-sub">클릭 시 해당 맵의 뇽자 은신처 드리블 및 뺑뺑이 가이드 검색 결과로 이동합니다.</div>
                     </div>
-                    <span class="yt-banner-arrow" style="background: rgba(109, 76, 251, 0.35); border-color: rgba(167, 139, 250, 0.4);">영상 보기 ➔</span>
+                    <span class="yt-banner-arrow">영상 보기 ➔</span>
                 </a>
             </div>
 

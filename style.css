@@ -485,16 +485,15 @@ body {
     color: var(--accent-green);
 }
 
-/* 👻 유령 카드 전용 네온 유튜브 배너 버튼 */
+/* 👻 유령 카드 전용 네온 유튜브 배너 버튼 (가운데 정렬 & 텍스트 확대) */
 .ghost-yt-banner-btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
     width: 100%;
     background: linear-gradient(90deg, rgba(239, 68, 68, 0.16) 0%, rgba(109, 76, 251, 0.18) 100%);
     border: 1.5px solid rgba(248, 113, 113, 0.55);
-    padding: 8px 12px;
+    padding: 10px 14px;
     border-radius: 10px;
     text-decoration: none;
     transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -509,36 +508,21 @@ body {
     transform: translateY(-2px);
 }
 
-.ghost-yt-icon {
-    font-size: 1.15rem;
-    line-height: 1;
-}
-
-.ghost-yt-textbox {
-    flex: 1;
-    text-align: left;
-    min-width: 0;
-}
-
 .ghost-yt-title {
-    font-size: 0.93rem;
+    flex: 1;
+    font-size: 0.98rem;
     font-weight: 800;
     color: #ffffff;
+    text-align: center;
+    letter-spacing: -0.2px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.ghost-yt-sub {
-    font-size: 0.76rem;
-    color: #fca5a5;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding-left: 10px;
 }
 
 .ghost-yt-arrow {
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-weight: 700;
     color: #ffffff;
     background: rgba(248, 113, 113, 0.25);

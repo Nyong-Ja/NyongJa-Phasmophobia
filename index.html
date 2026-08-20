@@ -14,20 +14,22 @@
                 <div class="logo-title-wrapper" onclick="switchTab('evidence'); document.getElementById('reset-btn').click();" style="cursor: pointer;">
                     <img src="images/logo/logo.png" alt="뇽스모 로고" class="site-logo">
                 </div>
-                <div class="sub-title" style="margin-top: 6px;">파스모포비아 한국 전용 공략 정보 사이트. 완벽한 유령 조사를 위한 필수 데이터와 팁을 빠르게 찾아보세요.</div>
+                <div class="sub-title" style="margin-top: 6px;">파스모포비아 한국 전용 공략 정보 사이트. 완벽한 유령 조사를 위한 필수 데이터와 팁을 빠르게 찾아보세요.[cite: 3]</div>
             </div>
             <div class="top-search-bar">
                 <input type="text" placeholder="🔍 유령/증거/특징 빠른 검색..." onfocus="openSearchPanel()" onkeyup="handleHeaderSearch(this.value)">
             </div>
         </header>
 
-        <!-- 네비게이션 탭 -->
+        <!-- 네비게이션 탭 (아포칼립스, 드롭스 추가 완료) -->
         <nav class="top-nav">
             <button class="nav-tab active" data-tab="evidence" onclick="switchTab('evidence')">🔍 증거 분석</button>
             <button class="nav-tab" data-tab="ghosts" onclick="switchTab('ghosts')">📖 유령 도감</button>
             <button class="nav-tab" data-tab="equipment" onclick="switchTab('equipment')">🛠️ 장비 가이드</button>
             <button class="nav-tab" data-tab="weekly" onclick="switchTab('weekly')">🎯 주간 도전 과제</button>
             <button class="nav-tab" data-tab="maps" onclick="switchTab('maps')">🗺️ 맵 정보</button>
+            <button class="nav-tab" data-tab="apocalypse" onclick="switchTab('apocalypse')">💀 아포칼립스</button>
+            <button class="nav-tab" data-tab="drops" onclick="switchTab('drops')">🎁 드롭스</button>
             <button class="nav-tab" data-tab="guide" onclick="switchTab('guide')">🔥 핵심 공략</button>
             <button class="nav-tab" data-tab="idcard" onclick="switchTab('idcard')">🪪 ID 카드 & 배지</button>
             <button class="nav-tab" data-tab="news" onclick="switchTab('news')">📢 패치 소식</button>
@@ -40,51 +42,51 @@
                     <div class="left-panel">
                         <div class="panel-header">
                             <div class="panel-title-group">
-                                <h2>증거 선택 (Evidence)</h2>
-                                <p class="guide-text">* <span class="badge state-include">1번 클릭: 포함</span> | <span class="badge state-exclude">2번 클릭: 제외</span> | 3번 클릭: 미선택</p>
+                                <h2>증거 선택 (Evidence)[cite: 3]</h2>
+                                <p class="guide-text">* <span class="badge state-include">1번 클릭: 포함</span> | <span class="badge state-exclude">2번 클릭: 제외</span> | 3번 클릭: 미선택[cite: 3]</p>
                             </div>
-                            <button id="reset-btn">🔄 선택 초기화</button>
+                            <button id="reset-btn">🔄 선택 초기화[cite: 3]</button>
                         </div>
                         
                         <div class="evidence-grid">
-                            <button class="evidence-btn" data-evidence="EMF 5">EMF 5</button>
-                            <button class="evidence-btn" data-evidence="DOTS">DOTS 프로젝터</button>
-                            <button class="evidence-btn" data-evidence="손자국">자외선(손자국)</button>
-                            <button class="evidence-btn" data-evidence="고스트 오브">고스트 오브</button>
-                            <button class="evidence-btn" data-evidence="고스트 라이팅">고스트 라이팅</button>
-                            <button class="evidence-btn" data-evidence="스피릿 박스">스피릿 박스</button>
-                            <button class="evidence-btn" data-evidence="서늘함">서늘함</button>
+                            <button class="evidence-btn" data-evidence="EMF 5">EMF 5[cite: 3]</button>
+                            <button class="evidence-btn" data-evidence="DOTS">DOTS 프로젝터[cite: 3]</button>
+                            <button class="evidence-btn" data-evidence="손자국">자외선(손자국)[cite: 3]</button>
+                            <button class="evidence-btn" data-evidence="고스트 오브">고스트 오브[cite: 3]</button>
+                            <button class="evidence-btn" data-evidence="고스트 라이팅">고스트 라이팅[cite: 3]</button>
+                            <button class="evidence-btn" data-evidence="스피릿 박스">스피릿 박스[cite: 3]</button>
+                            <button class="evidence-btn" data-evidence="서늘함">서늘함[cite: 3]</button>
                         </div>
 
                         <div class="info-notice">
-                            💡 <strong>팁:</strong> 악몽/광기 난이도에서는 유령 고유 특성(가속, 스피릿 박스 반응, 소금 피적 등)을 추가 필터로 조합하면 정확하게 특정할 수 있습니다.
+                            💡 <strong>팁:</strong> 악몽/광기 난이도에서는 유령 고유 특성(가속, 스피릿 박스 반응, 소금 피적 등)을 추가 필터로 조합하면 정확하게 특정할 수 있습니다.[cite: 3]
                         </div>
                     </div>
 
                     <div class="right-panel">
                         <div class="result-header">
                             <div class="result-header-left">
-                                <span>추론된 유령 목록</span>
+                                <span>추론된 유령 목록[cite: 3]</span>
                                 <div class="special-filters">
                                     <label class="filter-chip">
                                         <input type="checkbox" id="filter-accel" onchange="toggleFilter('hasAccel')">
-                                        <span>시야 가속 보유</span>
+                                        <span>시야 가속 보유[cite: 3]</span>
                                     </label>
                                     <label class="filter-chip">
                                         <input type="checkbox" id="filter-special-speed" onchange="toggleFilter('hasSpecialSpeed')">
-                                        <span>특수 이동 속도</span>
+                                        <span>특수 이동 속도[cite: 3]</span>
                                     </label>
                                     <label class="filter-chip">
                                         <input type="checkbox" id="filter-forced-ev" onchange="toggleFilter('hasForcedEv')">
-                                        <span>고정 증거 유령</span>
+                                        <span>고정 증거 유령[cite: 3]</span>
                                     </label>
                                     <label class="filter-chip">
                                         <input type="checkbox" id="filter-target-roam" onchange="toggleFilter('hasTargetRoam')">
-                                        <span>타겟/스토킹 보유</span>
+                                        <span>타겟/스토킹 보유[cite: 3]</span>
                                     </label>
                                 </div>
                             </div>
-                            <span class="count-badge">남은 유령: <strong id="ghost-count">30</strong>종</span>
+                            <span class="count-badge">남은 유령: <strong id="ghost-count">30</strong>종[cite: 3]</span>
                         </div>
 
                         <div id="ghost-list-container"></div>
@@ -112,17 +114,27 @@
                 <div id="maps-container"></div>
             </section>
 
-            <!-- 탭 6: 핵심 공략 -->
+            <!-- 탭 6: 아포칼립스 -->
+            <section id="tab-apocalypse" class="tab-content">
+                <div id="apocalypse-container" class="guide-grid"></div>
+            </section>
+
+            <!-- 탭 7: 드롭스 -->
+            <section id="tab-drops" class="tab-content">
+                <div id="drops-container" class="guide-grid"></div>
+            </section>
+
+            <!-- 탭 8: 핵심 공략 -->
             <section id="tab-guide" class="tab-content">
                 <div id="guide-container" class="guide-grid"></div>
             </section>
 
-            <!-- 탭 7: ID 카드 & 배지 -->
+            <!-- 탭 9: ID 카드 & 배지 -->
             <section id="tab-idcard" class="tab-content">
                 <div id="idcard-container" class="guide-grid"></div>
             </section>
 
-            <!-- 탭 8: 패치 소식 -->
+            <!-- 탭 10: 패치 소식 -->
             <section id="tab-news" class="tab-content">
                 <div id="news-container" class="guide-grid"></div>
             </section>
@@ -140,7 +152,7 @@
     <!-- 우측 슬라이드 패널 -->
     <div id="quick-slide-panel" class="quick-slide-panel">
         <div class="panel-header">
-            <h3 id="quick-panel-title">정보 패널</h3>
+            <h3 id="quick-panel-title">정보 패널[cite: 3]</h3>
             <button class="close-btn" onclick="closeQuickPanel()">✕</button>
         </div>
         <div id="quick-panel-content" class="panel-content"></div>
@@ -149,11 +161,11 @@
     <!-- 하단 푸터 -->
     <footer>
         <div class="visitor-counter-box" style="margin-bottom: 12px; font-size: 1.0rem; color: #a3a6c9; display: flex; justify-content: center; align-items: center; gap: 8px;">
-            <span>👀 오늘 방문자: <strong id="today-visitors" style="color: #34d399;">집계 중...</strong></span>
+            <span>👀 오늘 방문자: <strong id="today-visitors" style="color: #34d399;">집계 중...</strong>[cite: 3]</span>
             <span style="opacity: 0.4;">|</span>
-            <span>🔥 총 방문자: <strong id="total-visitors" style="color: #b49eff;">집계 중...</strong></span>
+            <span>🔥 총 방문자: <strong id="total-visitors" style="color: #b49eff;">집계 중...</strong>[cite: 3]</span>
         </div>
-        <p>© 2026 뇽스모 (Nyong-ja Phasmophobia Guide). All Rights Reserved.</p>
+        <p>© 2026 뇽스모 (Nyong-ja Phasmophobia Guide). All Rights Reserved.[cite: 3]</p>
     </footer>
 
     <!-- 카테고리 데이터베이스 파일 로드 -->
@@ -161,6 +173,8 @@
     <script src="js/data-equipment.js"></script>
     <script src="js/data-weekly.js"></script>
     <script src="js/data-maps.js"></script>
+    <script src="js/data-apocalypse.js"></script>
+    <script src="js/data-drops.js"></script>
     <script src="js/data-guides.js"></script>
     <script src="js/data-idcards.js"></script>
     <script src="js/data-news.js"></script>

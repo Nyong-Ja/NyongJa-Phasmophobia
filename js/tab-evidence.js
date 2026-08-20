@@ -123,11 +123,7 @@ function renderGhostList() {
             <div class="ghost-evidences">${evidencesHtml}</div>
             <div class="main-youtube-wrapper" style="margin: 10px 0;">
                 <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="ghost-yt-banner-btn">
-                    <span class="ghost-yt-icon">▶️</span>
-                    <div class="ghost-yt-textbox">
-                        <div class="ghost-yt-title">${ghost.name} 필살기 공략</div>
-                        <div class="ghost-yt-sub">뇽자 실전 가이드 검색</div>
-                    </div>
+                    <span class="ghost-yt-title">${ghost.name} 공략 및 필살기 보러가기</span>
                     <span class="ghost-yt-arrow">보기 ➔</span>
                 </a>
             </div>

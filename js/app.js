@@ -105,7 +105,7 @@ function toggleEqDetail(id, btn) {
     }
 }
 
-// 4. 주간 도전 과제 렌더링 (와이드 좌측 패널 & 단독 대형 유튜브 공략 배너)
+// 4. 주간 도전 과제 렌더링 (좌우 4:6 분할 & 대형 단독 유튜브 배너)
 let currentSelectedChallengeId = 1;
 
 function renderWeekly() {
@@ -161,9 +161,9 @@ function renderWeekly() {
 
 function selectChallenge(id) {
     currentSelectedChallengeId = id;
-    document.querySelectorAll('.weekly-list-item').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('#weekly-scroll-list .weekly-list-item').forEach(btn => btn.classList.remove('active'));
     
-    const clickedBtn = document.querySelector(`.weekly-list-item:nth-child(${id})`);
+    const clickedBtn = document.querySelector(`#weekly-scroll-list .weekly-list-item:nth-child(${id})`);
     if (clickedBtn) clickedBtn.classList.add('active');
 
     updateChallengeDetail(id);
@@ -245,111 +245,140 @@ function updateChallengeDetail(id) {
     `;
 }
 
-// 5. 맵 정보 렌더링
+// 5. 🗺️ 맵 정보 렌더링 (좌우 4:6 분할 & 지도 뷰어 인터랙티브 레이아웃)
+let currentSelectedMapIndex = 0;
+let currentMapCategory = 'ALL';
+
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
     if (!container || typeof MAP_DATA === 'undefined') return;
     container.innerHTML = '';
+    currentMapCategory = category;
 
-    const ruleCard = document.createElement('div');
-    ruleCard.className = 'guide-card';
-    ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; width: 100% !important; box-sizing: border-box !important;';
-    ruleCard.innerHTML = `
-        <div style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px;">📦 난이도 및 인원별 은신처(Hiding Spot) 공통 규칙</div>
-        <div style="font-size: 0.95rem; line-height: 1.6; color: #a1a1aa;">
-            파스모포비아의 모든 맵은 난이도와 인원수에 따라 <strong>공식 은신처(옷장, 락커, 구석 상자 등)</strong>의 차단 여부가 달라집니다:
-            <ul style="margin-top: 8px; padding-left: 20px; color: #d4d4d8;">
-                <li><strong style="color: #fff;">초보자 (Amateur):</strong> 차단 없음 (모든 은신처 100% 개방)</li>
-                <li><strong style="color: #fff;">중급자 (Intermediate):</strong> 은신처 2곳 무작위 차단</li>
-                <li><strong style="color: #fff;">전문가 (Professional):</strong> 은신처 3곳 무작위 차단</li>
-                <li><strong style="color: #fff;">악몽 / 광기 (Nightmare / Insanity):</strong> 은신처 4곳 무작위 차단</li>
-                <li><strong style="color: #a78bfa;">👥 멀티플레이 인원 보너스:</strong> 3인 플레이 시 <strong>+1곳</strong> / 4인 플레이 시 <strong>+2곳</strong> 추가 개방</li>
-            </ul>
+    const filteredMaps = category === 'ALL' 
+        ? MAP_DATA 
+        : MAP_DATA.filter(m => m.category === category);
+
+    if (currentSelectedMapIndex >= filteredMaps.length) {
+        currentSelectedMapIndex = 0;
+    }
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'weekly-split-layout map-split-layout';
+
+    // 좌측 패널: 은신처 규칙 + 필터바 + 맵 리스트
+    const leftCol = document.createElement('div');
+    leftCol.className = 'weekly-left-pane';
+    leftCol.innerHTML = `
+        <div class="guide-card" style="margin-bottom: 12px; border-left: 4px solid var(--accent-vibrant); padding: 12px 14px;">
+            <div class="guide-card-title" style="font-size: 1.05rem; margin-bottom: 6px;">📦 은신처(Hiding Spot) 공통 규칙</div>
+            <div class="guide-card-body" style="font-size: 0.9rem; line-height: 1.55; color: var(--text-secondary);">
+                • <strong>초보자:</strong> 차단 없음 (모든 은신처 100% 개방)<br>
+                • <strong>중급자/전문가:</strong> 2~3곳 차단 | <strong>악몽/광기:</strong> 4곳 차단<br>
+                • <strong>멀티 인원 보너스:</strong> 3인 플레이 시 +1곳 / 4인 시 +2곳 추가 개방
+            </div>
+        </div>
+
+        <div class="map-filter-bar" style="margin-bottom: 10px; gap: 6px;">
+            <button class="map-filter-btn ${category === 'ALL' ? 'active' : ''}" onclick="filterMapCategory('ALL')">전체 (${MAP_DATA.length})</button>
+            <button class="map-filter-btn ${category === 'Small' ? 'active' : ''}" onclick="filterMapCategory('Small')">소형</button>
+            <button class="map-filter-btn ${category === 'Medium' ? 'active' : ''}" onclick="filterMapCategory('Medium')">중형</button>
+            <button class="map-filter-btn ${category === 'Large' ? 'active' : ''}" onclick="filterMapCategory('Large')">대형</button>
+        </div>
+
+        <div class="weekly-scroll-list" id="map-scroll-list">
+            ${filteredMaps.map((m, idx) => `
+                <button type="button" 
+                        class="weekly-list-item ${idx === currentSelectedMapIndex ? 'active' : ''}" 
+                        onclick="selectMapItem(${idx})">
+                    <span class="map-badge ${m.category}" style="font-size: 0.82rem; padding: 2px 8px;">${m.category}</span>
+                    <span class="ch-name-txt" style="font-size: 1.05rem;">${m.name}</span>
+                    <span class="ch-map-tag" style="font-size: 0.82rem;">${m.rooms || ''}</span>
+                </button>
+            `).join('')}
         </div>
     `;
-    container.appendChild(ruleCard);
 
-    const columnsWrapper = document.createElement('div');
-    columnsWrapper.className = 'maps-columns-container';
+    // 우측 패널: 상세 정보 + 지도 뷰어
+    const rightCol = document.createElement('div');
+    rightCol.className = 'weekly-right-pane';
+    rightCol.id = 'map-detail-pane';
 
-    const colElements = [
-        document.createElement('div'),
-        document.createElement('div'),
-        document.createElement('div')
-    ];
+    wrapper.appendChild(leftCol);
+    wrapper.appendChild(rightCol);
+    container.appendChild(wrapper);
 
-    colElements.forEach(col => {
-        col.className = 'map-column';
-        columnsWrapper.appendChild(col);
-    });
-
-    const filtered = category === 'ALL' ? MAP_DATA : MAP_DATA.filter(m => m.category === category);
-
-    filtered.forEach((map, index) => {
-        const card = document.createElement('div');
-        card.className = 'map-card';
-        const detailId = `map-detail-${index}`;
-
-        const detailSection = map.isDetailed && map.detailedHtml ? `
-            <div style="margin-top: 14px; background: rgba(0, 0, 0, 0.4); border-radius: 8px; padding: 10px 14px; border: 1px solid rgba(255, 255, 255, 0.08);">
-                <button type="button" onclick="toggleMapDetail('${detailId}', this)" style="width: 100%; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #a78bfa; padding: 0; outline: none;">
-                    <span style="font-size: 0.95rem;">🗺️ 룸 목록, 은신처 & 저주 물건 상세 공략</span>
-                    <span class="toggle-btn-txt" style="font-size: 0.82rem; color: #a1a1aa; border: 1px solid rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px; background: rgba(255,255,255,0.05);">펼치기 ▾</span>
-                </button>
-                <div id="${detailId}" style="display: none; margin-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px; text-align: left;">
-                    ${map.detailedHtml}
-                </div>
-            </div>
-        ` : '';
-
-        card.innerHTML = `
-            <div class="map-header">
-                <div class="map-name">${map.name}</div>
-                <span class="map-badge ${map.category}">${map.category}</span>
-            </div>
-            <div class="map-info-list" style="margin: 10px 0;">
-                <div class="map-info-item" style="background: rgba(255, 255, 255, 0.03); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                    <strong>구조:</strong> ${map.size} (${map.rooms})
-                </div>
-            </div>
-            <p class="dict-text" style="color: var(--text-secondary, #a1a1aa); margin-bottom: 8px;">💡 ${map.tip}</p>
-            ${detailSection}
-        `;
-
-        const targetCol = colElements[index % 3];
-        targetCol.appendChild(card);
-    });
-
-    container.appendChild(columnsWrapper);
+    updateMapDetail(currentSelectedMapIndex);
 }
 
-function toggleMapDetail(id, btn) {
-    const el = document.getElementById(id);
-    const txt = btn.querySelector('.toggle-btn-txt');
-    if (!el) return;
-
-    if (el.style.display === 'none' || el.style.display === '') {
-        el.style.display = 'block';
-        if (txt) {
-            txt.innerText = '접기 ▴';
-            txt.style.color = '#f87171';
-            txt.style.borderColor = 'rgba(248, 113, 113, 0.4)';
-        }
-    } else {
-        el.style.display = 'none';
-        if (txt) {
-            txt.innerText = '펼치기 ▾';
-            txt.style.color = '#a1a1aa';
-            txt.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-        }
-    }
+function selectMapItem(index) {
+    currentSelectedMapIndex = index;
+    document.querySelectorAll('#map-scroll-list .weekly-list-item').forEach((btn, idx) => {
+        if (idx === index) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    updateMapDetail(index);
 }
 
 function filterMapCategory(cat) {
-    document.querySelectorAll('.map-filter-btn').forEach(btn => btn.classList.remove('active'));
-    const targetBtn = document.getElementById(`map-btn-${cat}`);
-    if (targetBtn) targetBtn.classList.add('active');
+    currentSelectedMapIndex = 0;
     renderMaps(cat);
+}
+
+function updateMapDetail(index) {
+    const pane = document.getElementById('map-detail-pane');
+    if (!pane || typeof MAP_DATA === 'undefined') return;
+
+    const filteredMaps = currentMapCategory === 'ALL' 
+        ? MAP_DATA 
+        : MAP_DATA.filter(m => m.category === currentMapCategory);
+
+    const map = filteredMaps[index] || filteredMaps[0];
+    if (!map) return;
+
+    const mapImageHtml = map.image ? `
+        <div class="map-image-container">
+            <img src="${map.image}" alt="${map.name} 지도" class="map-preview-img">
+            <span class="map-image-hint">🔍 지도 확대 및 세부 포인트 확인</span>
+        </div>
+    ` : `
+        <div class="map-image-placeholder">
+            <span style="font-size: 2.2rem; margin-bottom: 6px;">🗺️</span>
+            <div style="font-weight: 700; color: var(--accent-light); font-size: 1.05rem;">${map.name} 정밀 구조도</div>
+            <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 2px;">
+                층별 룸 배치도, 저주받은 물건 및 차단기 스폰 포인트
+            </div>
+        </div>
+    `;
+
+    pane.innerHTML = `
+        <div class="weekly-detail-card">
+            <div class="weekly-detail-header">
+                <div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${map.name}</div>
+                    <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
+                        구조: ${map.size} (${map.rooms})
+                    </div>
+                </div>
+                <span class="map-badge ${map.category}" style="font-size: 1.0rem; padding: 7px 16px;">${map.category}</span>
+            </div>
+
+            <!-- 지도 이미지 뷰어 영역 -->
+            <div style="margin: 14px 0 16px 0;">
+                ${mapImageHtml}
+            </div>
+
+            <div class="dict-section-title">💡 맵 핵심 탐색 팁 (Exploration Tip)</div>
+            <div style="background: rgba(109, 76, 251, 0.1); padding: 13px 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5; margin-bottom: 16px;">
+                ${map.tip}
+            </div>
+
+            <div class="dict-section-title">📋 룸 목록, 은신처 & 저주 물건 상세 공략</div>
+            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65;">
+                ${map.detailedHtml || '<p style="color: var(--text-secondary);">상세 정보 업데이트 준비 중입니다.</p>'}
+            </div>
+        </div>
+    `;
 }
 
 // 6. 핵심 공략 렌더링

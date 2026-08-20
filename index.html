@@ -11,7 +11,6 @@
         <!-- 상단 헤더 영역 -->
         <header class="title-section">
             <div class="title-left">
-                <!-- 로고 클릭 시 메인 탭 이동 및 초기화 -->
                 <div class="logo-title-wrapper" onclick="switchTab('evidence'); document.getElementById('reset-btn').click();" style="cursor: pointer;">
                     <img src="images/logo/logo.png" alt="뇽스모 로고" class="site-logo">
                 </div>
@@ -88,7 +87,6 @@
                             <span class="count-badge">남은 유령: <strong id="ghost-count">30</strong>종</span>
                         </div>
 
-                        <!-- 4열 독립 컬럼 렌더링 컨테이너 -->
                         <div id="ghost-list-container"></div>
                     </div>
                 </div>
@@ -104,19 +102,13 @@
                 <div id="equipment-container"></div>
             </section>
 
-            <!-- 탭 4: 주간 도전 과제 (좌우 2분할 뷰) -->
+            <!-- 탭 4: 주간 도전 과제 (좌우 4:6 분할 뷰) -->
             <section id="tab-weekly" class="tab-content">
                 <div id="weekly-container"></div>
             </section>
 
-            <!-- 탭 5: 맵 정보 (3열 독립 컬럼) -->
+            <!-- 탭 5: 맵 정보 (좌우 4:6 분할 & 지도 뷰어) -->
             <section id="tab-maps" class="tab-content">
-                <div class="map-filter-bar">
-                    <button class="map-filter-btn active" id="map-btn-ALL" onclick="filterMapCategory('ALL')">전체 맵</button>
-                    <button class="map-filter-btn" id="map-btn-Small" onclick="filterMapCategory('Small')">소형 (Small)</button>
-                    <button class="map-filter-btn" id="map-btn-Medium" onclick="filterMapCategory('Medium')">중형 (Medium)</button>
-                    <button class="map-filter-btn" id="map-btn-Large" onclick="filterMapCategory('Large')">대형 (Large)</button>
-                </div>
                 <div id="maps-container"></div>
             </section>
 
@@ -164,7 +156,7 @@
         <p>© 2026 뇽스모 (Nyong-ja Phasmophobia Guide). All Rights Reserved.</p>
     </footer>
 
-    <!-- 카테고리 데이터베이스 파일들 순차 로드 -->
+    <!-- 카테고리 데이터베이스 파일 로드 -->
     <script src="js/data-ghosts.js"></script>
     <script src="js/data-equipment.js"></script>
     <script src="js/data-weekly.js"></script>

@@ -485,27 +485,27 @@ body {
     color: var(--accent-green);
 }
 
-/* 👻 유령 카드 전용 네온 유튜브 배너 버튼 (완전 중앙 정렬) */
+/* 👻 유령 카드 전용 네온 보라-라벤더 유튜브 배너 버튼 */
 .ghost-yt-banner-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    background: linear-gradient(90deg, rgba(239, 68, 68, 0.16) 0%, rgba(109, 76, 251, 0.18) 100%);
-    border: 1.5px solid rgba(248, 113, 113, 0.55);
+    background: linear-gradient(90deg, rgba(109, 76, 251, 0.22) 0%, rgba(248, 113, 113, 0.18) 100%);
+    border: 1.5px solid #a78bfa;
     padding: 10px 14px;
     border-radius: 10px;
     text-decoration: none;
     transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 2px 10px rgba(248, 113, 113, 0.15);
+    box-shadow: 0 2px 12px rgba(109, 76, 251, 0.25);
     box-sizing: border-box;
     text-align: center;
 }
 
 .ghost-yt-banner-btn:hover {
-    background: linear-gradient(90deg, rgba(239, 68, 68, 0.3) 0%, rgba(109, 76, 251, 0.3) 100%);
-    border-color: #fca5a5;
-    box-shadow: 0 4px 16px rgba(248, 113, 113, 0.4);
+    background: linear-gradient(90deg, rgba(109, 76, 251, 0.35) 0%, rgba(248, 113, 113, 0.3) 100%);
+    border-color: #ffffff;
+    box-shadow: 0 4px 18px rgba(167, 139, 250, 0.5);
     transform: translateY(-2px);
 }
 
@@ -745,71 +745,25 @@ body {
     color: var(--text-primary);
 }
 
-/* 3. 장비 가이드 전용 레이아웃 */
-#equipment-container,
-#equipment-container.equipment-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
-    grid-template-columns: none !important;
+/* 3. 🛠️ 장비 가이드 티어 스펙 요약 박스 */
+.eq-tier-box {
+    background-color: #080a18;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 10px 14px;
 }
 
-.eq-columns-container {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 18px !important;
-    align-items: flex-start !important;
-    width: 100% !important;
-}
-
-.eq-col {
-    flex: 1 1 0px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 18px !important;
-    min-width: 0 !important;
-    width: 100% !important;
-}
-
-.eq-card {
-    background-color: var(--card-bg);
-    border: 1.5px solid var(--card-border) !important;
-    border-radius: 12px;
-    padding: 1.25rem;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 1;
-}
-
-.eq-card:hover {
-    border-color: #c4b5fd !important;
-    background: linear-gradient(145deg, #181c3d 0%, #10142d 100%) !important;
-    box-shadow: 0 10px 30px rgba(109, 76, 251, 0.45), 
-                0 0 25px rgba(196, 181, 253, 0.6), 
-                inset 0 0 16px rgba(167, 139, 250, 0.25) !important;
-    transform: translateY(-5px) scale(1.015) !important;
-    z-index: 10;
-}
-
-.eq-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.9rem;
-    border-bottom: 1px solid var(--card-border);
-    padding-bottom: 0.7rem;
-}
-
-.eq-name {
-    font-size: 1.35rem;
+.eq-tier-title {
+    font-size: 0.95rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--accent-light);
+    margin-bottom: 4px;
+}
+
+.eq-tier-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
 }
 
 .eq-category {
@@ -818,31 +772,8 @@ body {
     border: 1px solid var(--accent-vibrant);
     color: var(--accent-light);
     padding: 2px 8px;
-    border-radius: 9px;
-    font-weight: 600;
-}
-
-.eq-tier-box {
-    background-color: #080a18;
-    border: 1px solid var(--card-border);
     border-radius: 8px;
-    padding: 8px 11px;
-    margin-bottom: 7px;
-}
-
-.eq-tier-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--accent-light);
-    margin-bottom: 3px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.eq-tier-desc {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.4;
+    font-weight: 600;
 }
 
 /* 4. 공략 / 정보 전용 레이아웃 */
@@ -885,16 +816,18 @@ body {
     color: var(--text-primary);
 }
 
-/* 🎯 주간 도전 과제 & 맵 정보 좌우 4:6 분할 레이아웃 */
+/* 🎯 주간 도전 과제 / 맵 정보 / 장비 가이드 좌우 4:6 분할 레이아웃 공통 */
 #weekly-container,
-#maps-container {
+#maps-container,
+#equipment-container {
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
 }
 
 .weekly-split-layout,
-.map-split-layout {
+.map-split-layout,
+.eq-split-layout {
     display: flex;
     gap: 20px;
     width: 100%;
@@ -988,14 +921,16 @@ body {
     white-space: nowrap;
 }
 
-/* 🗺️ 맵 필터 및 배지 스타일 */
-.map-split-layout .map-filter-bar {
+/* 🗺️ 맵/장비 필터 및 배지 스타일 */
+.map-split-layout .map-filter-bar,
+.eq-split-layout .map-filter-bar {
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
 }
 
-.map-split-layout .map-filter-btn {
+.map-split-layout .map-filter-btn,
+.eq-split-layout .map-filter-btn {
     background-color: var(--card-bg);
     border: 1.5px solid var(--card-border);
     color: var(--text-secondary);
@@ -1008,7 +943,9 @@ body {
 }
 
 .map-split-layout .map-filter-btn.active,
-.map-split-layout .map-filter-btn:hover {
+.map-split-layout .map-filter-btn:hover,
+.eq-split-layout .map-filter-btn.active,
+.eq-split-layout .map-filter-btn:hover {
     background-color: rgba(109, 76, 251, 0.25);
     border-color: var(--accent-vibrant);
     color: #ffffff;
@@ -1053,27 +990,27 @@ body {
     gap: 12px;
 }
 
-/* 📺 대형 단독 유튜브 공략 검색 배너 버튼 */
+/* 📺 대형 단독 유튜브 공략 검색 배너 버튼 (네온 보라-라벤더 통일) */
 .weekly-yt-banner-btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 14px;
     width: 100%;
-    background: linear-gradient(90deg, rgba(239, 68, 68, 0.18) 0%, rgba(109, 76, 251, 0.2) 100%);
-    border: 1.8px solid #f87171;
+    background: linear-gradient(90deg, rgba(109, 76, 251, 0.22) 0%, rgba(248, 113, 113, 0.18) 100%);
+    border: 1.8px solid #a78bfa;
     padding: 12px 18px;
     border-radius: 12px;
     text-decoration: none;
     transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 4px 16px rgba(248, 113, 113, 0.2);
+    box-shadow: 0 4px 16px rgba(109, 76, 251, 0.25);
     box-sizing: border-box;
 }
 
 .weekly-yt-banner-btn:hover {
-    background: linear-gradient(90deg, rgba(239, 68, 68, 0.35) 0%, rgba(109, 76, 251, 0.35) 100%);
+    background: linear-gradient(90deg, rgba(109, 76, 251, 0.35) 0%, rgba(248, 113, 113, 0.3) 100%);
     border-color: #ffffff;
-    box-shadow: 0 6px 22px rgba(248, 113, 113, 0.45);
+    box-shadow: 0 6px 22px rgba(167, 139, 250, 0.5);
     transform: translateY(-2px);
 }
 
@@ -1096,7 +1033,7 @@ body {
 
 .yt-banner-sub {
     font-size: 0.85rem;
-    color: #fca5a5;
+    color: #c4b5fd;
     margin-top: 2px;
 }
 
@@ -1104,15 +1041,15 @@ body {
     font-size: 0.95rem;
     font-weight: 800;
     color: #ffffff;
-    background: rgba(248, 113, 113, 0.3);
+    background: rgba(109, 76, 251, 0.35);
     padding: 6px 12px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(167, 139, 250, 0.4);
     white-space: nowrap;
 }
 
 .weekly-yt-banner-btn:hover .yt-banner-arrow {
-    background: #f87171;
+    background: var(--accent-light);
     color: #060814;
 }
 
@@ -1321,7 +1258,8 @@ footer {
 
 @media (max-width: 992px) {
     .weekly-split-layout,
-    .map-split-layout {
+    .map-split-layout,
+    .eq-split-layout {
         flex-direction: column;
     }
     .weekly-left-pane,
@@ -1348,10 +1286,10 @@ footer {
     .top-search-bar input {
         width: 100%;
     }
-    .dict-columns-container, .maps-columns-container, .ghost-columns-container, .eq-columns-container {
+    .dict-columns-container, .ghost-columns-container {
         flex-direction: column !important;
     }
-    .ghost-col, .eq-col, .map-column, .dict-column {
+    .ghost-col, .dict-column {
         flex: 1 1 100% !important;
     }
 }

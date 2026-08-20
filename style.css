@@ -810,123 +810,7 @@ body {
     line-height: 1.4;
 }
 
-/* 4. 맵 정보 전용 레이아웃 */
-.map-filter-bar {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 1.25rem;
-}
-
-.map-filter-btn {
-    background-color: var(--card-bg);
-    border: 1.5px solid var(--card-border);
-    color: var(--text-secondary);
-    padding: 7px 16px;
-    border-radius: 18px;
-    font-weight: 600;
-    font-size: 1.0rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.map-filter-btn.active, .map-filter-btn:hover {
-    background-color: rgba(109, 76, 251, 0.25);
-    border-color: var(--accent-vibrant);
-    color: #ffffff;
-    box-shadow: 0 0 9px var(--accent-glow);
-}
-
-#maps-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.maps-columns-container {
-    display: flex;
-    flex-direction: row;
-    gap: 18px;
-    align-items: flex-start;
-    width: 100%;
-}
-
-.map-column {
-    flex: 1 1 0px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    min-width: 0;
-    width: 100%;
-}
-
-.map-card {
-    background-color: var(--card-bg);
-    border: 1.5px solid var(--card-border) !important;
-    border-radius: 12px;
-    padding: 1.25rem;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 1;
-}
-
-.map-card:hover {
-    border-color: #c4b5fd !important;
-    background: linear-gradient(145deg, #181c3d 0%, #10142d 100%) !important;
-    box-shadow: 0 10px 30px rgba(109, 76, 251, 0.45), 
-                0 0 25px rgba(196, 181, 253, 0.6), 
-                inset 0 0 16px rgba(167, 139, 250, 0.25) !important;
-    transform: translateY(-5px) scale(1.015) !important;
-    z-index: 10;
-}
-
-.map-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--card-border);
-    padding-bottom: 0.7rem;
-    margin-bottom: 0.9rem;
-}
-
-.map-name {
-    font-size: 1.45rem;
-    font-weight: 700;
-    color: #ffffff;
-}
-
-.map-badge {
-    font-size: 0.9rem;
-    padding: 2px 8px;
-    border-radius: 9px;
-    font-weight: 600;
-}
-
-.map-badge.Small { background-color: rgba(52, 211, 153, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
-.map-badge.Medium { background-color: rgba(166, 143, 255, 0.15); color: var(--accent-light); border: 1px solid var(--accent-light); }
-.map-badge.Large { background-color: rgba(248, 113, 113, 0.15); color: var(--accent-red); border: 1px solid var(--accent-red); }
-
-.map-info-list {
-    background-color: #080a18;
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 8px 11px;
-    margin-bottom: 9px;
-    font-size: 0.95rem;
-}
-
-.map-info-item {
-    margin-bottom: 3px;
-    color: var(--text-secondary);
-}
-
-.map-info-item strong {
-    color: var(--accent-light);
-}
-
-/* 5. 공략 / 정보 전용 레이아웃 */
+/* 4. 공략 / 정보 전용 레이아웃 */
 .guide-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -966,14 +850,16 @@ body {
     color: var(--text-primary);
 }
 
-/* 🎯 주간 도전 과제 좌우 4:6 황금 분할 레이아웃 */
-#weekly-container {
+/* 🎯 주간 도전 과제 & 맵 정보 좌우 4:6 황금 분할 레이아웃 */
+#weekly-container,
+#maps-container {
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
 }
 
-.weekly-split-layout {
+.weekly-split-layout,
+.map-split-layout {
     display: flex;
     gap: 20px;
     width: 100%;
@@ -1066,6 +952,44 @@ body {
     white-space: nowrap;
 }
 
+/* 🗺️ 맵 필터 및 배지 스타일 */
+.map-split-layout .map-filter-bar {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.map-split-layout .map-filter-btn {
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.map-split-layout .map-filter-btn.active,
+.map-split-layout .map-filter-btn:hover {
+    background-color: rgba(109, 76, 251, 0.25);
+    border-color: var(--accent-vibrant);
+    color: #ffffff;
+    box-shadow: 0 0 9px var(--accent-glow);
+}
+
+.map-badge {
+    font-size: 0.9rem;
+    padding: 2px 8px;
+    border-radius: 9px;
+    font-weight: 600;
+}
+
+.map-badge.Small { background-color: rgba(52, 211, 153, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
+.map-badge.Medium { background-color: rgba(166, 143, 255, 0.15); color: var(--accent-light); border: 1px solid var(--accent-light); }
+.map-badge.Large { background-color: rgba(248, 113, 113, 0.15); color: var(--accent-red); border: 1px solid var(--accent-red); }
+
 /* 우측 60% 분할 상세 패널 */
 .weekly-right-pane {
     flex: 0 0 calc(60% - 10px);
@@ -1154,6 +1078,53 @@ body {
 .weekly-yt-banner-btn:hover .yt-banner-arrow {
     background: #f87171;
     color: #060814;
+}
+
+/* 🗺️ 지도 이미지 뷰어 영역 */
+.map-image-container {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid var(--card-border);
+    background: #000;
+    position: relative;
+    text-align: center;
+}
+
+.map-preview-img {
+    width: 100%;
+    max-height: 380px;
+    object-fit: contain;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.map-preview-img:hover {
+    transform: scale(1.015);
+}
+
+.map-image-hint {
+    display: block;
+    padding: 6px;
+    background: rgba(15, 18, 38, 0.85);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--card-border);
+}
+
+.map-image-placeholder {
+    width: 100%;
+    padding: 24px 16px;
+    background: linear-gradient(135deg, rgba(15, 18, 38, 0.9) 0%, rgba(109, 76, 251, 0.15) 100%);
+    border: 1.5px dashed var(--accent-vibrant);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 /* 우측 플로팅 퀵바 */
@@ -1313,7 +1284,8 @@ footer {
 }
 
 @media (max-width: 992px) {
-    .weekly-split-layout {
+    .weekly-split-layout,
+    .map-split-layout {
         flex-direction: column;
     }
     .weekly-left-pane,

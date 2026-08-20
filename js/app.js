@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof renderGhostList === 'function') renderGhostList();
     if (typeof renderGhostDictionary === 'function') renderGhostDictionary();
 
-    renderEquipment();
+    renderEquipment('ALL');
     renderWeekly();
     renderMaps('ALL');
     renderGuides();
@@ -17,49 +17,124 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchVisitorCounts();
 });
 
-// 3. 장비 가이드 렌더링
-function renderEquipment() {
+// 3. 🛠️ 장비 가이드 렌더링 (좌우 4:6 분할 & 유튜브 배너 통합)
+let currentSelectedEqIndex = 0;
+let currentEqCategory = 'ALL';
+
+function renderEquipment(category = 'ALL') {
     const container = document.getElementById('equipment-container');
     if (!container || typeof EQUIPMENT_DATA === 'undefined') return;
     container.innerHTML = '';
+    currentEqCategory = category;
 
-    const columnsWrapper = document.createElement('div');
-    columnsWrapper.className = 'eq-columns-container';
+    const filteredEq = category === 'ALL' 
+        ? EQUIPMENT_DATA 
+        : EQUIPMENT_DATA.filter(e => e.category.includes(category));
 
-    const colElements = [
-        document.createElement('div'),
-        document.createElement('div'),
-        document.createElement('div')
-    ];
+    if (currentSelectedEqIndex >= filteredEq.length) {
+        currentSelectedEqIndex = 0;
+    }
 
-    colElements.forEach(col => {
-        col.className = 'eq-col';
-        columnsWrapper.appendChild(col);
-    });
+    const wrapper = document.createElement('div');
+    wrapper.className = 'weekly-split-layout eq-split-layout';
 
-    EQUIPMENT_DATA.forEach((eq, index) => {
-        const card = document.createElement('div');
-        card.className = 'eq-card';
-        const detailId = `eq-detail-${index}`;
-
-        const detailSection = eq.isDetailed && eq.detailedHtml ? `
-            <div style="margin-top: 14px; background: rgba(0, 0, 0, 0.4); border-radius: 8px; padding: 10px 14px; border: 1px solid rgba(255, 255, 255, 0.08);">
-                <button type="button" onclick="toggleEqDetail('${detailId}', this)" style="width: 100%; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #a78bfa; padding: 0; outline: none;">
-                    <span style="font-size: 0.95rem;">🛠️ 장비 스펙 & 심층 사용 가이드</span>
-                    <span class="toggle-btn-txt" style="font-size: 0.82rem; color: #a1a1aa; border: 1px solid rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px; background: rgba(255,255,255,0.05);">펼치기 ▾</span>
-                </button>
-                <div id="${detailId}" style="display: none; margin-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px; text-align: left;">
-                    ${eq.detailedHtml}
-                </div>
+    // 좌측 패널 (40%): 개요 카드 + 카테고리 필터 + 장비 리스트
+    const leftCol = document.createElement('div');
+    leftCol.className = 'weekly-left-pane';
+    leftCol.innerHTML = `
+        <div class="guide-card" style="margin-bottom: 12px; border-left: 4px solid var(--accent-vibrant); padding: 12px 14px;">
+            <div class="guide-card-title" style="font-size: 1.05rem; margin-bottom: 6px;">🛠️ 티어(Tier)별 장비 업그레이드 시스템</div>
+            <div class="guide-card-body" style="font-size: 0.9rem; line-height: 1.55; color: var(--text-secondary);">
+                • <strong>1티어:</strong> 아날로그/초기 기본 장비 (낮은 정밀도, 오차 발생)<br>
+                • <strong>2티어:</strong> 표준 디지털 장비 (안정적인 탐지 성능과 시야 제공)<br>
+                • <strong>3티어:</strong> 최첨단 하이엔드 장비 (원거리 탐색, 스캔 및 고성능 보조)
             </div>
-        ` : '';
+        </div>
 
-        card.innerHTML = `
-            <div>
-                <div class="eq-header">
-                    <div class="eq-name">${eq.name}</div>
-                    <span class="eq-category">${eq.category}</span>
+        <div class="map-filter-bar" style="margin-bottom: 10px; gap: 6px;">
+            <button class="map-filter-btn ${category === 'ALL' ? 'active' : ''}" onclick="filterEqCategory('ALL')">전체 (${EQUIPMENT_DATA.length})</button>
+            <button class="map-filter-btn ${category === '증거' ? 'active' : ''}" onclick="filterEqCategory('증거')">증거 수집</button>
+            <button class="map-filter-btn ${category === '생존' || category === '시야' ? 'active' : ''}" onclick="filterEqCategory('생존')">생존/시야</button>
+        </div>
+
+        <div class="weekly-scroll-list" id="eq-scroll-list">
+            ${filteredEq.map((eq, idx) => `
+                <button type="button" 
+                        class="weekly-list-item ${idx === currentSelectedEqIndex ? 'active' : ''}" 
+                        onclick="selectEqItem(${idx})">
+                    <span class="eq-category" style="font-size: 0.8rem; padding: 2px 7px;">${eq.category.split('/')[0]}</span>
+                    <span class="ch-name-txt" style="font-size: 1.02rem;">${eq.name}</span>
+                    <span class="ch-map-tag" style="font-size: 0.8rem;">Tier 1-3</span>
+                </button>
+            `).join('')}
+        </div>
+    `;
+
+    // 우측 패널 (60%): 상세 뷰
+    const rightCol = document.createElement('div');
+    rightCol.className = 'weekly-right-pane';
+    rightCol.id = 'eq-detail-pane';
+
+    wrapper.appendChild(leftCol);
+    wrapper.appendChild(rightCol);
+    container.appendChild(wrapper);
+
+    updateEqDetail(currentSelectedEqIndex);
+}
+
+function selectEqItem(index) {
+    currentSelectedEqIndex = index;
+    document.querySelectorAll('#eq-scroll-list .weekly-list-item').forEach((btn, idx) => {
+        if (idx === index) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    updateEqDetail(index);
+}
+
+function filterEqCategory(cat) {
+    currentSelectedEqIndex = 0;
+    renderEquipment(cat);
+}
+
+function updateEqDetail(index) {
+    const pane = document.getElementById('eq-detail-pane');
+    if (!pane || typeof EQUIPMENT_DATA === 'undefined') return;
+
+    const filteredEq = currentEqCategory === 'ALL' 
+        ? EQUIPMENT_DATA 
+        : EQUIPMENT_DATA.filter(e => e.category.includes(currentEqCategory));
+
+    const eq = filteredEq[index] || filteredEq[0];
+    if (!eq) return;
+
+    const ytQuery = encodeURIComponent(`파스모포비아 ${eq.name.split('(')[0].trim()} 3티어 공략 뇽자`);
+
+    pane.innerHTML = `
+        <div class="weekly-detail-card">
+            <div class="weekly-detail-header">
+                <div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${eq.name}</div>
+                    <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
+                        분류: ${eq.category}
+                    </div>
                 </div>
+                <span class="eq-category" style="font-size: 0.95rem; padding: 5px 12px;">${eq.category}</span>
+            </div>
+
+            <!-- 유튜브 공략 배너 -->
+            <div style="margin: 14px 0 16px 0;">
+                <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="weekly-yt-banner-btn" style="border-color: #a78bfa; background: linear-gradient(90deg, rgba(109, 76, 251, 0.22) 0%, rgba(248, 113, 113, 0.18) 100%);">
+                    <span class="yt-banner-icon">🛠️</span>
+                    <div class="yt-banner-textbox">
+                        <div class="yt-banner-title">📺 유튜브에서 '${eq.name.split('(')[0].trim()}' 3티어 실전 가이드 보기</div>
+                        <div class="yt-banner-sub" style="color: #c4b5fd;">클릭 시 해당 장비의 뇽자 티어별 스펙 및 활용 팁 영상으로 이동합니다.</div>
+                    </div>
+                    <span class="yt-banner-arrow" style="background: rgba(109, 76, 251, 0.35); border-color: rgba(167, 139, 250, 0.4);">영상 보기 ➔</span>
+                </a>
+            </div>
+
+            <div class="dict-section-title">1. 티어(Tier)별 기본 스펙 요약</div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
                 <div class="eq-tier-box">
                     <div class="eq-tier-title">Tier 1</div>
                     <div class="eq-tier-desc">${eq.t1}</div>
@@ -73,39 +148,16 @@ function renderEquipment() {
                     <div class="eq-tier-desc">${eq.t3}</div>
                 </div>
             </div>
-            ${detailSection}
-        `;
 
-        const targetCol = colElements[index % 3];
-        targetCol.appendChild(card);
-    });
-
-    container.appendChild(columnsWrapper);
+            <div class="dict-section-title">2. 장비 스펙 & 심층 사용 가이드 (Deep Dive)</div>
+            <div style="background: rgba(0, 0, 0, 0.4); padding: 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.94rem; line-height: 1.65;">
+                ${eq.detailedHtml || '<p style="color: var(--text-secondary);">해당 장비의 추가 상세 스펙 데이터가 준비 중입니다.</p>'}
+            </div>
+        </div>
+    `;
 }
 
-function toggleEqDetail(id, btn) {
-    const el = document.getElementById(id);
-    const txt = btn.querySelector('.toggle-btn-txt');
-    if (!el) return;
-
-    if (el.style.display === 'none' || el.style.display === '') {
-        el.style.display = 'block';
-        if (txt) {
-            txt.innerText = '접기 ▴';
-            txt.style.color = '#f87171';
-            txt.style.borderColor = 'rgba(248, 113, 113, 0.4)';
-        }
-    } else {
-        el.style.display = 'none';
-        if (txt) {
-            txt.innerText = '펼치기 ▾';
-            txt.style.color = '#a1a1aa';
-            txt.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-        }
-    }
-}
-
-// 4. 주간 도전 과제 렌더링 (유튜브 검색: 뇽자 키워드 연동)
+// 4. 주간 도전 과제 렌더링
 let currentSelectedChallengeId = 1;
 
 function renderWeekly() {
@@ -185,7 +237,6 @@ function updateChallengeDetail(id) {
                 <span class="map-badge Medium" style="font-size: 1.0rem; padding: 7px 16px;">🗺️ ${data.map}</span>
             </div>
 
-            <!-- 대형 단독 유튜브 공략 검색 배너 버튼 -->
             <div style="margin: 14px 0 16px 0;">
                 <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="weekly-yt-banner-btn">
                     <span class="yt-banner-icon">▶️</span>
@@ -243,7 +294,7 @@ function updateChallengeDetail(id) {
     `;
 }
 
-// 5. 🗺️ 맵 정보 렌더링 (한글(영어) 표기 & 맵 뺑뺑이 공략 배너)
+// 5. 🗺️ 맵 정보 렌더링
 let currentSelectedMapIndex = 0;
 let currentMapCategory = 'ALL';
 
@@ -270,7 +321,6 @@ function getMapDisplayName(rawName) {
     return rawName;
 }
 
-// 맵 검색용 짧은 한글 이름 추출
 function getMapSearchKeyword(rawName) {
     const searchNameMap = {
         "6 Tanglewood Drive": "탱글우드",
@@ -407,12 +457,10 @@ function updateMapDetail(index) {
                 <span class="map-badge ${map.category}" style="font-size: 1.0rem; padding: 7px 16px;">${map.category}</span>
             </div>
 
-            <!-- 지도 뷰어 영역 -->
             <div style="margin: 14px 0 14px 0;">
                 ${mapImageHtml}
             </div>
 
-            <!-- 🌀 맵 뺑뺑이 공략 전용 유튜브 배너 -->
             <div style="margin-bottom: 16px;">
                 <a href="https://www.youtube.com/results?search_query=${mapYtQuery}" target="_blank" class="weekly-yt-banner-btn" style="border-color: #a78bfa; background: linear-gradient(90deg, rgba(109, 76, 251, 0.25) 0%, rgba(248, 113, 113, 0.18) 100%);">
                     <span class="yt-banner-icon">🌀</span>
@@ -523,6 +571,9 @@ function switchTab(tabId) {
 
     if (tabId === 'maps') {
         filterMapCategory('ALL');
+    }
+    if (tabId === 'equipment') {
+        filterEqCategory('ALL');
     }
 }
 

@@ -363,7 +363,7 @@ body {
     font-size: 1.35rem;
 }
 
-/* 1. 🔍 증거 분석 계산기 전용 레이아웃 (독립 4열 Flex 분배) */
+/* 1. 증거 분석 계산기 4열 Flex 레이아웃 */
 #ghost-list-container {
     display: flex;
     flex-direction: column;
@@ -485,47 +485,6 @@ body {
     color: var(--accent-green);
 }
 
-/* 유튜브 공략 버튼 */
-.main-youtube-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 9px 0 9px 0;
-}
-
-.yt-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    width: 100%;
-    background-color: rgba(166, 143, 255, 0.12);
-    border: 1.5px solid rgba(166, 143, 255, 0.35);
-    color: var(--accent-light);
-    padding: 7px 11px;
-    border-radius: 8px;
-    font-size: 1.0rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.yt-btn:hover {
-    background-color: rgba(109, 76, 251, 0.35);
-    border-color: var(--accent-light);
-    color: #ffffff;
-    box-shadow: 0 0 12px var(--accent-glow);
-    transform: translateY(-2px);
-}
-
-.yt-icon {
-    font-size: 0.8rem;
-    color: var(--accent-light);
-}
-
-.yt-btn:hover .yt-icon {
-    color: #ffffff;
-}
-
 .ghost-details {
     margin-top: 8px;
     border-top: 1.5px solid var(--card-border);
@@ -577,7 +536,7 @@ body {
     text-align: left;
 }
 
-/* 2. 📖 유령 도감 전용 레이아웃 (독립 3열 Flex 컬럼 정렬) */
+/* 2. 유령 도감 전용 레이아웃 */
 #ghost-dictionary-container {
     display: flex;
     flex-direction: column;
@@ -751,7 +710,7 @@ body {
     color: var(--text-primary);
 }
 
-/* 3. 🛠️ 장비 가이드 전용 레이아웃 (독립 3열 Flex 분배 및 가로 확장) */
+/* 3. 장비 가이드 전용 레이아웃 */
 #equipment-container,
 #equipment-container.equipment-grid {
     display: flex !important;
@@ -851,7 +810,7 @@ body {
     line-height: 1.4;
 }
 
-/* 4. 🗺️ 맵 정보 전용 레이아웃 (독립 3열 Flex 컬럼 정렬) */
+/* 4. 맵 정보 전용 레이아웃 */
 .map-filter-bar {
     display: flex;
     gap: 8px;
@@ -1007,7 +966,7 @@ body {
     color: var(--text-primary);
 }
 
-/* 🎯 주간 도전 과제 좌우 2분할 레이아웃 스타일 (좌측 패널 780px 와이드 확장) */
+/* 🎯 주간 도전 과제 좌우 2분할 레이아웃 스타일 (좌측 패널 860px 와이드 확장) */
 #weekly-container {
     display: flex !important;
     flex-direction: column !important;
@@ -1021,12 +980,12 @@ body {
     align-items: flex-start;
 }
 
-/* 좌측 패널: 폭 780px로 넉넉하게 확장 (말줄임표 방지) */
+/* 좌측 패널: 폭 860px로 여유 있게 확장 */
 .weekly-left-pane {
-    flex: 0 0 780px;
+    flex: 0 0 860px;
     display: flex;
     flex-direction: column;
-    max-width: 780px;
+    max-width: 860px;
 }
 
 .weekly-scroll-list {
@@ -1053,8 +1012,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
-    padding: 13px 18px;
+    gap: 16px;
+    padding: 13px 20px;
     background-color: var(--card-bg);
     border: 1.5px solid var(--card-border);
     border-radius: 10px;
@@ -1082,13 +1041,13 @@ body {
     font-weight: 800;
     color: var(--accent-light);
     background: rgba(109, 76, 251, 0.2);
-    padding: 4px 9px;
+    padding: 4px 10px;
     border-radius: 6px;
     white-space: nowrap;
 }
 
 .ch-name-txt {
-    font-size: 1.06rem;
+    font-size: 1.08rem;
     font-weight: 700;
     flex: 1;
     white-space: nowrap;
@@ -1097,11 +1056,11 @@ body {
 }
 
 .ch-map-tag {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     color: var(--text-secondary);
     background: rgba(255, 255, 255, 0.05);
-    padding: 4px 10px;
-    border-radius: 5px;
+    padding: 4px 12px;
+    border-radius: 6px;
     white-space: nowrap;
 }
 
@@ -1123,11 +1082,74 @@ body {
 .weekly-detail-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     border-bottom: 1.5px solid var(--card-border);
     padding-bottom: 1rem;
     flex-wrap: wrap;
     gap: 12px;
+}
+
+/* 📺 대형 단독 유튜브 공략 검색 배너 버튼 */
+.weekly-yt-banner-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.18) 0%, rgba(109, 76, 251, 0.2) 100%);
+    border: 1.8px solid #f87171;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(248, 113, 113, 0.2);
+    box-sizing: border-box;
+}
+
+.weekly-yt-banner-btn:hover {
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.35) 0%, rgba(109, 76, 251, 0.35) 100%);
+    border-color: #ffffff;
+    box-shadow: 0 6px 22px rgba(248, 113, 113, 0.45);
+    transform: translateY(-2px);
+}
+
+.yt-banner-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.yt-banner-textbox {
+    flex: 1;
+    text-align: left;
+}
+
+.yt-banner-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+}
+
+.yt-banner-sub {
+    font-size: 0.85rem;
+    color: #fca5a5;
+    margin-top: 2px;
+}
+
+.yt-banner-arrow {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #ffffff;
+    background: rgba(248, 113, 113, 0.3);
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+}
+
+.weekly-yt-banner-btn:hover .yt-banner-arrow {
+    background: #f87171;
+    color: #060814;
 }
 
 /* 우측 플로팅 퀵바 */
@@ -1267,10 +1289,10 @@ footer {
 }
 
 /* 반응형 모바일/태블릿 대응 */
-@media (max-width: 1400px) {
+@media (max-width: 1600px) {
     .weekly-left-pane {
-        flex: 0 0 620px;
-        max-width: 620px;
+        flex: 0 0 680px;
+        max-width: 680px;
     }
 }
 
@@ -1282,8 +1304,8 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
     .weekly-left-pane {
-        flex: 0 0 520px;
-        max-width: 520px;
+        flex: 0 0 540px;
+        max-width: 540px;
     }
 }
 

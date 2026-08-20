@@ -2,16 +2,11 @@
 // 메인 애플리케이션 진입점 & 공통 UI 제어
 // ==========================================
 
-// 전체 탭 초기화 실행
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 증거 분석 초기화 (tab-evidence.js)
     if (typeof initEvidenceButtons === 'function') initEvidenceButtons();
     if (typeof renderGhostList === 'function') renderGhostList();
-
-    // 2. 유령 도감 렌더링 (tab-dictionary.js)
     if (typeof renderGhostDictionary === 'function') renderGhostDictionary();
 
-    // 3~8. 기타 탭 렌더링
     renderEquipment();
     renderWeekly();
     renderMaps('ALL');
@@ -19,39 +14,95 @@ document.addEventListener('DOMContentLoaded', () => {
     renderIdCards();
     renderNews();
 
-    // 부가 기능
     fetchVisitorCounts();
 });
 
-// 3. 장비 가이드 렌더링
+// 3. 장비 가이드 렌더링 (독립 3열 Flex 분배 및 토글 상세 공략 지원)
 function renderEquipment() {
     const container = document.getElementById('equipment-container');
     if (!container || typeof EQUIPMENT_DATA === 'undefined') return;
     container.innerHTML = '';
 
-    EQUIPMENT_DATA.forEach(eq => {
+    const columnsWrapper = document.createElement('div');
+    columnsWrapper.className = 'eq-columns-container';
+
+    const colElements = [
+        document.createElement('div'),
+        document.createElement('div'),
+        document.createElement('div')
+    ];
+
+    colElements.forEach(col => {
+        col.className = 'eq-col';
+        columnsWrapper.appendChild(col);
+    });
+
+    EQUIPMENT_DATA.forEach((eq, index) => {
         const card = document.createElement('div');
         card.className = 'eq-card';
+        const detailId = `eq-detail-${index}`;
+
+        const detailSection = eq.isDetailed && eq.detailedHtml ? `
+            <div style="margin-top: 14px; background: rgba(0, 0, 0, 0.4); border-radius: 8px; padding: 10px 14px; border: 1px solid rgba(255, 255, 255, 0.08);">
+                <button type="button" onclick="toggleEqDetail('${detailId}', this)" style="width: 100%; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #a78bfa; padding: 0; outline: none;">
+                    <span style="font-size: 0.95rem;">🛠️ 장비 스펙 & 심층 사용 가이드</span>
+                    <span class="toggle-btn-txt" style="font-size: 0.82rem; color: #a1a1aa; border: 1px solid rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px; background: rgba(255,255,255,0.05);">펼치기 ▾</span>
+                </button>
+                <div id="${detailId}" style="display: none; margin-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px; text-align: left;">
+                    ${eq.detailedHtml}
+                </div>
+            </div>
+        ` : '';
+
         card.innerHTML = `
-            <div class="eq-header">
-                <div class="eq-name">${eq.name}</div>
-                <span class="eq-category">${eq.category}</span>
+            <div>
+                <div class="eq-header">
+                    <div class="eq-name">${eq.name}</div>
+                    <span class="eq-category">${eq.category}</span>
+                </div>
+                <div class="eq-tier-box">
+                    <div class="eq-tier-title">Tier 1</div>
+                    <div class="eq-tier-desc">${eq.t1}</div>
+                </div>
+                <div class="eq-tier-box">
+                    <div class="eq-tier-title">Tier 2</div>
+                    <div class="eq-tier-desc">${eq.t2}</div>
+                </div>
+                <div class="eq-tier-box">
+                    <div class="eq-tier-title">Tier 3</div>
+                    <div class="eq-tier-desc">${eq.t3}</div>
+                </div>
             </div>
-            <div class="eq-tier-box">
-                <div class="eq-tier-title">Tier 1</div>
-                <div class="eq-tier-desc">${eq.t1}</div>
-            </div>
-            <div class="eq-tier-box">
-                <div class="eq-tier-title">Tier 2</div>
-                <div class="eq-tier-desc">${eq.t2}</div>
-            </div>
-            <div class="eq-tier-box">
-                <div class="eq-tier-title">Tier 3</div>
-                <div class="eq-tier-desc">${eq.t3}</div>
-            </div>
+            ${detailSection}
         `;
-        container.appendChild(card);
+
+        const targetCol = colElements[index % 3];
+        targetCol.appendChild(card);
     });
+
+    container.appendChild(columnsWrapper);
+}
+
+function toggleEqDetail(id, btn) {
+    const el = document.getElementById(id);
+    const txt = btn.querySelector('.toggle-btn-txt');
+    if (!el) return;
+
+    if (el.style.display === 'none' || el.style.display === '') {
+        el.style.display = 'block';
+        if (txt) {
+            txt.innerText = '접기 ▴';
+            txt.style.color = '#f87171';
+            txt.style.borderColor = 'rgba(248, 113, 113, 0.4)';
+        }
+    } else {
+        el.style.display = 'none';
+        if (txt) {
+            txt.innerText = '펼치기 ▾';
+            txt.style.color = '#a1a1aa';
+            txt.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        }
+    }
 }
 
 // 4. 주간 도전 과제 렌더링
@@ -71,13 +122,12 @@ function renderWeekly() {
     });
 }
 
-// 5. 맵 정보 렌더링 (독립 3열 Flex 컬럼 방식: 셔플 방지 & 빈 공간 즉시 메움)
+// 5. 맵 정보 렌더링 (독립 3열 Flex 컬럼 방식)
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
     if (!container || typeof MAP_DATA === 'undefined') return;
     container.innerHTML = '';
 
-    // 상단 공통 규칙 배너
     const ruleCard = document.createElement('div');
     ruleCard.className = 'guide-card';
     ruleCard.style.cssText = 'border-left: 4px solid #6d4cfb !important; margin-bottom: 20px !important; background: rgba(13, 16, 35, 0.8) !important; padding: 16px !important; border-radius: 8px !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; width: 100% !important; box-sizing: border-box !important;';
@@ -96,11 +146,9 @@ function renderMaps(category = 'ALL') {
     `;
     container.appendChild(ruleCard);
 
-    // 맵 목록을 감쌀 3열 독립 컨테이너 생성
     const columnsWrapper = document.createElement('div');
     columnsWrapper.className = 'maps-columns-container';
 
-    // 1열, 2열, 3열 생성
     const colElements = [
         document.createElement('div'),
         document.createElement('div'),
@@ -114,7 +162,6 @@ function renderMaps(category = 'ALL') {
 
     const filtered = category === 'ALL' ? MAP_DATA : MAP_DATA.filter(m => m.category === category);
 
-    // 각 맵을 1, 2, 3열 순서대로 고정 배분
     filtered.forEach((map, index) => {
         const card = document.createElement('div');
         card.className = 'map-card';
@@ -146,7 +193,6 @@ function renderMaps(category = 'ALL') {
             ${detailSection}
         `;
 
-        // 0 -> 1열, 1 -> 2열, 2 -> 3열에 순환 배치
         const targetCol = colElements[index % 3];
         targetCol.appendChild(card);
     });

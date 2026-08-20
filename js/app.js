@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderEquipment('ALL');
     renderWeekly();
     renderMaps('ALL');
+    renderApocalypse();
+    renderDrops();
     renderGuides();
     renderIdCards();
     renderNews();
@@ -38,23 +40,22 @@ function renderEquipment(category = 'ALL') {
     const wrapper = document.createElement('div');
     wrapper.className = 'weekly-split-layout eq-split-layout';
 
-    // 좌측 패널 (40%): 개요 카드 + 카테고리 필터 + 장비 리스트
     const leftCol = document.createElement('div');
     leftCol.className = 'weekly-left-pane';
     leftCol.innerHTML = `
         <div class="guide-card" style="margin-bottom: 12px; border-left: 4px solid var(--accent-vibrant); padding: 12px 14px;">
-            <div class="guide-card-title" style="font-size: 1.05rem; margin-bottom: 6px;">🛠️ 티어(Tier)별 장비 업그레이드 시스템</div>
+            <div class="guide-card-title" style="font-size: 1.05rem; margin-bottom: 6px;">🛠️ 티어(Tier)별 장비 업그레이드 시스템[cite: 9]</div>
             <div class="guide-card-body" style="font-size: 0.9rem; line-height: 1.55; color: var(--text-secondary);">
-                • <strong>1티어:</strong> 아날로그/초기 기본 장비 (낮은 정밀도, 오차 발생)<br>
-                • <strong>2티어:</strong> 표준 디지털 장비 (안정적인 탐지 성능과 시야 제공)<br>
-                • <strong>3티어:</strong> 최첨단 하이엔드 장비 (원거리 탐색, 스캔 및 고성능 보조)
+                • <strong>1티어:</strong> 아날로그/초기 기본 장비 (낮은 정밀도, 오차 발생)[cite: 9]<br>
+                • <strong>2티어:</strong> 표준 디지털 장비 (안정적인 탐지 성능과 시야 제공)[cite: 9]<br>
+                • <strong>3티어:</strong> 최첨단 하이엔드 장비 (원거리 탐색, 스캔 및 고성능 보조)[cite: 9]
             </div>
         </div>
 
         <div class="map-filter-bar" style="margin-bottom: 10px; gap: 6px;">
-            <button class="map-filter-btn ${category === 'ALL' ? 'active' : ''}" onclick="filterEqCategory('ALL')">전체 (${EQUIPMENT_DATA.length})</button>
-            <button class="map-filter-btn ${category === '증거' ? 'active' : ''}" onclick="filterEqCategory('증거')">증거 수집</button>
-            <button class="map-filter-btn ${category === '생존' || category === '시야' ? 'active' : ''}" onclick="filterEqCategory('생존')">생존/시야</button>
+            <button class="map-filter-btn ${category === 'ALL' ? 'active' : ''}" onclick="filterEqCategory('ALL')">전체 (${EQUIPMENT_DATA.length})[cite: 9]</button>
+            <button class="map-filter-btn ${category === '증거' ? 'active' : ''}" onclick="filterEqCategory('증거')">증거 수집[cite: 9]</button>
+            <button class="map-filter-btn ${category === '생존' || category === '시야' ? 'active' : ''}" onclick="filterEqCategory('생존')">생존/시야[cite: 9]</button>
         </div>
 
         <div class="weekly-scroll-list" id="eq-scroll-list">
@@ -62,15 +63,14 @@ function renderEquipment(category = 'ALL') {
                 <button type="button" 
                         class="weekly-list-item ${idx === currentSelectedEqIndex ? 'active' : ''}" 
                         onclick="selectEqItem(${idx})">
-                    <span class="eq-category" style="font-size: 0.8rem; padding: 2px 7px;">${eq.category.split('/')[0]}</span>
-                    <span class="ch-name-txt" style="font-size: 1.02rem;">${eq.name}</span>
-                    <span class="ch-map-tag" style="font-size: 0.8rem;">Tier 1-3</span>
+                    <span class="eq-category" style="font-size: 0.8rem; padding: 2px 7px;">${eq.category.split('/')[0]}[cite: 9]</span>
+                    <span class="ch-name-txt" style="font-size: 1.02rem;">${eq.name}[cite: 9]</span>
+                    <span class="ch-map-tag" style="font-size: 0.8rem;">Tier 1-3[cite: 9]</span>
                 </button>
             `).join('')}
         </div>
     `;
 
-    // 우측 패널 (60%): 상세 뷰
     const rightCol = document.createElement('div');
     rightCol.className = 'weekly-right-pane';
     rightCol.id = 'eq-detail-pane';
@@ -113,45 +113,44 @@ function updateEqDetail(index) {
         <div class="weekly-detail-card">
             <div class="weekly-detail-header">
                 <div>
-                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${eq.name}</div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${eq.name}[cite: 9]</div>
                     <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
-                        분류: ${eq.category}
+                        분류: ${eq.category}[cite: 9]
                     </div>
                 </div>
-                <span class="eq-category" style="font-size: 0.95rem; padding: 5px 12px;">${eq.category}</span>
+                <span class="eq-category" style="font-size: 0.95rem; padding: 5px 12px;">${eq.category}[cite: 9]</span>
             </div>
 
-            <!-- 유튜브 공략 배너 -->
             <div style="margin: 14px 0 16px 0;">
                 <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="weekly-yt-banner-btn">
                     <span class="yt-banner-icon">🛠️</span>
                     <div class="yt-banner-textbox">
-                        <div class="yt-banner-title">📺 유튜브에서 '${eq.name.split('(')[0].trim()}' 3티어 실전 가이드 보기</div>
-                        <div class="yt-banner-sub">클릭 시 해당 장비의 뇽자 티어별 스펙 및 활용 팁 영상으로 이동합니다.</div>
+                        <div class="yt-banner-title">📺 유튜브에서 '${eq.name.split('(')[0].trim()}' 3티어 실전 가이드 보기[cite: 9]</div>
+                        <div class="yt-banner-sub">클릭 시 해당 장비의 뇽자 티어별 스펙 및 활용 팁 영상으로 이동합니다.[cite: 9]</div>
                     </div>
-                    <span class="yt-banner-arrow">영상 보기 ➔</span>
+                    <span class="yt-banner-arrow">영상 보기 ➔[cite: 9]</span>
                 </a>
             </div>
 
-            <div class="dict-section-title">1. 티어(Tier)별 기본 스펙 요약</div>
+            <div class="dict-section-title">1. 티어(Tier)별 기본 스펙 요약[cite: 9]</div>
             <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
                 <div class="eq-tier-box">
-                    <div class="eq-tier-title">Tier 1</div>
-                    <div class="eq-tier-desc">${eq.t1}</div>
+                    <div class="eq-tier-title">Tier 1[cite: 9]</div>
+                    <div class="eq-tier-desc">${eq.t1}[cite: 9]</div>
                 </div>
                 <div class="eq-tier-box">
-                    <div class="eq-tier-title">Tier 2</div>
-                    <div class="eq-tier-desc">${eq.t2}</div>
+                    <div class="eq-tier-title">Tier 2[cite: 9]</div>
+                    <div class="eq-tier-desc">${eq.t2}[cite: 9]</div>
                 </div>
                 <div class="eq-tier-box">
-                    <div class="eq-tier-title">Tier 3</div>
-                    <div class="eq-tier-desc">${eq.t3}</div>
+                    <div class="eq-tier-title">Tier 3[cite: 9]</div>
+                    <div class="eq-tier-desc">${eq.t3}[cite: 9]</div>
                 </div>
             </div>
 
-            <div class="dict-section-title">2. 장비 스펙 & 심층 사용 가이드 (Deep Dive)</div>
+            <div class="dict-section-title">2. 장비 스펙 & 심층 사용 가이드 (Deep Dive)[cite: 9]</div>
             <div style="background: rgba(0, 0, 0, 0.4); padding: 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.94rem; line-height: 1.65;">
-                ${eq.detailedHtml || '<p style="color: var(--text-secondary);">해당 장비의 추가 상세 스펙 데이터가 준비 중입니다.</p>'}
+                ${eq.detailedHtml || '<p style="color: var(--text-secondary);">해당 장비의 추가 상세 스펙 데이터가 준비 중입니다.</p>'}[cite: 9]
             </div>
         </div>
     `;
@@ -172,17 +171,17 @@ function renderWeekly() {
     leftCol.className = 'weekly-left-pane';
     leftCol.innerHTML = `
         <div class="guide-card" style="margin-bottom: 14px; border-left: 4px solid var(--accent-vibrant);">
-            <div class="guide-card-title" style="font-size: 1.15rem;">🎯 주간 도전 과제 (Challenge Mode) 개요</div>
+            <div class="guide-card-title" style="font-size: 1.15rem;">🎯 주간 도전 과제 (Challenge Mode) 개요[cite: 9]</div>
             <div class="guide-card-body" style="font-size: 0.95rem; line-height: 1.6;">
-                • <strong>초기화 주기:</strong> 매주 월요일 오전 9시 (KST / 00:00 UTC)<br>
-                • <strong>클리어 보상:</strong> <strong>$5,000 게임 머니 + 5,000 XP</strong> (지정 맵에서 유령 3회 특정 시 완료)<br>
-                • <strong>장비 무료 제공:</strong> 요구되는 모든 장비가 무료 지급되며, <strong>사망해도 소지품 손실 패널티가 없습니다.</strong>
+                • <strong>초기화 주기:</strong> 매주 월요일 오전 9시 (KST / 00:00 UTC)[cite: 9]<br>
+                • <strong>클리어 보상:</strong> <strong>$5,000 게임 머니 + 5,000 XP</strong> (지정 맵에서 유령 3회 특정 시 완료)[cite: 9]<br>
+                • <strong>장비 무료 제공:</strong> 요구되는 모든 장비가 무료 지급되며, <strong>사망해도 소지품 손실 패널티가 없습니다.</strong>[cite: 9]
             </div>
         </div>
 
         <div style="font-size: 1.05rem; font-weight: 700; color: var(--accent-light); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
-            <span>📜 26종 챌린지 로테이션 목록</span>
-            <span style="font-size: 0.88rem; color: var(--text-secondary); font-weight: normal;">* 클릭하여 상세 보기</span>
+            <span>📜 26종 챌린지 로테이션 목록[cite: 9]</span>
+            <span style="font-size: 0.88rem; color: var(--text-secondary); font-weight: normal;">* 클릭하여 상세 보기[cite: 9]</span>
         </div>
 
         <div class="weekly-scroll-list" id="weekly-scroll-list">
@@ -190,9 +189,9 @@ function renderWeekly() {
                 <button type="button" 
                         class="weekly-list-item ${ch.id === currentSelectedChallengeId ? 'active' : ''}" 
                         onclick="selectChallenge(${ch.id})">
-                    <span class="ch-id-badge">#${ch.id}</span>
-                    <span class="ch-name-txt">${ch.nameKr}</span>
-                    <span class="ch-map-tag">${ch.map.split('(')[0]}</span>
+                    <span class="ch-id-badge">#${ch.id}[cite: 9]</span>
+                    <span class="ch-name-txt">${ch.nameKr}[cite: 9]</span>
+                    <span class="ch-map-tag">${ch.map.split('(')[0]}[cite: 9]</span>
                 </button>
             `).join('')}
         </div>
@@ -230,66 +229,65 @@ function updateChallengeDetail(id) {
         <div class="weekly-detail-card">
             <div class="weekly-detail-header">
                 <div>
-                    <div style="font-size: 0.95rem; color: var(--accent-light); font-weight: 700;">CHALLENGE #${data.id}</div>
-                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2px;">${data.nameKr}</div>
-                    <div style="font-size: 0.92rem; color: #a1a1aa; font-style: italic; margin-top: 4px;">"${data.quote}"</div>
+                    <div style="font-size: 0.95rem; color: var(--accent-light); font-weight: 700;">CHALLENGE #${data.id}[cite: 9]</div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2px;">${data.nameKr}[cite: 9]</div>
+                    <div style="font-size: 0.92rem; color: #a1a1aa; font-style: italic; margin-top: 4px;">"${data.quote}"[cite: 9]</div>
                 </div>
-                <span class="map-badge Medium" style="font-size: 1.0rem; padding: 7px 16px;">🗺️ ${data.map}</span>
+                <span class="map-badge Medium" style="font-size: 1.0rem; padding: 7px 16px;">🗺️ ${data.map}[cite: 9]</span>
             </div>
 
-            <!-- 네온 보라-라벤더 통일 유튜브 공략 배너 버튼 -->
             <div style="margin: 14px 0 16px 0;">
                 <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="weekly-yt-banner-btn">
                     <span class="yt-banner-icon">▶️</span>
                     <div class="yt-banner-textbox">
-                        <div class="yt-banner-title">📺 유튜브에서 '${data.nameEn}' 뇽자 공략 영상 보기</div>
-                        <div class="yt-banner-sub">클릭 시 해당 주간 챌린지의 뇽자 실전 클리어 및 공략 검색창으로 바로 이동합니다.</div>
+                        <div class="yt-banner-title">📺 유튜브에서 '${data.nameEn}' 뇽자 공략 영상 보기[cite: 9]</div>
+                        <div class="yt-banner-sub">클릭 시 해당 주간 챌린지의 뇽자 실전 클리어 및 공략 검색창으로 바로 이동합니다.[cite: 9]</div>
                     </div>
-                    <span class="yt-banner-arrow">영상 보기 ➔</span>
+                    <span class="yt-banner-arrow">영상 보기 ➔[cite: 9]</span>
                 </a>
             </div>
 
-            <div class="dict-section-title">1. 게임 환경 & 파라미터 세부 설정 (Status)</div>
+            <div class="dict-section-title">1. 게임 환경 & 파라미터 세부 설정 (Status)[cite: 9]</div>
             <div style="overflow-x: auto; margin-bottom: 14px;">
                 <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem; color: #d4d4d8; text-align: left;">
                     <tbody>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
-                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">제공 증거 수</td>
-                            <td style="padding: 8px 10px; color: #fff; width: 28%;">${data.evidences}</td>
-                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">준비 시간</td>
-                            <td style="padding: 8px 10px; color: #fff; width: 28%;">${data.setupTime}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">제공 증거 수[cite: 9]</td>
+                            <td style="padding: 8px 10px; color: #fff; width: 28%;">${data.evidences}[cite: 9]</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">준비 시간[cite: 9]</td>
+                            <td style="padding: 8px 10px; color: #fff; width: 28%;">${data.setupTime}[cite: 9]</td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
-                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">정신력 상태</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.sanity}</td>
-                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">이동 속도</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.speed}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">정신력 상태[cite: 9]</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.sanity}[cite: 9]</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">이동 속도[cite: 9]</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.speed}[cite: 9]</td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
-                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">은신처 상태</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.hiding}</td>
-                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">두꺼비집(차단기)</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.breaker}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">은신처 상태[cite: 9]</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.hiding}[cite: 9]</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">두꺼비집(차단기)[cite: 9]</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.breaker}[cite: 9]</td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
-                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">저주받은 물건</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.cursed}</td>
-                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">문 상태 & 날씨</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.doors} / ${data.weather}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">저주받은 물건[cite: 9]</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.cursed}[cite: 9]</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">문 상태 & 날씨[cite: 9]</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.doors} / ${data.weather}[cite: 9]</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="dict-section-title">2. 장비 지급 및 누락 조건 (Loadout)</div>
+            <div class="dict-section-title">2. 장비 지급 및 누락 조건 (Loadout)[cite: 9]</div>
             <div style="background: rgba(0,0,0,0.4); padding: 13px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.94rem; line-height: 1.65; margin-bottom: 14px;">
-                <div style="color: #f87171; margin-bottom: 6px;">${data.missingItems}</div>
-                <div style="color: #34d399;">${data.availableItems}</div>
+                <div style="color: #f87171; margin-bottom: 6px;">${data.missingItems}[cite: 9]</div>
+                <div style="color: #34d399;">${data.availableItems}[cite: 9]</div>
             </div>
 
-            <div class="dict-section-title">3. 핵심 공략법 및 추천 전략 (Strategy)</div>
+            <div class="dict-section-title">3. 핵심 공략법 및 추천 전략 (Strategy)[cite: 9]</div>
             <div style="background: rgba(109, 76, 251, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.96rem; line-height: 1.7; color: #f4f4f5;">
-                💡 ${data.strategy}
+                💡 ${data.strategy}[cite: 9]
             </div>
         </div>
     `;
@@ -301,20 +299,20 @@ let currentMapCategory = 'ALL';
 
 function getMapDisplayName(rawName) {
     const mapNameMap = {
-        "6 Tanglewood Drive": "6 탱글우드 드라이브 (6 Tanglewood Drive)",
-        "42 Edgefield Road": "42 엣지필드 로드 (42 Edgefield Road)",
-        "10 Ridgeview Court": "10 리지뷰 코트 (10 Ridgeview Court)",
-        "Nell's Diner": "넬스 다이너 (Nell's Diner)",
-        "13 Willow Street": "13 윌로우 스트리트 (13 Willow Street)",
-        "Camp Woodwind": "우드윈드 캠프장 (Camp Woodwind)",
-        "Grafton Farmhouse": "그라프톤 농가 (Grafton Farmhouse)",
-        "Bleasdale Farmhouse": "블리즈데일 농가 (Bleasdale Farmhouse)",
-        "Point Hope": "포인트 호프 등대 (Point Hope)",
-        "Maple Lodge Campsite": "메이플 롯지 캠프장 (Maple Lodge Campsite)",
-        "Prison": "교도소 (Prison)",
-        "Brownstone High School": "브라운스톤 고등학교 (Brownstone High School)",
-        "Sunny Meadows": "써니 메도우 본관 (Sunny Meadows)",
-        "Sunny Meadows Restricted": "써니 메도우 구역제한 (Sunny Meadows Restricted)"
+        "6 Tanglewood Drive": "6 탱글우드 드라이브 (6 Tanglewood Drive)[cite: 9]",
+        "42 Edgefield Road": "42 엣지필드 로드 (42 Edgefield Road)[cite: 9]",
+        "10 Ridgeview Court": "10 리지뷰 코트 (10 Ridgeview Court)[cite: 9]",
+        "Nell's Diner": "넬스 다이너 (Nell's Diner)[cite: 9]",
+        "13 Willow Street": "13 윌로우 스트리트 (13 Willow Street)[cite: 9]",
+        "Camp Woodwind": "우드윈드 캠프장 (Camp Woodwind)[cite: 9]",
+        "Grafton Farmhouse": "그라프톤 농가 (Grafton Farmhouse)[cite: 9]",
+        "Bleasdale Farmhouse": "블리즈데일 농가 (Bleasdale Farmhouse)[cite: 9]",
+        "Point Hope": "포인트 호프 등대 (Point Hope)[cite: 9]",
+        "Maple Lodge Campsite": "메이플 롯지 캠프장 (Maple Lodge Campsite)[cite: 9]",
+        "Prison": "교도소 (Prison)[cite: 9]",
+        "Brownstone High School": "브라운스톤 고등학교 (Brownstone High School)[cite: 9]",
+        "Sunny Meadows": "써니 메도우 본관 (Sunny Meadows)[cite: 9]",
+        "Sunny Meadows Restricted": "써니 메도우 구역제한 (Sunny Meadows Restricted)[cite: 9]"
     };
 
     if (mapNameMap[rawName]) return mapNameMap[rawName];
@@ -364,19 +362,19 @@ function renderMaps(category = 'ALL') {
     leftCol.className = 'weekly-left-pane';
     leftCol.innerHTML = `
         <div class="guide-card" style="margin-bottom: 12px; border-left: 4px solid var(--accent-vibrant); padding: 12px 14px;">
-            <div class="guide-card-title" style="font-size: 1.05rem; margin-bottom: 6px;">📦 은신처(Hiding Spot) 공통 규칙</div>
+            <div class="guide-card-title" style="font-size: 1.05rem; margin-bottom: 6px;">📦 은신처(Hiding Spot) 공통 규칙[cite: 9]</div>
             <div class="guide-card-body" style="font-size: 0.9rem; line-height: 1.55; color: var(--text-secondary);">
-                • <strong>초보자:</strong> 차단 없음 (모든 은신처 100% 개방)<br>
-                • <strong>중급자/전문가:</strong> 2~3곳 차단 | <strong>악몽/광기:</strong> 4곳 차단<br>
-                • <strong>멀티 인원 보너스:</strong> 3인 플레이 시 +1곳 / 4인 시 +2곳 추가 개방
+                • <strong>초보자:</strong> 차단 없음 (모든 은신처 100% 개방)[cite: 9]<br>
+                • <strong>중급자/전문가:</strong> 2~3곳 차단 | <strong>악몽/광기:</strong> 4곳 차단[cite: 9]<br>
+                • <strong>멀티 인원 보너스:</strong> 3인 플레이 시 +1곳 / 4인 시 +2곳 추가 개방[cite: 9]
             </div>
         </div>
 
         <div class="map-filter-bar" style="margin-bottom: 10px; gap: 6px;">
-            <button class="map-filter-btn ${category === 'ALL' ? 'active' : ''}" onclick="filterMapCategory('ALL')">전체 (${MAP_DATA.length})</button>
-            <button class="map-filter-btn ${category === 'Small' ? 'active' : ''}" onclick="filterMapCategory('Small')">소형</button>
-            <button class="map-filter-btn ${category === 'Medium' ? 'active' : ''}" onclick="filterMapCategory('Medium')">중형</button>
-            <button class="map-filter-btn ${category === 'Large' ? 'active' : ''}" onclick="filterMapCategory('Large')">대형</button>
+            <button class="map-filter-btn ${category === 'ALL' ? 'active' : ''}" onclick="filterMapCategory('ALL')">전체 (${MAP_DATA.length})[cite: 9]</button>
+            <button class="map-filter-btn ${category === 'Small' ? 'active' : ''}" onclick="filterMapCategory('Small')">소형[cite: 9]</button>
+            <button class="map-filter-btn ${category === 'Medium' ? 'active' : ''}" onclick="filterMapCategory('Medium')">중형[cite: 9]</button>
+            <button class="map-filter-btn ${category === 'Large' ? 'active' : ''}" onclick="filterMapCategory('Large')">대형[cite: 9]</button>
         </div>
 
         <div class="weekly-scroll-list" id="map-scroll-list">
@@ -384,9 +382,9 @@ function renderMaps(category = 'ALL') {
                 <button type="button" 
                         class="weekly-list-item ${idx === currentSelectedMapIndex ? 'active' : ''}" 
                         onclick="selectMapItem(${idx})">
-                    <span class="map-badge ${m.category}" style="font-size: 0.82rem; padding: 2px 8px;">${m.category}</span>
-                    <span class="ch-name-txt" style="font-size: 1.02rem;">${getMapDisplayName(m.name)}</span>
-                    <span class="ch-map-tag" style="font-size: 0.82rem;">${m.rooms || ''}</span>
+                    <span class="map-badge ${m.category}" style="font-size: 0.82rem; padding: 2px 8px;">${m.category}[cite: 9]</span>
+                    <span class="ch-name-txt" style="font-size: 1.02rem;">${getMapDisplayName(m.name)}[cite: 9]</span>
+                    <span class="ch-map-tag" style="font-size: 0.82rem;">${m.rooms || ''}[cite: 9]</span>
                 </button>
             `).join('')}
         </div>
@@ -434,14 +432,14 @@ function updateMapDetail(index) {
     const mapImageHtml = map.image ? `
         <div class="map-image-container">
             <img src="${map.image}" alt="${map.name} 지도" class="map-preview-img">
-            <span class="map-image-hint">🔍 지도 확대 및 세부 포인트 확인</span>
+            <span class="map-image-hint">🔍 지도 확대 및 세부 포인트 확인[cite: 9]</span>
         </div>
     ` : `
         <div class="map-image-placeholder">
             <span style="font-size: 2.2rem; margin-bottom: 6px;">🗺️</span>
-            <div style="font-weight: 700; color: var(--accent-light); font-size: 1.05rem;">${getMapDisplayName(map.name)} 정밀 구조도</div>
+            <div style="font-weight: 700; color: var(--accent-light); font-size: 1.05rem;">${getMapDisplayName(map.name)} 정밀 구조도[cite: 9]</div>
             <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 2px;">
-                층별 룸 배치도, 저주받은 물건 및 차단기 스폰 포인트
+                층별 룸 배치도, 저주받은 물건 및 차단기 스폰 포인트[cite: 9]
             </div>
         </div>
     `;
@@ -450,44 +448,95 @@ function updateMapDetail(index) {
         <div class="weekly-detail-card">
             <div class="weekly-detail-header">
                 <div>
-                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${getMapDisplayName(map.name)}</div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${getMapDisplayName(map.name)}[cite: 9]</div>
                     <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
-                        구조: ${map.size} (${map.rooms})
+                        구조: ${map.size} (${map.rooms})[cite: 9]
                     </div>
                 </div>
-                <span class="map-badge ${map.category}" style="font-size: 1.0rem; padding: 7px 16px;">${map.category}</span>
+                <span class="map-badge ${map.category}" style="font-size: 1.0rem; padding: 7px 16px;">${map.category}[cite: 9]</span>
             </div>
 
             <div style="margin: 14px 0 14px 0;">
                 ${mapImageHtml}
             </div>
 
-            <!-- 🌀 맵 뺑뺑이 공략 전용 유튜브 배너 -->
             <div style="margin-bottom: 16px;">
                 <a href="https://www.youtube.com/results?search_query=${mapYtQuery}" target="_blank" class="weekly-yt-banner-btn">
                     <span class="yt-banner-icon">🌀</span>
                     <div class="yt-banner-textbox">
-                        <div class="yt-banner-title">📺 유튜브에서 '${mapKey}' 뺑뺑이 & 루핑 공략 영상 보기</div>
-                        <div class="yt-banner-sub">클릭 시 해당 맵의 뇽자 은신처 드리블 및 뺑뺑이 가이드 검색 결과로 이동합니다.</div>
+                        <div class="yt-banner-title">📺 유튜브에서 '${mapKey}' 뺑뺑이 & 루핑 공략 영상 보기[cite: 9]</div>
+                        <div class="yt-banner-sub">클릭 시 해당 맵의 뇽자 은신처 드리블 및 뺑뺑이 가이드 검색 결과로 이동합니다.[cite: 9]</div>
                     </div>
-                    <span class="yt-banner-arrow">영상 보기 ➔</span>
+                    <span class="yt-banner-arrow">영상 보기 ➔[cite: 9]</span>
                 </a>
             </div>
 
-            <div class="dict-section-title">💡 맵 핵심 탐색 팁 (Exploration Tip)</div>
+            <div class="dict-section-title">💡 맵 핵심 탐색 팁 (Exploration Tip)[cite: 9]</div>
             <div style="background: rgba(109, 76, 251, 0.1); padding: 13px 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5; margin-bottom: 16px;">
-                ${map.tip}
+                ${map.tip}[cite: 9]
             </div>
 
-            <div class="dict-section-title">📋 룸 목록, 은신처 & 저주 물건 상세 공략</div>
+            <div class="dict-section-title">📋 룸 목록, 은신처 & 저주 물건 상세 공략[cite: 9]</div>
             <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65;">
-                ${map.detailedHtml || '<p style="color: var(--text-secondary);">상세 정보 업데이트 준비 중입니다.</p>'}
+                ${map.detailedHtml || '<p style="color: var(--text-secondary);">상세 정보 업데이트 준비 중입니다.</p>'}[cite: 9]
             </div>
         </div>
     `;
 }
 
-// 6. 핵심 공략 렌더링
+// 6. 아포칼립스 렌더링 (신규 추가)
+function renderApocalypse() {
+    const container = document.getElementById('apocalypse-container');
+    if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
+    container.innerHTML = '';
+
+    APOCALYPSE_DATA.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'guide-card';
+        card.innerHTML = `
+            <div class="guide-card-title">💀 ${item.title}</div>
+            <div class="guide-card-body" style="margin-bottom: 10px;">${item.desc}</div>
+            <div style="background: rgba(109, 76, 251, 0.1); padding: 10px; border-radius: 6px; font-size: 0.92rem; margin-bottom: 12px;">
+                <strong>💡 전략:</strong> ${item.strategy}
+            </div>
+            <a href="${item.ytLink}" target="_blank" class="weekly-yt-banner-btn" style="padding: 8px 12px;">
+                <span class="yt-banner-icon">▶️</span>
+                <div class="yt-banner-textbox">
+                    <div class="yt-banner-title" style="font-size: 0.92rem;">유튜브 아포칼립스 공략 보기</div>
+                </div>
+                <span class="yt-banner-arrow" style="font-size: 0.85rem; padding: 4px 8px;">영상 ➔</span>
+            </a>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// 7. 드롭스 렌더링 (신규 추가)
+function renderDrops() {
+    const container = document.getElementById('drops-container');
+    if (!container || typeof DROPS_DATA === 'undefined') return;
+    container.innerHTML = '';
+
+    DROPS_DATA.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'guide-card';
+        card.innerHTML = `
+            <div class="guide-card-title">🎁 ${item.title}</div>
+            <div style="font-size: 0.85rem; color: var(--accent-light); margin-bottom: 8px;">📅 기간: ${item.period} (${item.date})</div>
+            <div class="guide-card-body" style="margin-bottom: 12px;">${item.content}</div>
+            <a href="${item.url}" target="_blank" class="weekly-yt-banner-btn" style="padding: 8px 12px;">
+                <span class="yt-banner-icon">🌐</span>
+                <div class="yt-banner-textbox">
+                    <div class="yt-banner-title" style="font-size: 0.92rem;">공식 트위치 드롭스 안내 페이지</div>
+                </div>
+                <span class="yt-banner-arrow" style="font-size: 0.85rem; padding: 4px 8px;">이동 ➔</span>
+            </a>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// 8. 핵심 공략 렌더링
 function renderGuides() {
     const container = document.getElementById('guide-container');
     if (!container || typeof GUIDE_DATA === 'undefined') return;
@@ -497,14 +546,14 @@ function renderGuides() {
         const card = document.createElement('div');
         card.className = 'guide-card';
         card.innerHTML = `
-            <div class="guide-card-title">🔥 ${g.title}</div>
-            <div class="guide-card-body">${g.body}</div>
+            <div class="guide-card-title">🔥 ${g.title}[cite: 14]</div>
+            <div class="guide-card-body">${g.body}[cite: 14]</div>
         `;
         container.appendChild(card);
     });
 }
 
-// 7. ID 카드 & 배지 렌더링
+// 9. ID 카드 & 배지 렌더링
 function renderIdCards() {
     const container = document.getElementById('idcard-container');
     if (!container || typeof IDCARD_DATA === 'undefined') return;
@@ -535,7 +584,7 @@ function renderIdCards() {
     });
 }
 
-// 8. 📢 패치 소식 (공식 Kinetic Games 뉴스 그리드 뷰 렌더링)
+// 10. 📢 패치 소식 (공식 Kinetic Games 뉴스 그리드 뷰 렌더링)
 function renderNews() {
     const container = document.getElementById('news-container');
     if (!container || typeof NEWS_DATA === 'undefined') return;
@@ -548,13 +597,13 @@ function renderNews() {
         <div class="guide-card" style="border-left: 4px solid var(--accent-vibrant); padding: 14px 18px;">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <div>
-                    <div class="guide-card-title" style="font-size: 1.18rem; margin-bottom: 4px;">📢 Kinetic Games 공식 최신 뉴스 & 패치 피드</div>
+                    <div class="guide-card-title" style="font-size: 1.18rem; margin-bottom: 4px;">📢 Kinetic Games 공식 최신 뉴스 & 패치 피드[cite: 9]</div>
                     <div class="guide-card-body" style="font-size: 0.92rem; color: var(--text-secondary);">
-                        공식 개발진이 작성한 최신 패치 노트, 로드맵 및 개발자 프리뷰 원문 링크입니다. 카드를 클릭하면 공식 페이지로 바로 이동합니다.
+                        공식 개발진이 작성한 최신 패치 노트, 로드맵 및 개발자 프리뷰 원문 링크입니다. 카드를 클릭하면 공식 페이지로 바로 이동합니다.[cite: 9]
                     </div>
                 </div>
                 <a href="https://kineticgames.co.uk/news" target="_blank" class="map-filter-btn active" style="text-decoration: none; padding: 8px 16px; font-size: 0.95rem;">
-                    🌐 공식 뉴스 전체보기 ➔
+                    🌐 공식 뉴스 전체보기 ➔[cite: 9]
                 </a>
             </div>
         </div>
@@ -654,16 +703,16 @@ function toggleQuickPanel(panelType) {
     panel.classList.add('open');
 
     if (panelType === 'search') {
-        titleEl.innerText = "🔍 빠른 단어 검색";
+        titleEl.innerText = "🔍 빠른 단어 검색[cite: 9]";
         contentEl.innerHTML = `
             <input type="text" class="search-input-box" placeholder="검색어를 입력하세요..." onkeyup="handleQuickSearch(this.value)">
             <div id="quick-search-results"></div>
         `;
     } else if (panelType === 'news') {
-        titleEl.innerText = "📢 최근 패치 안내";
+        titleEl.innerText = "📢 최근 패치 안내[cite: 9]";
         contentEl.innerHTML = "<p>패치 소식 탭에서 최신 패치 및 밸런스 내역을 확인하실 수 있습니다.</p>";
     } else if (panelType === 'stream') {
-        titleEl.innerText = "📺 실시간 LIVE 방송";
+        titleEl.innerText = "📺 실시간 LIVE 방송[cite: 9]";
         contentEl.innerHTML = `
             <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--card-border); background-color: #000;">
@@ -676,60 +725,60 @@ function toggleQuickPanel(panelType) {
                     </iframe>
                 </div>
                 <a href="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8" target="_blank" class="yt-btn" style="text-align: center; text-decoration: none; width: 100%; font-size: 0.95rem;">
-                    🟢 치지직 생방송 보러가기
+                    🟢 치지직 생방송 보러가기[cite: 9]
                 </a>
                 <p style="font-size: 0.88rem; color: var(--text-secondary); text-align: center; line-height: 1.4; margin-top: 4px;">
-                    뇽자의 실시간 파스모포비아 방송을 시청하고 함께 소통해 보세요!
+                    뇽자의 실시간 파스모포비아 방송을 시청하고 함께 소통해 보세요![cite: 9]
                 </p>
             </div>
         `;
     } else if (panelType === 'contact') {
-        titleEl.innerText = "✉️ 제보 및 공식 채널";
+        titleEl.innerText = "✉️ 제보 및 공식 채널[cite: 9]";
         contentEl.innerHTML = `
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 4px;">
-                    유령 정보, 신규 패치 데이터, 버그 제보 및 비즈니스 문의는 아래 채널을 이용해 주세요!
+                    유령 정보, 신규 패치 데이터, 버그 제보 및 비즈니스 문의는 아래 채널을 이용해 주세요![cite: 9]
                 </p>
                 <a href="https://www.youtube.com/@nyongja1" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(248, 113, 113, 0.4); background-color: rgba(248, 113, 113, 0.12);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">▶️</span>
                     <div>
-                        <div style="color: #f87171; font-size: 0.95rem; font-weight: 700;">뇽자 유튜브</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">파스모포비아 공식 파트너 유튜브</div>
+                        <div style="color: #f87171; font-size: 0.95rem; font-weight: 700;">뇽자 유튜브[cite: 9]</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">파스모포비아 공식 파트너 유튜브[cite: 9]</div>
                     </div>
                 </a>
                 <a href="https://chzzk.me/nyongja" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(6, 8, 20, 0.6);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">🟢</span>
                     <div>
-                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">뇽자 치지직 채널</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 실시간 방송 보러가기</div>
+                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">뇽자 치지직 채널[cite: 9]</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 실시간 방송 보러가기[cite: 9]</div>
                     </div>
                 </a>
                 <a href="https://discord.gg/YkgM5t6N33" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(109, 76, 251, 0.5); background-color: rgba(109, 76, 251, 0.15);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">💬</span>
                     <div>
-                        <div style="color: var(--accent-light); font-size: 0.95rem; font-weight: 700;">너굴단 디스코드</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 & 너굴단 디스코드</div>
+                        <div style="color: var(--accent-light); font-size: 0.95rem; font-weight: 700;">너굴단 디스코드[cite: 9]</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 & 너굴단 디스코드[cite: 9]</div>
                     </div>
                 </a>
                 <a href="https://www.instagram.com/n_yong_ja" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(248, 113, 113, 0.4); background-color: rgba(248, 113, 113, 0.1);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">📸</span>
                     <div>
-                        <div style="color: #f87171; font-size: 0.95rem; font-weight: 700;">뇽스타그램</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 인스타그램</div>
+                        <div style="color: #f87171; font-size: 0.95rem; font-weight: 700;">뇽스타그램[cite: 9]</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 인스타그램[cite: 9]</div>
                     </div>
                 </a>
                 <a href="https://cafe.naver.com/phasmophobia1" target="_blank" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background-color: rgba(52, 211, 153, 0.1);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">☕</span>
                     <div>
-                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">네이버 팬카페</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 공식 팬카페</div>
+                        <div style="color: #34d399; font-size: 0.95rem; font-weight: 700;">네이버 팬카페[cite: 9]</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">뇽자 공식 팬카페[cite: 9]</div>
                     </div>
                 </a>
                 <a href="mailto:future2549@naver.com" class="yt-btn" style="text-align: left; justify-content: flex-start; padding: 10px 14px; text-decoration: none; border-color: rgba(166, 143, 255, 0.35); background-color: rgba(6, 8, 20, 0.6);">
                     <span style="font-size: 1.2rem; margin-right: 6px;">📧</span>
                     <div>
-                        <div style="color: #ffffff; font-size: 0.95rem; font-weight: 700;">비즈니스 / 제보 이메일</div>
-                        <div style="font-size: 0.8rem; color: var(--accent-light); font-weight: normal;">future2549@naver.com</div>
+                        <div style="color: #ffffff; font-size: 0.95rem; font-weight: 700;">비즈니스 / 제보 이메일[cite: 9]</div>
+                        <div style="font-size: 0.8rem; color: var(--accent-light); font-weight: normal;">future2549@naver.com[cite: 9]</div>
                     </div>
                 </a>
             </div>

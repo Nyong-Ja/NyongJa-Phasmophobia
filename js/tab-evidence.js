@@ -1,5 +1,5 @@
 // ==========================================
-// 🔍 1. 증거 분석 계산기 로직 (4열 분배 & 뇽자 유튜브 링크)
+// 🔍 1. 증거 분석 계산기 로직 (아이콘 에러 방지 & 네온 유튜브 버튼)
 // ==========================================
 
 const evidenceStates = {
@@ -136,9 +136,20 @@ function renderGhostList() {
         // 유튜브 검색: 파스모포비아 + (유령이름) + 공략 + 뇽자
         const ytQuery = encodeURIComponent(`파스모포비아 ${ghost.name} 공략 뇽자`);
 
+        // 아이콘 로딩 에러 시 무한루프 방지 및 안전 처리
+        const iconHtml = ghost.icon ? `
+            <img src="images/ghosts/${ghost.icon}" 
+                 alt="${ghost.name}" 
+                 class="ghost-icon" 
+                 onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="ghost-icon-fallback" style="display:none; width:64px; height:64px; align-items:center; justify-content:center; font-size:2.2rem; margin-bottom:4px;">👻</div>
+        ` : `
+            <div class="ghost-icon-fallback" style="width:64px; height:64px; display:flex; align-items:center; justify-content:center; font-size:2.2rem; margin-bottom:4px;">👻</div>
+        `;
+
         card.innerHTML = `
             <div class="ghost-card-header">
-                <img src="images/ghosts/${ghost.icon}" alt="${ghost.name} 아이콘" class="ghost-icon" onerror="this.src='images/logo/logo.png'">
+                ${iconHtml}
                 <div class="ghost-name">${ghost.name}</div>
                 <div class="ghost-badge-group">
                     <span class="ghost-sanity">정신력: ${ghost.huntSanity}</span>
@@ -150,9 +161,11 @@ function renderGhostList() {
                 ${evTagsHtml}
             </div>
 
-            <div class="main-youtube-wrapper">
-                <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="yt-btn">
-                    <span class="yt-icon">▶️</span> 유튜브 공략
+            <!-- 네온 유튜브 공략 버튼 -->
+            <div class="main-youtube-wrapper" style="margin: 10px 0;">
+                <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="yt-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 8px 12px; border-radius: 8px; border: 1.5px solid rgba(248, 113, 113, 0.4); background: rgba(248, 113, 113, 0.12); color: #f87171; text-decoration: none; font-weight: 700; font-size: 0.95rem;">
+                    <span class="yt-icon" style="color: #f87171; font-size: 1.0rem;">▶️</span>
+                    <span>'${ghost.name}' 뇽자 공략 보기</span>
                 </a>
             </div>
 

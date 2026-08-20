@@ -88,17 +88,18 @@
                             <span class="count-badge">남은 유령: <strong id="ghost-count">30</strong>종</span>
                         </div>
 
-                        <div id="ghost-list-container" class="ghost-list"></div>
+                        <!-- 4열 독립 컬럼 렌더링 컨테이너 -->
+                        <div id="ghost-list-container"></div>
                     </div>
                 </div>
             </section>
 
-            <!-- 탭 2: 유령 도감 -->
+            <!-- 탭 2: 유령 도감 (3열 독립 컬럼) -->
             <section id="tab-ghosts" class="tab-content">
-                <div id="ghost-dictionary-container" class="ghost-dict-grid"></div>
+                <div id="ghost-dictionary-container"></div>
             </section>
 
-            <!-- 탭 3: 장비 가이드 -->
+            <!-- 탭 3: 장비 가이드 (3열 독립 컬럼) -->
             <section id="tab-equipment" class="tab-content">
                 <div id="equipment-container"></div>
             </section>
@@ -108,7 +109,7 @@
                 <div id="weekly-container" class="guide-grid"></div>
             </section>
 
-            <!-- 탭 5: 맵 정보 -->
+            <!-- 탭 5: 맵 정보 (3열 독립 컬럼) -->
             <section id="tab-maps" class="tab-content">
                 <div class="map-filter-bar">
                     <button class="map-filter-btn active" id="map-btn-ALL" onclick="filterMapCategory('ALL')">전체 맵</button>
@@ -116,7 +117,7 @@
                     <button class="map-filter-btn" id="map-btn-Medium" onclick="filterMapCategory('Medium')">중형 (Medium)</button>
                     <button class="map-filter-btn" id="map-btn-Large" onclick="filterMapCategory('Large')">대형 (Large)</button>
                 </div>
-                <div id="maps-container" class="maps-grid"></div>
+                <div id="maps-container"></div>
             </section>
 
             <!-- 탭 6: 핵심 공략 -->
@@ -126,7 +127,7 @@
 
             <!-- 탭 7: ID 카드 & 배지 -->
             <section id="tab-idcard" class="tab-content">
-                <div id="idcard-container" class="equipment-grid"></div>
+                <div id="idcard-container" class="guide-grid"></div>
             </section>
 
             <!-- 탭 8: 패치 소식 -->
@@ -153,7 +154,7 @@
         <div id="quick-panel-content" class="panel-content"></div>
     </div>
 
-    <!-- 하단 푸터 (방문자 수 카운터 위젯) -->
+    <!-- 하단 푸터 -->
     <footer>
         <div class="visitor-counter-box" style="margin-bottom: 12px; font-size: 1.0rem; color: #a3a6c9; display: flex; justify-content: center; align-items: center; gap: 8px;">
             <span>👀 오늘 방문자: <strong id="today-visitors" style="color: #34d399;">집계 중...</strong></span>

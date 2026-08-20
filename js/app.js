@@ -3,10 +3,14 @@
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. 증거 분석 초기화 (tab-evidence.js)
     if (typeof initEvidenceButtons === 'function') initEvidenceButtons();
     if (typeof renderGhostList === 'function') renderGhostList();
+
+    // 2. 유령 도감 렌더링 (tab-dictionary.js)
     if (typeof renderGhostDictionary === 'function') renderGhostDictionary();
 
+    // 3~8. 기타 탭 렌더링
     renderEquipment();
     renderWeekly();
     renderMaps('ALL');
@@ -14,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderIdCards();
     renderNews();
 
+    // 방문자 카운터
     fetchVisitorCounts();
 });
 
@@ -26,6 +31,7 @@ function renderEquipment() {
     const columnsWrapper = document.createElement('div');
     columnsWrapper.className = 'eq-columns-container';
 
+    // 3개 독립 컬럼 생성 (셔플 방지 및 빈칸 자동 메움)
     const colElements = [
         document.createElement('div'),
         document.createElement('div'),
@@ -83,6 +89,7 @@ function renderEquipment() {
     container.appendChild(columnsWrapper);
 }
 
+// 장비 상세 토글 핸들러
 function toggleEqDetail(id, btn) {
     const el = document.getElementById(id);
     const txt = btn.querySelector('.toggle-btn-txt');

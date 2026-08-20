@@ -485,7 +485,38 @@ body {
     color: var(--accent-green);
 }
 
-/* 👻 유령 카드 전용 네온 보라-라벤더 유튜브 배너 버튼 */
+/* 🔥 대표 고유 확정 특징 강조 박스 스타일 */
+.ghost-signature-box {
+    margin-top: 6px;
+    margin-bottom: 4px;
+    background: rgba(109, 76, 251, 0.12);
+    border: 1px dashed rgba(167, 139, 250, 0.5);
+    border-radius: 8px;
+    padding: 7px 10px;
+    text-align: center;
+}
+
+.ghost-signature-tag {
+    display: inline-block;
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: #fcd34d;
+    background: rgba(245, 158, 11, 0.2);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-bottom: 3px;
+}
+
+.ghost-signature-desc {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #f4f4f5;
+    line-height: 1.4;
+    word-break: keep-all;
+}
+
+/* 👻 유령 카드 전용 네온 보라-라벤더 유튜브 배너 버튼 (완전 중앙 정렬) */
 .ghost-yt-banner-btn {
     display: flex;
     align-items: center;

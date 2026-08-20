@@ -67,7 +67,7 @@ body {
     font-size: 1.08rem;
 }
 
-/* 상단 헤더 로고 이미지 스타일 (77px) */
+/* 상단 헤더 로고 이미지 스타일 */
 .logo-title-wrapper {
     display: inline-flex;
     align-items: center;
@@ -363,7 +363,7 @@ body {
     font-size: 1.35rem;
 }
 
-/* 1. 🔍 증거 분석 계산기 전용 레이아웃 (독립 4열 Flex 분배: 셔플 방지 & 빈 공간 즉시 메움) */
+/* 1. 🔍 증거 분석 계산기 전용 레이아웃 (독립 4열 Flex 분배) */
 #ghost-list-container {
     display: flex;
     flex-direction: column;
@@ -570,7 +570,7 @@ body {
     text-align: left;
 }
 
-/* 2. 📖 유령 도감 전용 레이아웃 (독립 3열 Flex 컬럼 정렬: 셔플 방지) */
+/* 2. 📖 유령 도감 전용 레이아웃 (독립 3열 Flex 컬럼 정렬) */
 #ghost-dictionary-container {
     display: flex;
     flex-direction: column;
@@ -613,7 +613,6 @@ body {
     box-shadow: 0 0 18px var(--accent-glow);
 }
 
-/* 유령 이름 클릭 버튼 영역 */
 .dict-summary-btn {
     display: flex;
     justify-content: space-between;
@@ -690,7 +689,6 @@ body {
     border-color: #ffffff;
 }
 
-/* 펼쳐졌을 때 나타나는 세부 본문 */
 .dict-content-body {
     padding: 1.3rem;
     border-top: 1.5px solid var(--card-border);
@@ -739,11 +737,30 @@ body {
     color: var(--text-primary);
 }
 
-/* 3. 장비 가이드 전용 레이아웃 */
-.equipment-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+/* 3. 🛠️ 장비 가이드 전용 레이아웃 (독립 3열 Flex 분배 및 가로 확장) */
+#equipment-container,
+#equipment-container.equipment-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    grid-template-columns: none !important;
+}
+
+.eq-columns-container {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 18px !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+}
+
+.eq-col {
+    flex: 1 1 0px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+    min-width: 0 !important;
+    width: 100% !important;
 }
 
 .eq-card {
@@ -755,6 +772,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+.eq-card:hover {
+    border-color: var(--accent-vibrant);
+    box-shadow: 0 0 16px var(--accent-glow);
 }
 
 .eq-header {
@@ -1079,25 +1104,12 @@ footer {
     font-size: 1.0rem;
 }
 
-/* 반응형 대응 */
-@media (max-width: 1400px) {
-    .dict-columns-container {
-        columns: 2;
-    }
-}
-
+/* 반응형 모바일/태블릿 대응 */
 @media (max-width: 1200px) {
-    .ghost-columns-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    .ghost-col {
-        flex: 1 1 calc(50% - 16px);
-    }
     .evidence-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    .equipment-grid, .guide-grid {
+    .guide-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -1115,16 +1127,16 @@ footer {
     .top-search-bar input {
         width: 100%;
     }
-    .dict-columns-container, .maps-columns-container, .ghost-columns-container {
-        flex-direction: column;
+    .dict-columns-container, .maps-columns-container, .ghost-columns-container, .eq-columns-container {
+        flex-direction: column !important;
     }
-    .ghost-col {
-        flex: 1 1 100%;
+    .ghost-col, .eq-col, .map-column, .dict-column {
+        flex: 1 1 100% !important;
     }
 }
 
 @media (max-width: 768px) {
-    .equipment-grid, .guide-grid {
+    .guide-grid {
         grid-template-columns: 1fr;
     }
     .evidence-grid {

@@ -1007,6 +1007,127 @@ body {
     color: var(--text-primary);
 }
 
+/* 🎯 주간 도전 과제 좌우 2분할 레이아웃 스타일 */
+#weekly-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+.weekly-split-layout {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.weekly-left-pane {
+    flex: 0 0 380px;
+    display: flex;
+    flex-direction: column;
+    max-width: 380px;
+}
+
+.weekly-scroll-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    max-height: 520px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.weekly-scroll-list::-webkit-scrollbar {
+    width: 6px;
+}
+.weekly-scroll-list::-webkit-scrollbar-thumb {
+    background-color: var(--card-border);
+    border-radius: 4px;
+}
+.weekly-scroll-list::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-vibrant);
+}
+
+.weekly-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px;
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: 10px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    text-align: left;
+    outline: none;
+}
+
+.weekly-list-item:hover {
+    border-color: var(--accent-light);
+    background-color: #141833;
+    transform: translateX(4px);
+}
+
+.weekly-list-item.active {
+    background: linear-gradient(90deg, #1f1b4d 0%, #121530 100%);
+    border-color: var(--accent-vibrant);
+    box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.ch-id-badge {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--accent-light);
+    background: rgba(109, 76, 251, 0.2);
+    padding: 2px 7px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.ch-name-txt {
+    font-size: 0.95rem;
+    font-weight: 700;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ch-map-tag {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.weekly-right-pane {
+    flex: 1;
+    min-width: 0;
+}
+
+.weekly-detail-card {
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.weekly-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1.5px solid var(--card-border);
+    padding-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
 /* 우측 플로팅 퀵바 */
 .quick-sidebar-bar {
     position: fixed;
@@ -1150,6 +1271,19 @@ footer {
     }
     .guide-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .weekly-split-layout {
+        flex-direction: column;
+    }
+    .weekly-left-pane {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+    .weekly-scroll-list {
+        max-height: 280px;
     }
 }
 

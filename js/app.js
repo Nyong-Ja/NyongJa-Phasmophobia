@@ -105,7 +105,7 @@ function toggleEqDetail(id, btn) {
     }
 }
 
-// 4. 주간 도전 과제 렌더링 (좌우 2분할 인터랙티브 뷰)
+// 4. 주간 도전 과제 렌더링 (좌우 2분할 레이아웃 & 유튜브 검색 연동)
 let currentSelectedChallengeId = 1;
 
 function renderWeekly() {
@@ -174,27 +174,33 @@ function updateChallengeDetail(id) {
     if (!pane || typeof WEEKLY_CHALLENGES === 'undefined') return;
 
     const data = WEEKLY_CHALLENGES.find(c => c.id === id) || WEEKLY_CHALLENGES[0];
+    const ytQuery = encodeURIComponent(`파스모포비아 주간 챌린지 ${data.nameEn}`);
 
     pane.innerHTML = `
         <div class="weekly-detail-card">
             <div class="weekly-detail-header">
                 <div>
                     <div style="font-size: 0.95rem; color: var(--accent-light); font-weight: 700;">CHALLENGE #${data.id}</div>
-                    <div style="font-size: 1.55rem; font-weight: 800; color: #fff; margin-top: 2px;">${data.nameKr}</div>
-                    <div style="font-size: 0.95rem; color: var(--text-secondary);">${data.nameEn}</div>
+                    <div style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 2px;">${data.nameKr}</div>
+                    <div style="font-size: 0.9rem; color: #a1a1aa; font-style: italic; margin-top: 4px;">"${data.quote}"</div>
                 </div>
-                <span class="map-badge Medium" style="font-size: 1.0rem; padding: 5px 12px;">🗺️ ${data.map}</span>
+                <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end;">
+                    <span class="map-badge Medium" style="font-size: 0.95rem; padding: 6px 14px;">🗺️ ${data.map}</span>
+                    <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="yt-btn" style="text-decoration: none; padding: 6px 14px; font-size: 0.9rem; border-color: rgba(248, 113, 113, 0.4); background: rgba(248, 113, 113, 0.12); color: #f87171;">
+                        <span class="yt-icon" style="color: #f87171;">▶️</span> 유튜브 공략 검색
+                    </a>
+                </div>
             </div>
 
-            <div class="dict-section-title" style="margin-top: 14px;">1. 게임 환경 & 스테이터스 (Status)</div>
+            <div class="dict-section-title" style="margin-top: 16px;">1. 게임 환경 & 파라미터 세부 설정 (Status)</div>
             <div style="overflow-x: auto; margin-bottom: 14px;">
                 <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; color: #d4d4d8; text-align: left;">
                     <tbody>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
-                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light); width: 25%;">제공 증거 수</td>
-                            <td style="padding: 7px 10px; color: #fff;">${data.evidences}</td>
-                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light); width: 25%;">준비 시간</td>
-                            <td style="padding: 7px 10px; color: #fff;">${data.setupTime}</td>
+                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">제공 증거 수</td>
+                            <td style="padding: 7px 10px; color: #fff; width: 28%;">${data.evidences}</td>
+                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">준비 시간</td>
+                            <td style="padding: 7px 10px; color: #fff; width: 28%;">${data.setupTime}</td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
                             <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">정신력 상태</td>
@@ -208,13 +214,20 @@ function updateChallengeDetail(id) {
                             <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">두꺼비집(차단기)</td>
                             <td style="padding: 7px 10px; color: #fff;">${data.breaker}</td>
                         </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">저주받은 물건</td>
+                            <td style="padding: 7px 10px; color: #fff;">${data.cursed}</td>
+                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">문 상태 & 날씨</td>
+                            <td style="padding: 7px 10px; color: #fff;">${data.doors} / ${data.weather}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="dict-section-title">2. 장비 지급 및 제한 조건 (Loadout)</div>
-            <div style="background: rgba(0,0,0,0.35); padding: 12px 14px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px;">
-                ${data.items}
+            <div class="dict-section-title">2. 장비 지급 및 누락 조건 (Loadout)</div>
+            <div style="background: rgba(0,0,0,0.4); padding: 12px 14px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.93rem; line-height: 1.6; margin-bottom: 14px;">
+                <div style="color: #f87171; margin-bottom: 6px;">${data.missingItems}</div>
+                <div style="color: #34d399;">${data.availableItems}</div>
             </div>
 
             <div class="dict-section-title">3. 핵심 공략법 및 추천 전략 (Strategy)</div>
@@ -225,7 +238,7 @@ function updateChallengeDetail(id) {
     `;
 }
 
-// 5. 맵 정보 렌더링 (독립 3열 Flex 컬럼 방식)
+// 5. 맵 정보 렌더링
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
     if (!container || typeof MAP_DATA === 'undefined') return;

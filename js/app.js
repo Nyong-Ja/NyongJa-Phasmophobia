@@ -105,7 +105,7 @@ function toggleEqDetail(id, btn) {
     }
 }
 
-// 4. 주간 도전 과제 렌더링 (좌우 4:6 분할 & 대형 단독 유튜브 배너)
+// 4. 주간 도전 과제 렌더링 (좌우 4:6 분할 & 820px 롱 스크롤)
 let currentSelectedChallengeId = 1;
 
 function renderWeekly() {
@@ -116,7 +116,6 @@ function renderWeekly() {
     const weeklyWrapper = document.createElement('div');
     weeklyWrapper.className = 'weekly-split-layout';
 
-    // 좌측: 개요 카드 + 26종 챌린지 스크롤 리스트
     const leftCol = document.createElement('div');
     leftCol.className = 'weekly-left-pane';
     leftCol.innerHTML = `
@@ -147,7 +146,6 @@ function renderWeekly() {
         </div>
     `;
 
-    // 우측: 선택된 챌린지 상세 화면
     const rightCol = document.createElement('div');
     rightCol.className = 'weekly-right-pane';
     rightCol.id = 'weekly-detail-pane';
@@ -187,7 +185,6 @@ function updateChallengeDetail(id) {
                 <span class="map-badge Medium" style="font-size: 1.0rem; padding: 7px 16px;">🗺️ ${data.map}</span>
             </div>
 
-            <!-- 대형 단독 유튜브 공략 검색 배너 버튼 -->
             <div style="margin: 14px 0 16px 0;">
                 <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="weekly-yt-banner-btn">
                     <span class="yt-banner-icon">▶️</span>
@@ -245,9 +242,33 @@ function updateChallengeDetail(id) {
     `;
 }
 
-// 5. 🗺️ 맵 정보 렌더링 (좌우 4:6 분할 & 지도 뷰어 인터랙티브 레이아웃)
+// 5. 🗺️ 맵 정보 렌더링 (한글(영어) 이름 표기 & 820px 롱 스크롤)
 let currentSelectedMapIndex = 0;
 let currentMapCategory = 'ALL';
+
+// 영문 맵 이름에 대응하는 한국어 명칭 매핑 함수
+function getMapDisplayName(rawName) {
+    const mapNameMap = {
+        "6 Tanglewood Drive": "6 탱글우드 드라이브 (6 Tanglewood Drive)",
+        "42 Edgefield Road": "42 엣지필드 로드 (42 Edgefield Road)",
+        "10 Ridgeview Court": "10 리지뷰 코트 (10 Ridgeview Court)",
+        "Nell's Diner": "넬스 다이너 (Nell's Diner)",
+        "13 Willow Street": "13 윌로우 스트리트 (13 Willow Street)",
+        "Camp Woodwind": "우드윈드 캠프장 (Camp Woodwind)",
+        "Grafton Farmhouse": "그라프톤 농가 (Grafton Farmhouse)",
+        "Bleasdale Farmhouse": "블리즈데일 농가 (Bleasdale Farmhouse)",
+        "Point Hope": "포인트 호프 등대 (Point Hope)",
+        "Maple Lodge Campsite": "메이플 롯지 캠프장 (Maple Lodge Campsite)",
+        "Prison": "교도소 (Prison)",
+        "Brownstone High School": "브라운스톤 고등학교 (Brownstone High School)",
+        "Sunny Meadows": "써니 메도우 본관 (Sunny Meadows)",
+        "Sunny Meadows Restricted": "써니 메도우 구역제한 (Sunny Meadows Restricted)"
+    };
+
+    if (mapNameMap[rawName]) return mapNameMap[rawName];
+    if (rawName.includes('(')) return rawName; // 이미 한글이 병기된 경우
+    return rawName;
+}
 
 function renderMaps(category = 'ALL') {
     const container = document.getElementById('maps-container');
@@ -266,7 +287,6 @@ function renderMaps(category = 'ALL') {
     const wrapper = document.createElement('div');
     wrapper.className = 'weekly-split-layout map-split-layout';
 
-    // 좌측 패널: 은신처 규칙 + 필터바 + 맵 리스트
     const leftCol = document.createElement('div');
     leftCol.className = 'weekly-left-pane';
     leftCol.innerHTML = `
@@ -292,14 +312,13 @@ function renderMaps(category = 'ALL') {
                         class="weekly-list-item ${idx === currentSelectedMapIndex ? 'active' : ''}" 
                         onclick="selectMapItem(${idx})">
                     <span class="map-badge ${m.category}" style="font-size: 0.82rem; padding: 2px 8px;">${m.category}</span>
-                    <span class="ch-name-txt" style="font-size: 1.05rem;">${m.name}</span>
+                    <span class="ch-name-txt" style="font-size: 1.02rem;">${getMapDisplayName(m.name)}</span>
                     <span class="ch-map-tag" style="font-size: 0.82rem;">${m.rooms || ''}</span>
                 </button>
             `).join('')}
         </div>
     `;
 
-    // 우측 패널: 상세 정보 + 지도 뷰어
     const rightCol = document.createElement('div');
     rightCol.className = 'weekly-right-pane';
     rightCol.id = 'map-detail-pane';
@@ -344,7 +363,7 @@ function updateMapDetail(index) {
     ` : `
         <div class="map-image-placeholder">
             <span style="font-size: 2.2rem; margin-bottom: 6px;">🗺️</span>
-            <div style="font-weight: 700; color: var(--accent-light); font-size: 1.05rem;">${map.name} 정밀 구조도</div>
+            <div style="font-weight: 700; color: var(--accent-light); font-size: 1.05rem;">${getMapDisplayName(map.name)} 정밀 구조도</div>
             <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 2px;">
                 층별 룸 배치도, 저주받은 물건 및 차단기 스폰 포인트
             </div>
@@ -355,7 +374,7 @@ function updateMapDetail(index) {
         <div class="weekly-detail-card">
             <div class="weekly-detail-header">
                 <div>
-                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${map.name}</div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${getMapDisplayName(map.name)}</div>
                     <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
                         구조: ${map.size} (${map.rooms})
                     </div>

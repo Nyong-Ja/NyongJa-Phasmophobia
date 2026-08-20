@@ -1007,7 +1007,7 @@ body {
     color: var(--text-primary);
 }
 
-/* 🎯 주간 도전 과제 좌우 2분할 레이아웃 스타일 (좌측 패널 640px 확장) */
+/* 🎯 주간 도전 과제 좌우 2분할 레이아웃 스타일 (좌측 패널 780px 와이드 확장) */
 #weekly-container {
     display: flex !important;
     flex-direction: column !important;
@@ -1021,12 +1021,12 @@ body {
     align-items: flex-start;
 }
 
-/* 좌측 패널: 폭 640px로 넉넉하게 확장 */
+/* 좌측 패널: 폭 780px로 넉넉하게 확장 (말줄임표 방지) */
 .weekly-left-pane {
-    flex: 0 0 640px;
+    flex: 0 0 780px;
     display: flex;
     flex-direction: column;
-    max-width: 640px;
+    max-width: 780px;
 }
 
 .weekly-scroll-list {
@@ -1269,8 +1269,8 @@ footer {
 /* 반응형 모바일/태블릿 대응 */
 @media (max-width: 1400px) {
     .weekly-left-pane {
-        flex: 0 0 540px;
-        max-width: 540px;
+        flex: 0 0 620px;
+        max-width: 620px;
     }
 }
 
@@ -1282,8 +1282,8 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
     .weekly-left-pane {
-        flex: 0 0 460px;
-        max-width: 460px;
+        flex: 0 0 520px;
+        max-width: 520px;
     }
 }
 

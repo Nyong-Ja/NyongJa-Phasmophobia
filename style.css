@@ -850,7 +850,7 @@ body {
     color: var(--text-primary);
 }
 
-/* 🎯 주간 도전 과제 & 맵 정보 좌우 4:6 황금 분할 레이아웃 */
+/* 🎯 주간 도전 과제 & 맵 정보 좌우 4:6 분할 레이아웃 */
 #weekly-container,
 #maps-container {
     display: flex !important;
@@ -875,11 +875,12 @@ body {
     flex-direction: column;
 }
 
+/* 🌟 스크롤 높이를 820px로 확장하여 길게 볼 수 있도록 설정 */
 .weekly-scroll-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    max-height: 560px;
+    max-height: 820px;
     overflow-y: auto;
     padding-right: 8px;
 }
@@ -899,8 +900,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding: 13px 20px;
+    gap: 14px;
+    padding: 13px 18px;
     background-color: var(--card-bg);
     border: 1.5px solid var(--card-border);
     border-radius: 10px;
@@ -935,7 +936,7 @@ body {
 }
 
 .ch-name-txt {
-    font-size: 1.08rem;
+    font-size: 1.05rem;
     font-weight: 700;
     flex: 1;
     white-space: nowrap;
@@ -944,10 +945,10 @@ body {
 }
 
 .ch-map-tag {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
     background: rgba(255, 255, 255, 0.05);
-    padding: 4px 12px;
+    padding: 4px 10px;
     border-radius: 6px;
     white-space: nowrap;
 }
@@ -1295,7 +1296,7 @@ footer {
         max-width: 100%;
     }
     .weekly-scroll-list {
-        max-height: 280px;
+        max-height: 380px;
     }
 }
 

@@ -485,6 +485,74 @@ body {
     color: var(--accent-green);
 }
 
+/* 👻 유령 카드 전용 네온 유튜브 배너 버튼 */
+.ghost-yt-banner-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.16) 0%, rgba(109, 76, 251, 0.18) 100%);
+    border: 1.5px solid rgba(248, 113, 113, 0.55);
+    padding: 8px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 2px 10px rgba(248, 113, 113, 0.15);
+    box-sizing: border-box;
+}
+
+.ghost-yt-banner-btn:hover {
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.3) 0%, rgba(109, 76, 251, 0.3) 100%);
+    border-color: #fca5a5;
+    box-shadow: 0 4px 16px rgba(248, 113, 113, 0.4);
+    transform: translateY(-2px);
+}
+
+.ghost-yt-icon {
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.ghost-yt-textbox {
+    flex: 1;
+    text-align: left;
+    min-width: 0;
+}
+
+.ghost-yt-title {
+    font-size: 0.93rem;
+    font-weight: 800;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ghost-yt-sub {
+    font-size: 0.76rem;
+    color: #fca5a5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ghost-yt-arrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: rgba(248, 113, 113, 0.25);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    white-space: nowrap;
+}
+
+.ghost-yt-banner-btn:hover .ghost-yt-arrow {
+    background: #f87171;
+    color: #060814;
+}
+
 .ghost-details {
     margin-top: 8px;
     border-top: 1.5px solid var(--card-border);
@@ -875,7 +943,7 @@ body {
     flex-direction: column;
 }
 
-/* 🌟 스크롤 높이를 820px로 확장하여 길게 볼 수 있도록 설정 */
+/* 🌟 스크롤 높이 820px 롱 뷰 */
 .weekly-scroll-list {
     display: flex;
     flex-direction: column;

@@ -389,19 +389,24 @@ body {
 
 .ghost-card {
     background-color: #080a18;
-    border: 1.5px solid var(--card-border);
+    border: 1.5px solid var(--card-border) !important;
     border-radius: 12px;
     padding: 1.25rem 1.0rem 1.0rem 1.0rem;
-    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
 }
 
 .ghost-card:hover {
-    border-color: #a78bfa !important;
-    background-color: #0e122b !important;
-    box-shadow: 0 0 22px rgba(167, 139, 250, 0.5), inset 0 0 10px rgba(109, 76, 251, 0.2) !important;
-    transform: translateY(-3px) !important;
+    border-color: #c4b5fd !important;
+    background: linear-gradient(145deg, #161a38 0%, #0d1024 100%) !important;
+    box-shadow: 0 10px 30px rgba(109, 76, 251, 0.45), 
+                0 0 25px rgba(196, 181, 253, 0.6), 
+                inset 0 0 14px rgba(167, 139, 250, 0.25) !important;
+    transform: translateY(-5px) scale(1.015) !important;
+    z-index: 10;
 }
 
 .ghost-card-header {
@@ -598,20 +603,23 @@ body {
 
 .dict-details {
     background-color: var(--card-bg);
-    border: 1.5px solid var(--card-border);
+    border: 1.5px solid var(--card-border) !important;
     border-radius: 12px;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
     overflow: hidden;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
 }
 
 .dict-details:hover {
-    border-color: #a78bfa !important;
-    background-color: #141833 !important;
-    box-shadow: 0 0 22px rgba(167, 139, 250, 0.5), inset 0 0 10px rgba(109, 76, 251, 0.2) !important;
-    transform: translateY(-2px) !important;
+    border-color: #c4b5fd !important;
+    box-shadow: 0 10px 30px rgba(109, 76, 251, 0.45), 
+                0 0 25px rgba(196, 181, 253, 0.6) !important;
+    transform: translateY(-4px) scale(1.01) !important;
+    z-index: 10;
 }
 
 .dict-details[open] {
@@ -771,7 +779,7 @@ body {
 
 .eq-card {
     background-color: var(--card-bg);
-    border: 1.5px solid var(--card-border);
+    border: 1.5px solid var(--card-border) !important;
     border-radius: 12px;
     padding: 1.25rem;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
@@ -779,15 +787,20 @@ body {
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
 }
 
 .eq-card:hover {
-    border-color: #a78bfa !important;
-    background-color: #141833 !important;
-    box-shadow: 0 0 22px rgba(167, 139, 250, 0.5), inset 0 0 12px rgba(109, 76, 251, 0.2) !important;
-    transform: translateY(-3px) !important;
+    border-color: #c4b5fd !important;
+    background: linear-gradient(145deg, #181c3d 0%, #10142d 100%) !important;
+    box-shadow: 0 10px 30px rgba(109, 76, 251, 0.45), 
+                0 0 25px rgba(196, 181, 253, 0.6), 
+                inset 0 0 16px rgba(167, 139, 250, 0.25) !important;
+    transform: translateY(-5px) scale(1.015) !important;
+    z-index: 10;
 }
 
 .eq-header {
@@ -889,20 +902,25 @@ body {
 
 .map-card {
     background-color: var(--card-bg);
-    border: 1.5px solid var(--card-border);
+    border: 1.5px solid var(--card-border) !important;
     border-radius: 12px;
     padding: 1.25rem;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
 }
 
 .map-card:hover {
-    border-color: #a78bfa !important;
-    background-color: #141833 !important;
-    box-shadow: 0 0 22px rgba(167, 139, 250, 0.5), inset 0 0 12px rgba(109, 76, 251, 0.2) !important;
-    transform: translateY(-3px) !important;
+    border-color: #c4b5fd !important;
+    background: linear-gradient(145deg, #181c3d 0%, #10142d 100%) !important;
+    box-shadow: 0 10px 30px rgba(109, 76, 251, 0.45), 
+                0 0 25px rgba(196, 181, 253, 0.6), 
+                inset 0 0 16px rgba(167, 139, 250, 0.25) !important;
+    transform: translateY(-5px) scale(1.015) !important;
+    z-index: 10;
 }
 
 .map-header {
@@ -958,17 +976,20 @@ body {
 
 .guide-card {
     background-color: var(--card-bg);
-    border: 1.5px solid var(--card-border);
+    border: 1.5px solid var(--card-border) !important;
     border-radius: 12px;
     padding: 1.25rem;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative;
+    z-index: 1;
 }
 
 .guide-card:hover {
-    border-color: #a78bfa !important;
-    box-shadow: 0 0 18px var(--accent-glow) !important;
-    transform: translateY(-2px) !important;
+    border-color: #c4b5fd !important;
+    box-shadow: 0 10px 25px rgba(109, 76, 251, 0.4), 0 0 20px rgba(196, 181, 253, 0.5) !important;
+    transform: translateY(-4px) scale(1.01) !important;
+    z-index: 10;
 }
 
 .guide-card-title {

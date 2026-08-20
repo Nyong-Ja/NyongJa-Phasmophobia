@@ -105,6 +105,9 @@ function renderGhostList() {
             return `<span class="ev-tag ${isMatched}">${ev}</span>`;
         }).join(' ');
 
+        // 유튜브 검색 쿼리: 파스모포비아 (유령이름) 공략 필살기 뇽자
+        const ytQuery = encodeURIComponent(`파스모포비아 ${ghost.name} 공략 필살기 뇽자`);
+
         card.innerHTML = `
             <div class="ghost-card-header">
                 <img src="images/ghosts/${ghost.engName}.webp" 
@@ -118,9 +121,14 @@ function renderGhostList() {
                 </div>
             </div>
             <div class="ghost-evidences">${evidencesHtml}</div>
-            <div class="main-youtube-wrapper">
-                <a href="${ghost.ytUrl}" target="_blank" class="yt-btn">
-                    <span class="yt-icon">▶</span> 특징 & 공략 영상 보기
+            <div class="main-youtube-wrapper" style="margin: 10px 0;">
+                <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="ghost-yt-banner-btn">
+                    <span class="ghost-yt-icon">▶️</span>
+                    <div class="ghost-yt-textbox">
+                        <div class="ghost-yt-title">${ghost.name} 필살기 공략</div>
+                        <div class="ghost-yt-sub">뇽자 실전 가이드 검색</div>
+                    </div>
+                    <span class="ghost-yt-arrow">보기 ➔</span>
                 </a>
             </div>
             <details class="ghost-details">

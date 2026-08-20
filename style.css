@@ -11,7 +11,7 @@
     --accent-light: #a78bfa;   /* 밝은 네온 라벤더 */
     --accent-glow: rgba(109, 76, 251, 0.45); 
     
-    --accent-green: #34d399;   
+    --accent-green: #34d399;   /* 에메랄드 / 민트 그린 */
     --accent-red: #f87171;     
 }
 
@@ -485,35 +485,41 @@ body {
     color: var(--accent-green);
 }
 
-/* 🔥 대표 고유 확정 특징 강조 박스 스타일 */
+/* 🔥 에메랄드/민트 1줄 필살기 강조 박스 스타일 */
 .ghost-signature-box {
     margin-top: 6px;
     margin-bottom: 4px;
-    background: rgba(109, 76, 251, 0.12);
-    border: 1px dashed rgba(167, 139, 250, 0.5);
+    background: rgba(52, 211, 153, 0.08);
+    border: 1.2px solid rgba(52, 211, 153, 0.35);
     border-radius: 8px;
-    padding: 7px 10px;
-    text-align: center;
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.12);
 }
 
 .ghost-signature-tag {
-    display: inline-block;
     font-size: 0.76rem;
     font-weight: 800;
-    color: #fcd34d;
-    background: rgba(245, 158, 11, 0.2);
-    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #34d399;
+    background: rgba(52, 211, 153, 0.2);
+    border: 1px solid rgba(52, 211, 153, 0.5);
     padding: 1px 6px;
     border-radius: 4px;
-    margin-bottom: 3px;
+    white-space: nowrap;
+    line-height: 1.2;
 }
 
 .ghost-signature-desc {
     font-size: 0.88rem;
     font-weight: 700;
-    color: #f4f4f5;
-    line-height: 1.4;
-    word-break: keep-all;
+    color: #a7f3d0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
 }
 
 /* 👻 유령 카드 전용 네온 보라-라벤더 유튜브 배너 버튼 (완전 중앙 정렬) */

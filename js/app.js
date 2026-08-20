@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchVisitorCounts();
 });
 
-// 3. 장비 가이드 렌더링 (독립 3열 Flex 분배 및 토글 상세 공략 지원)
+// 3. 장비 가이드 렌더링
 function renderEquipment() {
     const container = document.getElementById('equipment-container');
     if (!container || typeof EQUIPMENT_DATA === 'undefined') return;
@@ -105,7 +105,7 @@ function toggleEqDetail(id, btn) {
     }
 }
 
-// 4. 주간 도전 과제 렌더링 (좌우 2분할 레이아웃 & 유튜브 검색 연동)
+// 4. 주간 도전 과제 렌더링 (와이드 좌측 패널 & 단독 대형 유튜브 공략 배너)
 let currentSelectedChallengeId = 1;
 
 function renderWeekly() {
@@ -122,7 +122,7 @@ function renderWeekly() {
     leftCol.innerHTML = `
         <div class="guide-card" style="margin-bottom: 14px; border-left: 4px solid var(--accent-vibrant);">
             <div class="guide-card-title" style="font-size: 1.15rem;">🎯 주간 도전 과제 (Challenge Mode) 개요</div>
-            <div class="guide-card-body" style="font-size: 0.92rem; line-height: 1.55;">
+            <div class="guide-card-body" style="font-size: 0.95rem; line-height: 1.6;">
                 • <strong>초기화 주기:</strong> 매주 월요일 오전 9시 (KST / 00:00 UTC)<br>
                 • <strong>클리어 보상:</strong> <strong>$5,000 게임 머니 + 5,000 XP</strong> (지정 맵에서 유령 3회 특정 시 완료)<br>
                 • <strong>장비 무료 제공:</strong> 요구되는 모든 장비가 무료 지급되며, <strong>사망해도 소지품 손실 패널티가 없습니다.</strong>
@@ -131,7 +131,7 @@ function renderWeekly() {
 
         <div style="font-size: 1.05rem; font-weight: 700; color: var(--accent-light); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
             <span>📜 26종 챌린지 로테이션 목록</span>
-            <span style="font-size: 0.85rem; color: var(--text-secondary); font-weight: normal;">* 클릭하여 상세 보기</span>
+            <span style="font-size: 0.88rem; color: var(--text-secondary); font-weight: normal;">* 클릭하여 상세 보기</span>
         </div>
 
         <div class="weekly-scroll-list" id="weekly-scroll-list">
@@ -181,57 +181,64 @@ function updateChallengeDetail(id) {
             <div class="weekly-detail-header">
                 <div>
                     <div style="font-size: 0.95rem; color: var(--accent-light); font-weight: 700;">CHALLENGE #${data.id}</div>
-                    <div style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 2px;">${data.nameKr}</div>
-                    <div style="font-size: 0.9rem; color: #a1a1aa; font-style: italic; margin-top: 4px;">"${data.quote}"</div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2px;">${data.nameKr}</div>
+                    <div style="font-size: 0.92rem; color: #a1a1aa; font-style: italic; margin-top: 4px;">"${data.quote}"</div>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end;">
-                    <span class="map-badge Medium" style="font-size: 0.95rem; padding: 6px 14px;">🗺️ ${data.map}</span>
-                    <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="yt-btn" style="text-decoration: none; padding: 6px 14px; font-size: 0.9rem; border-color: rgba(248, 113, 113, 0.4); background: rgba(248, 113, 113, 0.12); color: #f87171;">
-                        <span class="yt-icon" style="color: #f87171;">▶️</span> 유튜브 공략 검색
-                    </a>
-                </div>
+                <span class="map-badge Medium" style="font-size: 1.0rem; padding: 7px 16px;">🗺️ ${data.map}</span>
             </div>
 
-            <div class="dict-section-title" style="margin-top: 16px;">1. 게임 환경 & 파라미터 세부 설정 (Status)</div>
+            <!-- 대형 단독 유튜브 공략 검색 배너 버튼 -->
+            <div style="margin: 14px 0 16px 0;">
+                <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="weekly-yt-banner-btn">
+                    <span class="yt-banner-icon">▶️</span>
+                    <div class="yt-banner-textbox">
+                        <div class="yt-banner-title">📺 유튜브에서 '${data.nameEn}' 실전 공략 영상 바로보기</div>
+                        <div class="yt-banner-sub">클릭 시 해당 주간 챌린지의 클리어 루트 및 플레이 영상 검색 결과로 이동합니다.</div>
+                    </div>
+                    <span class="yt-banner-arrow">이동 ➔</span>
+                </a>
+            </div>
+
+            <div class="dict-section-title">1. 게임 환경 & 파라미터 세부 설정 (Status)</div>
             <div style="overflow-x: auto; margin-bottom: 14px;">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; color: #d4d4d8; text-align: left;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem; color: #d4d4d8; text-align: left;">
                     <tbody>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
-                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">제공 증거 수</td>
-                            <td style="padding: 7px 10px; color: #fff; width: 28%;">${data.evidences}</td>
-                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">준비 시간</td>
-                            <td style="padding: 7px 10px; color: #fff; width: 28%;">${data.setupTime}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">제공 증거 수</td>
+                            <td style="padding: 8px 10px; color: #fff; width: 28%;">${data.evidences}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">준비 시간</td>
+                            <td style="padding: 8px 10px; color: #fff; width: 28%;">${data.setupTime}</td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
-                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">정신력 상태</td>
-                            <td style="padding: 7px 10px; color: #fff;">${data.sanity}</td>
-                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">이동 속도</td>
-                            <td style="padding: 7px 10px; color: #fff;">${data.speed}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">정신력 상태</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.sanity}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">이동 속도</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.speed}</td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
-                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">은신처 상태</td>
-                            <td style="padding: 7px 10px; color: #fff;">${data.hiding}</td>
-                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">두꺼비집(차단기)</td>
-                            <td style="padding: 7px 10px; color: #fff;">${data.breaker}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">은신처 상태</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.hiding}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">두꺼비집(차단기)</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.breaker}</td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
-                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">저주받은 물건</td>
-                            <td style="padding: 7px 10px; color: #fff;">${data.cursed}</td>
-                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">문 상태 & 날씨</td>
-                            <td style="padding: 7px 10px; color: #fff;">${data.doors} / ${data.weather}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">저주받은 물건</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.cursed}</td>
+                            <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">문 상태 & 날씨</td>
+                            <td style="padding: 8px 10px; color: #fff;">${data.doors} / ${data.weather}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="dict-section-title">2. 장비 지급 및 누락 조건 (Loadout)</div>
-            <div style="background: rgba(0,0,0,0.4); padding: 12px 14px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.93rem; line-height: 1.6; margin-bottom: 14px;">
+            <div style="background: rgba(0,0,0,0.4); padding: 13px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.94rem; line-height: 1.65; margin-bottom: 14px;">
                 <div style="color: #f87171; margin-bottom: 6px;">${data.missingItems}</div>
                 <div style="color: #34d399;">${data.availableItems}</div>
             </div>
 
             <div class="dict-section-title">3. 핵심 공략법 및 추천 전략 (Strategy)</div>
-            <div style="background: rgba(109, 76, 251, 0.1); padding: 14px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5;">
+            <div style="background: rgba(109, 76, 251, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.96rem; line-height: 1.7; color: #f4f4f5;">
                 💡 ${data.strategy}
             </div>
         </div>

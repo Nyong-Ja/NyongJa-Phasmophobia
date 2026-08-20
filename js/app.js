@@ -3,14 +3,10 @@
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 증거 분석 초기화 (tab-evidence.js)
     if (typeof initEvidenceButtons === 'function') initEvidenceButtons();
     if (typeof renderGhostList === 'function') renderGhostList();
-
-    // 2. 유령 도감 렌더링 (tab-dictionary.js)
     if (typeof renderGhostDictionary === 'function') renderGhostDictionary();
 
-    // 3~8. 기타 탭 렌더링
     renderEquipment();
     renderWeekly();
     renderMaps('ALL');
@@ -18,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderIdCards();
     renderNews();
 
-    // 방문자 카운터
     fetchVisitorCounts();
 });
 
@@ -31,7 +26,6 @@ function renderEquipment() {
     const columnsWrapper = document.createElement('div');
     columnsWrapper.className = 'eq-columns-container';
 
-    // 3개 독립 컬럼 생성 (셔플 방지 및 빈칸 자동 메움)
     const colElements = [
         document.createElement('div'),
         document.createElement('div'),
@@ -89,7 +83,6 @@ function renderEquipment() {
     container.appendChild(columnsWrapper);
 }
 
-// 장비 상세 토글 핸들러
 function toggleEqDetail(id, btn) {
     const el = document.getElementById(id);
     const txt = btn.querySelector('.toggle-btn-txt');
@@ -112,21 +105,124 @@ function toggleEqDetail(id, btn) {
     }
 }
 
-// 4. 주간 도전 과제 렌더링
+// 4. 주간 도전 과제 렌더링 (좌우 2분할 인터랙티브 뷰)
+let currentSelectedChallengeId = 1;
+
 function renderWeekly() {
     const container = document.getElementById('weekly-container');
-    if (!container || typeof WEEKLY_DATA === 'undefined') return;
+    if (!container || typeof WEEKLY_CHALLENGES === 'undefined') return;
     container.innerHTML = '';
 
-    WEEKLY_DATA.forEach(w => {
-        const card = document.createElement('div');
-        card.className = 'guide-card';
-        card.innerHTML = `
-            <div class="guide-card-title">${w.title}</div>
-            <div class="guide-card-body">${w.body}</div>
-        `;
-        container.appendChild(card);
-    });
+    const weeklyWrapper = document.createElement('div');
+    weeklyWrapper.className = 'weekly-split-layout';
+
+    // 좌측: 개요 카드 + 26종 챌린지 스크롤 리스트
+    const leftCol = document.createElement('div');
+    leftCol.className = 'weekly-left-pane';
+    leftCol.innerHTML = `
+        <div class="guide-card" style="margin-bottom: 14px; border-left: 4px solid var(--accent-vibrant);">
+            <div class="guide-card-title" style="font-size: 1.15rem;">🎯 주간 도전 과제 (Challenge Mode) 개요</div>
+            <div class="guide-card-body" style="font-size: 0.92rem; line-height: 1.55;">
+                • <strong>초기화 주기:</strong> 매주 월요일 오전 9시 (KST / 00:00 UTC)<br>
+                • <strong>클리어 보상:</strong> <strong>$5,000 게임 머니 + 5,000 XP</strong> (지정 맵에서 유령 3회 특정 시 완료)<br>
+                • <strong>장비 무료 제공:</strong> 요구되는 모든 장비가 무료 지급되며, <strong>사망해도 소지품 손실 패널티가 없습니다.</strong>
+            </div>
+        </div>
+
+        <div style="font-size: 1.05rem; font-weight: 700; color: var(--accent-light); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+            <span>📜 26종 챌린지 로테이션 목록</span>
+            <span style="font-size: 0.85rem; color: var(--text-secondary); font-weight: normal;">* 클릭하여 상세 보기</span>
+        </div>
+
+        <div class="weekly-scroll-list" id="weekly-scroll-list">
+            ${WEEKLY_CHALLENGES.map(ch => `
+                <button type="button" 
+                        class="weekly-list-item ${ch.id === currentSelectedChallengeId ? 'active' : ''}" 
+                        onclick="selectChallenge(${ch.id})">
+                    <span class="ch-id-badge">#${ch.id}</span>
+                    <span class="ch-name-txt">${ch.nameKr}</span>
+                    <span class="ch-map-tag">${ch.map.split('(')[0]}</span>
+                </button>
+            `).join('')}
+        </div>
+    `;
+
+    // 우측: 선택된 챌린지 상세 화면
+    const rightCol = document.createElement('div');
+    rightCol.className = 'weekly-right-pane';
+    rightCol.id = 'weekly-detail-pane';
+
+    weeklyWrapper.appendChild(leftCol);
+    weeklyWrapper.appendChild(rightCol);
+    container.appendChild(weeklyWrapper);
+
+    updateChallengeDetail(currentSelectedChallengeId);
+}
+
+function selectChallenge(id) {
+    currentSelectedChallengeId = id;
+    document.querySelectorAll('.weekly-list-item').forEach(btn => btn.classList.remove('active'));
+    
+    const clickedBtn = document.querySelector(`.weekly-list-item:nth-child(${id})`);
+    if (clickedBtn) clickedBtn.classList.add('active');
+
+    updateChallengeDetail(id);
+}
+
+function updateChallengeDetail(id) {
+    const pane = document.getElementById('weekly-detail-pane');
+    if (!pane || typeof WEEKLY_CHALLENGES === 'undefined') return;
+
+    const data = WEEKLY_CHALLENGES.find(c => c.id === id) || WEEKLY_CHALLENGES[0];
+
+    pane.innerHTML = `
+        <div class="weekly-detail-card">
+            <div class="weekly-detail-header">
+                <div>
+                    <div style="font-size: 0.95rem; color: var(--accent-light); font-weight: 700;">CHALLENGE #${data.id}</div>
+                    <div style="font-size: 1.55rem; font-weight: 800; color: #fff; margin-top: 2px;">${data.nameKr}</div>
+                    <div style="font-size: 0.95rem; color: var(--text-secondary);">${data.nameEn}</div>
+                </div>
+                <span class="map-badge Medium" style="font-size: 1.0rem; padding: 5px 12px;">🗺️ ${data.map}</span>
+            </div>
+
+            <div class="dict-section-title" style="margin-top: 14px;">1. 게임 환경 & 스테이터스 (Status)</div>
+            <div style="overflow-x: auto; margin-bottom: 14px;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; color: #d4d4d8; text-align: left;">
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light); width: 25%;">제공 증거 수</td>
+                            <td style="padding: 7px 10px; color: #fff;">${data.evidences}</td>
+                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light); width: 25%;">준비 시간</td>
+                            <td style="padding: 7px 10px; color: #fff;">${data.setupTime}</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">정신력 상태</td>
+                            <td style="padding: 7px 10px; color: #fff;">${data.sanity}</td>
+                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">이동 속도</td>
+                            <td style="padding: 7px 10px; color: #fff;">${data.speed}</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">은신처 상태</td>
+                            <td style="padding: 7px 10px; color: #fff;">${data.hiding}</td>
+                            <td style="padding: 7px 10px; font-weight: 700; color: var(--accent-light);">두꺼비집(차단기)</td>
+                            <td style="padding: 7px 10px; color: #fff;">${data.breaker}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dict-section-title">2. 장비 지급 및 제한 조건 (Loadout)</div>
+            <div style="background: rgba(0,0,0,0.35); padding: 12px 14px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px;">
+                ${data.items}
+            </div>
+
+            <div class="dict-section-title">3. 핵심 공략법 및 추천 전략 (Strategy)</div>
+            <div style="background: rgba(109, 76, 251, 0.1); padding: 14px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5;">
+                💡 ${data.strategy}
+            </div>
+        </div>
+    `;
 }
 
 // 5. 맵 정보 렌더링 (독립 3열 Flex 컬럼 방식)

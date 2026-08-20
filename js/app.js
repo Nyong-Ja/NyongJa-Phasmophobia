@@ -105,7 +105,7 @@ function toggleEqDetail(id, btn) {
     }
 }
 
-// 4. 주간 도전 과제 렌더링 (좌우 4:6 분할 & 820px 롱 스크롤)
+// 4. 주간 도전 과제 렌더링 (유튜브 검색: 뇽자 키워드 연동)
 let currentSelectedChallengeId = 1;
 
 function renderWeekly() {
@@ -172,7 +172,7 @@ function updateChallengeDetail(id) {
     if (!pane || typeof WEEKLY_CHALLENGES === 'undefined') return;
 
     const data = WEEKLY_CHALLENGES.find(c => c.id === id) || WEEKLY_CHALLENGES[0];
-    const ytQuery = encodeURIComponent(`파스모포비아 주간 챌린지 ${data.nameEn}`);
+    const ytQuery = encodeURIComponent(`파스모포비아 주간 챌린지 ${data.nameEn} 뇽자`);
 
     pane.innerHTML = `
         <div class="weekly-detail-card">
@@ -185,14 +185,15 @@ function updateChallengeDetail(id) {
                 <span class="map-badge Medium" style="font-size: 1.0rem; padding: 7px 16px;">🗺️ ${data.map}</span>
             </div>
 
+            <!-- 대형 단독 유튜브 공략 검색 배너 버튼 -->
             <div style="margin: 14px 0 16px 0;">
                 <a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" class="weekly-yt-banner-btn">
                     <span class="yt-banner-icon">▶️</span>
                     <div class="yt-banner-textbox">
-                        <div class="yt-banner-title">📺 유튜브에서 '${data.nameEn}' 실전 공략 영상 바로보기</div>
-                        <div class="yt-banner-sub">클릭 시 해당 주간 챌린지의 클리어 루트 및 플레이 영상 검색 결과로 이동합니다.</div>
+                        <div class="yt-banner-title">📺 유튜브에서 '${data.nameEn}' 뇽자 공략 영상 보기</div>
+                        <div class="yt-banner-sub">클릭 시 해당 주간 챌린지의 뇽자 실전 클리어 및 공략 검색창으로 바로 이동합니다.</div>
                     </div>
-                    <span class="yt-banner-arrow">이동 ➔</span>
+                    <span class="yt-banner-arrow">영상 보기 ➔</span>
                 </a>
             </div>
 
@@ -242,11 +243,10 @@ function updateChallengeDetail(id) {
     `;
 }
 
-// 5. 🗺️ 맵 정보 렌더링 (한글(영어) 이름 표기 & 820px 롱 스크롤)
+// 5. 🗺️ 맵 정보 렌더링 (한글(영어) 표기 & 맵 뺑뺑이 공략 배너)
 let currentSelectedMapIndex = 0;
 let currentMapCategory = 'ALL';
 
-// 영문 맵 이름에 대응하는 한국어 명칭 매핑 함수
 function getMapDisplayName(rawName) {
     const mapNameMap = {
         "6 Tanglewood Drive": "6 탱글우드 드라이브 (6 Tanglewood Drive)",
@@ -266,8 +266,30 @@ function getMapDisplayName(rawName) {
     };
 
     if (mapNameMap[rawName]) return mapNameMap[rawName];
-    if (rawName.includes('(')) return rawName; // 이미 한글이 병기된 경우
+    if (rawName.includes('(')) return rawName;
     return rawName;
+}
+
+// 맵 검색용 짧은 한글 이름 추출
+function getMapSearchKeyword(rawName) {
+    const searchNameMap = {
+        "6 Tanglewood Drive": "탱글우드",
+        "42 Edgefield Road": "엣지필드",
+        "10 Ridgeview Court": "리지뷰",
+        "Nell's Diner": "넬스다이너",
+        "13 Willow Street": "윌로우",
+        "Camp Woodwind": "우드윈드",
+        "Grafton Farmhouse": "그라프톤",
+        "Bleasdale Farmhouse": "블리즈데일",
+        "Point Hope": "포인트호프",
+        "Maple Lodge Campsite": "메이플롯지",
+        "Prison": "교도소",
+        "Brownstone High School": "고등학교",
+        "Sunny Meadows": "써니메도우",
+        "Sunny Meadows Restricted": "써니메도우"
+    };
+
+    return searchNameMap[rawName] || rawName.split(' ')[0];
 }
 
 function renderMaps(category = 'ALL') {
@@ -355,6 +377,9 @@ function updateMapDetail(index) {
     const map = filteredMaps[index] || filteredMaps[0];
     if (!map) return;
 
+    const mapKey = getMapSearchKeyword(map.name);
+    const mapYtQuery = encodeURIComponent(`파스모포비아 ${mapKey} 뺑뺑이 뇽자`);
+
     const mapImageHtml = map.image ? `
         <div class="map-image-container">
             <img src="${map.image}" alt="${map.name} 지도" class="map-preview-img">
@@ -382,9 +407,21 @@ function updateMapDetail(index) {
                 <span class="map-badge ${map.category}" style="font-size: 1.0rem; padding: 7px 16px;">${map.category}</span>
             </div>
 
-            <!-- 지도 이미지 뷰어 영역 -->
-            <div style="margin: 14px 0 16px 0;">
+            <!-- 지도 뷰어 영역 -->
+            <div style="margin: 14px 0 14px 0;">
                 ${mapImageHtml}
+            </div>
+
+            <!-- 🌀 맵 뺑뺑이 공략 전용 유튜브 배너 -->
+            <div style="margin-bottom: 16px;">
+                <a href="https://www.youtube.com/results?search_query=${mapYtQuery}" target="_blank" class="weekly-yt-banner-btn" style="border-color: #a78bfa; background: linear-gradient(90deg, rgba(109, 76, 251, 0.25) 0%, rgba(248, 113, 113, 0.18) 100%);">
+                    <span class="yt-banner-icon">🌀</span>
+                    <div class="yt-banner-textbox">
+                        <div class="yt-banner-title">📺 유튜브에서 '${mapKey}' 뺑뺑이 & 루핑 공략 영상 보기</div>
+                        <div class="yt-banner-sub" style="color: #c4b5fd;">클릭 시 해당 맵의 뇽자 은신처 드리블 및 뺑뺑이 가이드 검색 결과로 이동합니다.</div>
+                    </div>
+                    <span class="yt-banner-arrow" style="background: rgba(109, 76, 251, 0.35); border-color: rgba(167, 139, 250, 0.4);">영상 보기 ➔</span>
+                </a>
             </div>
 
             <div class="dict-section-title">💡 맵 핵심 탐색 팁 (Exploration Tip)</div>

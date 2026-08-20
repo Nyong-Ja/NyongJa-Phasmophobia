@@ -966,7 +966,7 @@ body {
     color: var(--text-primary);
 }
 
-/* 🎯 주간 도전 과제 좌우 2분할 레이아웃 스타일 (좌측 패널 860px 와이드 확장) */
+/* 🎯 주간 도전 과제 좌우 4:6 황금 분할 레이아웃 */
 #weekly-container {
     display: flex !important;
     flex-direction: column !important;
@@ -975,17 +975,18 @@ body {
 
 .weekly-split-layout {
     display: flex;
-    gap: 24px;
+    gap: 20px;
     width: 100%;
     align-items: flex-start;
 }
 
-/* 좌측 패널: 폭 860px로 여유 있게 확장 */
+/* 좌측 40% 분할 패널 */
 .weekly-left-pane {
-    flex: 0 0 860px;
+    flex: 0 0 calc(40% - 10px);
+    width: calc(40% - 10px);
+    max-width: calc(40% - 10px);
     display: flex;
     flex-direction: column;
-    max-width: 860px;
 }
 
 .weekly-scroll-list {
@@ -1022,6 +1023,7 @@ body {
     transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     text-align: left;
     outline: none;
+    width: 100%;
 }
 
 .weekly-list-item:hover {
@@ -1064,9 +1066,11 @@ body {
     white-space: nowrap;
 }
 
-/* 우측 상세 패널 */
+/* 우측 60% 분할 상세 패널 */
 .weekly-right-pane {
-    flex: 1;
+    flex: 0 0 calc(60% - 10px);
+    width: calc(60% - 10px);
+    max-width: calc(60% - 10px);
     min-width: 0;
 }
 
@@ -1289,13 +1293,6 @@ footer {
 }
 
 /* 반응형 모바일/태블릿 대응 */
-@media (max-width: 1600px) {
-    .weekly-left-pane {
-        flex: 0 0 680px;
-        max-width: 680px;
-    }
-}
-
 @media (max-width: 1200px) {
     .evidence-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -1304,8 +1301,14 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
     .weekly-left-pane {
-        flex: 0 0 540px;
-        max-width: 540px;
+        flex: 0 0 45%;
+        width: 45%;
+        max-width: 45%;
+    }
+    .weekly-right-pane {
+        flex: 0 0 55%;
+        width: 55%;
+        max-width: 55%;
     }
 }
 
@@ -1313,8 +1316,10 @@ footer {
     .weekly-split-layout {
         flex-direction: column;
     }
-    .weekly-left-pane {
+    .weekly-left-pane,
+    .weekly-right-pane {
         flex: 1 1 100%;
+        width: 100%;
         max-width: 100%;
     }
     .weekly-scroll-list {

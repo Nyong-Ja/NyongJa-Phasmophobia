@@ -2372,3 +2372,57 @@ body.theme-light .live-banner *,
 body.theme-light .streamer-banner * {
     color: #1e293b !important;
 }
+
+/* 화이트 모드 장비/가이드 상세 카드 배경 및 테두리 완벽 강제 고정 */
+body.theme-light .weekly-detail-card,
+body.theme-light .guide-card,
+body.theme-light .dict-details,
+body.theme-light .eq-tier-box,
+body.theme-light .dict-content-body {
+    background-color: #ffffff !important;
+    border: 1.5px solid #cbd5e1 !important;
+    color: #1e293b !important;
+}
+
+body.theme-light .weekly-detail-card *,
+body.theme-light .guide-card *,
+body.theme-light .dict-details * {
+    color: #1e293b !important;
+}
+
+body.theme-light .weekly-detail-header h3,
+body.theme-light .guide-card-title,
+body.theme-light .dict-btn-title,
+body.theme-light .eq-tier-title {
+    color: #4f46e5 !important;
+}
+
+/* ========================================================================= */
+/* ☀️ [화이트 모드 전용] 장비 상세 가이드 박스 배경 및 테두리 강제 백색화     */
+/* ========================================================================= */
+body.theme-light .weekly-detail-card,
+body.theme-light .weekly-detail-card *,
+body.theme-light .eq-tier-box,
+body.theme-light .eq-tier-box *,
+body.theme-light .dict-content-body,
+body.theme-light .dict-content-body *,
+body.theme-light .dict-spec-bar,
+body.theme-light .dict-spec-bar * {
+    background-color: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    color: #1e293b !important;
+}
+
+/* 표 내부 및 상세 텍스트 가독성 고정 */
+body.theme-light .eq-tier-box {
+    background-color: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+body.theme-light .weekly-detail-header h3,
+body.theme-light .guide-card-title,
+body.theme-light .dict-btn-title,
+body.theme-light .eq-tier-title,
+body.theme-light .dict-section-title {
+    color: #4f46e5 !important;
+}

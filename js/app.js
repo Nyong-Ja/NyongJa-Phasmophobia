@@ -484,7 +484,7 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (좌우 2분할 레이아웃 - 왼쪽 본문 / 오른쪽 영상 링크)
+// 6. 아포칼립스 렌더링 (좌우 2분할 레이아웃 - 왼쪽 상세정보 / 오른쪽 영상 링크)
 function renderApocalypse() {
     const container = document.getElementById('apocalypse-container');
     if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
@@ -494,14 +494,15 @@ function renderApocalypse() {
 
     const wrapper = document.createElement('div');
     wrapper.className = 'weekly-split-layout';
-    wrapper.style.alignItems = 'flex-start';
+    wrapper.style.display = 'flex';
+    wrapper.style.gap = '20px';
+    wrapper.style.alignItems = 'stretch';
 
     // 좌측 패널: 모든 아포칼립스 상세 정보 본문
     const leftCol = document.createElement('div');
-    leftCol.className = 'weekly-right-pane';
     leftCol.style.flex = '1.4';
     leftCol.innerHTML = `
-        <div class="weekly-detail-card">
+        <div class="weekly-detail-card" style="height: 100%;">
             <div class="weekly-detail-header">
                 <div>
                     <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${data.title}</div>
@@ -524,73 +525,39 @@ function renderApocalypse() {
         </div>
     `;
 
-    // 우측 패널: 유튜브 공략 배너 링크들 (세로 높이 균형을 맞추기 위해 6개 배치)
+    // 우측 패널: 유튜브 공략 배너 링크들을 균등하게 채움
     const rightCol = document.createElement('div');
-    rightCol.className = 'weekly-left-pane';
     rightCol.style.flex = '0.9';
+    rightCol.style.display = 'flex';
+    rightCol.style.flexDirection = 'column';
+    rightCol.style.gap = '10px';
+
+    const ytLinks = [
+        {title: "파스모포비아 아포칼립스 통합 공략", sub: "유튜브 검색 결과로 바로 이동합니다.", icon: "▶️", url: "https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+뇽자"},
+        {title: "아포칼립스 3단계 (골드 트로피) 실전", sub: "골드 트로피 클리어 뇽자 공략 영상 보기", icon: "🏆", url: "https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+3단계+뇽자"},
+        {title: "써니 메도우 정신병원 생존 드리블", sub: "본관 맵 은신처 및 루핑 뇽자 가이드 보기", icon: "🏥", url: "https://www.youtube.com/results?search_query=파스모포비아+써니메도우+아포칼립스+뇽자"},
+        {title: "커스텀 난이도 15배율 세팅 가이드", sub: "배율 설정 및 최적화 뇽자 공략 영상 보기", icon: "⚙️", url: "https://www.youtube.com/results?search_query=파스모포비아+커스텀난이도+15배율+뇽자"},
+        {title: "무증거/아포칼립스 유령 속도 판별법", sub: "발소리 템포 및 이격 거리 뇽자 특강", icon: "👻", url: "https://www.youtube.com/results?search_query=파스모포비아+유령특징+속도구분+뇽자"},
+        {title: "아포칼립스 3성 사진 미션 요령", sub: "유령 사진 및 뼈/상호작용 촬영 팁", icon: "📸", url: "https://www.youtube.com/results?search_query=파스모포비아+사진미션+공략+뇽자"}
+    ];
+
     rightCol.innerHTML = `
-        <div class="guide-card" style="margin-bottom: 14px; border-left: 4px solid var(--accent-vibrant);">
+        <div class="guide-card" style="margin-bottom: 0; border-left: 4px solid var(--accent-vibrant);">
             <div class="guide-card-title" style="font-size: 1.12rem;">📺 뇽자의 아포칼립스 실전 공략 영상</div>
             <div class="guide-card-body" style="font-size: 0.9rem; line-height: 1.55; color: var(--text-secondary);">
                 유튜브에서 검증된 뇽자의 아포칼립스 클리어 및 15배율 생존 공략 영상을 바로 시청해 보세요!
             </div>
         </div>
-
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <a href="https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+뇽자" target="_blank" class="weekly-yt-banner-btn">
-                <span class="yt-banner-icon">▶️</span>
+        ${ytLinks.map(item => `
+            <a href="${item.url}" target="_blank" class="weekly-yt-banner-btn" style="flex: 1; display: flex; align-items: center; padding: 10px 20px;">
+                <span class="yt-banner-icon" style="font-size: 1.4rem; margin-right: 15px;">${item.icon}</span>
                 <div class="yt-banner-textbox">
-                    <div class="yt-banner-title">파스모포비아 아포칼립스 통합 공략</div>
-                    <div class="yt-banner-sub">유튜브 검색 결과로 바로 이동합니다.</div>
+                    <div class="yt-banner-title" style="font-size: 0.95rem;">${item.title}</div>
+                    <div class="yt-banner-sub" style="font-size: 0.8rem;">${item.sub}</div>
                 </div>
-                <span class="yt-banner-arrow">영상 ➔</span>
+                <span class="yt-banner-arrow" style="margin-left: auto;">영상 ➔</span>
             </a>
-
-            <a href="https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+3단계+뇽자" target="_blank" class="weekly-yt-banner-btn">
-                <span class="yt-banner-icon">🏆</span>
-                <div class="yt-banner-textbox">
-                    <div class="yt-banner-title">아포칼립스 3단계 (골드 트로피) 실전</div>
-                    <div class="yt-banner-sub">골드 트로피 클리어 뇽자 공략 영상 보기</div>
-                </div>
-                <span class="yt-banner-arrow">영상 ➔</span>
-            </a>
-
-            <a href="https://www.youtube.com/results?search_query=파스모포비아+써니메도우+아포칼립스+뇽자" target="_blank" class="weekly-yt-banner-btn">
-                <span class="yt-banner-icon">🏥</span>
-                <div class="yt-banner-textbox">
-                    <div class="yt-banner-title">써니 메도우 정신병원 생존 드리블</div>
-                    <div class="yt-banner-sub">본관 맵 은신처 및 루핑 뇽자 가이드 보기</div>
-                </div>
-                <span class="yt-banner-arrow">영상 ➔</span>
-            </a>
-
-            <a href="https://www.youtube.com/results?search_query=파스모포비아+커스텀난이도+15배율+뇽자" target="_blank" class="weekly-yt-banner-btn">
-                <span class="yt-banner-icon">⚙️</span>
-                <div class="yt-banner-textbox">
-                    <div class="yt-banner-title">커스텀 난이도 15배율 세팅 가이드</div>
-                    <div class="yt-banner-sub">배율 설정 및 최적화 뇽자 공략 영상 보기</div>
-                </div>
-                <span class="yt-banner-arrow">영상 ➔</span>
-            </a>
-
-            <a href="https://www.youtube.com/results?search_query=파스모포비아+유령특징+속도구분+뇽자" target="_blank" class="weekly-yt-banner-btn">
-                <span class="yt-banner-icon">👻</span>
-                <div class="yt-banner-textbox">
-                    <div class="yt-banner-title">무증거/아포칼립스 유령 속도 판별법</div>
-                    <div class="yt-banner-sub">발소리 템포 및 이격 거리 뇽자 특강</div>
-                </div>
-                <span class="yt-banner-arrow">영상 ➔</span>
-            </a>
-
-            <a href="https://www.youtube.com/results?search_query=파스모포비아+사진미션+공략+뇽자" target="_blank" class="weekly-yt-banner-btn">
-                <span class="yt-banner-icon">📸</span>
-                <div class="yt-banner-textbox">
-                    <div class="yt-banner-title">아포칼립스 3성 사진 미션 요령</div>
-                    <div class="yt-banner-sub">유령 사진 및 뼈/상호작용 촬영 팁</div>
-                </div>
-                <span class="yt-banner-arrow">영상 ➔</span>
-            </a>
-        </div>
+        `).join('')}
     `;
 
     wrapper.appendChild(leftCol);

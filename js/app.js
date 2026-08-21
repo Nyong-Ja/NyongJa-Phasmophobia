@@ -484,7 +484,7 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (좌우 2분할: 왼쪽 상세 정보 본문 / 오른쪽 유튜브 실전 공략 영상 링크)
+// 6. 아포칼립스 렌더링 (좌우 2분할 레이아웃 적용 버전)
 function renderApocalypse() {
     const container = document.getElementById('apocalypse-container');
     if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
@@ -492,11 +492,12 @@ function renderApocalypse() {
 
     const data = APOCALYPSE_DATA;
 
+    // 주간 도전 과제나 맵 정보와 완전히 동일한 좌우 분할 레이아웃 클래스 적용
     const wrapper = document.createElement('div');
     wrapper.className = 'weekly-split-layout';
     wrapper.style.alignItems = 'flex-start';
 
-    // 좌측 패널: 모든 아포칼립스 상세 정보 본문 (넓게 배분)
+    // 좌측 패널 (왼쪽): 모든 아포칼립스 상세 정보 본문 카드
     const leftCol = document.createElement('div');
     leftCol.className = 'weekly-right-pane';
     leftCol.style.flex = '1.4';
@@ -524,7 +525,7 @@ function renderApocalypse() {
         </div>
     `;
 
-    // 우측 패널: 텅 비어있던 공간을 채워줄 뇽자 유튜브 아포칼립스 공략 배너 링크들
+    // 우측 패널 (오른쪽): 뇽자 유튜브 아포칼립스 공략 영상 배너 링크들
     const rightCol = document.createElement('div');
     rightCol.className = 'weekly-left-pane';
     rightCol.style.flex = '0.9';

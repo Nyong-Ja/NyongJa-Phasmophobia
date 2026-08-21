@@ -2062,3 +2062,52 @@ body.theme-dark .more-btn {
     border-color: #52525b !important;
     color: #f4f4f5 !important;
 }
+
+/* =========================================
+   🔧 증거 선택 버튼 및 필살기 가독성 완벽 해결
+   ========================================= */
+
+/* 1. 증거 선택 버튼 (포함/제외/미선택 상태 색상 강제 적용 - 라이트/다크 공통) */
+.evidence-btn.included {
+    background-color: rgba(52, 211, 153, 0.2) !important;
+    border-color: #10b981 !important;
+    color: #059669 !important;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.25) !important;
+}
+
+body.theme-light .evidence-btn.included {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+    border-color: #10b981 !important;
+    color: #047857 !important;
+}
+
+.evidence-btn.excluded {
+    background-color: rgba(248, 113, 113, 0.2) !important;
+    border-color: #ef4444 !important;
+    color: #dc2626 !important;
+    text-decoration: line-through !important;
+}
+
+body.theme-light .evidence-btn.excluded {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+    border-color: #ef4444 !important;
+    color: #b91c1c !important;
+    text-decoration: line-through !important;
+}
+
+/* 2. 라이트 모드에서 연두색 필살기 텍스트가 안 보이는 현상 해결 (진한 초록/청록톤으로 변경) */
+body.theme-light .ghost-signature-box {
+    background: rgba(16, 185, 129, 0.08) !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+body.theme-light .ghost-signature-tag {
+    background: #10b981 !important;
+    color: #ffffff !important;
+    border-color: #059669 !important;
+}
+
+body.theme-light .ghost-signature-desc {
+    color: #065f46 !important;
+    font-weight: 700 !important;
+}

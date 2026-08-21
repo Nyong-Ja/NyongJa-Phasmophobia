@@ -3,13 +3,19 @@
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 저장된 테마 불러오기 적용
-    const savedTheme = localStorage.getItem('nyong_phasmo_theme') || 'default';
-    document.body.className = `theme-${savedTheme}`;
-    const themeSelect = document.getElementById('theme-select');
-    if (themeSelect) {
-        themeSelect.value = savedTheme;
-    }
+// 1) DOMContentLoaded 내부 맨 처음에 추가
+const savedTheme = localStorage.getItem('nyong_phasmo_theme') || 'default';
+document.body.className = `theme-${savedTheme}`;
+const themeSelect = document.getElementById('theme-select');
+if (themeSelect) {
+    themeSelect.value = savedTheme;
+}
+
+// 2) 파일 아무 곳에나 함수 추가
+function changeTheme(themeName) {
+    document.body.className = `theme-${themeName}`;
+    localStorage.setItem('nyong_phasmo_theme', themeName);
+}
 
     if (typeof initEvidenceButtons === 'function') initEvidenceButtons();
     if (typeof renderGhostList === 'function') renderGhostList();

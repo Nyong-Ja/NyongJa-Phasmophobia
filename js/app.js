@@ -484,54 +484,99 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (전체 화면 100% 폭 확장 적용)
+// 6. 아포칼립스 렌더링 (좌우 분할 + 메인 영상 + 라이브 플레이어 + 관련 영상 썸네일 그리드)
+const APOCALYPSE_RELATED_VIDEOS = [
+    { title: "아포칼립스 15배율 뺑뺑이", id: "zoXY56jyHKo" },
+    { title: "써니 메도우 맵 완벽 정복", id: "zoXY56jyHKo" },
+    { title: "유령별 특징 구분 꿀팁", id: "zoXY56jyHKo" }
+];
+
 function renderApocalypse() {
     const container = document.getElementById('apocalypse-container');
     if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
     container.innerHTML = '';
 
     const data = APOCALYPSE_DATA;
+    const mainYtId = "zoXY56jyHKo"; // 메인 영상 ID
 
     const wrapper = document.createElement('div');
-    wrapper.style.width = '100%';
-    wrapper.style.maxWidth = '100%';
-    wrapper.style.boxSizing = 'border-box';
+    wrapper.className = 'weekly-split-layout apocalypse-split-layout';
 
-    wrapper.innerHTML = `
-        <div class="weekly-detail-card" style="width: 100%; max-width: 100%; box-sizing: border-box; margin: 0;">
-            <div class="weekly-detail-header" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    // 1. 좌측 패널 (개요 및 생방송 안내)
+    const leftCol = document.createElement('div');
+    leftCol.className = 'weekly-left-pane';
+    leftCol.innerHTML = `
+        <div class="guide-card" style="margin-bottom: 12px; border-left: 4px solid var(--accent-vibrant); padding: 14px;">
+            <div class="guide-card-title" style="font-size: 1.15rem; margin-bottom: 6px;">💀 ${data.title}</div>
+            <div class="guide-card-body" style="font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary);">
+                • <strong>도전 목표:</strong> 써니 메도우 정신병원 본관 전역을 무대로 극악의 조건 속에서 트로피 배율 달성<br>
+                • <strong>필수 조건:</strong> 유령 종류 특정, 목표 3가지 완료, 사냥/이벤트 중 사진 촬영 후 생존 탈출
+            </div>
+        </div>
+
+        <div class="guide-card" style="border-left: 4px solid var(--accent-green); padding: 14px;">
+            <div class="guide-card-title" style="font-size: 1.05rem; margin-bottom: 6px; color: var(--accent-green);">📺 실시간 뇽자 생방송 연동</div>
+            <div class="guide-card-body" style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 12px;">
+                아포칼립스 15배율 트로피 트라이 실전 공략을 생방송 화면과 함께 실시간으로 확인해보세요!
+            </div>
+            <a href="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8" target="_blank" class="yt-btn" style="text-align: center; text-decoration: none; display: block; padding: 10px; font-size: 0.92rem; background: rgba(52, 211, 153, 0.15); border-color: var(--accent-green); color: var(--accent-green); font-weight: 700; border-radius: 8px;">
+                🟢 치지직 실시간 생방송 바로가기
+            </a>
+        </div>
+    `;
+
+    // 2. 우측 패널 (메인 영상 배너, 실시간 플레이어, 상세 공략, 관련 영상 썸네일)
+    const rightCol = document.createElement('div');
+    rightCol.className = 'weekly-right-pane';
+    rightCol.innerHTML = `
+        <div class="weekly-detail-card">
+            <div class="weekly-detail-header">
                 <div>
                     <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${data.title}</div>
-                    <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
-                        ${data.subtitle}
-                    </div>
+                    <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">${data.subtitle}</div>
                 </div>
                 <span class="map-badge Large" style="font-size: 1.0rem; padding: 7px 16px;">💀 ${data.badge}</span>
             </div>
 
-            <div style="margin: 14px 0 16px 0; width: 100%;">
-                <a href="https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+뇽자" target="_blank" class="weekly-yt-banner-btn" style="width: 100%; box-sizing: border-box;">
+            <!-- 유튜브 메인 영상 배너 -->
+            <div style="margin: 14px 0;">
+                <a href="https://www.youtube.com/watch?v=${mainYtId}" target="_blank" class="weekly-yt-banner-btn">
                     <span class="yt-banner-icon">▶️</span>
                     <div class="yt-banner-textbox">
                         <div class="yt-banner-title">📺 유튜브에서 '아포칼립스 15배율' 뇽자 실전 공략 보기</div>
-                        <div class="yt-banner-sub">클릭 시 해당 공략 검색 결과로 바로 이동합니다.</div>
+                        <div class="yt-banner-sub">클릭 시 뇽자의 황금트로피 획득 완벽 공략 영상으로 이동합니다.</div>
                     </div>
                     <span class="yt-banner-arrow">영상 보기 ➔</span>
                 </a>
             </div>
 
-            <div class="dict-section-title">💡 아포칼립스 핵심 개요 (OVERVIEW)</div>
-            <div style="background: rgba(109, 76, 251, 0.1); padding: 13px 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5; margin-bottom: 16px; width: 100%; box-sizing: border-box;">
-                ${data.tip}
+            <!-- 실시간 플레이어 -->
+            <div class="dict-section-title">🔴 뇽자 실시간 LIVE 스트리밍 화면</div>
+            <div style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--card-border); background-color: #000; margin-bottom: 16px;">
+                <iframe src="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8/player" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
 
-            <div class="dict-section-title">📋 상세 공략 및 가이드 (DETAILED GUIDE)</div>
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65; width: 100%; box-sizing: border-box;">
+            <!-- 상세 공략 -->
+            <div class="dict-section-title">📋 상세 공략 및 가이드</div>
+            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); margin-bottom: 16px;">
                 ${data.detailedHtml}
+            </div>
+
+            <!-- 관련 영상 썸네일 그리드 -->
+            <div class="dict-section-title">🔗 함께 보면 좋은 뇽자 공략 영상</div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px;">
+                ${APOCALYPSE_RELATED_VIDEOS.map(v => `
+                    <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" style="text-decoration: none; background: #080a18; border: 1.5px solid var(--card-border); border-radius: 8px; padding: 8px; display: block; transition: all 0.2s ease;" onmouseover="this.style.borderColor='var(--accent-light)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--card-border)'; this.style.transform='translateY(0)';">
+                        <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" style="width: 100%; border-radius: 6px; display: block;">
+                        <div style="font-size: 0.8rem; color: #fff; margin-top: 6px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600;">${v.title}</div>
+                    </a>
+                `).join('')}
             </div>
         </div>
     `;
 
+    wrapper.appendChild(leftCol);
+    wrapper.appendChild(rightCol);
     container.appendChild(wrapper);
 }
 

@@ -1602,3 +1602,120 @@ body.theme-dark {
 .ghost-speed {
     border-color: var(--card-border) !important;
 }
+
+/* =========================================
+   🚨 라이트/다크 모드 글씨 묻힘 및 호버 잔여 색상 완벽 해결
+   ========================================= */
+
+/* 1. 라이트 모드일 때 카드 내부 글씨색을 무조건 진한 네이비/블랙으로 강제 고정 */
+body.theme-light .ghost-card,
+body.theme-light .dict-details,
+body.theme-light .guide-card,
+body.theme-light .weekly-detail-card,
+body.theme-light .weekly-list-item,
+body.theme-light .eq-tier-box,
+body.theme-light .evidence-btn,
+body.theme-light .search-result-card,
+body.theme-light .ghost-name,
+body.theme-light .dict-summary-btn {
+    color: var(--text-primary) !important;
+}
+
+/* 2. 라이트 모드에서 유령 카드 배경색을 확실한 화이트/연한 회색으로 고정 */
+body.theme-light .ghost-card {
+    background-color: #ffffff !important;
+    border-color: var(--card-border) !important;
+}
+
+/* 3. 라이트 모드에서 마우스 호버 시 어두워지거나 글씨가 안 보이는 현상 방지 */
+body.theme-light .ghost-card:hover {
+    background: #ffffff !important;
+    border-color: var(--accent-light) !important;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2) !important;
+}
+
+/* 4. 공통: 유령 카드 내부 세부 요소 색상 및 테두리 강제 연동 */
+.ghost-card,
+.dict-details,
+.guide-card,
+.weekly-detail-card,
+.weekly-list-item,
+.eq-tier-box,
+.evidence-btn,
+.search-result-card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.ghost-card {
+    background-color: var(--inner-card-bg) !important;
+}
+
+.ev-tag,
+.map-filter-btn {
+    background-color: var(--inner-card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-secondary) !important;
+}
+
+.dict-summary-btn {
+    background: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.dict-content-body {
+    background-color: var(--inner-card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.weekly-yt-banner-btn {
+    background: var(--card-bg) !important;
+    border-color: var(--accent-light) !important;
+    color: var(--text-primary) !important;
+}
+
+/* =========================================
+   🎨 상단 메뉴 및 우측 플로팅 퀵바 테마 동기화
+   ========================================= */
+.top-nav {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+}
+
+.nav-tab {
+    color: var(--text-secondary) !important;
+}
+
+.nav-tab:hover {
+    color: var(--text-primary) !important;
+    background-color: var(--accent-glow) !important;
+}
+
+.nav-tab.active {
+    background: linear-gradient(135deg, var(--accent-vibrant), var(--accent-light)) !important;
+    color: #ffffff !important;
+}
+
+.quick-icon-btn {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.quick-icon-btn:hover {
+    border-color: var(--accent-light) !important;
+    background-color: var(--accent-glow) !important;
+}
+
+.quick-slide-panel {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.quick-slide-panel .panel-content {
+    color: var(--text-primary) !important;
+}

@@ -33,22 +33,22 @@ function changeTheme(themeName) {
     localStorage.setItem('nyong_phasmo_theme', themeName);
 }
 
-// 🗺️ karotte.org 맵 URL 매핑 (iframe 임베드 전용)
+// 🗺️ karotte.org 맵 URL 매핑
 function getKarotteMapUrl(rawName) {
     const mapMap = {
-        "6 Tanglewood Drive": "https://phasmo.karotte.org/maps/6-tanglewood-drive/embed/",
-        "42 Edgefield Road": "https://phasmo.karotte.org/maps/42-edgefield-road/embed/",
-        "10 Ridgeview Court": "https://phasmo.karotte.org/maps/10-ridgeview-court/embed/",
-        "13 Willow Street": "https://phasmo.karotte.org/maps/13-willow-street/embed/",
-        "Camp Woodwind": "https://phasmo.karotte.org/maps/camp-woodwind/embed/",
-        "Grafton Farmhouse": "https://phasmo.karotte.org/maps/grafton-farmhouse/embed/",
-        "Bleasdale Farmhouse": "https://phasmo.karotte.org/maps/bleasdale-farmhouse/embed/",
-        "Point Hope": "https://phasmo.karotte.org/maps/point-hope/embed/",
-        "Maple Lodge Campsite": "https://phasmo.karotte.org/maps/maple-lodge-campsite/embed/",
-        "Prison": "https://phasmo.karotte.org/maps/prison/embed/",
-        "Brownstone High School": "https://phasmo.karotte.org/maps/brownstone-high-school/embed/",
-        "Sunny Meadows": "https://phasmo.karotte.org/maps/sunny-meadows-mental-institution/embed/",
-        "Sunny Meadows Restricted": "https://phasmo.karotte.org/maps/sunny-meadows-mental-institution/embed/"
+        "6 Tanglewood Drive": "https://phasmo.karotte.org/maps/6-tanglewood-drive/",
+        "42 Edgefield Road": "https://phasmo.karotte.org/maps/42-edgefield-road/",
+        "10 Ridgeview Court": "https://phasmo.karotte.org/maps/10-ridgeview-court/",
+        "13 Willow Street": "https://phasmo.karotte.org/maps/13-willow-street/",
+        "Camp Woodwind": "https://phasmo.karotte.org/maps/camp-woodwind/",
+        "Grafton Farmhouse": "https://phasmo.karotte.org/maps/grafton-farmhouse/",
+        "Bleasdale Farmhouse": "https://phasmo.karotte.org/maps/bleasdale-farmhouse/",
+        "Point Hope": "https://phasmo.karotte.org/maps/point-hope/",
+        "Maple Lodge Campsite": "https://phasmo.karotte.org/maps/maple-lodge-campsite/",
+        "Prison": "https://phasmo.karotte.org/maps/prison/",
+        "Brownstone High School": "https://phasmo.karotte.org/maps/brownstone-high-school/",
+        "Sunny Meadows": "https://phasmo.karotte.org/maps/sunny-meadows-mental-institution/",
+        "Sunny Meadows Restricted": "https://phasmo.karotte.org/maps/sunny-meadows-mental-institution/"
     };
     return mapMap[rawName] || "https://phasmo.karotte.org/";
 }
@@ -327,7 +327,7 @@ function updateChallengeDetail(id) {
     `;
 }
 
-// 5. 🗺️ 맵 정보 렌더링 (카로테 지도 iframe 직접 연동 & 공간 확장 적용)
+// 5. 🗺️ 맵 정보 렌더링 (대형 바로가기 버튼 영역 적용)
 let currentSelectedMapIndex = 0;
 let currentMapCategory = 'ALL';
 
@@ -464,10 +464,20 @@ function updateMapDetail(index) {
     const mapYtQuery = encodeURIComponent(`파스모포비아 ${mapKey} 뺑뺑이 뇽자`);
     const karotteUrl = getKarotteMapUrl(map.name);
 
-    // 🗺️ karotte.org 맵 화면 직접 연동 뷰어 (크기 및 공간 확장)
-    const mapViewerHtml = `
-        <div style="position: relative; width: 100%; height: 780px; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--card-border); background-color: #000; margin-bottom: 16px;">
-            <iframe src="${karotteUrl}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" title="${map.name} 정밀 지도" allowfullscreen></iframe>
+    // 🗺️ 회색 오류 화면 대신 공간을 넓게 쓴 대형 인터랙티브 바로가기 영역
+    const mapAreaHtml = `
+        <div style="margin: 16px 0; border: 2px dashed var(--accent-vibrant); border-radius: 12px; padding: 45px 20px; background: rgba(109, 76, 251, 0.06); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+            <div style="font-size: 3.2rem;">🗺️</div>
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-light);">
+                ${getMapDisplayName(map.name)} 인터랙티브 정밀 구조도
+            </div>
+            <div style="font-size: 0.95rem; color: var(--text-secondary); max-width: 500px; line-height: 1.5;">
+                phasmo.karotte.org 사이트의 보안 정책상 외부 창 임베딩이 차단되어 있습니다. 아래 버튼을 눌러 지도를 크게 확인하세요!
+            </div>
+            <a href="${karotteUrl}" target="_blank" 
+               style="display: inline-block; padding: 16px 45px; background: var(--accent-vibrant); color: #fff; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 1.15rem; transition: all 0.2s ease; box-shadow: 0 4px 20px var(--accent-glow);">
+                🌐 '${getMapDisplayName(map.name)}' 지도 크게 보기 (새 창) ➔
+            </a>
         </div>
     `;
 
@@ -483,13 +493,8 @@ function updateMapDetail(index) {
                 <span class="map-badge ${map.category}" style="font-size: 1.0rem; padding: 7px 16px;">${map.category}</span>
             </div>
 
-            <!-- 🗺️ karotte.org 지도 영역 -->
-            <div style="margin: 16px 0 10px 0;">
-                <div style="font-size: 0.92rem; font-weight: 700; color: var(--accent-light); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-                    <span>🗺️ 인터랙티브 정밀 구조도 (출처: phasmo.karotte.org)</span>
-                </div>
-                ${mapViewerHtml}
-            </div>
+            <!-- 지도 공간 영역 -->
+            ${mapAreaHtml}
 
             <div style="margin-bottom: 16px;">
                 <a href="https://www.youtube.com/results?search_query=${mapYtQuery}" target="_blank" class="weekly-yt-banner-btn">
@@ -508,7 +513,7 @@ function updateMapDetail(index) {
             </div>
 
             <div class="dict-section-title">📋 룸 목록, 은신처 & 저주 물건 상세 공략</div>
-            <div style="background: var(--card-bg); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65; color: var(--text-primary);">
+            <div style="background: var(--card-bg); padding: 14px 16px; border-radius: 8px; border: 1.5px solid var(--card-border); font-size: 0.92rem; line-height: 1.65; color: var(--text-primary);">
                 ${map.detailedHtml || '<p style="color: var(--text-secondary);">상세 정보 업데이트 준비 중입니다.</p>'}
             </div>
         </div>
@@ -550,7 +555,7 @@ function renderApocalypse() {
 
         <div class="weekly-detail-card">
             <div class="dict-section-title" style="margin-top: 0;">📋 상세 공략 및 가이드 (DETAILED GUIDE)</div>
-            <div style="background: var(--card-bg); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65; color: var(--text-primary);">
+            <div style="background: var(--card-bg); padding: 14px 16px; border-radius: 8px; border: 1.5px solid var(--card-border); font-size: 0.92rem; line-height: 1.65; color: var(--text-primary);">
                 ${data.detailedHtml}
             </div>
         </div>

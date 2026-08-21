@@ -484,34 +484,95 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (신규 추가)
+// 6. 아포칼립스 렌더링 (맵 정보 탭과 완전히 동일한 좌우 4:6 분할 & 상세 카드 구조 적용)
+let currentSelectedApocalypseId = 1;
+
 function renderApocalypse() {
     const container = document.getElementById('apocalypse-container');
     if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
     container.innerHTML = '';
 
-    APOCALYPSE_DATA.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'guide-card';
-        card.innerHTML = `
-            <div class="guide-card-title">💀 ${item.title}</div>
-            <div class="guide-card-body" style="margin-bottom: 10px;">${item.desc}</div>
-            <div style="background: rgba(109, 76, 251, 0.1); padding: 10px; border-radius: 6px; font-size: 0.92rem; margin-bottom: 12px;">
-                <strong>💡 전략:</strong> ${item.strategy}
+    const wrapper = document.createElement('div');
+    wrapper.className = 'weekly-split-layout map-split-layout';
+
+    // 좌측 패널 (40%): 개요 카드 + 단계별 선택 리스트
+    const leftCol = document.createElement('div');
+    leftCol.className = 'weekly-left-pane';
+    leftCol.innerHTML = `
+        <div class="guide-card" style="margin-bottom: 12px; border-left: 4px solid var(--accent-vibrant); padding: 12px 14px;">
+            <div class="guide-card-title" style="font-size: 1.05rem; margin-bottom: 6px;">💀 아포칼립스 챌린지 (Apocalypse)</div>
+            <div class="guide-card-body" style="font-size: 0.9rem; line-height: 1.55; color: var(--text-secondary);">
+                • <strong>대상 맵:</strong> 써니 메도우 정신병원 (본관 풀맵)<br>
+                • <strong>목표:</strong> 15배 이상 배율로 유령 특정, 부가 목표 완료, 사진 촬영 및 생존 탈출<br>
+                • <strong>최종 보상:</strong> <strong>골드 트로피 (Gold Trophy)</strong> 및 ID 카드 커스텀 해금
             </div>
-            <a href="${item.ytLink}" target="_blank" class="weekly-yt-banner-btn" style="padding: 8px 12px;">
-                <span class="yt-banner-icon">▶️</span>
-                <div class="yt-banner-textbox">
-                    <div class="yt-banner-title" style="font-size: 0.92rem;">유튜브 아포칼립스 공략 보기</div>
-                </div>
-                <span class="yt-banner-arrow" style="font-size: 0.85rem; padding: 4px 8px;">영상 ➔</span>
-            </a>
-        `;
-        container.appendChild(card);
-    });
+        </div>
+
+        <div class="weekly-scroll-list" id="apocalypse-scroll-list">
+            ${APOCALYPSE_DATA.map(item => `
+                <button type="button" 
+                        class="weekly-list-item ${item.id === currentSelectedApocalypseId ? 'active' : ''}" 
+                        onclick="selectApocalypse(${item.id})">
+                    <span class="map-badge Large" style="font-size: 0.82rem; padding: 2px 8px;">${item.difficulty}</span>
+                    <span class="ch-name-txt" style="font-size: 1.02rem;">${item.nameKr}</span>
+                </button>
+            `).join('')}
+        </div>
+    `;
+
+    // 우측 패널 (60%): 맵 상세 카드와 100% 동일한 디자인 틀
+    const rightCol = document.createElement('div');
+    rightCol.className = 'weekly-right-pane';
+    rightCol.id = 'apocalypse-detail-pane';
+
+    wrapper.appendChild(leftCol);
+    wrapper.appendChild(rightCol);
+    container.appendChild(wrapper);
+
+    updateApocalypseDetail(currentSelectedApocalypseId);
 }
 
-// 7. 드롭스 렌더링 (신규 추가)
+function selectApocalypse(id) {
+    currentSelectedApocalypseId = id;
+    document.querySelectorAll('#apocalypse-scroll-list .weekly-list-item').forEach((btn, idx) => {
+        if (idx + 1 === id) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    updateApocalypseDetail(id);
+}
+
+function updateApocalypseDetail(id) {
+    const pane = document.getElementById('apocalypse-detail-pane');
+    if (!pane || typeof APOCALYPSE_DATA === 'undefined') return;
+
+    const data = APOCALYPSE_DATA.find(item => item.id === id) || APOCALYPSE_DATA[0];
+
+    pane.innerHTML = `
+        <div class="weekly-detail-card">
+            <div class="weekly-detail-header">
+                <div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${data.nameKr}</div>
+                    <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
+                        도전 과제 단계: ${data.difficulty}
+                    </div>
+                </div>
+                <span class="map-badge Large" style="font-size: 1.0rem; padding: 7px 16px;">💀 ${data.difficulty}</span>
+            </div>
+
+            <div class="dict-section-title" style="margin-top: 16px;">💡 아포칼립스 핵심 생존 팁 (Survival Tip)</div>
+            <div style="background: rgba(109, 76, 251, 0.1); padding: 13px 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5; margin-bottom: 16px;">
+                ${data.tip}
+            </div>
+
+            <div class="dict-section-title">📋 상세 공략 및 가이드 (Detailed Guide)</div>
+            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65;">
+                ${data.detailedHtml}
+            </div>
+        </div>
+    `;
+}
+
+// 7. 드롭스 렌더링
 function renderDrops() {
     const container = document.getElementById('drops-container');
     if (!container || typeof DROPS_DATA === 'undefined') return;

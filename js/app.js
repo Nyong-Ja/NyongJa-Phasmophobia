@@ -484,7 +484,7 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (좌우 패널 완벽 분할 재배치 버전)
+// 6. 아포칼립스 렌더링 (최종 재배치 버전)
 const APOCALYPSE_RELATED_VIDEOS = [
     { title: "아포칼립스 15배율 뺑뺑이", id: "zoXY56jyHKo" },
     { title: "써니 메도우 맵 완벽 정복", id: "zoXY56jyHKo" },
@@ -502,7 +502,7 @@ function renderApocalypse() {
     const wrapper = document.createElement('div');
     wrapper.className = 'weekly-split-layout apocalypse-split-layout';
 
-    // 1. 좌측 패널 (완벽 가이드 본문 + 실시간 생방송 연동 박스)
+    // 1. 좌측 패널 (완벽 가이드 본문 + 상세 공략)
     const leftCol = document.createElement('div');
     leftCol.className = 'weekly-left-pane';
     leftCol.style.flex = '0 0 calc(50% - 10px)';
@@ -517,6 +517,22 @@ function renderApocalypse() {
             </div>
         </div>
 
+        <div class="weekly-detail-card">
+            <div class="dict-section-title" style="margin-top: 0;">📋 상세 공략 및 가이드 (DETAILED GUIDE)</div>
+            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65;">
+                ${data.detailedHtml}
+            </div>
+        </div>
+    `;
+
+    // 2. 우측 패널 (실시간 생방송 연동 박스 + 유튜브 공략 링크 배너 + 실시간 플레이어 + 함께 보면 좋은 공략 영상 그리드)
+    const rightCol = document.createElement('div');
+    rightCol.className = 'weekly-right-pane';
+    rightCol.style.flex = '0 0 calc(50% - 10px)';
+    rightCol.style.width = 'calc(50% - 10px)';
+    rightCol.style.maxWidth = 'calc(50% - 10px)';
+    rightCol.innerHTML = `
+        <!-- 실시간 생방송 연동 박스 -->
         <div class="guide-card" style="margin-bottom: 16px; border-left: 4px solid var(--accent-green); padding: 16px;">
             <div class="guide-card-title" style="font-size: 1.05rem; margin-bottom: 6px; color: var(--accent-green);">📺 실시간 뇽자 생방송 연동</div>
             <div class="guide-card-body" style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 12px;">
@@ -527,36 +543,33 @@ function renderApocalypse() {
             </a>
         </div>
 
-        <div class="weekly-detail-card">
-            <div class="dict-section-title" style="margin-top: 0;">📋 상세 공략 및 가이드 (DETAILED GUIDE)</div>
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65;">
-                ${data.detailedHtml}
-            </div>
+        <!-- 유튜브 메인 공략 링크 배너 -->
+        <div style="margin-bottom: 16px;">
+            <a href="https://www.youtube.com/watch?v=${mainYtId}" target="_blank" class="weekly-yt-banner-btn">
+                <span class="yt-banner-icon">▶️</span>
+                <div class="yt-banner-textbox">
+                    <div class="yt-banner-title">📺 유튜브에서 '아포칼립스 15배율' 뇽자 실전 공략 보기</div>
+                    <div class="yt-banner-sub">클릭 시 뇽자의 황금트로피 획득 완벽 공략 영상으로 이동합니다.</div>
+                </div>
+                <span class="yt-banner-arrow">영상 보기 ➔</span>
+            </a>
         </div>
-    `;
 
-    // 2. 우측 패널 (실시간 생방송 화면 + 함께 보면 좋은 공략 영상 그리드)
-    const rightCol = document.createElement('div');
-    rightCol.className = 'weekly-right-pane';
-    rightCol.style.flex = '0 0 calc(50% - 10px)';
-    rightCol.style.width = 'calc(50% - 10px)';
-    rightCol.style.maxWidth = 'calc(50% - 10px)';
-    rightCol.innerHTML = `
+        <!-- 실시간 라이브 스트리밍 플레이어 -->
         <div class="weekly-detail-card" style="margin-bottom: 16px;">
             <div class="weekly-detail-header" style="margin-bottom: 14px;">
                 <div>
-                    <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">🔴 실시간 라이브 스트리밍</div>
-                    <div style="font-size: 0.92rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">뇽자의 치지직 생방송 화면을 실시간으로 시청하세요.</div>
+                    <div style="font-size: 1.3rem; font-weight: 800; color: #fff;">🔴 실시간 라이브 스트리밍</div>
+                    <div style="font-size: 0.88rem; color: var(--accent-light); margin-top: 2px;">뇽자의 치지직 생방송 화면을 실시간으로 시청하세요.</div>
                 </div>
-                <span class="map-badge Medium" style="font-size: 1.0rem; padding: 7px 16px;">LIVE</span>
+                <span class="map-badge Medium" style="font-size: 0.9rem; padding: 5px 12px;">LIVE</span>
             </div>
-
-            <!-- 실시간 플레이어 -->
             <div style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--card-border); background-color: #000;">
                 <iframe src="https://chzzk.naver.com/live/14fd4427ab76277bee9567d27dcbf0e8/player" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
         </div>
 
+        <!-- 함께 보면 좋은 공략 영상 그리드 -->
         <div class="weekly-detail-card">
             <div class="dict-section-title" style="margin-top: 0;">🔗 함께 보면 좋은 뇽자 공략 영상</div>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px;">

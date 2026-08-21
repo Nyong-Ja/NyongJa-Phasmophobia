@@ -484,7 +484,7 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (최종 재배치 버전)
+// 6. 아포칼립스 렌더링 (최종 레이아웃 정리 버전)
 const APOCALYPSE_RELATED_VIDEOS = [
     { title: "아포칼립스 15배율 뺑뺑이", id: "zoXY56jyHKo" },
     { title: "써니 메도우 맵 완벽 정복", id: "zoXY56jyHKo" },

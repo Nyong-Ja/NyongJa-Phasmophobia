@@ -1554,119 +1554,168 @@ body.theme-dark {
     border-color: var(--accent-light);
 }
 
-/* =========================================
-   🎨 라이트/다크 모드 잔여 색상 완벽 동기화 (파일 맨 아래에 추가)
-   ========================================= */
-.ghost-card,
-.dict-details,
-.guide-card,
-.weekly-detail-card,
-.weekly-list-item,
-.eq-tier-box,
-.evidence-btn,
-.search-result-card {
-    background-color: var(--card-bg) !important;
-    border-color: var(--card-border) !important;
-    color: var(--text-primary) !important;
-}
-
-.ghost-card {
-    background-color: var(--inner-card-bg) !important;
-}
-
-.ev-tag,
-.map-filter-btn {
-    background-color: var(--inner-card-bg) !important;
-    border-color: var(--card-border) !important;
-    color: var(--text-secondary) !important;
-}
-
-.dict-summary-btn {
-    background: var(--card-bg) !important;
-    border-color: var(--card-border) !important;
-    color: var(--text-primary) !important;
-}
-
-.dict-content-body {
-    background-color: var(--inner-card-bg) !important;
-    border-color: var(--card-border) !important;
-    color: var(--text-primary) !important;
-}
-
-.weekly-yt-banner-btn {
-    background: var(--card-bg) !important;
-    border-color: var(--accent-light) !important;
-}
-
-.ghost-sanity,
-.ghost-speed {
-    border-color: var(--card-border) !important;
-}
-
 /* ========================================================================= */
-/* 🎨 [최종] 테마별 가독성 및 색상 완벽 통일 통합 버전 (style.css 맨 아래에 추가) */
+/* 🛠️ [최종 완벽 솔루션] 테마별 가독성 및 UI 충돌 격리 통일                  */
 /* ========================================================================= */
 
-/* 1. 기본/다크/라이트 공통 카드 및 컨테이너 테마 동기화 */
+/* 1. [공통 기본 카드 및 리스트 격리] */
 .ghost-card, .dict-details, .guide-card, .weekly-detail-card, .weekly-list-item, .eq-tier-box, .evidence-btn, .search-result-card, .news-blog-card {
     background-color: var(--card-bg) !important;
     border-color: var(--card-border) !important;
     color: var(--text-primary) !important;
 }
 
-/* 2. [라이트 모드] 가독성 개선 (배경색 및 글씨 강제 고정) */
-body.theme-light .ghost-card, body.theme-light .dict-details, body.theme-light .guide-card, body.theme-light .weekly-detail-card, body.theme-light .news-blog-card {
+/* 2. [라이트 모드 전용 세부 통일] */
+body.theme-light .ghost-card, 
+body.theme-light .dict-details, 
+body.theme-light .guide-card, 
+body.theme-light .weekly-detail-card, 
+body.theme-light .news-blog-card,
+body.theme-light .eq-tier-box,
+body.theme-light .search-result-card {
     background-color: #ffffff !important;
     border-color: #cbd5e1 !important;
     color: #1e293b !important;
 }
 
-body.theme-light .ghost-name, body.theme-light .dict-btn-title, body.theme-light .ch-name-txt, body.theme-light .guide-card-title,
-body.theme-light .weekly-detail-header div, body.theme-light .ghost-tip-content, body.theme-light .dict-text {
+body.theme-light .ghost-name, 
+body.theme-light .dict-btn-title, 
+body.theme-light .ch-name-txt, 
+body.theme-light .guide-card-title,
+body.theme-light .weekly-detail-header div, 
+body.theme-light .ghost-tip-content, 
+body.theme-light .dict-text,
+body.theme-light .eq-tier-title,
+body.theme-light .eq-tier-desc,
+body.theme-light .news-card-title,
+body.theme-light .news-card-desc {
     color: #1e293b !important;
 }
 
-/* 라이트 모드 유령 카드 마우스 호버 고정 */
-body.theme-light .ghost-card:hover {
+/* 라이트 모드 유령 카드 마우스 호버 시 배경 하얗게 고정 및 그림자 정돈 */
+body.theme-light .ghost-card:hover,
+body.theme-light .dict-details:hover,
+body.theme-light .guide-card:hover {
     background: #ffffff !important;
     border-color: #4f46e5 !important;
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2) !important;
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15) !important;
+    transform: translateY(-3px) !important;
 }
 
-/* 3. [매트 블랙 모드] 스타일 동기화 (모노톤 통일) */
+/* 라이트 모드 선택된 리스트 항목(.active) 및 필터 칩 */
+body.theme-light .weekly-list-item.active {
+    background: linear-gradient(90deg, #e0e7ff 0%, #f1f5f9 100%) !important;
+    border-color: #4f46e5 !important;
+    color: #1e293b !important;
+}
+
+body.theme-light .filter-chip span {
+    background-color: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    color: #475569 !important;
+}
+
+body.theme-light .filter-chip input[type="checkbox"]:checked + span {
+    background-color: #e0e7ff !important;
+    border-color: #4f46e5 !important;
+    color: #4338ca !important;
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.2) !important;
+}
+
+body.theme-light .top-search-bar input,
+body.theme-light .search-input-box {
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+    border-color: #cbd5e1 !important;
+}
+
+/* 3. [매트 블랙 모드 전용 세부 통일] */
 body.theme-dark .ghost-card { background-color: #18181b !important; border-color: #27272a !important; }
-body.theme-dark .dict-details, body.theme-dark .guide-card, body.theme-dark .weekly-detail-card {
+body.theme-dark .dict-details, body.theme-dark .guide-card, body.theme-dark .weekly-detail-card, body.theme-dark .eq-tier-box {
     background-color: #121212 !important; border-color: #27272a !important;
 }
+
 body.theme-dark .weekly-list-item.active {
     background: linear-gradient(90deg, #27272a 0%, #121212 100%) !important;
     border-color: #52525b !important;
+    color: #ffffff !important;
 }
+
+body.theme-dark .filter-chip span {
+    background-color: #18181b !important;
+    border-color: #27272a !important;
+    color: #a1a1aa !important;
+}
+
+body.theme-dark .filter-chip input[type="checkbox"]:checked + span {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: #d4d4d8 !important;
+    color: #f4f4f5 !important;
+}
+
 body.theme-dark .ghost-card:hover {
     border-color: #71717a !important;
     background: linear-gradient(145deg, #18181b 0%, #09090b 100%) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.1) !important;
 }
 
-/* 4. 필터 칩 스타일 (테마별) */
-.filter-chip span { background-color: var(--inner-card-bg) !important; border-color: var(--card-border) !important; color: var(--text-secondary) !important; }
-body.theme-light .filter-chip span { background-color: #ffffff !important; border-color: #cbd5e1 !important; }
-body.theme-light .filter-chip input[type="checkbox"]:checked + span { background-color: #e0e7ff !important; color: #4338ca !important; border-color: #6366f1 !important; }
+/* 4. [증거 선택 버튼 상태 컬러 명확화] */
+.evidence-btn.included {
+    background-color: rgba(16, 185, 129, 0.2) !important;
+    border-color: #10b981 !important;
+    color: #047857 !important;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.25) !important;
+}
 
-/* 5. 증거 버튼 클릭 상태 색상 */
-.evidence-btn.included { background-color: rgba(16, 185, 129, 0.2) !important; border-color: #10b981 !important; color: #047857 !important; }
-body.theme-light .evidence-btn.included { background-color: rgba(16, 185, 129, 0.15) !important; color: #065f46 !important; font-weight: 700 !important; }
-.evidence-btn.excluded { background-color: rgba(239, 68, 68, 0.2) !important; border-color: #ef4444 !important; color: #b91c1c !important; text-decoration: line-through !important; }
+body.theme-light .evidence-btn.included {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+    color: #065f46 !important;
+    font-weight: 700 !important;
+}
 
-/* 6. 필살기 영역 가독성 */
-body.theme-light .ghost-signature-box { background: rgba(16, 185, 129, 0.1) !important; border-color: rgba(16, 185, 129, 0.3) !important; }
-body.theme-light .ghost-signature-tag { background: #10b981 !important; color: #ffffff !important; }
-body.theme-light .ghost-signature-desc { color: #065f46 !important; font-weight: 800 !important; }
+body.theme-dark .evidence-btn.included {
+    background-color: rgba(16, 185, 129, 0.25) !important;
+    color: #34d399 !important;
+}
 
-/* 7. 배너 원본 스타일 유지 */
+.evidence-btn.excluded {
+    background-color: rgba(239, 68, 68, 0.2) !important;
+    border-color: #ef4444 !important;
+    color: #b91c1c !important;
+    text-decoration: line-through !important;
+}
+
+body.theme-dark .evidence-btn.excluded {
+    background-color: rgba(248, 113, 113, 0.2) !important;
+    color: #f87171 !important;
+}
+
+/* 5. [필살기 영역 가독성 보정] */
+body.theme-light .ghost-signature-box {
+    background: rgba(16, 185, 129, 0.1) !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+body.theme-light .ghost-signature-tag {
+    background: #10b981 !important;
+    color: #ffffff !important;
+}
+
+body.theme-light .ghost-signature-desc {
+    color: #065f46 !important;
+    font-weight: 800 !important;
+}
+
+/* 6. [유튜브 배너 원본 스타일 통일] */
 .weekly-yt-banner-btn, .ghost-yt-banner-btn {
-    display: flex !important; align-items: center !important; justify-content: space-between !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
     background: linear-gradient(90deg, rgba(109, 76, 251, 0.22) 0%, rgba(248, 113, 113, 0.18) 100%) !important;
-    border: 1.8px solid #a78bfa !important; padding: 12px 18px !important; border-radius: 12px !important;
+    border: 1.8px solid #a78bfa !important;
+    padding: 12px 18px !important;
+    border-radius: 12px !important;
 }
+
 .yt-banner-title, .ghost-yt-title { color: #ffffff !important; font-weight: 800 !important; }
+.yt-banner-sub { color: #c4b5fd !important; }

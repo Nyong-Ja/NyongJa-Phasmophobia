@@ -484,7 +484,7 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (내부 좌우 분할 구조 및 관련 클래스 완전 배제, 단일 컨테이너 전체 너비 확장)
+// 6. 아포칼립스 렌더링 (전체 화면 100% 폭 확장 적용)
 function renderApocalypse() {
     const container = document.getElementById('apocalypse-container');
     if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
@@ -494,12 +494,12 @@ function renderApocalypse() {
 
     const wrapper = document.createElement('div');
     wrapper.style.width = '100%';
-    wrapper.style.maxWidth = 'none';
+    wrapper.style.maxWidth = '100%';
     wrapper.style.boxSizing = 'border-box';
 
     wrapper.innerHTML = `
-        <div class="weekly-detail-card" style="width: 100%; max-width: none; box-sizing: border-box;">
-            <div class="weekly-detail-header">
+        <div class="weekly-detail-card" style="width: 100%; max-width: 100%; box-sizing: border-box; margin: 0;">
+            <div class="weekly-detail-header" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 <div>
                     <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${data.title}</div>
                     <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
@@ -509,8 +509,8 @@ function renderApocalypse() {
                 <span class="map-badge Large" style="font-size: 1.0rem; padding: 7px 16px;">💀 ${data.badge}</span>
             </div>
 
-            <div style="margin: 14px 0 16px 0;">
-                <a href="https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+뇽자" target="_blank" class="weekly-yt-banner-btn">
+            <div style="margin: 14px 0 16px 0; width: 100%;">
+                <a href="https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+뇽자" target="_blank" class="weekly-yt-banner-btn" style="width: 100%; box-sizing: border-box;">
                     <span class="yt-banner-icon">▶️</span>
                     <div class="yt-banner-textbox">
                         <div class="yt-banner-title">📺 유튜브에서 '아포칼립스 15배율' 뇽자 실전 공략 보기</div>
@@ -521,12 +521,12 @@ function renderApocalypse() {
             </div>
 
             <div class="dict-section-title">💡 아포칼립스 핵심 개요 (OVERVIEW)</div>
-            <div style="background: rgba(109, 76, 251, 0.1); padding: 13px 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5; margin-bottom: 16px;">
+            <div style="background: rgba(109, 76, 251, 0.1); padding: 13px 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5; margin-bottom: 16px; width: 100%; box-sizing: border-box;">
                 ${data.tip}
             </div>
 
             <div class="dict-section-title">📋 상세 공략 및 가이드 (DETAILED GUIDE)</div>
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65;">
+            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65; width: 100%; box-sizing: border-box;">
                 ${data.detailedHtml}
             </div>
         </div>

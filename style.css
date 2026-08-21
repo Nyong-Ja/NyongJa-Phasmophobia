@@ -1972,3 +1972,40 @@ body.theme-light .filter-chip span:hover {
     border-color: #4f46e5 !important;
     color: #1e293b !important;
 }
+
+/* =========================================
+   🖤 [매트 블랙 / 딥 다크 모드 전용] 호버 효과 및 필터 칩 동기화
+   ========================================= */
+
+/* 1. 매트 블랙 모드(.theme-dark)일 때 마우스 호버 시 보라빛 대신 매트한 시크톤 유지 */
+body.theme-dark .ghost-card:hover {
+    border-color: #52525b !important;
+    background: linear-gradient(145deg, #18181b 0%, #09090b 100%) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 
+                0 0 20px rgba(82, 82, 91, 0.3), 
+                inset 0 0 10px rgba(255, 255, 255, 0.05) !important;
+    transform: translateY(-5px) scale(1.015) !important;
+}
+
+/* 2. 기본 딥다크 모드(.theme-default) 호버 효과 */
+body.theme-default .ghost-card:hover {
+    border-color: #c4b5fd !important;
+    background: linear-gradient(145deg, #161a38 0%, #0d1024 100%) !important;
+    box-shadow: 0 10px 30px rgba(109, 76, 251, 0.45), 
+                0 0 25px rgba(196, 181, 253, 0.6), 
+                inset 0 0 14px rgba(167, 139, 250, 0.25) !important;
+    transform: translateY(-5px) scale(1.015) !important;
+}
+
+/* 3. 매트 블랙 및 딥 다크 모드에서의 상단 특수 필터 칩 배경 변수 연동 */
+body:not(.theme-light) .filter-chip span {
+    background-color: var(--inner-card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-secondary) !important;
+}
+
+body:not(.theme-light) .filter-chip input[type="checkbox"]:checked + span {
+    background-color: var(--accent-glow) !important;
+    border-color: var(--accent-light) !important;
+    color: var(--text-primary) !important;
+}

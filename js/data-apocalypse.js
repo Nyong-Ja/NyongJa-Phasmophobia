@@ -7,6 +7,7 @@ const APOCALYPSE_DATA = {
     subtitle: "파스모포비아 최고 난이도 싱글플레이 도전 과제 및 트로피 공략",
     badge: "최고난이도",
     tip: "써니 메도우 정신병원 본관 전역을 무대로 극악의 조건 속에서 트로피 배율을 달성하는 싱글플레이 전용 도전 과제입니다.",
+    ytQuery: encodeURIComponent("파스모포비아 아포칼립스 뇽자"),
     detailedHtml: `
         <div class="dict-section-title">1. 트로피 단계별 요구 배율 (TROPHY TIERS & MULTIPLIERS)</div>
         <p class="dict-text">

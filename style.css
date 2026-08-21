@@ -2009,3 +2009,56 @@ body:not(.theme-light) .filter-chip input[type="checkbox"]:checked + span {
     border-color: var(--accent-light) !important;
     color: var(--text-primary) !important;
 }
+
+/* =========================================
+   🖤 [매트 블랙 모드 (.theme-dark)] 완벽 모노톤 통일
+   ========================================= */
+
+/* 1. 선택된 리스트 항목 및 탭/버튼의 남보라빛을 매트 블랙 톤으로 변경 */
+body.theme-dark .weekly-list-item.active,
+body.theme-dark .nav-tab.active {
+    background: linear-gradient(90deg, #27272a 0%, #121212 100%) !important;
+    border-color: #52525b !important;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 2. 카드 및 상세 공략 내부 박스 테두리 & 배경 색상 통일 */
+body.theme-dark .ghost-card,
+body.theme-dark .dict-details,
+body.theme-dark .guide-card,
+body.theme-dark .weekly-detail-card,
+body.theme-dark .weekly-list-item,
+body.theme-dark .eq-tier-box,
+body.theme-dark .evidence-btn,
+body.theme-dark .search-result-card,
+body.theme-dark .news-blog-card,
+body.theme-dark .dict-spec-bar {
+    background-color: #121212 !important;
+    border-color: #27272a !important;
+}
+
+body.theme-dark .dict-content-body,
+body.theme-dark .ghost-card {
+    background-color: #18181b !important;
+    border-color: #27272a !important;
+}
+
+/* 3. 마우스 올렸을 때(Hover) 보라빛 그림자 제거 -> 매트 블랙 전용 은은한 실버/화이트 그림자 적용 */
+body.theme-dark .ghost-card:hover,
+body.theme-dark .dict-details:hover,
+body.theme-dark .guide-card:hover {
+    border-color: #71717a !important;
+    background: linear-gradient(145deg, #18181b 0%, #09090b 100%) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 
+                0 0 15px rgba(255, 255, 255, 0.12), 
+                inset 0 0 10px rgba(255, 255, 255, 0.04) !important;
+    transform: translateY(-4px) scale(1.01) !important;
+}
+
+/* 4. 상세 공략 펼치기 버튼 및 배지류 테두리 정리 */
+body.theme-dark .dict-toggle-badge,
+body.theme-dark .more-btn {
+    background-color: #27272a !important;
+    border-color: #52525b !important;
+    color: #f4f4f5 !important;
+}

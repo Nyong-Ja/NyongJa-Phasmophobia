@@ -1757,3 +1757,197 @@ body:not(.theme-light) .ghost-card:hover {
 .quick-slide-panel .panel-content {
     color: var(--text-primary) !important;
 }
+
+/* =========================================
+   🌟 라이트/다크 모드 가독성 및 잔여 색상 완벽 통합 해결
+   ========================================= */
+
+/* 1. 기본 공통 카드 및 컨테이너 테마 동기화 */
+.ghost-card,
+.dict-details,
+.guide-card,
+.weekly-detail-card,
+.weekly-list-item,
+.eq-tier-box,
+.evidence-btn,
+.search-result-card,
+.news-blog-card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.ghost-card {
+    background-color: var(--inner-card-bg) !important;
+}
+
+.ev-tag,
+.map-filter-btn {
+    background-color: var(--inner-card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-secondary) !important;
+}
+
+.dict-summary-btn {
+    background: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.dict-content-body {
+    background-color: var(--inner-card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+/* =========================================
+   ☀️ [라이트 모드 전용] 텍스트 묻힘 및 배경 강제 고정
+   ========================================= */
+body.theme-light .ghost-card,
+body.theme-light .dict-details,
+body.theme-light .guide-card,
+body.theme-light .weekly-detail-card,
+body.theme-light .weekly-list-item,
+body.theme-light .eq-tier-box,
+body.theme-light .evidence-btn,
+body.theme-light .search-result-card,
+body.theme-light .news-blog-card,
+body.theme-light .ghost-name,
+body.theme-light .dict-summary-btn,
+body.theme-light .dict-btn-title,
+body.theme-light .ch-name-txt,
+body.theme-light .guide-card-title,
+body.theme-light .weekly-detail-header div {
+    color: var(--text-primary) !important;
+}
+
+body.theme-light .ghost-card,
+body.theme-light .dict-details,
+body.theme-light .guide-card,
+body.theme-light .weekly-detail-card,
+body.theme-light .news-blog-card {
+    background-color: #ffffff !important;
+    border-color: var(--card-border) !important;
+}
+
+/* 라이트 모드 도감 및 리스트 버튼 내부 타이틀 색상 선명하게 고정 */
+body.theme-light .dict-btn-title {
+    color: #1e293b !important;
+}
+
+body.theme-light .dict-btn-eng {
+    color: #4f46e5 !important;
+}
+
+/* 라이트 모드 유령 카드 마우스 호버 효과 */
+body.theme-light .ghost-card:hover,
+body.theme-light .dict-details:hover,
+body.theme-light .guide-card:hover {
+    background: #ffffff !important;
+    border-color: var(--accent-light) !important;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2) !important;
+    transform: translateY(-4px) scale(1.015) !important;
+}
+
+/* 라이트 모드 유튜브 배너 및 특수 버튼 가독성 확보 */
+body.theme-light .weekly-yt-banner-btn,
+body.theme-light .ghost-yt-banner-btn {
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(239, 68, 68, 0.08) 100%) !important;
+    border-color: #cbd5e1 !important;
+    color: #1e293b !important;
+}
+
+body.theme-light .yt-banner-title,
+body.theme-light .ghost-yt-title {
+    color: #1e293b !important;
+}
+
+body.theme-light .yt-banner-sub {
+    color: #475569 !important;
+}
+
+body.theme-light .yt-banner-arrow {
+    background: rgba(99, 102, 241, 0.15) !important;
+    color: #4f46e5 !important;
+    border-color: #94a3b8 !important;
+}
+
+/* 라이트 모드 검색창 배경 및 텍스트 */
+body.theme-light .top-search-bar input,
+body.theme-light .search-input-box {
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+    border-color: #cbd5e1 !important;
+}
+
+body.theme-light .top-search-bar input::placeholder,
+body.theme-light .search-input-box::placeholder {
+    color: #94a3b8 !important;
+}
+
+/* 라이트 모드 선택된 목록 아이템 (Active / Hover) */
+body.theme-light .weekly-list-item:hover {
+    background-color: #f1f5f9 !important;
+    border-color: #4f46e5 !important;
+}
+
+body.theme-light .weekly-list-item.active {
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0.05) 100%) !important;
+    border-color: #4f46e5 !important;
+    color: #1e293b !important;
+}
+
+/* =========================================
+   🌙 [다크 / 기본 모드 전용] 카드 마우스 호버 효과
+   ========================================= */
+body:not(.theme-light) .ghost-card:hover {
+    border-color: #c4b5fd !important;
+    background: linear-gradient(145deg, #161a38 0%, #0d1024 100%) !important;
+    box-shadow: 0 10px 30px rgba(109, 76, 251, 0.45), 
+                0 0 25px rgba(196, 181, 253, 0.6), 
+                inset 0 0 14px rgba(167, 139, 250, 0.25) !important;
+    transform: translateY(-5px) scale(1.015) !important;
+}
+
+/* =========================================
+   🎨 상단 메뉴 및 우측 플로팅 퀵바 테마 동기화
+   ========================================= */
+.top-nav {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+}
+
+.nav-tab {
+    color: var(--text-secondary) !important;
+}
+
+.nav-tab:hover {
+    color: var(--text-primary) !important;
+    background-color: var(--accent-glow) !important;
+}
+
+.nav-tab.active {
+    background: linear-gradient(135deg, var(--accent-vibrant), var(--accent-light)) !important;
+    color: #ffffff !important;
+}
+
+.quick-icon-btn {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.quick-icon-btn:hover {
+    border-color: var(--accent-light) !important;
+    background-color: var(--accent-glow) !important;
+}
+
+.quick-slide-panel {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.quick-slide-panel .panel-content {
+    color: var(--text-primary) !important;
+}

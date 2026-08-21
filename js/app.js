@@ -4,7 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof initEvidenceButtons === 'function') initEvidenceButtons();
-    if (typeof renderGhostList === 'function') renderGhostList();
+    if (typeof renderGhostList === 'function') initEvidenceButtons();
     if (typeof renderGhostDictionary === 'function') renderGhostDictionary();
 
     renderEquipment('ALL');
@@ -484,7 +484,7 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (좌우 2분할 레이아웃 적용 버전)
+// 6. 아포칼립스 렌더링 (불필요한 내부 2분할 구조 제거 및 단일 컨테이너 전체 너비 확장)
 function renderApocalypse() {
     const container = document.getElementById('apocalypse-container');
     if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
@@ -492,17 +492,13 @@ function renderApocalypse() {
 
     const data = APOCALYPSE_DATA;
 
-    // 주간 도전 과제나 맵 정보와 완전히 동일한 좌우 분할 레이아웃 클래스 적용
     const wrapper = document.createElement('div');
-    wrapper.className = 'weekly-split-layout';
-    wrapper.style.alignItems = 'flex-start';
+    wrapper.style.width = '100%';
+    wrapper.style.maxWidth = '100%';
+    wrapper.style.boxSizing = 'border-box';
 
-    // 좌측 패널 (왼쪽): 모든 아포칼립스 상세 정보 본문 카드
-    const leftCol = document.createElement('div');
-    leftCol.className = 'weekly-right-pane';
-    leftCol.style.flex = '1.4';
-    leftCol.innerHTML = `
-        <div class="weekly-detail-card">
+    wrapper.innerHTML = `
+        <div class="weekly-detail-card" style="width: 100%; box-sizing: border-box;">
             <div class="weekly-detail-header">
                 <div>
                     <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${data.title}</div>
@@ -513,7 +509,18 @@ function renderApocalypse() {
                 <span class="map-badge Large" style="font-size: 1.0rem; padding: 7px 16px;">💀 ${data.badge}</span>
             </div>
 
-            <div class="dict-section-title" style="margin-top: 16px;">💡 아포칼립스 핵심 개요 (OVERVIEW)</div>
+            <div style="margin: 14px 0 16px 0;">
+                <a href="https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+뇽자" target="_blank" class="weekly-yt-banner-btn">
+                    <span class="yt-banner-icon">▶️</span>
+                    <div class="yt-banner-textbox">
+                        <div class="yt-banner-title">📺 유튜브에서 '아포칼립스 15배율' 뇽자 실전 공략 보기</div>
+                        <div class="yt-banner-sub">클릭 시 해당 공략 검색 결과로 바로 이동합니다.</div>
+                    </div>
+                    <span class="yt-banner-arrow">영상 보기 ➔</span>
+                </a>
+            </div>
+
+            <div class="dict-section-title">💡 아포칼립스 핵심 개요 (OVERVIEW)</div>
             <div style="background: rgba(109, 76, 251, 0.1); padding: 13px 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5; margin-bottom: 16px;">
                 ${data.tip}
             </div>
@@ -525,50 +532,6 @@ function renderApocalypse() {
         </div>
     `;
 
-    // 우측 패널 (오른쪽): 뇽자 유튜브 아포칼립스 공략 영상 배너 링크들
-    const rightCol = document.createElement('div');
-    rightCol.className = 'weekly-left-pane';
-    rightCol.style.flex = '0.9';
-    rightCol.innerHTML = `
-        <div class="guide-card" style="margin-bottom: 14px; border-left: 4px solid var(--accent-vibrant);">
-            <div class="guide-card-title" style="font-size: 1.12rem;">📺 뇽자의 아포칼립스 실전 공략 영상</div>
-            <div class="guide-card-body" style="font-size: 0.9rem; line-height: 1.55; color: var(--text-secondary);">
-                유튜브에서 검증된 뇽자의 아포칼립스 클리어 및 15배율 생존 공략 영상을 바로 시청해 보세요!
-            </div>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <a href="https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+뇽자" target="_blank" class="weekly-yt-banner-btn">
-                <span class="yt-banner-icon">▶️</span>
-                <div class="yt-banner-textbox">
-                    <div class="yt-banner-title">파스모포비아 아포칼립스 통합 공략</div>
-                    <div class="yt-banner-sub">유튜브 검색 결과로 바로 이동합니다.</div>
-                </div>
-                <span class="yt-banner-arrow">영상 ➔</span>
-            </a>
-
-            <a href="https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+3단계+뇽자" target="_blank" class="weekly-yt-banner-btn">
-                <span class="yt-banner-icon">🏆</span>
-                <div class="yt-banner-textbox">
-                    <div class="yt-banner-title">아포칼립스 3단계 (골드 트로피) 실전</div>
-                    <div class="yt-banner-sub">골드 트로피 클리어 뇽자 공략 영상 보기</div>
-                </div>
-                <span class="yt-banner-arrow">영상 ➔</span>
-            </a>
-
-            <a href="https://www.youtube.com/results?search_query=파스모포비아+써니메도우+아포칼립스+뇽자" target="_blank" class="weekly-yt-banner-btn">
-                <span class="yt-banner-icon">🏥</span>
-                <div class="yt-banner-textbox">
-                    <div class="yt-banner-title">써니 메도우 정신병원 생존 드리블</div>
-                    <div class="yt-banner-sub">본관 맵 은신처 및 루핑 뇽자 가이드 보기</div>
-                </div>
-                <span class="yt-banner-arrow">영상 ➔</span>
-            </a>
-        </div>
-    `;
-
-    wrapper.appendChild(leftCol);
-    wrapper.appendChild(rightCol);
     container.appendChild(wrapper);
 }
 

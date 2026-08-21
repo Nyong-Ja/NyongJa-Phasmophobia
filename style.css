@@ -419,7 +419,9 @@ body {
     font-size: 1.35rem;
 }
 
-/* 1. 증거 분석 계산기 4열 Flex 레이아웃 */
+/* =========================================
+   👻 증거 분석 & 유령 도감 그리드 레이아웃 (필수 복구)
+   ========================================= */
 #ghost-list-container {
     display: flex;
     flex-direction: column;
@@ -536,6 +538,50 @@ body {
 .ev-tag.matched {
     border-color: var(--accent-green);
     color: var(--accent-green);
+}
+
+/* 유령 도감 전용 2~3열 분할 컨테이너 */
+#ghost-dictionary-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dict-columns-container {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.dict-column {
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+    width: 100%;
+}
+
+.dict-details {
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--card-border) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dict-summary-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 18px;
+    background: var(--card-bg);
+    cursor: pointer;
+    user-select: none;
 }
 
 /* 🎯 주간 도전 과제 / 맵 정보 / 장비 가이드 좌우 분할 레이아웃 공통 */
@@ -714,6 +760,16 @@ body {
 .search-result-title { font-weight: bold; color: var(--accent-light); font-size: 1.1rem; margin-bottom: 3px; }
 
 footer { text-align: center; padding: 1.8rem 0; color: var(--text-secondary); font-size: 1.0rem; }
+
+/* 반응형 모바일/태블릿 대응 */
+@media (max-width: 900px) {
+    .dict-columns-container, .ghost-columns-container {
+        flex-direction: column !important;
+    }
+    .ghost-col, .dict-column {
+        flex: 1 1 100% !important;
+    }
+}
 
 /* 아포칼립스 및 패치 소식 격자 */
 #apocalypse-container { display: flex !important; flex-direction: column !important; width: 100% !important; }

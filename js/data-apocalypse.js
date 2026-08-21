@@ -7,7 +7,6 @@ const APOCALYPSE_DATA = {
     subtitle: "파스모포비아 최고 난이도 싱글플레이 도전 과제 및 트로피 공략",
     badge: "최고난이도",
     tip: "써니 메도우 정신병원 본관 전역을 무대로 극악의 조건 속에서 트로피 배율을 달성하는 싱글플레이 전용 도전 과제입니다.",
-    ytQuery: encodeURIComponent("파스모포비아 아포칼립스 뇽자"),
     detailedHtml: `
         <div class="dict-section-title">1. 트로피 단계별 요구 배율 (TROPHY TIERS & MULTIPLIERS)</div>
         <p class="dict-text">
@@ -30,7 +29,7 @@ const APOCALYPSE_DATA = {
         <p class="dict-text">
             • <strong>플레이어 제약:</strong> 플래시라이트 꺼짐(Off), 장비 손실 잃음, 정신력 회복 약 0개, 시작 정신력 0%<br>
             • <strong>유령 강화:</strong> 사냥 이동 속도 150%(초고속), 방 변경 빈도 높음, 상호작용 빈도 높음, 이벤트 빈도 높음<br>
-            • <strong>맵 환경 제약:</strong> 차단기 숨겨짐/꺼짐, 은신처 없음(None), 헌팅 유예 시간 0초
+            • <strong>맵 환경 제약:</strong> 차단기 숨겨짐/꺼짐, 은신처 없음(None), 헌팅 유예 시간 0초 (진입 즉시 사냥 가능성)
         </p>
 
         <div class="dict-section-title" style="margin-top: 1.4rem;">4. 진입 전 추천 장비 세팅 (LOADOUT GUIDE)</div>

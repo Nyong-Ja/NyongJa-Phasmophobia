@@ -3,6 +3,14 @@
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 저장된 테마 불러오기 적용
+    const savedTheme = localStorage.getItem('nyong_phasmo_theme') || 'default';
+    document.body.className = `theme-${savedTheme}`;
+    const themeSelect = document.getElementById('theme-select');
+    if (themeSelect) {
+        themeSelect.value = savedTheme;
+    }
+
     if (typeof initEvidenceButtons === 'function') initEvidenceButtons();
     if (typeof renderGhostList === 'function') renderGhostList();
     if (typeof renderGhostDictionary === 'function') renderGhostDictionary();
@@ -18,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchVisitorCounts();
 });
+
+// 🎨 테마 변경 및 저장 로직
+function changeTheme(themeName) {
+    document.body.className = `theme-${themeName}`;
+    localStorage.setItem('nyong_phasmo_theme', themeName);
+}
 
 // 3. 🛠️ 장비 가이드 렌더링 (좌우 4:6 분할 & 유튜브 배너 통합)
 let currentSelectedEqIndex = 0;
@@ -113,7 +127,7 @@ function updateEqDetail(index) {
         <div class="weekly-detail-card">
             <div class="weekly-detail-header">
                 <div>
-                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${eq.name}</div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: var(--text-primary);">${eq.name}</div>
                     <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
                         분류: ${eq.category}
                     </div>
@@ -230,8 +244,8 @@ function updateChallengeDetail(id) {
             <div class="weekly-detail-header">
                 <div>
                     <div style="font-size: 0.95rem; color: var(--accent-light); font-weight: 700;">CHALLENGE #${data.id}</div>
-                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-top: 2px;">${data.nameKr}</div>
-                    <div style="font-size: 0.92rem; color: #a1a1aa; font-style: italic; margin-top: 4px;">"${data.quote}"</div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: var(--text-primary); margin-top: 2px;">${data.nameKr}</div>
+                    <div style="font-size: 0.92rem; color: var(--text-secondary); font-style: italic; margin-top: 4px;">"${data.quote}"</div>
                 </div>
                 <span class="map-badge Medium" style="font-size: 1.0rem; padding: 7px 16px;">🗺️ ${data.map}</span>
             </div>
@@ -249,44 +263,44 @@ function updateChallengeDetail(id) {
 
             <div class="dict-section-title">1. 게임 환경 & 파라미터 세부 설정 (Status)</div>
             <div style="overflow-x: auto; margin-bottom: 14px;">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem; color: #d4d4d8; text-align: left;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem; color: var(--text-secondary); text-align: left;">
                     <tbody>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                        <tr style="border-bottom: 1px solid var(--card-border);">
                             <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">제공 증거 수</td>
-                            <td style="padding: 8px 10px; color: #fff; width: 28%;">${data.evidences}</td>
+                            <td style="padding: 8px 10px; color: var(--text-primary); width: 28%;">${data.evidences}</td>
                             <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light); width: 22%;">준비 시간</td>
-                            <td style="padding: 8px 10px; color: #fff; width: 28%;">${data.setupTime}</td>
+                            <td style="padding: 8px 10px; color: var(--text-primary); width: 28%;">${data.setupTime}</td>
                         </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                        <tr style="border-bottom: 1px solid var(--card-border);">
                             <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">정신력 상태</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.sanity}</td>
+                            <td style="padding: 8px 10px; color: var(--text-primary);">${data.sanity}</td>
                             <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">이동 속도</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.speed}</td>
+                            <td style="padding: 8px 10px; color: var(--text-primary);">${data.speed}</td>
                         </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                        <tr style="border-bottom: 1px solid var(--card-border);">
                             <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">은신처 상태</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.hiding}</td>
+                            <td style="padding: 8px 10px; color: var(--text-primary);">${data.hiding}</td>
                             <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">두꺼비집(차단기)</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.breaker}</td>
+                            <td style="padding: 8px 10px; color: var(--text-primary);">${data.breaker}</td>
                         </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                        <tr style="border-bottom: 1px solid var(--card-border);">
                             <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">저주받은 물건</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.cursed}</td>
+                            <td style="padding: 8px 10px; color: var(--text-primary);">${data.cursed}</td>
                             <td style="padding: 8px 10px; font-weight: 700; color: var(--accent-light);">문 상태 & 날씨</td>
-                            <td style="padding: 8px 10px; color: #fff;">${data.doors} / ${data.weather}</td>
+                            <td style="padding: 8px 10px; color: var(--text-primary);">${data.doors} / ${data.weather}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="dict-section-title">2. 장비 지급 및 누락 조건 (Loadout)</div>
-            <div style="background: rgba(0,0,0,0.4); padding: 13px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.94rem; line-height: 1.65; margin-bottom: 14px;">
-                <div style="color: #f87171; margin-bottom: 6px;">${data.missingItems}</div>
-                <div style="color: #34d399;">${data.availableItems}</div>
+            <div style="background: var(--card-bg); padding: 13px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.94rem; line-height: 1.65; margin-bottom: 14px;">
+                <div style="color: var(--accent-red); margin-bottom: 6px;">${data.missingItems}</div>
+                <div style="color: var(--accent-green);">${data.availableItems}</div>
             </div>
 
             <div class="dict-section-title">3. 핵심 공략법 및 추천 전략 (Strategy)</div>
-            <div style="background: rgba(109, 76, 251, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.96rem; line-height: 1.7; color: #f4f4f5;">
+            <div style="background: var(--accent-glow); padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.96rem; line-height: 1.7; color: var(--text-primary);">
                 💡 ${data.strategy}
             </div>
         </div>
@@ -448,7 +462,7 @@ function updateMapDetail(index) {
         <div class="weekly-detail-card">
             <div class="weekly-detail-header">
                 <div>
-                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${getMapDisplayName(map.name)}</div>
+                    <div style="font-size: 1.65rem; font-weight: 800; color: var(--text-primary);">${getMapDisplayName(map.name)}</div>
                     <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
                         구조: ${map.size} (${map.rooms})
                     </div>
@@ -472,19 +486,19 @@ function updateMapDetail(index) {
             </div>
 
             <div class="dict-section-title">💡 맵 핵심 탐색 팁 (Exploration Tip)</div>
-            <div style="background: rgba(109, 76, 251, 0.1); padding: 13px 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5; margin-bottom: 16px;">
+            <div style="background: var(--accent-glow); padding: 13px 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: var(--text-primary); margin-bottom: 16px;">
                 ${map.tip}
             </div>
 
             <div class="dict-section-title">📋 룸 목록, 은신처 & 저주 물건 상세 공략</div>
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65;">
+            <div style="background: var(--card-bg); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65; color: var(--text-primary);">
                 ${map.detailedHtml || '<p style="color: var(--text-secondary);">상세 정보 업데이트 준비 중입니다.</p>'}
             </div>
         </div>
     `;
 }
 
-// 6. 아포칼립스 렌더링 (최종 레이아웃 정리 버전)
+// 6. 아포칼립스 렌더링 (최종 완성본)
 const APOCALYPSE_RELATED_VIDEOS = [
     { title: "아포칼립스 15배율 뺑뺑이", id: "zoXY56jyHKo" },
     { title: "써니 메도우 맵 완벽 정복", id: "zoXY56jyHKo" },
@@ -519,7 +533,7 @@ function renderApocalypse() {
 
         <div class="weekly-detail-card">
             <div class="dict-section-title" style="margin-top: 0;">📋 상세 공략 및 가이드 (DETAILED GUIDE)</div>
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65;">
+            <div style="background: var(--card-bg); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65; color: var(--text-primary);">
                 ${data.detailedHtml}
             </div>
         </div>
@@ -559,7 +573,7 @@ function renderApocalypse() {
         <div class="weekly-detail-card" style="margin-bottom: 16px;">
             <div class="weekly-detail-header" style="margin-bottom: 14px;">
                 <div>
-                    <div style="font-size: 1.3rem; font-weight: 800; color: #fff;">🔴 실시간 라이브 스트리밍</div>
+                    <div style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary);">🔴 실시간 라이브 스트리밍</div>
                     <div style="font-size: 0.88rem; color: var(--accent-light); margin-top: 2px;">뇽자의 치지직 생방송 화면을 실시간으로 시청하세요.</div>
                 </div>
                 <span class="map-badge Medium" style="font-size: 0.9rem; padding: 5px 12px;">LIVE</span>
@@ -574,9 +588,9 @@ function renderApocalypse() {
             <div class="dict-section-title" style="margin-top: 0;">🔗 함께 보면 좋은 뇽자 공략 영상</div>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px;">
                 ${APOCALYPSE_RELATED_VIDEOS.map(v => `
-                    <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" style="text-decoration: none; background: #080a18; border: 1.5px solid var(--card-border); border-radius: 8px; padding: 8px; display: block; transition: all 0.2s ease;" onmouseover="this.style.borderColor='var(--accent-light)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--card-border)'; this.style.transform='translateY(0)';">
+                    <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" style="text-decoration: none; background: var(--bg-color); border: 1.5px solid var(--card-border); border-radius: 8px; padding: 8px; display: block; transition: all 0.2s ease;" onmouseover="this.style.borderColor='var(--accent-light)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--card-border)'; this.style.transform='translateY(0)';">
                         <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" style="width: 100%; border-radius: 6px; display: block;">
-                        <div style="font-size: 0.8rem; color: #fff; margin-top: 6px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600;">${v.title}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-primary); margin-top: 6px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600;">${v.title}</div>
                     </a>
                 `).join('')}
             </div>
@@ -881,7 +895,7 @@ function handleQuickSearch(query) {
     resultsContainer.innerHTML = matched.map(g => `
         <div class="search-result-card">
             <div class="search-result-title">${g.name} (${g.engName})</div>
-            <div style="font-size:0.9rem; color:#a3a6c9;">${g.tip}</div>
+            <div style="font-size:0.9rem; color:var(--text-secondary);">${g.tip}</div>
         </div>
     `).join('');
 }

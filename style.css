@@ -1339,3 +1339,19 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* =========================================
+   💀 아포칼립스 전체 너비 강제
+   ========================================= */
+
+#apocalypse-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+    width: 100% !important;
+}
+
+#apocalypse-container .guide-card {
+    width: 100% !important;
+    max-width: none !important;
+}

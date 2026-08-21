@@ -484,7 +484,7 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (1~3번 탭들과 완전히 동일한 `.weekly-split-layout.map-split-layout` 구조 적용으로 가로 폭과 패널 정렬 일치)
+// 6. 아포칼립스 렌더링 (1~3번 탭들과 100% 동일한 DOM 구조 및 클래스 체계 완전 적용)
 function renderApocalypse() {
     const container = document.getElementById('apocalypse-container');
     if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
@@ -495,7 +495,7 @@ function renderApocalypse() {
     const wrapper = document.createElement('div');
     wrapper.className = 'weekly-split-layout map-split-layout';
 
-    // 좌측 패널: 1~3번 탭과 완벽하게 동일한 클래스와 폭 규격 사용
+    // 좌측 패널: 1~3번 탭과 완벽히 동일한 클래스 구조
     const leftCol = document.createElement('div');
     leftCol.className = 'weekly-left-pane';
     leftCol.innerHTML = `
@@ -530,9 +530,10 @@ function renderApocalypse() {
         </div>
     `;
 
-    // 우측 패널: 1~3번 탭과 완전히 동일한 `.weekly-right-pane` 사용으로 넓이 및 정렬 통일
+    // 우측 패널: 1~3번 탭과 완벽히 동일한 `.weekly-right-pane` 및 고유 ID 부여로 CSS 레이아웃 규격 일치
     const rightCol = document.createElement('div');
     rightCol.className = 'weekly-right-pane';
+    rightCol.id = 'apoc-detail-pane';
     rightCol.innerHTML = `
         <div class="weekly-detail-card">
             <div class="weekly-detail-header">

@@ -3,19 +3,13 @@
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-// 1) DOMContentLoaded 내부 맨 처음에 추가
-const savedTheme = localStorage.getItem('nyong_phasmo_theme') || 'default';
-document.body.className = `theme-${savedTheme}`;
-const themeSelect = document.getElementById('theme-select');
-if (themeSelect) {
-    themeSelect.value = savedTheme;
-}
-
-// 2) 파일 아무 곳에나 함수 추가
-function changeTheme(themeName) {
-    document.body.className = `theme-${themeName}`;
-    localStorage.setItem('nyong_phasmo_theme', themeName);
-}
+    // 저장된 테마 불러오기 적용
+    const savedTheme = localStorage.getItem('nyong_phasmo_theme') || 'default';
+    document.body.className = `theme-${savedTheme}`;
+    const themeSelect = document.getElementById('theme-select');
+    if (themeSelect) {
+        themeSelect.value = savedTheme;
+    }
 
     if (typeof initEvidenceButtons === 'function') initEvidenceButtons();
     if (typeof renderGhostList === 'function') renderGhostList();
@@ -37,6 +31,26 @@ function changeTheme(themeName) {
 function changeTheme(themeName) {
     document.body.className = `theme-${themeName}`;
     localStorage.setItem('nyong_phasmo_theme', themeName);
+}
+
+// 🗺️ karotte.org 맵 URL 매핑 (iframe 임베드 전용)
+function getKarotteMapUrl(rawName) {
+    const mapMap = {
+        "6 Tanglewood Drive": "https://phasmo.karotte.org/maps/6-tanglewood-drive/embed/",
+        "42 Edgefield Road": "https://phasmo.karotte.org/maps/42-edgefield-road/embed/",
+        "10 Ridgeview Court": "https://phasmo.karotte.org/maps/10-ridgeview-court/embed/",
+        "13 Willow Street": "https://phasmo.karotte.org/maps/13-willow-street/embed/",
+        "Camp Woodwind": "https://phasmo.karotte.org/maps/camp-woodwind/embed/",
+        "Grafton Farmhouse": "https://phasmo.karotte.org/maps/grafton-farmhouse/embed/",
+        "Bleasdale Farmhouse": "https://phasmo.karotte.org/maps/bleasdale-farmhouse/embed/",
+        "Point Hope": "https://phasmo.karotte.org/maps/point-hope/embed/",
+        "Maple Lodge Campsite": "https://phasmo.karotte.org/maps/maple-lodge-campsite/embed/",
+        "Prison": "https://phasmo.karotte.org/maps/prison/embed/",
+        "Brownstone High School": "https://phasmo.karotte.org/maps/brownstone-high-school/embed/",
+        "Sunny Meadows": "https://phasmo.karotte.org/maps/sunny-meadows-mental-institution/embed/",
+        "Sunny Meadows Restricted": "https://phasmo.karotte.org/maps/sunny-meadows-mental-institution/embed/"
+    };
+    return mapMap[rawName] || "https://phasmo.karotte.org/";
 }
 
 // 3. 🛠️ 장비 가이드 렌더링 (좌우 4:6 분할 & 유튜브 배너 통합)
@@ -313,7 +327,7 @@ function updateChallengeDetail(id) {
     `;
 }
 
-// 5. 🗺️ 맵 정보 렌더링
+// 5. 🗺️ 맵 정보 렌더링 (카로테 지도 iframe 직접 연동 & 공간 확장 적용)
 let currentSelectedMapIndex = 0;
 let currentMapCategory = 'ALL';
 
@@ -448,19 +462,12 @@ function updateMapDetail(index) {
 
     const mapKey = getMapSearchKeyword(map.name);
     const mapYtQuery = encodeURIComponent(`파스모포비아 ${mapKey} 뺑뺑이 뇽자`);
+    const karotteUrl = getKarotteMapUrl(map.name);
 
-    const mapImageHtml = map.image ? `
-        <div class="map-image-container">
-            <img src="${map.image}" alt="${map.name} 지도" class="map-preview-img">
-            <span class="map-image-hint">🔍 지도 확대 및 세부 포인트 확인</span>
-        </div>
-    ` : `
-        <div class="map-image-placeholder">
-            <span style="font-size: 2.2rem; margin-bottom: 6px;">🗺️</span>
-            <div style="font-weight: 700; color: var(--accent-light); font-size: 1.05rem;">${getMapDisplayName(map.name)} 정밀 구조도</div>
-            <div style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 2px;">
-                층별 룸 배치도, 저주받은 물건 및 차단기 스폰 포인트
-            </div>
+    // 🗺️ karotte.org 맵 화면 직접 연동 뷰어 (크기 및 공간 확장)
+    const mapViewerHtml = `
+        <div style="position: relative; width: 100%; height: 780px; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--card-border); background-color: #000; margin-bottom: 16px;">
+            <iframe src="${karotteUrl}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" title="${map.name} 정밀 지도" allowfullscreen></iframe>
         </div>
     `;
 
@@ -476,8 +483,12 @@ function updateMapDetail(index) {
                 <span class="map-badge ${map.category}" style="font-size: 1.0rem; padding: 7px 16px;">${map.category}</span>
             </div>
 
-            <div style="margin: 14px 0 14px 0;">
-                ${mapImageHtml}
+            <!-- 🗺️ karotte.org 지도 영역 -->
+            <div style="margin: 16px 0 10px 0;">
+                <div style="font-size: 0.92rem; font-weight: 700; color: var(--accent-light); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                    <span>🗺️ 인터랙티브 정밀 구조도 (출처: phasmo.karotte.org)</span>
+                </div>
+                ${mapViewerHtml}
             </div>
 
             <div style="margin-bottom: 16px;">

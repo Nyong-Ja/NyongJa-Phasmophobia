@@ -484,7 +484,7 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (좌우 2분할 레이아웃 적용 버전)
+// 6. 아포칼립스 렌더링 (좌우 2분할 레이아웃 - 왼쪽 본문 / 오른쪽 영상 링크)
 function renderApocalypse() {
     const container = document.getElementById('apocalypse-container');
     if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
@@ -492,12 +492,11 @@ function renderApocalypse() {
 
     const data = APOCALYPSE_DATA;
 
-    // 주간 도전 과제나 맵 정보와 완전히 동일한 좌우 분할 레이아웃 클래스 적용
     const wrapper = document.createElement('div');
     wrapper.className = 'weekly-split-layout';
     wrapper.style.alignItems = 'flex-start';
 
-    // 좌측 패널 (왼쪽): 모든 아포칼립스 상세 정보 본문 카드
+    // 좌측 패널: 모든 아포칼립스 상세 정보 본문
     const leftCol = document.createElement('div');
     leftCol.className = 'weekly-right-pane';
     leftCol.style.flex = '1.4';
@@ -525,7 +524,7 @@ function renderApocalypse() {
         </div>
     `;
 
-    // 우측 패널 (오른쪽): 뇽자 유튜브 아포칼립스 공략 영상 배너 링크들
+    // 우측 패널: 유튜브 공략 배너 링크들 (세로 높이 균형을 맞추기 위해 6개 배치)
     const rightCol = document.createElement('div');
     rightCol.className = 'weekly-left-pane';
     rightCol.style.flex = '0.9';
@@ -561,6 +560,33 @@ function renderApocalypse() {
                 <div class="yt-banner-textbox">
                     <div class="yt-banner-title">써니 메도우 정신병원 생존 드리블</div>
                     <div class="yt-banner-sub">본관 맵 은신처 및 루핑 뇽자 가이드 보기</div>
+                </div>
+                <span class="yt-banner-arrow">영상 ➔</span>
+            </a>
+
+            <a href="https://www.youtube.com/results?search_query=파스모포비아+커스텀난이도+15배율+뇽자" target="_blank" class="weekly-yt-banner-btn">
+                <span class="yt-banner-icon">⚙️</span>
+                <div class="yt-banner-textbox">
+                    <div class="yt-banner-title">커스텀 난이도 15배율 세팅 가이드</div>
+                    <div class="yt-banner-sub">배율 설정 및 최적화 뇽자 공략 영상 보기</div>
+                </div>
+                <span class="yt-banner-arrow">영상 ➔</span>
+            </a>
+
+            <a href="https://www.youtube.com/results?search_query=파스모포비아+유령특징+속도구분+뇽자" target="_blank" class="weekly-yt-banner-btn">
+                <span class="yt-banner-icon">👻</span>
+                <div class="yt-banner-textbox">
+                    <div class="yt-banner-title">무증거/아포칼립스 유령 속도 판별법</div>
+                    <div class="yt-banner-sub">발소리 템포 및 이격 거리 뇽자 특강</div>
+                </div>
+                <span class="yt-banner-arrow">영상 ➔</span>
+            </a>
+
+            <a href="https://www.youtube.com/results?search_query=파스모포비아+사진미션+공략+뇽자" target="_blank" class="weekly-yt-banner-btn">
+                <span class="yt-banner-icon">📸</span>
+                <div class="yt-banner-textbox">
+                    <div class="yt-banner-title">아포칼립스 3성 사진 미션 요령</div>
+                    <div class="yt-banner-sub">유령 사진 및 뼈/상호작용 촬영 팁</div>
                 </div>
                 <span class="yt-banner-arrow">영상 ➔</span>
             </a>

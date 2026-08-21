@@ -1480,39 +1480,42 @@ footer {
    🎨 테마별 색상 변수 설정
    ========================================= */
 body.theme-default {
-    --bg-color: #060814;          /* 바탕: 딥 다크 네이비 블루 */
-    --card-bg: #0f1226;           /* 메인 패널/박스: 차분한 딥 네이비 */
-    --card-border: #3b376d;       /* 기본 테두리: 보라-네이비 */
-    --text-primary: #ffffff;      /* 기본 글씨 (흰색) */
-    --text-secondary: #a3a6c9;    /* 가독성 높은 설명 글씨 */
+    --bg-color: #060814;
+    --card-bg: #0f1226;
+    --card-border: #3b376d;
+    --inner-card-bg: #080a18;     /* 👈 딥다크 모드 내부 카드 배경 */
+    --text-primary: #ffffff;
+    --text-secondary: #a3a6c9;
     --accent-vibrant: #6d4cfb; 
-    --accent-light: #a78bfa;      /* 밝은 네온 라벤더 */
+    --accent-light: #a78bfa;
     --accent-glow: rgba(109, 76, 251, 0.45); 
     --accent-green: #34d399;   
     --accent-red: #f87171;     
 }
 
 body.theme-light {
-    --bg-color: #f1f3f9;          /* 라이트 그레이 바탕 */
-    --card-bg: #ffffff;           /* 화이트 카드 */
-    --card-border: #cbd5e1;       /* 부드러운 회색 테두리 */
-    --text-primary: #1e293b;      /* 진한 네이비/블랙 글씨 */
-    --text-secondary: #64748b;    /* 중간 회색 설명 글씨 */
+    --bg-color: #f1f3f9;
+    --card-bg: #ffffff;
+    --card-border: #cbd5e1;
+    --inner-card-bg: #f8fafc;     /* 👈 라이트 모드 내부 카드 배경 (연한 회백색) */
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
     --accent-vibrant: #6366f1; 
-    --accent-light: #4f46e5;      /* 인디고 포인트 */
+    --accent-light: #4f46e5;
     --accent-glow: rgba(99, 102, 241, 0.25); 
     --accent-green: #10b981;   
     --accent-red: #ef4444;     
 }
 
 body.theme-dark {
-    --bg-color: #000000;          /* 완전한 매트 블랙 */
-    --card-bg: #121212;           /* 다크 매트 카드 */
-    --card-border: #27272a;       /* 어두운 테두리 */
-    --text-primary: #f4f4f5;      /* 밝은 회백색 글씨 */
-    --text-secondary: #a1a1aa;    /* 서브 회색 글씨 */
+    --bg-color: #000000;
+    --card-bg: #121212;
+    --card-border: #27272a;
+    --inner-card-bg: #18181b;     /* 👈 매트블랙 모드 내부 카드 배경 (어두운 회색) */
+    --text-primary: #f4f4f5;
+    --text-secondary: #a1a1aa;
     --accent-vibrant: #3f3f46; 
-    --accent-light: #d4d4d8;      /* 실버/화이트 계열 포인트 */
+    --accent-light: #d4d4d8;
     --accent-glow: rgba(255, 255, 255, 0.15); 
     --accent-green: #34d399;   
     --accent-red: #f87171;     
@@ -1549,4 +1552,53 @@ body.theme-dark {
 
 .theme-dropdown:hover {
     border-color: var(--accent-light);
+}
+
+/* =========================================
+   🎨 라이트/다크 모드 잔여 색상 완벽 동기화 (파일 맨 아래에 추가)
+   ========================================= */
+.ghost-card,
+.dict-details,
+.guide-card,
+.weekly-detail-card,
+.weekly-list-item,
+.eq-tier-box,
+.evidence-btn,
+.search-result-card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.ghost-card {
+    background-color: var(--inner-card-bg) !important;
+}
+
+.ev-tag,
+.map-filter-btn {
+    background-color: var(--inner-card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-secondary) !important;
+}
+
+.dict-summary-btn {
+    background: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.dict-content-body {
+    background-color: var(--inner-card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.weekly-yt-banner-btn {
+    background: var(--card-bg) !important;
+    border-color: var(--accent-light) !important;
+}
+
+.ghost-sanity,
+.ghost-speed {
+    border-color: var(--card-border) !important;
 }

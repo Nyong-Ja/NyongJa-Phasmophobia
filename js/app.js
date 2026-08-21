@@ -484,7 +484,7 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (좌우 2분할 가이드 + 유튜브 배너 레이아웃)
+// 6. 아포칼립스 렌더링 (좌우 2분할: 왼쪽 상세 정보 본문 / 오른쪽 유튜브 실전 공략 영상 링크)
 function renderApocalypse() {
     const container = document.getElementById('apocalypse-container');
     if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
@@ -496,9 +496,10 @@ function renderApocalypse() {
     wrapper.className = 'weekly-split-layout';
     wrapper.style.alignItems = 'flex-start';
 
+    // 좌측 패널: 모든 아포칼립스 상세 정보 본문 (넓게 배분)
     const leftCol = document.createElement('div');
     leftCol.className = 'weekly-right-pane';
-    leftCol.style.flex = '1.3';
+    leftCol.style.flex = '1.4';
     leftCol.innerHTML = `
         <div class="weekly-detail-card">
             <div class="weekly-detail-header">
@@ -523,6 +524,7 @@ function renderApocalypse() {
         </div>
     `;
 
+    // 우측 패널: 텅 비어있던 공간을 채워줄 뇽자 유튜브 아포칼립스 공략 배너 링크들
     const rightCol = document.createElement('div');
     rightCol.className = 'weekly-left-pane';
     rightCol.style.flex = '0.9';

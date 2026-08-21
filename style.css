@@ -1627,14 +1627,11 @@ body.theme-light .ghost-card {
     border-color: var(--card-border) !important;
 }
 
-/* 3. 라이트 모드에서 마우스 호버 시 어두워지거나 글씨가 안 보이는 현상 방지 */
-body.theme-light .ghost-card:hover {
-    background: #ffffff !important;
-    border-color: var(--accent-light) !important;
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2) !important;
-}
+/* =========================================
+   🎨 라이트/다크 모드 카드 및 메뉴 완벽 분리 수정
+   ========================================= */
 
-/* 4. 공통: 유령 카드 내부 세부 요소 색상 및 테두리 강제 연동 */
+/* 1. 기본 공통 카드 스타일 */
 .ghost-card,
 .dict-details,
 .guide-card,
@@ -1675,6 +1672,47 @@ body.theme-light .ghost-card:hover {
     background: var(--card-bg) !important;
     border-color: var(--accent-light) !important;
     color: var(--text-primary) !important;
+}
+
+/* =========================================
+   ☀️ [라이트 모드 전용] 카드 및 글씨 묻힘 완벽 해결
+   ========================================= */
+body.theme-light .ghost-card,
+body.theme-light .dict-details,
+body.theme-light .guide-card,
+body.theme-light .weekly-detail-card,
+body.theme-light .weekly-list-item,
+body.theme-light .eq-tier-box,
+body.theme-light .evidence-btn,
+body.theme-light .search-result-card,
+body.theme-light .ghost-name,
+body.theme-light .dict-summary-btn {
+    color: var(--text-primary) !important;
+}
+
+body.theme-light .ghost-card {
+    background-color: #ffffff !important;
+    border-color: var(--card-border) !important;
+}
+
+/* 라이트 모드 카드 마우스 호버 시 (글씨가 안 보이거나 어두워지는 현상 원인 차단) */
+body.theme-light .ghost-card:hover {
+    background: #ffffff !important;
+    border-color: var(--accent-light) !important;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2) !important;
+    transform: translateY(-4px) scale(1.015) !important;
+}
+
+/* =========================================
+   🌙 [다크 / 기본 모드 전용] 카드 마우스 호버 효과
+   ========================================= */
+body:not(.theme-light) .ghost-card:hover {
+    border-color: #c4b5fd !important;
+    background: linear-gradient(145deg, #161a38 0%, #0d1024 100%) !important;
+    box-shadow: 0 10px 30px rgba(109, 76, 251, 0.45), 
+                0 0 25px rgba(196, 181, 253, 0.6), 
+                inset 0 0 14px rgba(167, 139, 250, 0.25) !important;
+    transform: translateY(-5px) scale(1.015) !important;
 }
 
 /* =========================================

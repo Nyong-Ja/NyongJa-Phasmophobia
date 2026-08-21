@@ -484,7 +484,7 @@ function updateMapDetail(index) {
     `;
 }
 
-// 6. 아포칼립스 렌더링 (맵 정보 탭과 동일한 2분할 구조 - 왼쪽: 가이드 및 영상 링크 목록 / 오른쪽: 상세 본문)
+// 6. 아포칼립스 렌더링 (가로 폭을 기존보다 1.6배 확장 적용)
 function renderApocalypse() {
     const container = document.getElementById('apocalypse-container');
     if (!container || typeof APOCALYPSE_DATA === 'undefined') return;
@@ -494,14 +494,18 @@ function renderApocalypse() {
 
     const wrapper = document.createElement('div');
     wrapper.className = 'weekly-split-layout map-split-layout';
+    wrapper.style.maxWidth = '160%'; // 전체 레이아웃 가로 폭 1.6배 확장
+    wrapper.style.width = '100%';
+    wrapper.style.margin = '0 auto';
 
-    // 좌측 패널: 맵 정보 탭처럼 상단 안내 카드 + 스크롤 리스트(영상 공략 목록)
+    // 좌측 패널 (가로 폭 1.6배 확장 반영)
     const leftCol = document.createElement('div');
     leftCol.className = 'weekly-left-pane';
+    leftCol.style.flex = '1.2'; // 좌측 패널 가로 비율 확대
     leftCol.innerHTML = `
-        <div class="guide-card" style="margin-bottom: 12px; border-left: 4px solid var(--accent-vibrant); padding: 12px 14px;">
-            <div class="guide-card-title" style="font-size: 1.05rem; margin-bottom: 6px;">💀 아포칼립스 챌린지 (Apocalypse) 규칙</div>
-            <div class="guide-card-body" style="font-size: 0.9rem; line-height: 1.55; color: var(--text-secondary);">
+        <div class="guide-card" style="margin-bottom: 12px; border-left: 4px solid var(--accent-vibrant); padding: 14px 16px;">
+            <div class="guide-card-title" style="font-size: 1.12rem; margin-bottom: 6px;">💀 아포칼립스 챌린지 (Apocalypse) 규칙</div>
+            <div class="guide-card-body" style="font-size: 0.94rem; line-height: 1.6; color: var(--text-secondary);">
                 • <strong>목표:</strong> 써니 메도우 본관에서 15배율 커스텀 난이도로 유령을 맞추고 생존<br>
                 • <strong>트로피:</strong> 브론즈(6배) / 은(10배) / 금(15배 이상 + 로비 ID 카드 커스텀 해금)<br>
                 • <strong>필수 조건:</strong> 증거 정확히 특정, 3가지 부가 목표 완료, 유령 사진 촬영
@@ -509,7 +513,7 @@ function renderApocalypse() {
         </div>
 
         <div class="map-filter-bar" style="margin-bottom: 10px; gap: 6px;">
-            <button class="map-filter-btn active">실전 공략 메뉴 (6개)</button>
+            <button class="map-filter-btn active" style="font-size: 0.95rem; padding: 8px 16px;">실전 공략 메뉴 (6개)</button>
         </div>
 
         <div class="weekly-scroll-list" id="apoc-scroll-list">
@@ -521,48 +525,49 @@ function renderApocalypse() {
                 {title: "무증거/아포칼립스 속도 판별", sub: "발소리 템포 및 이격 거리", tag: "Ghost", icon: "👻", url: "https://www.youtube.com/results?search_query=파스모포비아+유령특징+속도구분+뇽자"},
                 {title: "3성 사진 미션 요령", sub: "유령 및 상호작용 촬영 팁", tag: "Photo", icon: "📸", url: "https://www.youtube.com/results?search_query=파스모포비아+사진미션+공략+뇽자"}
             ].map((item) => `
-                <a href="${item.url}" target="_blank" class="weekly-list-item" style="text-decoration: none; display: flex; align-items: center;">
-                    <span class="map-badge Large" style="font-size: 0.82rem; padding: 2px 8px;">${item.icon}</span>
-                    <span class="ch-name-txt" style="font-size: 1.02rem;">${item.title}</span>
-                    <span class="ch-map-tag" style="font-size: 0.82rem;">${item.tag}</span>
+                <a href="${item.url}" target="_blank" class="weekly-list-item" style="text-decoration: none; display: flex; align-items: center; padding: 12px 14px;">
+                    <span class="map-badge Large" style="font-size: 0.9rem; padding: 3px 10px;">${item.icon}</span>
+                    <span class="ch-name-txt" style="font-size: 1.08rem;">${item.title}</span>
+                    <span class="ch-map-tag" style="font-size: 0.88rem;">${item.tag}</span>
                 </a>
             `).join('')}
         </div>
     `;
 
-    // 우측 패널: 맵 정보 탭처럼 상단 배너 + 핵심 개요 + 상세 가이드 본문
+    // 우측 패널 (가로 폭 1.6배 확장 반영)
     const rightCol = document.createElement('div');
     rightCol.className = 'weekly-right-pane';
+    rightCol.style.flex = '1.8'; // 우측 패널 가로 비율 대폭 확대
     rightCol.innerHTML = `
-        <div class="weekly-detail-card">
+        <div class="weekly-detail-card" style="padding: 24px;">
             <div class="weekly-detail-header">
                 <div>
-                    <div style="font-size: 1.65rem; font-weight: 800; color: #fff;">${data.title}</div>
-                    <div style="font-size: 0.95rem; color: var(--accent-light); margin-top: 3px; font-weight: 600;">
+                    <div style="font-size: 1.85rem; font-weight: 800; color: #fff;">${data.title}</div>
+                    <div style="font-size: 1.02rem; color: var(--accent-light); margin-top: 4px; font-weight: 600;">
                         ${data.subtitle}
                     </div>
                 </div>
-                <span class="map-badge Large" style="font-size: 1.0rem; padding: 7px 16px;">💀 ${data.badge}</span>
+                <span class="map-badge Large" style="font-size: 1.1rem; padding: 8px 18px;">💀 ${data.badge}</span>
             </div>
 
-            <div style="margin: 14px 0 16px 0;">
-                <a href="https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+뇽자" target="_blank" class="weekly-yt-banner-btn">
-                    <span class="yt-banner-icon">▶️</span>
+            <div style="margin: 16px 0 18px 0;">
+                <a href="https://www.youtube.com/results?search_query=파스모포비아+아포칼립스+뇽자" target="_blank" class="weekly-yt-banner-btn" style="padding: 14px 20px;">
+                    <span class="yt-banner-icon" style="font-size: 1.6rem;">▶️</span>
                     <div class="yt-banner-textbox">
-                        <div class="yt-banner-title">📺 유튜브에서 '아포칼립스 15배율' 뇽자 실전 공략 보기</div>
-                        <div class="yt-banner-sub">클릭 시 해당 공략 검색 결과로 바로 이동합니다.</div>
+                        <div class="yt-banner-title" style="font-size: 1.12rem;">📺 유튜브에서 '아포칼립스 15배율' 뇽자 실전 공략 보기</div>
+                        <div class="yt-banner-sub" style="font-size: 0.9rem;">클릭 시 해당 공략 검색 결과로 바로 이동합니다.</div>
                     </div>
-                    <span class="yt-banner-arrow">영상 보기 ➔</span>
+                    <span class="yt-banner-arrow" style="font-size: 1rem;">영상 보기 ➔</span>
                 </a>
             </div>
 
-            <div class="dict-section-title">💡 아포칼립스 핵심 개요 (OVERVIEW)</div>
-            <div style="background: rgba(109, 76, 251, 0.1); padding: 13px 15px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 0.95rem; line-height: 1.65; color: #f4f4f5; margin-bottom: 16px;">
+            <div class="dict-section-title" style="font-size: 1.05rem;">💡 아포칼립스 핵심 개요 (OVERVIEW)</div>
+            <div style="background: rgba(109, 76, 251, 0.1); padding: 15px 18px; border-radius: 8px; border-left: 4px solid var(--accent-vibrant); font-size: 1.0rem; line-height: 1.7; color: #f4f4f5; margin-bottom: 18px;">
                 ${data.tip}
             </div>
 
-            <div class="dict-section-title">📋 상세 공략 및 가이드 (DETAILED GUIDE)</div>
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 14px 16px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.92rem; line-height: 1.65;">
+            <div class="dict-section-title" style="font-size: 1.05rem;">📋 상세 공략 및 가이드 (DETAILED GUIDE)</div>
+            <div style="background: rgba(0, 0, 0, 0.4); padding: 16px 20px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 0.96rem; line-height: 1.75;">
                 ${data.detailedHtml}
             </div>
         </div>

@@ -492,14 +492,12 @@ function renderApocalypse() {
 
     const data = APOCALYPSE_DATA;
 
-    // 좌우 2분할 레이아웃 적용 (왼쪽: 가이드 본문 카드 / 오른쪽: 유튜브 검색 배너 링크들)
     const wrapper = document.createElement('div');
     wrapper.className = 'weekly-split-layout';
     wrapper.style.alignItems = 'flex-start';
 
-    // 좌측 패널 (가이드 본문 내용)
     const leftCol = document.createElement('div');
-    leftCol.className = 'weekly-right-pane'; // 60% 넓이 활용을 위해 right-pane 스타일 재사용
+    leftCol.className = 'weekly-right-pane';
     leftCol.style.flex = '1.3';
     leftCol.innerHTML = `
         <div class="weekly-detail-card">
@@ -525,9 +523,8 @@ function renderApocalypse() {
         </div>
     `;
 
-    // 우측 패널 (텅 비어있던 공간을 채워줄 뇽자 유튜브 아포칼립스 공략 배너 링크들)
     const rightCol = document.createElement('div');
-    rightCol.className = 'weekly-left-pane'; // 40% 넓이 활용을 위해 left-pane 스타일 재사용
+    rightCol.className = 'weekly-left-pane';
     rightCol.style.flex = '0.9';
     rightCol.innerHTML = `
         <div class="guide-card" style="margin-bottom: 14px; border-left: 4px solid var(--accent-vibrant);">
@@ -884,7 +881,9 @@ async function fetchVisitorCounts() {
         const totalData = await totalRes.json();
         totalEl.innerText = (totalData.count || 1).toLocaleString() + '명';
 
-        (구조 및 검색 로직 유지...)
+        const todayRes = await fetch(`https://api.counterapi.dev/v1/nyongja_guide/${todayKey}/up`);
+        const todayData = await todayRes.json();
+        todayEl.innerText = (todayData.count || 1).toLocaleString() + '명';
     } catch (err) {
         todayEl.innerText = '-';
         totalEl.innerText = '-';

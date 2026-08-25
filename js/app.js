@@ -48,7 +48,7 @@ function getKarotteMapUrl(rawName) {
         "Prison": "https://phasmo.karotte.org/maps/prison/",
         "Brownstone High School": "https://phasmo.karotte.org/maps/brownstone-high-school/",
         "Sunny Meadows": "https://phasmo.karotte.org/maps/sunny-meadows-mental-institution/",
-        "Sunny Meadows Restricted": "https://phasmo.karotte.org/maps/sunny-meadows-mental-institution/"
+        "Sunny Meadows Restricted": "https://phasmo.karotte.org/maps/sunny-meadows-mental-institution/",
     };
     return mapMap[rawName] || "https://phasmo.karotte.org/";
 }

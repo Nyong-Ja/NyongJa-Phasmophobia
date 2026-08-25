@@ -342,14 +342,14 @@ function getMapDisplayName(rawName) {
         "Grafton Farmhouse": "그라프톤 농가 (Grafton Farmhouse)",
         "Bleasdale Farmhouse": "블리즈데일 농가 (Bleasdale Farmhouse)",
         "Point Hope": "포인트 호프 등대 (Point Hope)",     
-        "Point Hope - Restricted": "등대 제한구역 (Point Hope - Restricted)"
+        "Point Hope - Restricted": "포인트 호프 등대 제한구역 (Point Hope - Restricted)",
         "Maple Lodge Campsite": "메이플 롯지 캠프장 (Maple Lodge Campsite)",
         "Prison": "감옥 (Prison)",
         "Prison - Restricted": "감옥 제한구역 (Prison - Restricted)",
         "Brownstone High School": "브라운스톤 고등학교 (Brownstone High School)",
         "Brownstone High School - Restricted": "고등학교 제한구역 (Brownstone High School - Restricted)",
         "Sunny Meadows Mental Institution": "써니 메도우 (Sunny Meadows Mental Institution)",
-        "Sunny Meadows Mental Institution - Restricted": "써니 메도우 제한구역 (Sunny Meadows Mental Institution - Restricted)"
+        "Sunny Meadows Mental Institution - Restricted": "써니 메도우 제한구역 (Sunny Meadows Mental Institution - Restricted)",
     };
 
     if (mapNameMap[rawName]) return mapNameMap[rawName];

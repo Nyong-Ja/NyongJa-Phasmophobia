@@ -541,6 +541,21 @@ const MAP_DATA = [
         `
     },
     { 
+        name: "Point Hope - Restricted", 
+        category: "Small", 
+        rooms: "구역별 가변", 
+        size: "제한된 소형 등대", 
+        tip: "포인트 호프 등대의 제한구역 버전입니다. 정보 업데이트 준비 중입니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Restricted Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
+                • <strong>특징:</strong> 포인트 호프의 일부 층만 개방되는 제한구역 버전입니다. 추후 상세 정보가 업데이트될 예정입니다.
+            </p>
+        `
+    },
+    { 
         name: "Prison", 
         category: "Medium", 
         rooms: "31개 룸 (조사 구역 29개)", 
@@ -586,6 +601,21 @@ const MAP_DATA = [
                 &nbsp;&nbsp;- <strong>위자보드:</strong> 상자가 놓인 테이블 뒤편 바닥<br>
                 &nbsp;&nbsp;- <strong>소환진:</strong> 복도 끝 바닥 중앙<br>
                 • <strong>두꺼비집 (Fuse Box):</strong> 1층 소장실 통로, 2층 의무실 복도 소형룸, 또는 A/B 블록 제어실 중 1곳
+            </p>
+        `
+    },
+    { 
+        name: "Prison - Restricted", 
+        category: "Small", 
+        rooms: "구역별 가변", 
+        size: "제한된 소형 감옥", 
+        tip: "감옥 맵의 제한구역 버전입니다. 정보 업데이트 준비 중입니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Restricted Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
+                • <strong>특징:</strong> 감옥의 일부 구역만 개방되는 제한구역 버전입니다. 추후 상세 정보가 업데이트될 예정입니다.
             </p>
         `
     },
@@ -685,6 +715,21 @@ const MAP_DATA = [
                 &nbsp;&nbsp;- <strong>유령 거울:</strong> 로비 우측 기둥 뒤 바닥<br>
                 &nbsp;&nbsp;- <strong>소환진:</strong> 로비 안쪽 중앙 바닥<br>
                 • <strong>두꺼비집 (Fuse Box):</strong> 1층 좌측 복도 끝, 1층 우측 복도 끝, 또는 2층 복도 벽면 중 1곳
+            </p>
+        `
+    },
+    { 
+        name: "Brownstone High School - Restricted", 
+        category: "Small", 
+        rooms: "구역별 가변", 
+        size: "제한된 소형 고등학교", 
+        tip: "브라운스톤 고등학교의 제한구역 버전입니다. 정보 업데이트 준비 중입니다.",
+        isDetailed: true,
+        detailedHtml: `
+            <div class="dict-section-title">1. 기본 개요 (Restricted Overview)</div>
+            <p class="dict-text">
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
+                • <strong>특징:</strong> 고등학교의 일부 구역만 개방되는 제한구역 버전입니다. 추후 상세 정보가 업데이트될 예정입니다.
             </p>
         `
     },

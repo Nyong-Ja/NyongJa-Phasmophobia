@@ -333,20 +333,20 @@ let currentMapCategory = 'ALL';
 
 function getMapDisplayName(rawName) {
     const mapNameMap = {
-        "6 Tanglewood Drive": "6 탱글우드 드라이브 (6 Tanglewood Drive)",
-        "42 Edgefield Road": "42 엣지필드 로드 (42 Edgefield Road)",
-        "10 Ridgeview Court": "10 리지뷰 코트 (10 Ridgeview Court)",
+        "6 Tanglewood Drive": "탱글우드 드라이브 (6 Tanglewood Drive)",
+        "42 Edgefield Road": "엣지필드 로드 (42 Edgefield Road)",
+        "10 Ridgeview Court": "리지뷰 코트 (10 Ridgeview Court)",
         "Nell's Diner": "넬스 다이너 (Nell's Diner)",
-        "13 Willow Street": "13 윌로우 스트리트 (13 Willow Street)",
+        "13 Willow Street": "윌로우 스트리트 (13 Willow Street)",
         "Camp Woodwind": "우드윈드 캠프장 (Camp Woodwind)",
         "Grafton Farmhouse": "그라프톤 농가 (Grafton Farmhouse)",
         "Bleasdale Farmhouse": "블리즈데일 농가 (Bleasdale Farmhouse)",
         "Point Hope": "포인트 호프 등대 (Point Hope)",
         "Maple Lodge Campsite": "메이플 롯지 캠프장 (Maple Lodge Campsite)",
-        "Prison": "교도소 (Prison)",
+        "Prison": "감옥 (Prison)",
         "Brownstone High School": "브라운스톤 고등학교 (Brownstone High School)",
-        "Sunny Meadows": "써니 메도우 본관 (Sunny Meadows)",
-        "Sunny Meadows Restricted": "써니 메도우 구역제한 (Sunny Meadows Restricted)"
+        "Sunny Meadows": "써니 메도우 (Sunny Meadows)",
+        "Sunny Meadows Restricted": "써니 메도우 제한구역 (Sunny Meadows Restricted)"
     };
 
     if (mapNameMap[rawName]) return mapNameMap[rawName];

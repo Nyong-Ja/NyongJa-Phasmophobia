@@ -345,8 +345,8 @@ function getMapDisplayName(rawName) {
         "Maple Lodge Campsite": "메이플 롯지 캠프장 (Maple Lodge Campsite)",
         "Prison": "감옥 (Prison)",
         "Brownstone High School": "브라운스톤 고등학교 (Brownstone High School)",
-        "Sunny Meadows": "써니 메도우 (Sunny Meadows)",
-        "Sunny Meadows Restricted": "써니 메도우 제한구역 (Sunny Meadows Restricted)"
+        "Sunny Meadows Mental Institution": "써니 메도우 (Sunny Meadows Mental Institution)",
+        "Sunny Meadows Mental Institution - Restricted": "써니 메도우 제한구역 (Sunny Meadows Mental Institution - Restricted)"
     };
 
     if (mapNameMap[rawName]) return mapNameMap[rawName];

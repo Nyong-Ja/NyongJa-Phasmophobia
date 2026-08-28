@@ -4,7 +4,7 @@
 // ==========================================
 
 const NEWS_DATA = [
-{
+    {
         category: "Phasmophobia",
         icon: "👻",
         date: "2026. 8. 25.",

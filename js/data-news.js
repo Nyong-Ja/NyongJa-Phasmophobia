@@ -150,6 +150,9 @@ const NEWS_DATA = [
                     <li>VR - 플레이어가 몰입 애니메이션을 켠 상태에서 죽었을 때, 캐릭터의 래그돌이 왜곡되고 뒤틀려 보입니다.</li>
                 </ul>
             </div>
+            <div style="margin-top: 20px; padding-top: 12px; border-top: 1px dashed var(--card-border); text-align: right; font-size: 0.88rem; color: var(--accent-light);">
+                ✨ <strong>Korean Translated by. 흠먐먀</strong>
+            </div>
         `
     },
     {

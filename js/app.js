@@ -729,39 +729,45 @@ function renderNews() {
     `;
     container.appendChild(headerBox);
 
-    const grid = document.createElement('div');
-    grid.className = 'news-blog-grid';
+// 하단 아코디언 리스트 컨테이너
+    const accordionContainer = document.createElement('div');
+    accordionContainer.className = 'news-accordion-container';
 
-    NEWS_DATA.forEach(n => {
-        const card = document.createElement('a');
-        card.href = n.url;
-        card.target = "_blank";
-        card.className = 'news-blog-card';
+    NEWS_DATA.forEach((n, idx) => {
+        const itemId = `news-item-${idx}`;
+        const item = document.createElement('div');
+        item.className = 'news-accordion-item';
+        item.id = itemId;
 
-        card.innerHTML = `
-            <div class="news-card-thumb-wrap">
-                <img src="${n.img}" 
-                     alt="${n.title}" 
-                     class="news-card-img"
-                     onerror="this.onerror=null; this.src='images/maps/Sunny_Meadows.webp'">
-            </div>
-            <div class="news-card-body">
-                <div class="news-card-meta">
-                    <span class="news-card-cat">${n.icon} ${n.category}</span>
-                    <span class="news-card-date">${n.date}</span>
+        item.innerHTML = `
+            <button type="button" class="news-accordion-header" onclick="toggleNews('${itemId}')">
+                <div class="news-header-left">
+                    <span class="news-badge">${n.category}</span>
+                    <span class="news-title-text">${n.title}</span>
                 </div>
-                <div class="news-card-title">${n.title}</div>
-                <div class="news-card-desc">${n.desc}</div>
-                <div class="news-card-footer">
-                    <span>READ MORE</span>
-                    <span class="news-card-arrow">➔</span>
+                <div class="news-header-right">
+                    <span class="news-date">${n.date}</span>
+                    <span class="news-arrow">▼</span>
+                </div>
+            </button>
+            <div class="news-accordion-body">
+                <div class="news-body-content">
+                    <div class="news-section-box">
+                        <div class="news-sub-title">주요 요약 및 내용</div>
+                        <p>${n.desc}</p>
+                    </div>
+                    <div class="news-footer-link">
+                        <a href="${n.url}" target="_blank" class="official-link-btn">
+                            Kinetic Games 공식 원문 보기 ➔
+                        </a>
+                    </div>
                 </div>
             </div>
         `;
-        grid.appendChild(card);
+        accordionContainer.appendChild(item);
     });
 
-    container.appendChild(grid);
+    container.appendChild(accordionContainer);
 }
 
 // 네비게이션 탭 전환 로직

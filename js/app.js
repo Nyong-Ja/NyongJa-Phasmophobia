@@ -704,11 +704,13 @@ function renderIdCards() {
 }
 
 // 10. 📢 패치 소식 (공식 Kinetic Games 뉴스 그리드 뷰 렌더링)
+// 10. 📢 패치 소식 (상단 고정 안내 바 + 아코디언 리스트 뷰 렌더링)
 function renderNews() {
     const container = document.getElementById('news-container');
     if (!container || typeof NEWS_DATA === 'undefined') return;
     container.innerHTML = '';
 
+    // 상단 고정 안내 박스
     const headerBox = document.createElement('div');
     headerBox.style.width = "100%";
     headerBox.style.marginBottom = "14px";
@@ -718,7 +720,7 @@ function renderNews() {
                 <div>
                     <div class="guide-card-title" style="font-size: 1.18rem; margin-bottom: 4px;">📢 Kinetic Games 공식 최신 뉴스 & 패치 피드</div>
                     <div class="guide-card-body" style="font-size: 0.92rem; color: var(--text-secondary);">
-                        공식 개발진이 작성한 최신 패치 노트, 로드맵 및 개발자 프리뷰 원문 링크입니다. 카드를 클릭하면 공식 페이지로 바로 이동합니다.
+                        공식 개발진이 작성한 최신 패치 노트, 로드맵 및 개발자 프리뷰 원문 링크입니다. 항목을 클릭하면 상세 내용과 원문으로 이동할 수 있습니다.
                     </div>
                 </div>
                 <a href="https://kineticgames.co.uk/news" target="_blank" class="map-filter-btn active" style="text-decoration: none; padding: 8px 16px; font-size: 0.95rem;">
@@ -729,7 +731,7 @@ function renderNews() {
     `;
     container.appendChild(headerBox);
 
-// 하단 아코디언 리스트 컨테이너
+    // 하단 아코디언 리스트 컨테이너
     const accordionContainer = document.createElement('div');
     accordionContainer.className = 'news-accordion-container';
 
@@ -738,6 +740,14 @@ function renderNews() {
         const item = document.createElement('div');
         item.className = 'news-accordion-item';
         item.id = itemId;
+
+        // detailedHtml이 있으면 그걸 쓰고, 없으면 기존 desc 요약 박스를 보여줌
+        const bodyContentHtml = n.detailedHtml ? n.detailedHtml : `
+            <div class="news-section-box">
+                <div class="news-sub-title">주요 요약 및 내용</div>
+                <p>${n.desc}</p>
+            </div>
+        `;
 
         item.innerHTML = `
             <button type="button" class="news-accordion-header" onclick="toggleNews('${itemId}')">
@@ -752,10 +762,7 @@ function renderNews() {
             </button>
             <div class="news-accordion-body">
                 <div class="news-body-content">
-                    <div class="news-section-box">
-                        <div class="news-sub-title">주요 요약 및 내용</div>
-                        <p>${n.desc}</p>
-                    </div>
+                    ${bodyContentHtml}
                     <div class="news-footer-link">
                         <a href="${n.url}" target="_blank" class="official-link-btn">
                             Kinetic Games 공식 원문 보기 ➔

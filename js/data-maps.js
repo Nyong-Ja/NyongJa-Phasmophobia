@@ -545,13 +545,33 @@ const MAP_DATA = [
         category: "Small", 
         rooms: "구역별 가변", 
         size: "제한된 소형 등대", 
-        tip: "포인트 호프 등대의 제한구역 버전입니다. 정보 업데이트 준비 중입니다.",
+        tip: "10층 전체를 올라가는 기존 포인트 호프와 달리, 저층부(식당 등 일부 층)만 진입할 수 있도록 제한된 소형 전용 맵입니다.",
         isDetailed: true,
         detailedHtml: `
-            <div class="dict-section-title">1. 기본 개요 (Restricted Overview)</div>
+            <div class="dict-section-title">1. 기본 개요 (OVERVIEW)</div>
             <p class="dict-text">
-                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
-                • <strong>특징:</strong> 포인트 호프의 일부 층만 개방되는 제한구역 버전입니다. 추후 상세 정보가 업데이트될 예정입니다.
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map / 제한구역)<br>
+                • <strong>총 룸(구역) 수:</strong> 저층부 중심 가변 구역<br>
+                • <strong>층수:</strong> 1층 로비 ~ 2~3층 일부 구역<br>
+                • <strong>특징:</strong> 10층 높이의 전체 타워가 아니라, 로비 및 2층 식당(Dining Room) 등 하부 구역까지만 접근할 수 있도록 동선이 제한되어 빠른 조사가 가능합니다.
+            </p>
+
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (ROOMS)</div>
+            <p class="dict-text">
+                • <strong>고정 오픈 구역:</strong> 1층 Entrance Hallway (현관 로비)<br>
+                • <strong>가변 오픈 구역:</strong> 제한된 저층부 계단 및 식당(Dining Room) 주변 구역
+            </p>
+
+            <div class="dict-section-title">3. 공식 은신처 상세 목록 (SANCTIONED HIDING SPOTS)</div>
+            <p class="dict-text">
+                난이도 및 플레이어 수에 따라 무작위로 열리거나 막히는 공식 은신처들입니다:<br><br>
+                • <strong>저층부:</strong> 1층 계단 밑 틈새 및 개방된 저층부 가구 뒤편 구석
+            </p>
+
+            <div class="dict-section-title">4. 저주받은 물건 및 주요 오브젝트 고정 위치 (CURSED POSSESSIONS & PROP)</div>
+            <p class="dict-text">
+                • <strong>저주받은 물건:</strong> 개방된 저층부 내의 고정 테이블 및 선반 위<br>
+                • <strong>두꺼비집 (Fuse Box):</strong> 1층 현관 계단 옆 또는 저층부 벽면 중 1곳
             </p>
         `
     },
@@ -609,13 +629,33 @@ const MAP_DATA = [
         category: "Small", 
         rooms: "구역별 가변", 
         size: "제한된 소형 감옥", 
-        tip: "감옥 맵의 제한구역 버전입니다. 정보 업데이트 준비 중입니다.",
+        tip: "감옥 전체가 아닌, 현관 입구와 무작위로 개방된 일부 수감구역/복도만 탐색하는 소형 전용 맵입니다.",
         isDetailed: true,
         detailedHtml: `
-            <div class="dict-section-title">1. 기본 개요 (Restricted Overview)</div>
+            <div class="dict-section-title">1. 기본 개요 (OVERVIEW)</div>
             <p class="dict-text">
-                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
-                • <strong>특징:</strong> 감옥의 일부 구역만 개방되는 제한구역 버전입니다. 추후 상세 정보가 업데이트될 예정입니다.
+                • <strong>공식 분류:</strong> 소형 맵 (Small Map / 제한구역)<br>
+                • <strong>총 룸(구역) 수:</strong> 구역별 가변 (로비 및 무작위 1개 수감 블록)<br>
+                • <strong>층수:</strong> 지상 1층 + 지상 2층 일부<br>
+                • <strong>특징:</strong> 대형 감옥과 달리 진입 로비와 무작위로 열린 일부 수감 블록(Cell Block) 구역만 진입할 수 있으며 나머지 통로는 바리케이드로 차단됩니다.
+            </p>
+            
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (ROOMS)</div>
+            <p class="dict-text">
+                • <strong>고정 오픈 구역:</strong> Entrance (입구 현관 복도)<br>
+                • <strong>가변 오픈 구역:</strong> 매 게임마다 무작위로 배정된 A블록 또는 B블록 일부 수감방 및 통로
+            </p>
+
+            <div class="dict-section-title">3. 공식 은신처 상세 목록 (SANCTIONED HIDING SPOTS)</div>
+            <p class="dict-text">
+                난이도 및 플레이어 수에 따라 무작위로 열리거나 막히는 공식 은신처들입니다:<br><br>
+                • <strong>현관 및 수감동:</strong> 열린 수감방 내부 침대 뒤편 틈새 및 철제 락커 (Lockers)
+            </p>
+
+            <div class="dict-section-title">4. 저주받은 물건 및 주요 오브젝트 고정 위치 (CURSED POSSESSIONS & PROPS)</div>
+            <p class="dict-text">
+                • <strong>저주받은 물건 스폰:</strong> 기존 감옥과 동일하게 Entrance Hallway(현관 복도) 근처에 집결 스폰됩니다.<br>
+                • <strong>두꺼비집 (Fuse Box):</strong> 1층 소장실 통로 또는 개방된 수감동 제어실 중 1곳
             </p>
         `
     },
@@ -720,16 +760,37 @@ const MAP_DATA = [
     },
     { 
         name: "Brownstone High School - Restricted", 
-        category: "Small", 
+        category: "Medium", 
         rooms: "구역별 가변", 
         size: "제한된 소형 고등학교", 
-        tip: "브라운스톤 고등학교의 제한구역 버전입니다. 정보 업데이트 준비 중입니다.",
+        tip: "64개의 방이 모두 열리던 거대한 고등학교 대신, 중앙 로비와 무작위 1개 구역(1층 또는 2층 일부 윙)만 개방되는 제한 버전입니다.",
         isDetailed: true,
         detailedHtml: `
-            <div class="dict-section-title">1. 기본 개요 (Restricted Overview)</div>
+            <div class="dict-section-title">1. 기본 개요 (OVERVIEW)</div>
             <p class="dict-text">
-                • <strong>공식 분류:</strong> 소형 맵 (Small Map)<br>
-                • <strong>특징:</strong> 고등학교의 일부 구역만 개방되는 제한구역 버전입니다. 추후 상세 정보가 업데이트될 예정입니다.
+                • <strong>공식 분류:</strong> 중형 맵 (Medium Map / 제한구역)<br>
+                • <strong>총 룸(구역) 수:</strong> 구역별 가변 (로비 + 무작위 교실 구역)<br>
+                • <strong>층수:</strong> 지상 1층 ~ 지상 2층 일부 윙<br>
+                • <strong>특징:</strong> 메인 로비와 사이드 문을 통해 무작위로 배정된 특정 구역의 교실들과 복도 일부만 진입할 수 있으며, 나머지 구역은 철저히 차단됩니다.
+            </p>
+            
+            <div class="dict-section-title">2. 공식 룸 및 구역 목록 (ROOMS)</div>
+            <p class="dict-text">
+                • <strong>고정 오픈 구역:</strong> Main Lobby (중앙 로비)<br>
+                • <strong>가변 오픈 구역:</strong> 배정된 변형에 따른 특정 교실들 및 남/여 화장실 칸막이 구역
+            </p>
+
+            <div class="dict-section-title">3. 공식 은신처 상세 목록 (SANCTIONED HIDING SPOTS)</div>
+            <p class="dict-text">
+                난이도 및 플레이어 수에 따라 무작위로 열리거나 막히는 공식 은신처들입니다:<br><br>
+                • <strong>교실 및 복도:</strong> 배정된 교실 내부 서랍장/책장 뒤편, 또는 화장실 칸막이(Toilet stalls) 공간
+            </p>
+
+            <div class="dict-section-title">4. 저주받은 물건 및 주요 오브젝트 고정 위치 (CURSED POSSESSIONS & PROPS)</div>
+            <p class="dict-text">
+                • <strong>모든 저주받은 물건은 Main Lobby(중앙 로비)에 집결 스폰됩니다:</strong><br>
+                &nbsp;&nbsp;- 로비 양쪽 벤치, 기둥 근처 및 바닥 중앙에 분산 스폰<br>
+                • <strong>두꺼비집 (Fuse Box):</strong> 오픈된 윙의 복도 끝 벽면 또는 중앙 로비 인근 중 1곳
             </p>
         `
     },

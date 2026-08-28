@@ -956,3 +956,12 @@ async function fetchVisitorCounts() {
         totalEl.innerText = '-';
     }
 }
+
+// ==========================================
+// 📢 아코디언 토글 제어 함수 (이 부분을 자바스크립트 파일 맨 아래에 쏙 넣어주세요!)
+// ==========================================
+function toggleNews(itemId) {
+    const item = document.getElementById(itemId);
+    if (!item) return;
+    item.classList.toggle('active');
+}

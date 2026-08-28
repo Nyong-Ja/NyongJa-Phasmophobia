@@ -185,6 +185,7 @@ const GHOST_DATA = [
         speed: "1.7 m/s (가속 O)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+밴시+공략",
         tip: `<strong>1. 사냥 및 타겟팅 메커니즘</strong><br>
+              • <strong>※ 여성형 모델만 등장하는 특징이 있습니다.</strong><br>
               • <strong>단일 타겟 지정:</strong> 무작위 1명을 타겟으로 지정하며, <strong>오직 타겟의 정신력이 50% 이하</strong>일 때만 사냥을 시작합니다.<br>
               • <strong>비타겟 무시 (몸통 통과):</strong> 사냥 중 오직 타겟만 추격하며, <strong>비타겟 플레이어와 부딪히거나 통과해도 절대 죽지 않습니다.</strong><br>
               • <strong>지향성 마이크 비명:</strong> 지향성 마이크로 소리 감지 시 약 33% 확률로 <strong>특유의 날카로운 고유 비명(Wail)</strong>을 들려줍니다.`,
@@ -236,6 +237,7 @@ const GHOST_DATA = [
         speed: "반경 10m 내 이동 시 2.5 m/s / 정지 시 1.4 m/s (기본 1.7 m/s)",
         ytUrl: "https://www.youtube.com/results?search_query=파스모포비아+다얀+공략",
         tip: `<strong>1. 사냥 및 움직임 감지 메커니즘</strong><br>
+              • <strong>※ 여성형 모델만 등장하는 특징이 있습니다.</strong><br>
               • <strong>움직임 감지 반경:</strong> <strong>반경 10m 이내</strong>에 플레이어가 있을 때 속도가 실시간 변화합니다.<br>
               • <strong>가속 조건 (2.5 m/s):</strong> 10m 내의 플레이어가 걷거나 뛰면 시야 여부와 무관하게 <strong>2.5 m/s로 대폭 가속</strong>합니다.<br>
               • <strong>감속 조건 (1.4 m/s):</strong> 10m 내의 플레이어가 제자리에 가만히 멈춰 서 있으면 <strong>1.4 m/s로 크게 감속</strong>합니다. (시야 가속 없음)`,

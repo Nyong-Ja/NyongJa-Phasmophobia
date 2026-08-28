@@ -5,6 +5,15 @@
 
 const NEWS_DATA = [
     {
+        category: "Phasmophobia",
+        icon: "👻",
+        date: "2026. 8. 28.",
+        title: "Phasmophobia v0.19.0.0 - Quality of Life Part 2",
+        desc: "감옥, 고등학교 등 신규 제한구역 맵 3종 추가 및 비디오·사진 카메라 중복 증거 표시 기능 도입",
+        img: "https://kineticgames.co.uk/assets/images/news-banner-qol-part2.webp",
+        url: "https://kineticgames.co.uk/news/phasmophobia-v01900-quality-of-life-part-2"
+    },
+    {
         category: "Kinetic Publishing",
         icon: "🎮",
         date: "2026. 8. 13.",

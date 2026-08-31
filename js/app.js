@@ -803,6 +803,9 @@ function switchTab(tabId) {
     if (tabId === 'equipment') {
         filterEqCategory('ALL');
     }
+    if (tabId === 'factory') {
+        renderFactory();
+    }
 }
 
 // 상단 헤더 검색

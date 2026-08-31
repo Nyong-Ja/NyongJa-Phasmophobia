@@ -1,8 +1,10 @@
 // 🏭 레벨업 공장 공략 데이터 및 렌더링 파일
 
 function renderFactory() {
-    const container = document.getElementById('factory-container') || document.getElementById('level-factory-container');
+    // HTML에 설정한 팩토리 전용 컨테이너를 정확히 타겟팅
+    const container = document.getElementById('factory-container') || document.getElementById('tab-factory');
     if (!container) return;
+    
     container.innerHTML = '';
 
     const wrapper = document.createElement('div');
@@ -11,7 +13,7 @@ function renderFactory() {
     wrapper.style.gap = '20px';
     wrapper.style.width = '100%';
 
-    // 화면 크기가 작을 때(모바일/태블릿) 반응형 처리
+    // 반응형 대응 (모바일 화면일 때 세로로 정렬)
     if (window.innerWidth <= 1024) {
         wrapper.style.gridTemplateColumns = '1fr';
     }
@@ -38,7 +40,7 @@ function renderFactory() {
                 <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.94rem; line-height: 1.65; color: var(--text-primary);">
                     <div style="background: var(--inner-card-bg, #080a18); padding: 12px 14px; border-radius: 8px; border: 1.5px solid var(--card-border);">
                         <strong style="color: var(--accent-vibrant);">1. 맵 선정 및 동선 압축</strong><br>
-                        소형 맵(탱글우드 드라이브 등)을 활용하여 유령의 방과 증거 위치를 최단 시간 내에 파악합니다. 쓸데없는 루팅 시간을 줄이는 것이 핵심입니다.
+                        소형 맵(탱글우드 드라이브 등)을 활용하여 유령의 방과 증거 위치를 최단 시간 내에 파악합니다. 불필요한 파밍 동선을 줄이는 것이 핵심입니다.
                     </div>
                     
                     <div style="background: var(--inner-card-bg, #080a18); padding: 12px 14px; border-radius: 8px; border: 1.5px solid var(--card-border);">
@@ -55,17 +57,16 @@ function renderFactory() {
 
         </div>
 
-        <!-- 오른쪽 패널: 영상 연동 및 라이브/유튜브 바로가기 -->
+        <!-- 오른쪽 패널: 영상 연동 -->
         <div style="display: flex; flex-direction: column; gap: 16px;">
             
-            <!-- 유튜브 영상 연동 박스 -->
             <div class="weekly-detail-card" style="background: var(--card-bg); border: 1.5px solid var(--card-border); border-radius: 12px; padding: 20px;">
                 <div class="dict-section-title" style="margin-top: 0; font-size: 1.05rem; margin-bottom: 14px; color: var(--text-primary);">
                     📺 실전 공략 영상 시청
                 </div>
                 
                 <a href="https://www.youtube.com" target="_blank" style="display: flex; align-items: center; gap: 12px; background: rgba(255, 0, 0, 0.1); border: 1.5px solid rgba(255, 0, 0, 0.3); padding: 16px; border-radius: 10px; text-decoration: none; transition: all 0.2s ease;">
-                    <div style="background: #ff0000; color: #fff; width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justifyContent: center; font-size: 1.2rem; flex-shrink: 0;">
+                    <div style="background: #ff0000; color: #fff; width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
                         ▶
                     </div>
                     <div>
@@ -79,7 +80,6 @@ function renderFactory() {
                 </a>
             </div>
 
-            <!-- 추가 생방송 / 커뮤니티 연동 배너 (선택사항) -->
             <div class="weekly-detail-card" style="background: var(--card-bg); border: 1.5px solid var(--card-border); border-radius: 12px; padding: 20px;">
                 <div class="dict-section-title" style="margin-top: 0; font-size: 1.05rem; margin-bottom: 10px; color: var(--text-primary);">
                     💡 방송 참여 안내
@@ -94,3 +94,9 @@ function renderFactory() {
 
     container.appendChild(wrapper);
 }
+
+// 메인 앱(app.js)의 탭 전환 시 'factory'가 눌리면 이 함수가 불리도록 연결해 주는 안전장치
+document.addEventListener('DOMContentLoaded', () => {
+    // 최초 로딩 시 팩토리 탭 컨테이너가 있으면 그려줌
+    renderFactory();
+});

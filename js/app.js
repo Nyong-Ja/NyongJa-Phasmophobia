@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderWeekly();
     renderMaps('ALL');
     renderApocalypse();
+    renderFactory();
     renderDrops();
     renderGuides();
     renderIdCards();

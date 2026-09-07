@@ -527,31 +527,30 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    /* 버튼 안쪽 전체를 네온 블루와 민트 그린 그라데이션으로 채움 */
-    background: linear-gradient(135deg, #00bfff, #00ff88);
-    border: 1.5px solid #a78bfa;
+    /* 투명도를 섞어 눈이 부시지 않고 은은하게 빛나는 그라데이션 */
+    background: linear-gradient(135deg, rgba(0, 191, 255, 0.25), rgba(0, 255, 136, 0.2));
+    border: 1.5px solid rgba(167, 139, 250, 0.5);
     padding: 10px 14px;
     border-radius: 10px;
     text-decoration: none;
     transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 4px 16px rgba(0, 255, 136, 0.3);
+    box-shadow: 0 2px 12px rgba(0, 210, 255, 0.15);
     box-sizing: border-box;
     text-align: center;
 }
 
 .ghost-yt-banner-btn:hover {
-    background: linear-gradient(135deg, #33ccff, #33ff99);
-    border-color: #ffffff;
-    box-shadow: 0 6px 22px rgba(0, 255, 136, 0.5);
+    background: linear-gradient(135deg, rgba(0, 191, 255, 0.4), rgba(0, 255, 136, 0.35));
+    border-color: rgba(167, 139, 250, 0.9);
+    box-shadow: 0 4px 18px rgba(0, 255, 136, 0.3);
     transform: translateY(-2px);
 }
 
-/* 밝아진 배경에 맞춰 글씨가 선명하게 보이도록 설정 */
+/* 은은한 배경에 잘 어울리도록 기존처럼 깔끔한 하얀 글씨 복원 */
 .ghost-yt-title {
     font-size: 0.98rem;
     font-weight: 800;
-    color: #061510; /* 밝은 배경에 대비되는 아주 짙은 다크 톤 글씨 */
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3); /* 선명함을 더해주는 밝은 글자 그림자 */
+    color: #ffffff;
     letter-spacing: -0.2px;
     white-space: nowrap;
     overflow: hidden;

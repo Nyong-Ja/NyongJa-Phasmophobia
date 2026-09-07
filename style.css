@@ -527,28 +527,31 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    background: linear-gradient(135deg, #181528, #221a36);
-    border: 1.5px solid #00ffaa;
+    /* 버튼 안쪽 전체를 네온 블루와 민트 그린 그라데이션으로 채움 */
+    background: linear-gradient(135deg, #00bfff, #00ff88);
+    border: 1.5px solid #a78bfa;
     padding: 10px 14px;
     border-radius: 10px;
     text-decoration: none;
     transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 0 10px rgba(0, 210, 255, 0.25), 0 0 5px rgba(0, 255, 170, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 255, 136, 0.3);
     box-sizing: border-box;
     text-align: center;
 }
 
 .ghost-yt-banner-btn:hover {
-    background: linear-gradient(135deg, #221c38, #2e234d);
-    border-color: #33ffcc;
-    box-shadow: 0 4px 18px rgba(0, 210, 255, 0.4), 0 0 8px rgba(0, 255, 170, 0.35);
+    background: linear-gradient(135deg, #33ccff, #33ff99);
+    border-color: #ffffff;
+    box-shadow: 0 6px 22px rgba(0, 255, 136, 0.5);
     transform: translateY(-2px);
 }
 
+/* 밝아진 배경에 맞춰 글씨가 선명하게 보이도록 설정 */
 .ghost-yt-title {
     font-size: 0.98rem;
     font-weight: 800;
-    color: #ffffff;
+    color: #061510; /* 밝은 배경에 대비되는 아주 짙은 다크 톤 글씨 */
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3); /* 선명함을 더해주는 밝은 글자 그림자 */
     letter-spacing: -0.2px;
     white-space: nowrap;
     overflow: hidden;

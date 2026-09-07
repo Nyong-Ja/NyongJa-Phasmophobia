@@ -1027,29 +1027,29 @@ body {
     gap: 12px;
 }
 
-/* 📺 대형 단독 유튜브 공략 검색 배너 버튼 (선택된 상단 탭과 완벽히 일치하는 라벤더 보라 톤) */
+/* 📺 대형 단독 유튜브 공략 검색 배너 버튼 (커서 올리기 전 평소 상태를 화사한 라벤더 보라색으로 고정) */
 .weekly-yt-banner-btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 14px;
     width: 100%;
-    /* 상단 활성 탭과 똑같은 그라데이션 변수 적용 */
-    background: linear-gradient(135deg, var(--accent-vibrant), var(--accent-light)) !important;
-    border: 1.5px solid var(--accent-light) !important;
+    /* 커서를 올리지 않은 평소 상태 색상 */
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+    border: 1.5px solid rgba(196, 181, 253, 0.8) !important;
     padding: 12px 18px;
     border-radius: 12px;
     text-decoration: none;
     transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 4px 16px var(--accent-glow);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
     box-sizing: border-box;
 }
 
-/* 마우스를 올렸을 때(Hover): 살짝 더 밝게 빛남 */
+/* 마우스를 올렸을 때(Hover): 조금 더 진하거나 밝게 반응하는 효과 */
 .weekly-yt-banner-btn:hover {
-    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%) !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
     border-color: #ffffff !important;
-    box-shadow: 0 6px 22px var(--accent-glow);
+    box-shadow: 0 6px 22px rgba(139, 92, 246, 0.5);
     transform: translateY(-2px);
 }
 

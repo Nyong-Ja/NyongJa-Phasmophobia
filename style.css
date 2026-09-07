@@ -527,29 +527,31 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    /* 왼쪽 버튼처럼 화사하고 밝은 연보라빛 그라데이션 적용 */
-    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
-    border: 1.5px solid #c4b5fd;
+    /* 보여주신 이미지처럼 맑고 화사한 네온 블루 ➔ 민트 그린 그라데이션 */
+    background: linear-gradient(135deg, #00bfff 0%, #34d399 100%);
+    border: 1.5px solid #a7f3d0;
     padding: 10px 14px;
     border-radius: 10px;
     text-decoration: none;
     transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 4px 18px rgba(0, 191, 255, 0.35);
     box-sizing: border-box;
     text-align: center;
 }
 
 .ghost-yt-banner-btn:hover {
-    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #38bdf8 0%, #6ee7b7 100%);
     border-color: #ffffff;
-    box-shadow: 0 6px 20px rgba(167, 139, 250, 0.5);
+    box-shadow: 0 6px 22px rgba(52, 211, 153, 0.5);
     transform: translateY(-2px);
 }
 
+/* 밝고 화사한 배경에 글씨가 또렷하게 보이도록 짙은 색과 미세한 그림자 적용 */
 .ghost-yt-title {
     font-size: 0.98rem;
     font-weight: 800;
-    color: #ffffff;
+    color: #061510;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
     letter-spacing: -0.2px;
     white-space: nowrap;
     overflow: hidden;

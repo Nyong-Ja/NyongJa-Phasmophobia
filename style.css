@@ -527,22 +527,22 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    /* 왼쪽 버튼처럼 화사하고 밝은 연보라빛 그라데이션 적용 */
-    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
-    border: 1.5px solid #c4b5fd;
+    /* 보내주신 이미지와 똑같은 화사하고 선명한 보라색 톤 적용 */
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border: 1.5px solid rgba(196, 181, 253, 0.6);
     padding: 10px 14px;
     border-radius: 10px;
     text-decoration: none;
     transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
     box-sizing: border-box;
     text-align: center;
 }
 
 .ghost-yt-banner-btn:hover {
-    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
     border-color: #ffffff;
-    box-shadow: 0 6px 20px rgba(167, 139, 250, 0.5);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
     transform: translateY(-2px);
 }
 

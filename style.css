@@ -1027,14 +1027,14 @@ body {
     gap: 12px;
 }
 
-/* 📺 대형 단독 유튜브 공략 검색 배너 버튼 (네온 보라-라벤더 통일) */ 
+/* 📺 대형 단독 유튜브 공략 검색 배너 버튼 (평소에도 화사한 라벤더 톤 유지) */
 .weekly-yt-banner-btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 14px;
     width: 100%;
-    /* 화사하고 선명한 보라색 그라데이션 적용 */
+    /* 평소에도 화사하고 선명한 라벤더 보라색 그라데이션 적용 */
     background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
     border: 1.5px solid rgba(196, 181, 253, 0.8) !important;
     padding: 12px 18px;
@@ -1045,6 +1045,7 @@ body {
     box-sizing: border-box;
 }
 
+/* 마우스를 올렸을 때(Hover): 더 환하게 빛나며 위로 살짝 떠오름 */
 .weekly-yt-banner-btn:hover {
     background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
     border-color: #ffffff !important;
